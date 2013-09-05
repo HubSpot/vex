@@ -1,16 +1,16 @@
-hubspot.define 'vex', ['jQuery'], ($) ->
+$ = jQuery
 
-    # Detect CSS Animation Support
+# Detect CSS Animation Support
 
-    animationEndSupport = false
+animationEndSupport = false
 
-    $ ->
-        s = (document.body || document.documentElement).style
-        animationEndSupport = s.animation isnt undefined or s.WebkitAnimation isnt undefined or s.MozAnimation isnt undefined or s.MsAnimation isnt undefined or s.OAnimation isnt undefined
+$ ->
+    s = (document.body || document.documentElement).style
+    animationEndSupport = s.animation isnt undefined or s.WebkitAnimation isnt undefined or s.MozAnimation isnt undefined or s.MsAnimation isnt undefined or s.OAnimation isnt undefined
 
-    # Vex
+# Vex
 
-    return {
+vex =
 
     globalID: 1
 
@@ -144,4 +144,4 @@ hubspot.define 'vex', ['jQuery'], ($) ->
         vex.hideLoading()
         $('body').append('<div class="vex-loading-spinner"></div>')
 
-    }
+window.vex = vex
