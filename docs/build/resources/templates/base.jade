@@ -1,0 +1,56 @@
+doctype 5
+
+html
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible", content="chrome=1")
+        meta(name="viewport", content="width=device-width, initial-scale=1, user-scalable=no")
+
+        title= name
+
+        link(rel="icon", href="http://static.hubspot.com/favicon.ico")
+
+        link(type="text/css", rel="stylesheet", href="https://static2cdn.hubspot.com/hubspot_public_assets/static-1.112/shared/sass/hubspot_public_assets.css")
+        link(type="text/css", rel="stylesheet", href="https://static.hubspot.com/bundles/navigation.css")
+
+        link(rel="stylesheet", href="http://github.hubspot.com/static-resources/css/print.css")
+        link(rel="stylesheet", href="http://github.hubspot.com/static-resources/css/highlight-theme-github.css")
+        link(rel="stylesheet", href="http://github.hubspot.com/static-resources/css/navigation-tweaks.css")
+        link(rel="stylesheet", href="http://github.hubspot.com/static-resources/css/documentation.css")
+
+        script(type="text/javascript", src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+
+        //- Executr
+        //- link(rel='stylesheet', type='text/css', media='screen', href='docs/build/resources/executr/lib/CodeMirror/codemirror.css')
+        //- link(rel='stylesheet', type='text/css', media='screen', href='docs/build/resources/executr/build/css/executr.css')
+        //- script(type='text/javascript', src='docs/build/resources/executr/lib/CodeMirror/codemirror.js')
+        //- script(type='text/javascript', src='docs/build/resources/executr/lib/CodeMirror/mode/coffeescript/coffeescript.js')
+        //- script(type='text/javascript', src='docs/build/resources/executr/lib/CodeMirror/mode/javascript/javascript.js')
+        //- script(type='text/javascript', src='docs/build/resources/executr/lib/coffee-script.js')
+        //- script(type='text/javascript', src='docs/build/resources/executr/lib/underscore.min.js')
+        //- script(type='text/javascript', src='docs/build/resources/executr/lib/js2coffee.min.js')
+        //- script(type='text/javascript', src='docs/build/resources/executr/build/js/executr.js')
+        //- script(type="text/javascript")
+        //-   $(function(){
+        //-     $('pre code').each(function(){
+        //-       var $code = $(this),
+        //-         lang = $code.get(0).className.substr('lang-'.length)
+        //-       ;
+        //-       $code.attr('data-type', lang)
+        //-       $code.attr('executable', true)
+        //-     });
+        //-     $('body').executr();
+        //-   });
+
+        script(type="text/javascript", src="//use.typekit.net/jbn8qxr.js")
+        script(type="text/javascript")
+            try{Typekit.load();}catch(e){}
+
+    body
+
+        include includes/topbar.html
+
+        block content
+
+        include includes/footer
+        include includes/analytics.html
