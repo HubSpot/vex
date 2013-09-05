@@ -1,0 +1,176 @@
+@import compass/css3/border-radius
+@import compass/css3/box-shadow
+@import compass/css3/transition
+
+@import common_assets/static/sass/preboot
+
+$vexAnimationDuration: 0.5s
+$vexRoundness: 5px
+
+=vex-keyframes($name)
+    @keyframes #{$name}
+        @content
+    @-webkit-keyframes #{$name}
+        @content
+    @-moz-keyframes #{$name}
+        @content
+    @-ms-keyframes #{$name}
+        @content
+    @-o-keyframes #{$name}
+        @content
+
+=vex-animation($animation)
+    animation: $animation
+    -webkit-animation: $animation
+    -moz-animation: $animation
+    -ms-animation: $animation
+    -o-animation: $animation
+    -webkit-backface-visibility: hidden
+
+=vex-transform($transform)
+    transform: $transform
+    -webkit-transform: $transform
+    -moz-transform: $transform
+    -ms-transform: $transform
+    -o-transform: $transform
+
++vex-keyframes("vex-fadein")
+    0%
+        opacity: 0
+
+    100%
+        opacity: 1
+
++vex-keyframes("vex-fadeout")
+    0%
+        opacity: 1
+
+    100%
+        opacity: 0
+
++vex-keyframes("vex-flyin")
+    0%
+        +vex-transform(translateY(-10px))
+
+    100%
+        +vex-transform(translateY(0))
+
++vex-keyframes("vex-flyout")
+    0%
+        +vex-transform(translateY(0))
+
+    100%
+        +vex-transform(translateY(-10px))
+
+.vex-overlay
+    +vex-animation(vex-fadein $vexAnimationDuration)
+    position: fixed
+    padding-top: 60px
+    padding-bottom: 60px
+    overflow: auto
+    z-index: 1111
+    background: rgba(0, 0, 0, 0.4)
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+
+    &.vex-closing
+        +vex-animation(vex-fadeout $vexAnimationDuration)
+
+        .vex-content
+            +vex-animation(vex-flyout $vexAnimationDuration)
+
+.vex-content
+    +vex-animation(vex-flyin $vexAnimationDuration)
+    +box-shadow(0px 0px 28px 1px rgba(0, 0, 0, 0.2))
+    +border-radius($vexRoundness)
+    position: fixed
+    top: 10%
+    z-index: 1111
+    background: #f8f8f8
+
+    &.vex-content-auto
+        position: relative
+        margin: 0 auto
+
+    &.vex-content-fullscreen
+        +box-shadow(0)
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+
+    &.vex-content-tall
+        top: 60px
+        bottom: 60px
+        left: 50%
+        width: 800px
+        margin-left: -400px
+
+    &.vex-content-tall-and-wide
+        top: 60px
+        right: 60px
+        bottom: 60px
+        left: 60px
+
+.vex-close
+    +border-radius(0 $vexRoundness 0 0)
+    position: absolute
+    top: 0
+    right: 0
+    width: 30px
+    height: 30px
+    height: 30px
+    cursor: pointer
+
+    &:before
+        +border-radius(3px)
+        position: absolute
+        content: "\00D7"
+        font-size: 26px
+        font-weight: bold
+        overflow: hidden
+        line-height: 12px
+        height: 17px
+        width: 15px
+        text-align: center
+        top: 3px
+        right: 3px
+        padding: 5px
+        color: #bbb
+        color: rgba(50, 50, 50, 0.2)
+        background: transparent
+
+    &:hover:before
+        color: #444
+        color: rgba(50, 50, 50, 0.4)
+        background: #fefefe
+        background: rgba(50, 50, 50, 0.15)
+
+    &:active:before
+        color: #303030
+        color: rgba(50, 50, 50, 0.4)
+        background: #fcfcfc
+        background: rgba(50, 50, 50, 0.2)
+
+.vex-loading-spinner
+    +border-radius(6px)
+    position: fixed
+    z-index: 1112
+    top: 50%
+    left: 50%
+    width: 50px
+    height: 50px
+    margin-top: -25px
+    margin-left: -25px
+    background: #fff
+    background-image: url(//static.hubspot.com/style-guide/img/spinners/loading-sprocket.gif)
+    background-repeat: no-repeat
+    background-position: 7px 7px
+    opacity: 0.8
+
+// Support transition from fancybox
+
+.vex-content .hs-fancybox
+    background: transparent
