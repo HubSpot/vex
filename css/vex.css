@@ -1,0 +1,489 @@
+@keyframes vex-fadein {
+  /* line 36, vex.sass */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 39, vex.sass */
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes vex-fadein {
+  /* line 36, vex.sass */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 39, vex.sass */
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes vex-fadein {
+  /* line 36, vex.sass */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 39, vex.sass */
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes vex-fadein {
+  /* line 36, vex.sass */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 39, vex.sass */
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes vex-fadein {
+  /* line 36, vex.sass */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 39, vex.sass */
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes vex-fadeout {
+  /* line 43, vex.sass */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 46, vex.sass */
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes vex-fadeout {
+  /* line 43, vex.sass */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 46, vex.sass */
+  100% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes vex-fadeout {
+  /* line 43, vex.sass */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 46, vex.sass */
+  100% {
+    opacity: 0;
+  }
+}
+
+@-ms-keyframes vex-fadeout {
+  /* line 43, vex.sass */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 46, vex.sass */
+  100% {
+    opacity: 0;
+  }
+}
+
+@-o-keyframes vex-fadeout {
+  /* line 43, vex.sass */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 46, vex.sass */
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes vex-flyin {
+  /* line 50, vex.sass */
+  0% {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+  }
+
+  /* line 53, vex.sass */
+  100% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes vex-flyin {
+  /* line 50, vex.sass */
+  0% {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+  }
+
+  /* line 53, vex.sass */
+  100% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+}
+
+@-moz-keyframes vex-flyin {
+  /* line 50, vex.sass */
+  0% {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+  }
+
+  /* line 53, vex.sass */
+  100% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+}
+
+@-ms-keyframes vex-flyin {
+  /* line 50, vex.sass */
+  0% {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+  }
+
+  /* line 53, vex.sass */
+  100% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+}
+
+@-o-keyframes vex-flyin {
+  /* line 50, vex.sass */
+  0% {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+  }
+
+  /* line 53, vex.sass */
+  100% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+}
+
+@keyframes vex-flyout {
+  /* line 57, vex.sass */
+  0% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+
+  /* line 60, vex.sass */
+  100% {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+  }
+}
+
+@-webkit-keyframes vex-flyout {
+  /* line 57, vex.sass */
+  0% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+
+  /* line 60, vex.sass */
+  100% {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+  }
+}
+
+@-moz-keyframes vex-flyout {
+  /* line 57, vex.sass */
+  0% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+
+  /* line 60, vex.sass */
+  100% {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+  }
+}
+
+@-ms-keyframes vex-flyout {
+  /* line 57, vex.sass */
+  0% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+
+  /* line 60, vex.sass */
+  100% {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+  }
+}
+
+@-o-keyframes vex-flyout {
+  /* line 57, vex.sass */
+  0% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+
+  /* line 60, vex.sass */
+  100% {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+  }
+}
+
+/* line 63, vex.sass */
+.vex-overlay {
+  animation: vex-fadein 0.5s;
+  -webkit-animation: vex-fadein 0.5s;
+  -moz-animation: vex-fadein 0.5s;
+  -ms-animation: vex-fadein 0.5s;
+  -o-animation: vex-fadein 0.5s;
+  -webkit-backface-visibility: hidden;
+  position: fixed;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  overflow: auto;
+  z-index: 1111;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+/* line 76, vex.sass */
+.vex-overlay.vex-closing {
+  animation: vex-fadeout 0.5s;
+  -webkit-animation: vex-fadeout 0.5s;
+  -moz-animation: vex-fadeout 0.5s;
+  -ms-animation: vex-fadeout 0.5s;
+  -o-animation: vex-fadeout 0.5s;
+  -webkit-backface-visibility: hidden;
+}
+/* line 79, vex.sass */
+.vex-overlay.vex-closing .vex-content {
+  animation: vex-flyout 0.5s;
+  -webkit-animation: vex-flyout 0.5s;
+  -moz-animation: vex-flyout 0.5s;
+  -ms-animation: vex-flyout 0.5s;
+  -o-animation: vex-flyout 0.5s;
+  -webkit-backface-visibility: hidden;
+}
+
+/* line 82, vex.sass */
+.vex-content {
+  animation: vex-flyin 0.5s;
+  -webkit-animation: vex-flyin 0.5s;
+  -moz-animation: vex-flyin 0.5s;
+  -ms-animation: vex-flyin 0.5s;
+  -o-animation: vex-flyin 0.5s;
+  -webkit-backface-visibility: hidden;
+  -webkit-box-shadow: 0px 0px 28px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 28px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 28px 1px rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  position: fixed;
+  top: 10%;
+  z-index: 1111;
+  background: #f8f8f8;
+}
+/* line 91, vex.sass */
+.vex-content.vex-content-auto {
+  position: relative;
+  margin: 0 auto;
+}
+/* line 95, vex.sass */
+.vex-content.vex-content-fullscreen {
+  -webkit-box-shadow: 0;
+  -moz-box-shadow: 0;
+  box-shadow: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+/* line 102, vex.sass */
+.vex-content.vex-content-tall {
+  top: 60px;
+  bottom: 60px;
+  left: 50%;
+  width: 800px;
+  margin-left: -400px;
+}
+/* line 109, vex.sass */
+.vex-content.vex-content-tall-and-wide {
+  top: 60px;
+  right: 60px;
+  bottom: 60px;
+  left: 60px;
+}
+
+/* line 115, vex.sass */
+.vex-close {
+  -webkit-border-radius: 0 5px 0 0;
+  -moz-border-radius: 0 5px 0 0;
+  -ms-border-radius: 0 5px 0 0;
+  -o-border-radius: 0 5px 0 0;
+  border-radius: 0 5px 0 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+/* line 125, vex.sass */
+.vex-close:before {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  position: absolute;
+  content: "\00D7";
+  font-size: 26px;
+  font-weight: bold;
+  overflow: hidden;
+  line-height: 12px;
+  height: 17px;
+  width: 15px;
+  text-align: center;
+  top: 3px;
+  right: 3px;
+  padding: 5px;
+  color: #bbbbbb;
+  color: rgba(50, 50, 50, 0.2);
+  background: transparent;
+}
+/* line 143, vex.sass */
+.vex-close:hover:before {
+  color: #444444;
+  color: rgba(50, 50, 50, 0.4);
+  background: #fefefe;
+  background: rgba(50, 50, 50, 0.15);
+}
+/* line 149, vex.sass */
+.vex-close:active:before {
+  color: #303030;
+  color: rgba(50, 50, 50, 0.4);
+  background: #fcfcfc;
+  background: rgba(50, 50, 50, 0.2);
+}
+
+/* line 155, vex.sass */
+.vex-loading-spinner {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+  position: fixed;
+  z-index: 1112;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  margin-left: -25px;
+  background: white;
+  background-image: url(//static.hubspot.com/style-guide/img/spinners/loading-sprocket.gif);
+  background-repeat: no-repeat;
+  background-position: 7px 7px;
+  opacity: 0.8;
+}
+
+/* line 173, vex.sass */
+.vex-content .hs-fancybox {
+  background: transparent;
+}
