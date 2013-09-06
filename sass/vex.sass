@@ -60,6 +60,12 @@ $vexRoundness: 5px
     100%
         +vex-transform(translateY(-10px))
 
++vex-keyframes("vex-rotation")
+    0%
+        +vex-transform(rotate(0deg))
+    100%
+        +vex-transform(rotate(359deg))
+
 .vex-overlay
     +vex-animation(vex-fadein $vexAnimationDuration)
     position: fixed
@@ -153,22 +159,16 @@ $vexRoundness: 5px
         background: rgba(50, 50, 50, 0.2)
 
 .vex-loading-spinner
-    +border-radius(6px)
+    +vex-animation(vex-rotation 0.7s linear infinite)
+    +border-radius(100%)
     position: fixed
     z-index: 1112
-    top: 50%
-    left: 50%
-    width: 50px
-    height: 50px
-    margin-top: -25px
-    margin-left: -25px
-    background: #fff
-    background-image: url(//static.hubspot.com/style-guide/img/spinners/loading-sprocket.gif)
-    background-repeat: no-repeat
-    background-position: 7px 7px
-    opacity: 0.8
-
-// Support transition from fancybox
-
-.vex-content .hs-fancybox
-    background: transparent
+    margin: auto
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    height: 60px
+    width: 60px
+    border: 6px solid rgba(0, 0, 0, .15)
+    border-top: 6px solid rgba(0, 0, 0, .4)
