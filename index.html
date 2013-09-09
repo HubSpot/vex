@@ -35,45 +35,40 @@
 <p>Let&#39;s jump right into a hot demo.</p>
 <h4>Demo</h4>
 <p><a class="demo-confirm hs-brand-button">Destory the planet</a></p>
-<div class="demo-result-simple hs-doc-callout hs-doc-callout-info" style="display: none"></div>
+<p><div class="demo-result-simple hs-doc-callout hs-doc-callout-info" style="display: none"></div></p>
 <script>
-$(&#39;.demo-confirm&#39;).click(function(){
-    $(&#39;.executr-run-button:first&#39;).click();
+$('.demo-confirm').click(function(){
+    $('.executr-run-button:first').click();
 });
 </script>
 
-Play with this demo:
-
-<code>coffeescript
-vex.dialog.confirm
-    message: &#39;Are you absolutely sure you want to destroy the alien planet?&#39;
+<p>Play with this demo:</p>
+<pre><code class="lang-coffeescript">vex.dialog.confirm
+    message: <span class="string">'Are you absolutely sure you want to destroy the alien planet?'</span>
     callback: (value) -&gt;
-        $(&#39;.demo-result-simple&#39;).show().html &quot;&quot;&quot;
+        $(<span class="string">'.demo-result-simple'</span>).show().html <span class="string">"""
             &lt;h4&gt;Result&lt;/h4&gt;
             &lt;p&gt;
-                #{ if value is true then &#39;&#39;&#39;
+                <span class="subst">#{ <span class="keyword">if</span> value <span class="keyword">is</span> <span class="literal">true</span> <span class="keyword">then</span> '''
                     Successfully destroyed the planet.
-                &#39;&#39;&#39; else &#39;&#39;&#39;
+                ''' <span class="keyword">else</span> '''
                     I guess you chickened out.
-                &#39;&#39;&#39;}
+                '''}</span>
             &lt;/p&gt;
-        &quot;&quot;&quot;</code>
-
-### Demo
-
-<a class="demo hs-brand-button">Pick a date and color</a>
-<div class="demo-result hs-doc-callout hs-doc-callout-info" style="display: none"></div>
+        """</span></code></pre>
+<h3>Demo</h3>
+<p><a class="demo hs-brand-button">Pick a date and color</a></p>
+<p><div class="demo-result hs-doc-callout hs-doc-callout-info" style="display: none"></div></p>
 <script>
-    $(&#39;.demo&#39;).click(function(){
-        $(&#39;.executr-run-button:last&#39;).click();
+    $('.demo').click(function(){
+        $('.executr-run-button:last').click();
     });
 </script>
 
-<code>coffeescript
-todayDateString = new Date().toJSON().slice(0, 10)
+<pre><code class="lang-coffeescript">todayDateString = <span class="keyword">new</span> Date().toJSON().slice(<span class="number">0</span>, <span class="number">10</span>)
 vex.dialog.open
-    message: &#39;Select a date and color.&#39;
-    input: &quot;&quot;&quot;
+    message: <span class="string">'Select a date and color.'</span>
+    input: <span class="string">"""
         &lt;style&gt;
             .vex-custom-field-wrapper {
                 margin: 1em 0;
@@ -83,37 +78,35 @@ vex.dialog.open
                 margin-bottom: .2em;
             }
         &lt;/style&gt;
-        &lt;div class=&quot;vex-custom-field-wrapper&quot;&gt;
-            &lt;label for=&quot;date&quot;&gt;Date&lt;/label&gt;
-            &lt;div class=&quot;vex-custom-input-wrapper&quot;&gt;
-                &lt;input name=&quot;date&quot; type=&quot;date&quot; value=&quot;#{ todayDateString }&quot; /&gt;
+        &lt;div class="vex-custom-field-wrapper"&gt;
+            &lt;label for="date"&gt;Date&lt;/label&gt;
+            &lt;div class="vex-custom-input-wrapper"&gt;
+                &lt;input name="date" type="date" value="<span class="subst">#{ todayDateString }</span>" /&gt;
             &lt;/div&gt;
         &lt;/div&gt;
-        &lt;div class=&quot;vex-custom-field-wrapper&quot;&gt;
-            &lt;label for=&quot;color&quot;&gt;Color&lt;/label&gt;
-            &lt;div class=&quot;vex-custom-input-wrapper&quot;&gt;
-                &lt;input name=&quot;color&quot; type=&quot;color&quot; value=&quot;#ff00cc&quot; /&gt;
+        &lt;div class="vex-custom-field-wrapper"&gt;
+            &lt;label for="color"&gt;Color&lt;/label&gt;
+            &lt;div class="vex-custom-input-wrapper"&gt;
+                &lt;input name="color" type="color" value="#ff00cc" /&gt;
             &lt;/div&gt;
         &lt;/div&gt;
-    &quot;&quot;&quot;
+    """</span>
     callback: (data) -&gt;
-        return console.log(&#39;Cancelled&#39;) if data is false
-        console.log &#39;Date&#39;, data.date, &#39;Color&#39;, data.color
-        $(&#39;.demo-result&#39;).show().html &quot;&quot;&quot;
+        <span class="keyword">return</span> console.log(<span class="string">'Cancelled'</span>) <span class="keyword">if</span> data <span class="keyword">is</span> <span class="literal">false</span>
+        console.log <span class="string">'Date'</span>, data.date, <span class="string">'Color'</span>, data.color
+        $(<span class="string">'.demo-result'</span>).show().html <span class="string">"""
             &lt;h4&gt;Result&lt;/h4&gt;
             &lt;p&gt;
-                Date: &lt;b&gt;#{ data.date}&lt;/b&gt;&lt;br/&gt;
-                Color: &lt;input type=&quot;color&quot; value=&quot;#{data.color}&quot; readonly /&gt;
+                Date: &lt;b&gt;<span class="subst">#{ data.date}</span>&lt;/b&gt;&lt;br/&gt;
+                Color: &lt;input type="color" value="<span class="subst">#{data.color}</span>" readonly /&gt;
             &lt;/p&gt;
-        &quot;&quot;&quot;</code>
-
-<!-- Resources for the demos -->
-<script src="/vex/js/vex.js"></script>
-<link rel="stylesheet" href="/vex/css/vex.css" />
-<script src="/vex/js/vex.dialog.js"></script>
-<link rel="stylesheet" href="/vex/css/vex.dialog.css" />
-<!-- Force 3d acceleration always and forever :) -->
-<div style="-webkit-transform: translateZ(0)"></div></div></div></div></div><div class="hs3-public-footer"><div class="row-fluid hs-page-width-normal"><div class="span3 hidden-phone"><h3>HubSpot</h3><ul><li><a href="http://www.hubspot.com">Home</a></li><li><a href="http://www.hubspot.com/software">Products</a></li><li><a href="http://www.hubspot.com/internet-marketing-company/">About</a></li></ul></div><div class="span3"><h3>Projects</h3><ul><li><a href="http://github.hubspot.com/messenger">Messenger</a></li><li><a href="http://github.hubspot.com/facewall">Facewall</a></li><li><a href="http://github.hubspot.com/jquery-zoomer">jQuery Zoomer</a></li><li><a href="http://github.hubspot.com/humanize">Humanize</a></li><li><a href="http://github.hubspot.com/teeble">Teeble</a></li></ul></div><div class="span3"><h3>Development Team</h3><ul><li><a href="http://dev.hubspot.com">Home</a></li><li><a href="http://dev.hubspot.com/teams">Teams</a></li><li><a href="http://dev.hubspot.com/people">People</a></li><li><a href="http://dev.hubspot.com/jobs">Jobs</a></li></ul></div><div class="span3 hidden-phone"><h3>Developer API</h3><ul><li><a href="http://developers.hubspot.com/">Developer Documentation</a></li></ul></div></div></div><!-- Start of Async HubSpot Analytics Code -->
+        """</span></code></pre>
+<p><!-- Resources for the demos --></p>
+<p><script src="/vex/js/vex.js"></script></p>
+<p><link rel="stylesheet" href="/vex/css/vex.css" /></p>
+<p><script src="/vex/js/vex.dialog.js"></script></p>
+<p><link rel="stylesheet" href="/vex/css/vex.dialog.css" /></p>
+<p style="-webkit-transform: translateZ(0)"></p></div></div></div></div><div class="hs3-public-footer"><div class="row-fluid hs-page-width-normal"><div class="span3 hidden-phone"><h3>HubSpot</h3><ul><li><a href="http://www.hubspot.com">Home</a></li><li><a href="http://www.hubspot.com/software">Products</a></li><li><a href="http://www.hubspot.com/internet-marketing-company/">About</a></li></ul></div><div class="span3"><h3>Projects</h3><ul><li><a href="http://github.hubspot.com/messenger">Messenger</a></li><li><a href="http://github.hubspot.com/facewall">Facewall</a></li><li><a href="http://github.hubspot.com/jquery-zoomer">jQuery Zoomer</a></li><li><a href="http://github.hubspot.com/humanize">Humanize</a></li><li><a href="http://github.hubspot.com/teeble">Teeble</a></li></ul></div><div class="span3"><h3>Development Team</h3><ul><li><a href="http://dev.hubspot.com">Home</a></li><li><a href="http://dev.hubspot.com/teams">Teams</a></li><li><a href="http://dev.hubspot.com/people">People</a></li><li><a href="http://dev.hubspot.com/jobs">Jobs</a></li></ul></div><div class="span3 hidden-phone"><h3>Developer API</h3><ul><li><a href="http://developers.hubspot.com/">Developer Documentation</a></li></ul></div></div></div><!-- Start of Async HubSpot Analytics Code -->
 <script type="text/javascript">
     (function(d,s,i,r) {
         if (d.getElementById(i)){return;}
