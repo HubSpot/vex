@@ -93,3 +93,5 @@ vex.dialog.open
 <link rel="stylesheet" href="/vex/css/vex.css" />
 <script src="/vex/js/vex.dialog.js"></script>
 <link rel="stylesheet" href="/vex/css/vex.dialog.css" />
+<!-- Force 3d acceleration always and forever :) -->
+<div style="-webkit-transform: translateZ(0)"></div>
