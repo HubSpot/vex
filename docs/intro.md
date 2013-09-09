@@ -1,101 +1,95 @@
-## vex
+## `vex` is a modern dialog library which is highly configurable, easily stylable, and gets out of the way.
 
-Dialogs for the 21st century.
+You'll love vex because it's tiny (`<5kb`), has a clear and simple API, and can customized to the max.
 
-### Demo
+#### Features
 
-<script src="/vex/js/vex.js"></script>
-<script src="/vex/js/vex.dialog.js"></script>
-<link rel="stylesheet" href="/vex/css/vex.css" />
-<!-- link rel="stylesheet" href="/vex/css/vex-theme-future.css" /-->
-<!-- link rel="stylesheet" href="/vex/css/vex-theme-air.css" -->
-<a class="demo hs-brand-button">Open a dialog</a>
+- Drop-in replacement for `alert`, `confirm`, and `prompt`
+- Animations done in CSS
+- Fully reposive CSS means it looks and behaves great on mobile devices
+- Componentized so you can toss the `vex.dialog` part and really slim it down if desired
+
+Let's jump right into a hot demo.
+
+#### Demo
+
+<a class="demo-confirm hs-brand-button">Destory the planet</a>
+<div class="demo-result-simple hs-doc-callout hs-doc-callout-info" style="display: none"></div>
 <script>
-$('.demo').click(function(){
-    vex.open({
-        className: 'vex-content-auto',
-        css: {
-            width: 500
-        },
-        content: '<div style="padding: 2em"><h1>Dialog</h1><h2>Hello cruel, cruel world. Are you vexxed?</h2></div>'
-    })
+$('.demo-confirm').click(function(){
+    $('.executr-run-button:first').click();
 });
 </script>
 
-### How To Use Vex
-
-#### Basics of Opening and Passing Content
-
-To open a dialog, call `vex.open`.
+Play with this demo:
 
 ```coffeescript
-vex.open
-    content: '<div>Content</div>'
-    afterOpen: ($vexContent) ->
-        # console.log $vexContent.data().vex
-        $vexContent.append $el
-    afterClose: ->
-        console.log 'vexClose'
+vex.dialog.confirm
+    message: 'Are you absolutely sure you want to destroy the alien planet?'
+    callback: (value) ->
+        $('.demo-result-simple').show().html """
+            <h4>Result</h4>
+            <p>
+                #{ if value is true then '''
+                    Successfully destroyed the planet.
+                ''' else '''
+                    I guess you chickened out.
+                '''}
+            </p>
+        """
 ```
 
-In addition, you can wait to append your content until after the dialog has opened. (Visually, it will be perceived the same way.)
+### Demo
+
+<a class="demo hs-brand-button">Pick a date and color</a>
+<div class="demo-result hs-doc-callout hs-doc-callout-info" style="display: none"></div>
+<script>
+    $('.demo').click(function(){
+        $('.executr-run-button:last').click();
+    });
+</script>
 
 ```coffeescript
-vex.open
-    afterOpen: ($vexContent) ->
-        # console.log $vexContent.data()
-        $vexContent.append $el
-    afterClose: ->
-        console.log 'vexClose'
+todayDateString = new Date().toJSON().slice(0, 10)
+vex.dialog.open
+    message: 'Select a date and color.'
+    input: """
+        <style>
+            .vex-custom-field-wrapper {
+                margin: 1em 0;
+            }
+            .vex-custom-field-wrapper > label {
+                display: inline-block;
+                margin-bottom: .2em;
+            }
+        </style>
+        <div class="vex-custom-field-wrapper">
+            <label for="date">Date</label>
+            <div class="vex-custom-input-wrapper">
+                <input name="date" type="date" value="#{ todayDateString }" />
+            </div>
+        </div>
+        <div class="vex-custom-field-wrapper">
+            <label for="color">Color</label>
+            <div class="vex-custom-input-wrapper">
+                <input name="color" type="color" value="#ff00cc" />
+            </div>
+        </div>
+    """
+    callback: (data) ->
+        return console.log('Cancelled') if data is false
+        console.log 'Date', data.date, 'Color', data.color
+        $('.demo-result').show().html """
+            <h4>Result</h4>
+            <p>
+                Date: <b>#{ data.date}</b><br/>
+                Color: <input type="color" value="#{data.color}" readonly />
+            </p>
+        """
 ```
 
-Instead of using callbacks, you can choose to chain off the open call and bind to vexOpen and vexClose events. For example:
-
-```coffeescript
-vex
-    .open()
-    .bind('vexOpen', (options) ->
-        options.$vexContent.append $el
-    )
-    .bind('vexClose', ->
-        console.log 'vexClose'
-    )
-```
-
-Also, since opening/closing is synchronous, you don't even have to wait for the vexOpen event. Just append right away!
-
-```coffeescript
-vex.open().append($el).bind('vexClose', -> console.log 'vexClose')
-```
-
-You can also close vex dialogs by id:
-```coffeescript
-$vexContent = vex.open()
-vex.close($vexContent.data().vex.id)
-```
-
-#### Options
-
-When calling `vex.open()` you can pass a number of options to handle styling and certain behaviors.
-
-Here are the defaults:
-
-```coffeescript
-defaultOptions:
-    content: ''
-    showCloseButton: true
-    overlayClosesOnClick: true
-    appendLocation: 'body'
-    className: ''
-    css: {}
-    overlayClassName: ''
-    overlayCSS: {}
-    closeClassName: ''
-    closeCSS: {}
-```
-
-There are some class names in `vex.sass` you can use for the `className` property:
-
-- Use `vex-content-auto` when making a simple dialog.
-- Use `vex-content-tall` when you want to support something with a scrollable middle.
-- Use `vex-content-tall-and-wide` or `fullscreen` when you want to take up most or all of the screen, respectively.
+<!-- Resources for the demos -->
+<script src="/vex/js/vex.js"></script>
+<link rel="stylesheet" href="/vex/css/vex.css" />
+<script src="/vex/js/vex.dialog.js"></script>
+<link rel="stylesheet" href="/vex/css/vex.dialog.css" />
