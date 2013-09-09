@@ -1,76 +1,22 @@
-@import compass/css3/border-radius
-@import compass/css3/box-shadow
-@import compass/css3/transition
+@import compass/css3
+
+@import mixins
+@import animations
+
++add-animation-vex-fadein
++add-animation-vex-fadeout
++add-animation-vex-flyin
++add-animation-vex-flyout
++add-animation-vex-rotation
 
 $vexAnimationDuration: 0.5s
 $vexRoundness: 5px
 
-=vex-keyframes($name)
-    @keyframes #{$name}
-        @content
-    @-webkit-keyframes #{$name}
-        @content
-    @-moz-keyframes #{$name}
-        @content
-    @-ms-keyframes #{$name}
-        @content
-    @-o-keyframes #{$name}
-        @content
-
-=vex-animation($animation)
-    animation: $animation
-    -webkit-animation: $animation
-    -moz-animation: $animation
-    -ms-animation: $animation
-    -o-animation: $animation
-    -webkit-backface-visibility: hidden
-
-=vex-transform($transform)
-    transform: $transform
-    -webkit-transform: $transform
-    -moz-transform: $transform
-    -ms-transform: $transform
-    -o-transform: $transform
-
-+vex-keyframes("vex-fadein")
-    0%
-        opacity: 0
-
-    100%
-        opacity: 1
-
-+vex-keyframes("vex-fadeout")
-    0%
-        opacity: 1
-
-    100%
-        opacity: 0
-
-+vex-keyframes("vex-flyin")
-    0%
-        +vex-transform(translateY(-10px))
-
-    100%
-        +vex-transform(translateY(0))
-
-+vex-keyframes("vex-flyout")
-    0%
-        +vex-transform(translateY(0))
-
-    100%
-        +vex-transform(translateY(-10px))
-
-+vex-keyframes("vex-rotation")
-    0%
-        +vex-transform(rotate(0deg))
-    100%
-        +vex-transform(rotate(359deg))
-
 .vex-overlay
     +vex-animation(vex-fadein $vexAnimationDuration)
     position: fixed
-    padding-top: 60px
-    padding-bottom: 60px
+    padding-top: 0
+    padding-bottom: 0
     overflow: auto
     z-index: 1111
     background: rgba(0, 0, 0, 0.4)
@@ -87,12 +33,10 @@ $vexRoundness: 5px
 
 .vex-content
     +vex-animation(vex-flyin $vexAnimationDuration)
-    +box-shadow(0px 0px 28px 1px rgba(0, 0, 0, 0.2))
-    +border-radius($vexRoundness)
     position: fixed
-    top: 10%
+    top: 0
     z-index: 1111
-    background: #f8f8f8
+    background: #fff
 
     h1, h2, h3, h4, h5, h6, p, ul, li
         color: inherit
@@ -100,6 +44,7 @@ $vexRoundness: 5px
     &.vex-content-auto
         position: relative
         margin: 0 auto
+        max-width: 100%
 
     &.vex-content-fullscreen
         +box-shadow(0)
