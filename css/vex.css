@@ -571,6 +571,9 @@
   -ms-border-radius: 100%;
   -o-border-radius: 100%;
   border-radius: 100%;
+  -webkit-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.5);
+  -moz-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.5);
   position: fixed;
   z-index: 1112;
   margin: auto;
@@ -582,4 +585,5 @@
   width: 60px;
   border: 6px solid rgba(0, 0, 0, 0.15);
   border-top: 6px solid rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.5);
 }
