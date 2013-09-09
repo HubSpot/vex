@@ -1,0 +1,22 @@
+/* line 7, ../sass/vex-theme-default.sass */
+.vex-content {
+  -webkit-box-shadow: 0px 0px 28px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 28px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 28px 1px rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background: #f8f8f8;
+}
+
+/* line 12, ../sass/vex-theme-default.sass */
+.vex-close {
+  -webkit-border-radius: 0 5px 0 0;
+  -moz-border-radius: 0 5px 0 0;
+  -ms-border-radius: 0 5px 0 0;
+  -o-border-radius: 0 5px 0 0;
+  border-radius: 0 5px 0 0;
+  position: absolute;
+}
