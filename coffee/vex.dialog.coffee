@@ -1,5 +1,15 @@
 return $.error('Vex is required to use vex.dialog') if !window.vex
 
+$formToObject = ($form) ->
+    object = {}
+    $.each $form.serializeArray(), ->
+        if object[@name]
+            object[@name] = [object[@name]] if !object[@name].push
+            object[@name].push(@value || '')
+        else
+            object[@name] = @value || '';
+    object
+
 dialog = {}
 
 dialog.buttons =
@@ -7,12 +17,12 @@ dialog.buttons =
     YES:
         text: 'OK'
         type: 'submit'
-        className: 'hs-button primary'
+        className: 'vex-dialog-button-primary'
 
     NO:
         text: 'Cancel'
         type: 'button'
-        className: 'hs-button secondary'
+        className: 'vex-dialog-button-secondary'
         click: ($vexContent, event) ->
             $vexContent.data().vex.value = false
             vex.close $vexContent.data().vex.id
@@ -24,16 +34,19 @@ dialog.defaultOptions =
     css:
         width: 400
     message: 'Message'
-    input: """<input name="vex" type="hidden" value="false" />"""
+    input: """<input name="vex" type="hidden" value="_vex-empty-value" />"""
     value: false
     buttons: [
         dialog.buttons.YES
         dialog.buttons.NO
     ]
+    showCloseButton: false
     onSubmit: ->
+        $form = $ @
+        $vexContent = $form.parent()
         event.preventDefault()
         event.stopPropagation()
-        $vexContent.data().vex.value = dialog.getFormValueOnSubmit $form.serializeObject()
+        $vexContent.data().vex.value = dialog.getFormValueOnSubmit $formToObject $form
         vex.close $vexContent.data().vex.id
     focusFirstInput: true
 
@@ -45,10 +58,6 @@ dialog.defaultAlertOptions =
 
 dialog.defaultConfirmOptions =
     message: 'Confirm'
-
-dialog.defaultPromptOptions =
-    message: """<label for="vex">Prompt:</label>"""
-    input: """<input name="vex" type="text" class="hs-input" />"""
 
 dialog.open = (options) ->
     options = $.extend {}, vex.defaultOptions, dialog.defaultOptions, options
@@ -72,7 +81,7 @@ dialog.alert = (options) ->
 
 dialog.confirm = (options) ->
     if typeof options is 'string'
-        options = message: options
+        return $.error('''vex.dialog.confirm(options) requires options.callback.''')
 
     options = $.extend {}, vex.dialog.defaultConfirmOptions, options
 
@@ -82,7 +91,11 @@ dialog.prompt = (options) ->
     if typeof options is 'string'
         return $.error('''vex.dialog.prompt(options) requires options.callback.''')
 
-    options = $.extend {}, vex.dialog.defaultPromptOptions, options
+    defaultPromptOptions =
+        message: """<label for="vex">#{ options.label or 'Prompt:' }</label>"""
+        input: """<input name="vex" type="text" class="vex-dialog-prompt-input" placeholder="#{ options.placeholder or '' }" />"""
+
+    options = $.extend {}, defaultPromptOptions, options
 
     vex.dialog.open options
 
@@ -99,11 +112,8 @@ dialog.buildDialogForm = (options) ->
 
 dialog.getFormValueOnSubmit = (formData) ->
     if formData.vex
-        value = formData.vex
-        value = true if value is false
-        return true if value is 'true'
-        return false if value is 'false'
-        return value
+        return true if formData.vex is '_vex-empty-value'
+        return formData.vex
 
     else
         return formData
