@@ -1,4 +1,4 @@
-### How To Use Vex
+## Vex
 
 <div class="hs-doc-callout hs-doc-callout-warning">
 <h4>Whoa there sailor</h4>
