@@ -1,19 +1,34 @@
 (function() {
-  var dialog;
+  var $formToObject, dialog;
   if (!window.vex) {
     return $.error('Vex is required to use vex.dialog');
   }
+  $formToObject = function($form) {
+    var object;
+    object = {};
+    $.each($form.serializeArray(), function() {
+      if (object[this.name]) {
+        if (!object[this.name].push) {
+          object[this.name] = [object[this.name]];
+        }
+        return object[this.name].push(this.value || '');
+      } else {
+        return object[this.name] = this.value || '';
+      }
+    });
+    return object;
+  };
   dialog = {};
   dialog.buttons = {
     YES: {
       text: 'OK',
       type: 'submit',
-      className: 'hs-button primary'
+      className: 'vex-dialog-button-primary'
     },
     NO: {
       text: 'Cancel',
       type: 'button',
-      className: 'hs-button secondary',
+      className: 'vex-dialog-button-secondary',
       click: function($vexContent, event) {
         $vexContent.data().vex.value = false;
         return vex.close($vexContent.data().vex.id);
@@ -32,13 +47,17 @@
       width: 400
     },
     message: 'Message',
-    input: "<input name=\"vex\" type=\"hidden\" value=\"false\" />",
+    input: "<input name=\"vex\" type=\"hidden\" value=\"_vex-empty-value\" />",
     value: false,
     buttons: [dialog.buttons.YES, dialog.buttons.NO],
+    showCloseButton: false,
     onSubmit: function() {
+      var $form, $vexContent;
+      $form = $(this);
+      $vexContent = $form.parent();
       event.preventDefault();
       event.stopPropagation();
-      $vexContent.data().vex.value = dialog.getFormValueOnSubmit($form.serializeObject());
+      $vexContent.data().vex.value = dialog.getFormValueOnSubmit($formToObject($form));
       return vex.close($vexContent.data().vex.id);
     },
     focusFirstInput: true
@@ -49,10 +68,6 @@
   };
   dialog.defaultConfirmOptions = {
     message: 'Confirm'
-  };
-  dialog.defaultPromptOptions = {
-    message: "<label for=\"vex\">Prompt:</label>",
-    input: "<input name=\"vex\" type=\"text\" class=\"hs-input\" />"
   };
   dialog.open = function(options) {
     var $vexContent;
@@ -77,18 +92,21 @@
   };
   dialog.confirm = function(options) {
     if (typeof options === 'string') {
-      options = {
-        message: options
-      };
+      return $.error('vex.dialog.confirm(options) requires options.callback.');
     }
     options = $.extend({}, vex.dialog.defaultConfirmOptions, options);
     return vex.dialog.open(options);
   };
   dialog.prompt = function(options) {
+    var defaultPromptOptions;
     if (typeof options === 'string') {
       return $.error('vex.dialog.prompt(options) requires options.callback.');
     }
-    options = $.extend({}, vex.dialog.defaultPromptOptions, options);
+    defaultPromptOptions = {
+      message: "<label for=\"vex\">" + (options.label || 'Prompt:') + "</label>",
+      input: "<input name=\"vex\" type=\"text\" class=\"vex-dialog-prompt-input\" placeholder=\"" + (options.placeholder || '') + "\" />"
+    };
+    options = $.extend({}, defaultPromptOptions, options);
     return vex.dialog.open(options);
   };
   dialog.buildDialogForm = function(options) {
@@ -98,19 +116,11 @@
     return $form;
   };
   dialog.getFormValueOnSubmit = function(formData) {
-    var value;
     if (formData.vex) {
-      value = formData.vex;
-      if (value === false) {
-        value = true;
-      }
-      if (value === 'true') {
+      if (formData.vex === '_vex-empty-value') {
         return true;
       }
-      if (value === 'false') {
-        return false;
-      }
-      return value;
+      return formData.vex;
     } else {
       return formData;
     }
