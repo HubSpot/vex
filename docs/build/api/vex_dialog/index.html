@@ -23,47 +23,90 @@
         </div>
     </div>
 </div>
-<div class="hs-doc-marquee"><div class="hs-page-width-normal"><div class="row-fluid"><div class="span6"><h1>vex</h1><h3 class="hs-doc-marquee-description"></h3><p class="hs-doc-marquee-release"></p><p class="hs-doc-marquee-stars"><iframe src="http://ghbtns.com/github-btn.html?user=HubSpot&repo=vex&type=watch&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="240" height="30"></iframe></p></div><div class="span6"><div class="hs-doc-marquee-buttons"><a class="hs-doc-marquee-button" href="http://github.com/HubSpot/vex">Fork on GitHub</a><a class="hs-doc-marquee-button" href="http://github.com/HubSpot/vex/archive/master.zip">Download ZIP</a></div></div></div></div></div><div class="hs-page-width-normal"><div class="row-fluid"><div class="span3"><div class="hs-doc-sidenav"><nav><ul class="hs-public-sidenav"><li class="current-nav-item"><a href="">Home</a></li><li><b>api/</b></li><li class=""><a href="docs/build/api/vex">Vex</a></li><li class=""><a href="docs/build/api/vex_dialog">Vex Dialog</a></li></ul></nav></div></div><div class="span9"><div class="hs-doc-content"><h2><code>vex</code> is a modern dialog library which is highly configurable, easily stylable, and gets out of the way.</h2>
-<p>You&#39;ll love vex because it&#39;s tiny (<code>&lt;5kb</code>), has a clear and simple API, and can customized to the max.</p>
-<h4>Features</h4>
+<div class="hs-page-width-normal"><div class="row-fluid"><div class="span6"><h1 class="hs-doc-page-header"><a class="hs-doc-homepage-link" href="../../../../">vex</a></h1></div><div class="span6 hidden-phone"><div class="hs-doc-slim-github-link-wrapper"><a class="hs-doc-slim-github-link" href="http://github.com/HubSpot/vex">On GitHub</a></div></div></div></div><div class="hs-page-width-normal"><div class="row-fluid"><div class="span3"><div class="hs-doc-sidenav"><nav><ul class="hs-public-sidenav"><li class=""><a href="../../../../">Home</a></li><li><b>api/</b></li><li class=""><a href="../../../../docs/build/api/vex">Vex</a></li><li class="current-nav-item"><a href="../../../../docs/build/api/vex_dialog">Vex Dialog</a></li></ul></nav></div></div><div class="span9"><div class="hs-doc-content"><h2>Vex Dialog</h2>
+<p>When including <code>vex.dialog</code> (also 5kb uncompressed), you get dropin replacements for <code>alert</code>, <code>confirm</code>, and <code>prompt</code>.</p>
+<h3>Including</h3>
+<p>To use Vex Dialog, minimally, you must include:</p>
+<pre><code class="lang-html"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"vex.dialog.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></code></pre>
+<p>To get the basic styles, you&#39;ll addionally want to include:</p>
+<pre><code class="lang-html"><span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"vex.dialog.css"</span> /&gt;</span></code></pre>
+<h3>API</h3>
+<p>Vex Dialog exposes 4 main apis:</p>
 <ul>
-<li>Drop-in replacement for <code>alert</code>, <code>confirm</code>, and <code>prompt</code></li>
-<li>Animations done in CSS</li>
-<li>Fully reposive CSS means it looks and behaves great on mobile devices</li>
-<li>Componentized so you can toss the <code>vex.dialog</code> part and really slim it down if desired</li>
+<li><code>vex.dialog.alert(stringOrOptions)</code></li>
+<li><code>vex.dialog.conrirm(options)</code></li>
+<li><code>vex.dialog.prompt(options)</code></li>
+<li><code>vex.dialog.open(options)</code></li>
 </ul>
-<p>Let&#39;s jump right into a hot demo.</p>
-<h4>Demo</h4>
-<p><a class="demo-confirm hs-brand-button">Destory the planet</a></p>
-<p><div class="demo-result-simple hs-doc-callout hs-doc-callout-info" style="display: none"></div></p>
+<p>(Internally, <code>alert</code>, <code>confirm</code>, and <code>prompt</code> call <code>open</code> with a different compositions of options.)</p>
+<h4>Alert</h4>
+<p>Use alerts when you want to display a message to the user, but you don&#39;t want to give them any choice to procede.</p>
+<p><a class="demo-alert hs-brand-button">Open an alert</a></p>
+<script>
+$('.demo-alert').click(function(){
+    vex.dialog.alert('Thanks for checking out Vex!');
+});
+</script>
+
+<p>Play with this demo:</p>
+<pre><code class="lang-coffeescript">vex.dialog.alert <span class="string">'Thanks for checking out Vex!'</span>;</code></pre>
+<h4>Confirm</h4>
+<p>Use confirms when you want to present an yes-or-no option to the user.</p>
+<p><a class="demo-confirm hs-brand-button">Open a confirm</a></p>
+<p><div class="demo-result-confirm hs-doc-callout hs-doc-callout-info" style="display: none"></div></p>
 <script>
 $('.demo-confirm').click(function(){
-    $('.executr-run-button:first').click();
+    vex.dialog.confirm({
+        message: 'Are you absolutely sure you want to destroy the alien planet?',
+        callback: function(value) {
+            $('.demo-result-confirm').html('Callback value: <b>' + value + '</b>').show();
+        }
+    });
 });
 </script>
 
 <p>Play with this demo:</p>
 <pre><code class="lang-coffeescript">vex.dialog.confirm
     message: <span class="string">'Are you absolutely sure you want to destroy the alien planet?'</span>
-    callback: (value) -&gt;
-        $(<span class="string">'.demo-result-simple'</span>).show().html <span class="string">"""
-            &lt;h4&gt;Result&lt;/h4&gt;
-            &lt;p&gt;
-                <span class="subst">#{ <span class="keyword">if</span> value <span class="keyword">is</span> <span class="literal">true</span> <span class="keyword">then</span> '''
-                    Successfully destroyed the planet.
-                ''' <span class="keyword">else</span> '''
-                    I guess you chickened out.
-                '''}</span>
-            &lt;/p&gt;
-        """</span></code></pre>
-<h3>Demo</h3>
-<p><a class="demo hs-brand-button">Pick a date and color</a></p>
-<p><div class="demo-result hs-doc-callout hs-doc-callout-info" style="display: none"></div></p>
+    callback: (value) -&gt; console.log(value)</code></pre>
+<h4>Prompt</h4>
+<p><a class="demo-prompt hs-brand-button">Open a prompt</a></p>
+<p><div class="demo-result-prompt hs-doc-callout hs-doc-callout-info" style="display: none"></div></p>
 <script>
-    $('.demo').click(function(){
-        $('.executr-run-button:last').click();
+$('.demo-prompt').click(function(){
+    vex.dialog.prompt({
+        message: 'What planet did the aliens come from?',
+        placeholder: 'Planet name',
+        callback: function(value) {
+            $('.demo-result-prompt').html('Callback value: <b>' + value + '</b>').show();
+        }
     });
+});
 </script>
+
+<p>Play with this demo:</p>
+<pre><code class="lang-coffeescript">vex.dialog.prompt
+    message: <span class="string">'What planet did the aliens come from?'</span>
+    placeholder: <span class="string">'Planet name'</span>
+    callback: (value) -&gt; console.log(value)</code></pre>
+<h4>Open</h4>
+<p>With <code>open</code>, you are in full control.</p>
+<h5>Inputs</h5>
+<p>You can specify your own form inputs, and the <code>name</code> attribute will be the property name of the data object passed in the callback.</p>
+<h5>Buttons</h5>
+<p>You can specify your own buttons if you want more options than just OK or Cancel. If you simply want to change the labels, you can override the default options for the following:</p>
+<pre><code class="lang-coffeescript">vex.dialog.buttons.YES.text = <span class="string">'Okiedokie'</span>
+vex.dialog.buttons.NO.text = <span class="string">'Aahw hell no'</span></code></pre>
+<h5>Demo</h5>
+<p>Putting this all together, lets create a dialog with the following custimizations:</p>
+<ul>
+<li>Display a date input and a color input,</li>
+<li>Add an extra button which resets the color input to the default value (<code>#000</code>)</li>
+<li>Change the text for the OK button</li>
+</ul>
+<p>
+<div class="demo-result-custom-vex-dialog hs-doc-callout hs-doc-callout-info" style="display: none"></div>
+</p>
 
 <pre><code class="lang-coffeescript">todayDateString = <span class="keyword">new</span> Date().toJSON().slice(<span class="number">0</span>, <span class="number">10</span>)
 vex.dialog.open
@@ -94,7 +137,7 @@ vex.dialog.open
     callback: (data) -&gt;
         <span class="keyword">return</span> console.log(<span class="string">'Cancelled'</span>) <span class="keyword">if</span> data <span class="keyword">is</span> <span class="literal">false</span>
         console.log <span class="string">'Date'</span>, data.date, <span class="string">'Color'</span>, data.color
-        $(<span class="string">'.demo-result'</span>).show().html <span class="string">"""
+        $(<span class="string">'.demo-result-custom-vex-dialog'</span>).show().html <span class="string">"""
             &lt;h4&gt;Result&lt;/h4&gt;
             &lt;p&gt;
                 Date: &lt;b&gt;<span class="subst">#{ data.date}</span>&lt;/b&gt;&lt;br/&gt;
