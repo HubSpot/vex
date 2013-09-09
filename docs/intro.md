@@ -1,13 +1,15 @@
-## `vex` is a modern dialog library which is highly configurable, easily stylable, and gets out of the way.
+## `vex` is a responsive and modern dialog library which is highly configurable, easily stylable, and gets out of the way.
 
-You'll love vex because it's tiny (`<5kb`), has a clear and simple API, and can customized to the max.
+You'll love vex because it's tiny (`<5kb`), has a clear and simple API, and can be customized to match your style in seconds.
 
 #### Features
 
 - Drop-in replacement for `alert`, `confirm`, and `prompt`
-- Animations done in CSS
-- Fully reposive CSS means it looks and behaves great on mobile devices
-- Componentized so you can toss the `vex.dialog` part and really slim it down if desired
+- Animations done in CSS, so they're smooth as butter and easily configurable
+- Responsive CSS means it looks and behaves great on mobile devices
+- Componentized so you can toss the `vex.dialog` part and really slim it down (<3kb) if desired
+- Open as many dialogs at a time as you want and close them individually by ID or all at once
+- Built in CSS spinner for asynchronous dialogs
 
 Let's jump right into a hot demo.
 
@@ -53,6 +55,10 @@ vex.dialog.confirm
 todayDateString = new Date().toJSON().slice(0, 10)
 vex.dialog.open
     message: 'Select a date and color.'
+    buttons: [
+        $.extend({}, vex.dialog.buttons.YES, text: 'Use color and date')
+        vex.dialog.buttons.NO
+    ]
     input: """
         <style>
             .vex-custom-field-wrapper {
