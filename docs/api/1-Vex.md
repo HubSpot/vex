@@ -2,7 +2,7 @@
 
 <div class="hs-doc-callout hs-doc-callout-warning">
 <h4>Whoa there sailor</h4>
-<p>Calling `vex.open` directly is when you really know what you're doing. If you want things wrapped up neat and tidy you probably want to use `vex.dialog`. (See the Vex Dialog Api)</p>
+<p>Calling `vex.open` directly is when you really know what you're doing. If you want things wrapped up neat and tidy you probably want to use `vex.dialog`. (See the Vex Dialog API)</p>
 </div>
 
 #### Basics of Opening and Passing Content
