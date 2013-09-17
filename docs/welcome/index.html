@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <title>vex</title>
+        <link rel="icon" href="http://static.hubspot.com/favicon.ico">
+        <script type="text/javascript" src="//use.typekit.net/jbn8qxr.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="/vex/js/vex.js"></script>
+        <script src="/vex/js/vex.dialog.js"></script>
+        <link href="/vex/css/vex.css" rel="stylesheet" />
+        <link href="/vex/css/vex-theme-default.css" rel="stylesheet" />
+        <link href="/vex/css/vex-theme-os.css" rel="stylesheet" />
+        <link href="/vex/css/vex-theme-plain.css" rel="stylesheet" />
+        <link href="/vex/css/vex-theme-flat-attack.css" rel="stylesheet" />
+        <link href="/vex/css/vex-theme-wireframe.css" rel="stylesheet" />
+    </head>
+    <body>
+        <style>
+            html, body {
+                overflow: hidden;
+                margin: 0;
+            }
+            body.demo-start .page, body.page-intro .page {
+                opacity: 0;
+                z-index: 0;
+            }
+
+            .page {
+                color: #000;
+                font-family: "proxima-nova", "Helvetica Neue", sans-serif;
+                -webkit-transition: opacity 1s;
+                -moz-transition: opacity 1s;
+                -o-transition: opacity 1s;
+                transition: opacity 1s;
+                text-align: center;
+                margin: auto;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: fixed;
+                width: 40em;
+                max-width: 100%;
+                height: 36em;
+                z-index: 50;
+            }
+            .page h1 {
+                font-size: 110px;
+                font-weight: 100;
+                margin: 40px 0;
+            }
+            .page h2 {
+                font-size: 2.5em;
+                font-weight: 100;
+                margin: 1em 0;
+            }
+            .page p {
+                margin: 1em 0;
+            }
+            .page a {
+                display: inline-block;
+                border: 2px solid #000;
+                color: #000;
+                padding: 1em 1.25em;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                text-decoration: none;
+                cursor: pointer;
+                width: 140px;
+            }
+            .page a.demo-link {
+                margin-left: 20px;
+                border-color: transparent;
+                background: #000;
+                color: #fff;
+                font-weight: 700;
+            }
+
+
+            .stack {
+                color: #000;
+                font-family: "proxima-nova", "Helvetica Neue", sans-serif;
+                -webkit-transition: opacity 1s;
+                -moz-transition: opacity 1s;
+                -o-transition: opacity 1s;
+                transition: opacity 1s;
+                text-align: center;
+                -webkit-perspective: 700px;
+                -webkit-perspective-origin: 320px 700px;
+                margin: 0 auto;
+                height: 850px;
+                width: 640px;
+                max-width: 100%;
+                margin: auto;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+            }
+
+            .vex.vex-theme-flat-attack.vex-theme-flat-attack-demo {
+                overflow: hidden;
+            }
+            .vex.vex-theme-flat-attack.vex-theme-flat-attack-demo .vex-content {
+                font-family: "proxima-nova", "Helvetica Neue", sans-serif;
+                font-weight: 400;
+            }
+            .vex.vex-theme-flat-attack.vex-theme-flat-attack-demo .vex-dialog-form .vex-dialog-buttons {
+                padding-top: 1em;
+                margin-bottom: -2em;
+                margin-left: -2em;
+                margin-right: -1em;
+            }
+            .vex.vex-theme-flat-attack.vex-theme-flat-attack-demo .vex-content h1 {
+                font-weight: 100;
+                font-size: 60px;
+                line-height: 1.2em;
+                margin: 0;
+            }
+            .vex.vex-theme-flat-attack.vex-theme-flat-attack-demo .vex-content h2 {
+                font-weight: 100;
+                font-size: 40px;
+                line-height: 1.2em;
+                margin: 0;
+            }
+            .vex.vex-theme-flat-attack.vex-theme-flat-attack-demo .vex-content h2 u {
+                text-decoration: none;
+                font-weight: 300;
+            }
+            .vex.vex-theme-flat-attack.vex-theme-flat-attack-demo .vex-dialog-form .vex-dialog-buttons .vex-dialog-button {
+                font-family: "proxima-nova", "Helvetica Neue", sans-serif;
+                font-size: 2em;
+                font-weight: 300;
+            }
+
+            .vex.vex-theme-stack-demo {
+                overflow: hidden;
+            }
+            .vex.vex-theme-stack-demo.vex-theme-os .vex-dialog-message {
+                padding: 1em;
+            }
+            .vex.vex-theme-stack-demo.vex-theme-wireframe .vex-overlay, .vex.vex-theme-stack-demo.vex-theme-os .vex-overlay {
+                display: none;
+            }
+            .vex.vex-theme-stack-demo.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-overlay {
+                display: block;
+                background: #34b989;
+                top: 80px;
+                bottom: 270px;
+            }
+            .vex.vex-theme-stack-demo .vex-content {
+                font-family: "proxima-nova", "Helvetica Neue", sans-serif;
+                font-weight: 400;
+                width: 600px;
+            }
+            .vex.vex-theme-stack-demo .vex-dialog-message {
+                padding-top: 1em;
+                text-align: left;
+                height: 320px;
+            }
+            .vex.vex-theme-stack-demo .vex-dialog-message h1 {
+                line-height: 1.3em;
+            }
+            .vex.vex-theme-stack-demo.vex-closing {
+                -webkit-transform: translate3d(0px, 200px, 200px);
+            }
+
+            .stack > .vex {
+                -webkit-transition: -webkit-transform 0.7s;
+            }
+
+            .stack > .v0 { -webkit-transform: translate3d(0px, 0px, 0px); }
+            .stack > .v1 { -webkit-transform: translate3d(0px, -200px, -200px); }
+            .stack > .v2 { -webkit-transform: translate3d(0px, -400px, -400px); }
+            .stack > .v3 { -webkit-transform: translate3d(0px, -600px, -600px); }
+            .stack > .v4 { -webkit-transform: translate3d(0px, -800px, -800px); }
+
+            @media (max-width: 568px) {
+                .stack {
+                    display: none;
+                }
+
+                body.demo-start .page, body.page-intro .page {
+                    opacity: 1;
+                }
+
+                .page h2 {
+                    font-size: 20px;
+                }
+
+                .page a {
+                    width: 100px;
+                    font-size: 11px;
+                }
+            }
+
+            .examples a {
+                background: #3288e6;
+                color: #fff;
+                padding: 8px 18px 6px;
+                cursor: pointer;
+                margin: 0 20px 20px 0;
+                border-radius: 3px;
+                display: inline-block;
+            }
+            .themes a {
+                background: #34b989;
+                color: #fff;
+                padding: 8px 18px 6px;
+                cursor: pointer;
+                margin: 0 20px 20px 0;
+                display: inline-block;
+            }
+            .themes a.selected {
+                background: #2B755B;
+            }
+
+            .button {
+                text-decoration: none;
+                background: #000;
+                color: #fff;
+                padding: 8px 18px 6px;
+                cursor: pointer;
+                margin: 0 20px 20px 0;
+                display: inline-block;
+            }
+        </style>
+        <script>
+            var demo = {};
+
+            demo.className = 'vex-theme-flat-attack vex-theme-flat-attack-demo';
+            vex.defaultOptions.className = 'vex-theme-flat-attack';
+            vex.dialog.defaultOptions.showCloseButton = true;
+
+            demo.opener = function() {
+                $('body').addClass('demo-start')
+                vex.dialog.confirm({
+                    message: '<h1>Tired of writing dialogs in JS?</h1>',
+                    showCloseButton: false,
+                    className: demo.className + ' vex-theme-flat-attack-green',
+                    overlayCSS: {
+                        background: '#34b989'
+                    },
+                    buttons: [
+                        $.extend({}, vex.dialog.buttons.YES, { text: 'YES!' }),
+                        $.extend({}, vex.dialog.buttons.NO, { text: 'No' })
+                    ],
+                    callback: function (value) {
+                        if (value === true) {
+                            demo.openerYes();
+                        } else {
+                            demo.openerNo();
+                        }
+                    }
+                });
+            };
+
+            demo.openerYes = function() {
+                vex.dialog.alert({
+                    message: '<p style="margin: 0">Well, you\'re in luck.</p><h2><u>Vex</u> makes this easy.</h2><p>Here\'s the code for a simple alert:<pre><code style="background: #eee; padding: 24px; margin-bottom: 30px; display: block">vex.dialog.alert("Hello World");</code></pre></p><p>Let\'s jump right in...<p>',
+                    showCloseButton: false,
+                    className: demo.className + ' vex-theme-flat-attack-blue',
+                    overlayCSS: {
+                        background: '#477FA5'
+                    },
+                    buttons: [
+                        $.extend({}, vex.dialog.buttons.YES, { text: '►' })
+                    ],
+                    callback: function () {
+                        demo.examples();
+                    }
+                });
+            };
+
+            demo.openerNo = function() {
+                vex.dialog.alert({
+                    message: '<h1>Well that\'s not the spirit! Let\'s try that again.</h1>',
+                    showCloseButton: false,
+                    className: demo.className,
+                    buttons: [
+                        $.extend({}, vex.dialog.buttons.YES, { text: 'OK...' })
+                    ],
+                    callback: function () {
+                        demo.opener();
+                    }
+                });
+            };
+
+            demo.examples = function() {
+                var $vexContent = vex.dialog.alert({
+                    message: '' +
+                        '<h1>Examples</h1>' +
+                        '<p>Change the dialog theme:</p>' +
+                        '<p class="themes"><a data-theme="vex-theme-default" class="selected">Default</a><a data-theme="vex-theme-os">OS</a><a data-theme="vex-theme-plain">Plain</a><a data-theme="vex-theme-flat-attack">Flat</a></p>' +
+                        '<p>Choose a type of dialog to open:</p>' +
+                        '<p class="examples"><a data-example="alert">Alert</a><a data-example="confirm">Confirm</a><a data-example="prompt">Prompt</a><a data-example="login">Login</a></p>' +
+                    '',
+                    className: demo.className + ' vex-theme-flat-attack-red',
+                    overlayCSS: {
+                        background: '#ce4a55'
+                    },
+                    showCloseButton: false,
+                    buttons: [
+                        $.extend({}, vex.dialog.buttons.YES, { text: '►' })
+                    ],
+                    callback: function () {
+                        demo.finish();
+                    }
+                });
+                var theme = 'vex-theme-default';
+                var examples = {
+                    alert: function() {
+                        vex.dialog.alert({ className: theme, message: 'This is an alert.' });
+                    },
+                    confirm: function() {
+                        vex.dialog.confirm({ className: theme, message: 'Confirm this for me.', callback: function(){} });
+                    },
+                    prompt: function() {
+                        vex.dialog.prompt({ className: theme, message: 'Prompt:', callback: function(){} });
+                    },
+                    login: function() {
+                        vex.dialog.open({
+                            className: theme,
+                            message: 'Enter your username and password:',
+                            input: '' +
+                                '<input name="username" type="text" placeholder="Username" required />' +
+                                '<input name="password" type="password" placeholder="Password" required />' +
+                            '',
+                            buttons: [
+                                $.extend({}, vex.dialog.buttons.YES, { text: 'Login' }),
+                                $.extend({}, vex.dialog.buttons.NO, { text: 'Back' })
+                            ],
+                            callback: function (data) {
+                                console.log('Username: <b>' + data.username + '</b><br/>Password: <b>' + data.password + '</b>');
+                            }
+                        });
+                    }
+                };
+                $vexContent.find('[data-example]').each(function(){
+                    $(this).click(function(){
+                        examples[$(this).data('example')]();
+                    });
+                });
+                $vexContent.find('[data-theme]').each(function(){
+                    $(this).click(function(){
+                        theme = $(this).data('theme');
+                        $vexContent.find('[data-theme]').removeClass('selected');
+                        $(this).addClass('selected');
+                    });
+                });
+            };
+
+            demo.finish = function() {
+                $('body').removeClass('demo-start');
+            };
+
+            demo.loadInitialDialogs = function(){
+                $('body').addClass('page-intro');
+
+                demo.initialDialogsClassName = 'vex-theme-wireframe vex-theme-stack-demo'
+
+                for (var i = 4; i > -1; i--) {
+                    vex.dialog.alert({
+                        appendLocation: '.stack',
+                        message: $('.stack-tempates > div:nth-child(' + (i + 1) + ')').html(),
+                        className: demo.initialDialogsClassName,
+                        buttons: [
+                            $.extend({}, vex.dialog.buttons.YES, { text: '►' })
+                        ],
+                        callback: function(value) {
+                            setTimeout(function(){
+                                demo.updateInitialDialogNumbers();
+                            }, 0);
+                        }
+                    });
+                }
+
+                demo.updateInitialDialogNumbers();
+            };
+
+            demo.updateInitialDialogNumbers = function() {
+                var $remaining = $('.stack > .vex:not(".vex-closing")');
+
+                $('.stack').show();
+
+                $.each($remaining.removeClass('v0 v1 v2 v3 v4').toArray().reverse(), function(i, item){
+                    $(item).addClass('v' + i);
+                });
+
+                $('.stack > .v0:not(".vex-closing") input[type="submit"]').focus();
+
+                if ($remaining.length === 3) {
+                    $('.vex:not(".vex-closing")').removeClass('vex-theme-wireframe').addClass('vex-theme-os');
+                    var examples = {
+                        alert: function() {
+                            vex.dialog.alert({ className: 'vex-theme-os', message: 'This is an alert.' });
+                        },
+                        confirm: function() {
+                            vex.dialog.confirm({ className: 'vex-theme-os', message: 'Confirm this for me.', callback: function(){} });
+                        },
+                        prompt: function() {
+                            vex.dialog.prompt({ className: 'vex-theme-os', message: 'Prompt:', callback: function(){} });
+                        },
+                        login: function() {
+                            vex.dialog.open({
+                                className: 'vex-theme-os',
+                                message: 'Enter your username and password:',
+                                input: '' +
+                                    '<input name="username" type="text" placeholder="Username" required />' +
+                                    '<input name="password" type="password" placeholder="Password" required />' +
+                                '',
+                                buttons: [
+                                    $.extend({}, vex.dialog.buttons.YES, { text: 'Login' }),
+                                    $.extend({}, vex.dialog.buttons.NO, { text: 'Back' })
+                                ],
+                                callback: function (data) {
+                                    console.log('Username: <b>' + data.username + '</b><br/>Password: <b>' + data.password + '</b>');
+                                }
+                            });
+                        }
+                    };
+                    $('.vex:not(".vex-closing")').find('[data-example]').each(function(){
+                        $(this).click(function(){
+                            examples[$(this).data('example')]();
+                        });
+                    });
+                }
+
+                if ($remaining.length === 2) {
+                    $('.vex:not(".vex-closing")').removeClass('vex-theme-os').addClass('vex-theme-wireframe');
+                    $('.vex.v0:not(".vex-closing")').removeClass('vex-theme-wireframe').addClass('vex-theme-flat-attack vex-theme-flat-attack-green');
+                }
+
+                if ($remaining.length === 0) {
+                    $('body').removeClass('page-intro');
+                    setTimeout(function(){
+                        $('.stack').hide();
+                    }, 600);
+                }
+            }
+        </script>
+        <div class="page">
+            <h1>vex</h1>
+            <h2>Dialogs for the 21st century.</h2>
+            <p>
+                <a href="http://github.com/hubspot/vex">On Github</a>
+                <a class="demo-link">Demo</a>
+            </p>
+        </div>
+        <div class="stack-tempates" style="display: none">
+            <div>
+                <h1>Tired of having no control over your dialogs?</h1>
+                <div class="reveal">
+                    <p>With Vex, you can customize everything:</p>
+                    <ul>
+                        <li>Styling of all UI elements</li>
+                        <li>Themes</li>
+                        <li>Behaviors and timing</li>
+                        <li>Animations and effects</li>
+                    </ul>
+                    <p>All options can be configured for all dialogs<br/>or on a per-dialog basis.</p>
+                </div>
+            </div>
+            <div>
+                <h1>When opening a vex, you can assign your own class names to everything.</h1>
+                <div class="reveal">
+                    <p>This dialog is using the "Wireframe" theme by simply passing the option <code>cssClass: "vex-theme-wireframe"</code>.</p>
+                    <p>Click the arrow to see the "Operating System" theme.</p>
+                </div>
+            </div>
+            <div>
+                <h1>Operating System Theme — Examples</h1>
+                <div class="reveal">
+                    <p>This theme is great when using vex to replace <code>alert</code>, <code>confirm</code>, and <code>prompt</code>.</p>
+                    <p class="examples">
+                        <a data-example="alert">Alert</a>
+                        <a data-example="confirm">Confirm</a>
+                        <a data-example="prompt">Prompt</a>
+                        <a data-example="login">Login</a>
+                    </p>
+                </div>
+            </div>
+            <div>
+                <h1>Need to customize animations, overlay styles, and more?</h1>
+                <div class="reveal">
+                    <h2>Vex has you covered.</h2>
+                </div>
+            </div>
+            <div>
+                <h1>All of this under 7kb with a simple and elegant API.</h1>
+                <div class="reveal">
+                    <p>Help us spread the word:</p>
+                    <a class="button" href="http://github.hubspot.com/vex" target="_blank">Star Vex on GitHub</a>
+                    <a class="button" href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Flocalhost%3A8764%2Fvex%2Fdocs%2Flanding-page.html&text=Check%20out%20Vex%2C%20a%20modern%20UI%20library%20for%20creating%20beautiful%20and%20functional%20dialogs.&tw_p=tweetbutton&url=http%3A%2F%2Fgithub.hubspot.com%2Fvex&via=HubSpotDev" target="_blank">Tweet Vex</a>
+                </div>
+            </div>
+        </div>
+        <style>
+            .reveal {
+                -webkit-transition: opacity 1s 1s;
+                -moz-transition: opacity 1s 1s;
+                -o-transition: opacity 1s 1s;
+                transition: opacity 1s 1s;
+                opacity: 0;
+            }
+            .vex.v0 .reveal {
+                opacity: 1;
+            }
+        </style>
+        <div class="stack"></div>
+        <script>
+            demo.finish();
+            $('.demo-link').click(function(){
+                if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || $(window).width() <= 568) {
+                    vex.dialog.alert({
+                        className: 'vex-theme-default',
+                        message: 'This is a vex dialog.'
+                    });
+                } else {
+                    demo.loadInitialDialogs();
+                }
+            });
+        </script>
+
+        <style>
+            #retweet_button {
+                position: fixed;
+                bottom: 30px;
+                left: 50%;
+                width: 100px;
+                margin-left: -90px;
+                -webkit-filter: grayscale(1) contrast(1.3);
+            }
+            #retweet_button:hover {
+                -webkit-filter: none;
+            }
+
+            credits {
+                font-family: "proxima-nova", "Helvetica Neue", sans-serif;
+                position: fixed;
+                bottom: 35px;
+                left: 50%;
+                width: 130px;
+                margin-left: 20px;
+                font-size: 13px;
+                color: #aaa;
+            }
+
+            credits a, credits a:link, credits a:visited {
+                color: #aaa;
+                text-decoration: none;
+            }
+
+            credits a:hover {
+                text-decoration: underline;
+                color: #444;
+            }
+        </style>
+
+        <!-- Share -->
+        <div id="retweet_button">
+            <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://github.hubspot.com/vex" data-text="Check out Vex, a modern UI library for creating beautiful and functional dialogs." data-count="horizontal" data-via="HubSpotDev">Tweet</a>
+            <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+        </div>
+
+        <credits>
+            By <a href="http://dev.hubspot.com" target="_blank">HubSpot</a>
+        </credits>
+
+        <!-- Force 3d acceleration always and forever :) -->
+        <div style="-webkit-transform: translateZ(0)"></div>
+    </body>
+</html>
