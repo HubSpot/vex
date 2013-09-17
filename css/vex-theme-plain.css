@@ -240,18 +240,29 @@
   -webkit-backface-visibility: hidden;
   outline: none;
 }
-/* line 98, ../sass/vex-theme-plain.sass */
+@media (max-width: 568px) {
+  /* line 94, ../sass/vex-theme-plain.sass */
+  .vex.vex-theme-plain .vex-dialog-form .vex-dialog-buttons .vex-dialog-button:focus {
+    animation: none;
+    -webkit-animation: none;
+    -moz-animation: none;
+    -ms-animation: none;
+    -o-animation: none;
+    -webkit-backface-visibility: hidden;
+  }
+}
+/* line 103, ../sass/vex-theme-plain.sass */
 .vex.vex-theme-plain .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-primary {
   background: #3288e6;
   color: white;
 }
-/* line 102, ../sass/vex-theme-plain.sass */
+/* line 107, ../sass/vex-theme-plain.sass */
 .vex.vex-theme-plain .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-secondary {
   background: #e0e0e0;
   color: #777777;
 }
 
-/* line 106, ../sass/vex-theme-plain.sass */
+/* line 111, ../sass/vex-theme-plain.sass */
 .vex-loading-spinner.vex-theme-plain {
   height: 2.5em;
   width: 2.5em;

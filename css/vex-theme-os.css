@@ -507,18 +507,29 @@
   -webkit-backface-visibility: hidden;
   outline: none;
 }
-/* line 113, ../sass/vex-theme-os.sass */
+@media (max-width: 568px) {
+  /* line 109, ../sass/vex-theme-os.sass */
+  .vex.vex-theme-os .vex-dialog-form .vex-dialog-buttons .vex-dialog-button:focus {
+    animation: none;
+    -webkit-animation: none;
+    -moz-animation: none;
+    -ms-animation: none;
+    -o-animation: none;
+    -webkit-backface-visibility: hidden;
+  }
+}
+/* line 118, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-primary {
   background: #3288e6;
   color: white;
 }
-/* line 117, ../sass/vex-theme-os.sass */
+/* line 122, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-secondary {
   background: #e0e0e0;
   color: #777777;
 }
 
-/* line 121, ../sass/vex-theme-os.sass */
+/* line 126, ../sass/vex-theme-os.sass */
 .vex-loading-spinner.vex-theme-os {
   -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 0 0.5em rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 0 0.5em rgba(0, 0, 0, 0.2);
