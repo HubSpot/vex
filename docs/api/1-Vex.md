@@ -27,7 +27,19 @@ To use a builtin theme, you must additionally include the theme style sheet, and
 
 At the moment, there are 5 themes:
 
--
+<table class="hs-table">
+<tr>
+<th>Name</th>
+<th>`className`</th>
+</tr>
+<tbody>
+<tr><td>Default</td> <td>`vex-theme-default`</td></tr>
+<tr><td>Operating System</td> <td>`vex-theme-os`</td></tr>
+<tr><td>Plain</td> <td>`vex-theme-plain`</td></tr>
+<tr><td>Wireframe</td> <td>`vex-theme-wireframe`</td></tr>
+<tr><td>Flat Attack!</td> <td>`vex-theme-flat-attack`</td></tr>
+</tbody>
+</table>
 
 ### API
 
