@@ -1,0 +1,97 @@
+@import compass/css3
+
+@import mixins
+
+// Overlay/content animations
+
+=keyframes-vex-fadein
+    +vex-keyframes("vex-fadein")
+        0%
+            opacity: 0
+        100%
+            opacity: 1
+
+=keyframes-vex-fadeout
+    +vex-keyframes("vex-fadeout")
+        0%
+            opacity: 1
+        100%
+            opacity: 0
+
+// Content animations
+
+=keyframes-vex-flyin
+    +vex-keyframes("vex-flyin")
+        0%
+            opacity: 0
+            +vex-transform(translateY(-40px))
+        100%
+            opacity: 1
+            +vex-transform(translateY(0))
+
+=keyframes-vex-flyout
+    +vex-keyframes("vex-flyout")
+        0%
+            opacity: 1
+            +vex-transform(translateY(0))
+        100%
+            opacity: 0
+            +vex-transform(translateY(-40px))
+
+=keyframes-vex-dropin
+    +vex-keyframes("vex-dropin")
+        0%
+            +vex-transform(translateY(-800px))
+        100%
+            +vex-transform(translateY(0))
+
+=keyframes-vex-dropout
+    +vex-keyframes("vex-dropout")
+        0%
+            +vex-transform(translateY(0))
+        100%
+            +vex-transform(translateY(-800px))
+
+=keyframes-vex-flipin-horizontal
+    +vex-keyframes("vex-flipin-horizontal")
+        0%
+            opacity: 0
+            +vex-transform(rotateY(-90deg))
+        100%
+            opacity: 1
+            +vex-transform(rotateY(0deg))
+
+=keyframes-vex-flipout-horizontal
+    +vex-keyframes("vex-flipout-horizontal")
+        0%
+            opacity: 1
+            +vex-transform(rotateY(0deg))
+        100%
+            opacity: 0
+            +vex-transform(rotateY(90deg))
+
+// Spinner animations
+
+=keyframes-vex-rotation
+    +vex-keyframes("vex-rotation")
+        0%
+            +vex-transform(rotate(0deg))
+        100%
+            +vex-transform(rotate(359deg))
+
+// Button animations
+
+=keyframes-vex-pulse
+    +vex-keyframes("vex-pulse")
+        0%
+            opacity: 1
+            -webkit-filter: brightness(1)
+        40%
+            opacity: .7
+            -webkit-filter: brightness(1)
+        80%
+            opacity: 1
+            -webkit-filter: brightness(1.5)
+        100%
+            opacity: 1
+            -webkit-filter: brightness(1)
