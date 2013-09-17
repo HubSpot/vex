@@ -1,14 +1,16 @@
-## `vex` is a responsive and modern dialog library which is highly configurable, easily stylable, and gets out of the way.
+## Vex
 
-You'll love vex because it's tiny (`<5kb`), has a clear and simple API, and can be customized to match your style in seconds.
+### Take control of your dialogs
+
+Vex is a modern dialog library which is highly configurable, easily stylable, and gets out of the way. You'll love vex because it's tiny (`<5kb`), has a clear and simple API, works on mobile devices, and can be customized to match your style in seconds.
 
 #### Features
 
 - Drop-in replacement for `alert`, `confirm`, and `prompt`
-- Animations done in CSS, so they're smooth as butter and easily configurable
-- Responsive CSS means it looks and behaves great on mobile devices
-- Componentized so you can toss the `vex.dialog` part and really slim it down (<3kb) if desired
-- Open as many dialogs at a time as you want and close them individually by ID or all at once
+- Easilly configurable animations which are smooth as butter
+- Tiny footprint (`<5kb`) and only depends on `jQuery`
+- Looks and behaves great on mobile devices
+- Open multiple dialogs at once and close them individually or all at once
 - Built in CSS spinner for asynchronous dialogs
 
 Let's jump right into a hot demo.
@@ -19,7 +21,12 @@ Let's jump right into a hot demo.
 <div class="demo-result-simple hs-doc-callout hs-doc-callout-info" style="display: none"></div>
 <script>
 $('.demo-confirm').click(function(){
-    $('.executr-run-button:first').click();
+    vex.dialog.confirm({
+        message: 'Are you absolutely sure you want to destroy the alien planet?',
+        callback: function(value) {
+            $('.demo-result-simple').show().html('<h4>Result</h4><p>' + (value ? 'Successfully destroyed the planet.' : 'Chicken.') + '</p>');
+        }
+    });
 });
 </script>
 
@@ -29,74 +36,64 @@ Play with this demo:
 vex.dialog.confirm
     message: 'Are you absolutely sure you want to destroy the alien planet?'
     callback: (value) ->
-        $('.demo-result-simple').show().html """
-            <h4>Result</h4>
-            <p>
-                #{ if value is true then '''
-                    Successfully destroyed the planet.
-                ''' else '''
-                    I guess you chickened out.
-                '''}
-            </p>
-        """
+        console.log if value then 'Successfully destroyed the planet.' else 'Chicken.'
 ```
 
 ### Demo
 
-<a class="demo hs-brand-button">Pick a date and color</a>
+<a class="demo hs-brand-button">Log in</a>
 <div class="demo-result hs-doc-callout hs-doc-callout-info" style="display: none"></div>
 <script>
     $('.demo').click(function(){
-        $('.executr-run-button:last').click();
+        vex.dialog.open({
+            message: 'Enter your username and password:',
+            input: '' +
+                '<input name="username" type="text" placeholder="Username" />' +
+                '<input name="password" type="password" placeholder="Password" />' +
+            '',
+            buttons: [
+                $.extend({}, vex.dialog.buttons.YES, { text: 'Login' }),
+                $.extend({}, vex.dialog.buttons.NO, { text: 'Back' })
+            ],
+            callback: function (data) {
+                $('.demo-result').show().html('' +
+                    '<h4>Result</h4>' +
+                    '<p>' +
+                        'Username: <b>' + data.username + '</b><br/>' +
+                        'Password: <b>' + data.password + '</b>' +
+                    '</p>' +
+                '')
+            }
+        });
     });
 </script>
 
+Play with this example:
+
 ```coffeescript
-todayDateString = new Date().toJSON().slice(0, 10)
 vex.dialog.open
-    message: 'Select a date and color.'
-    buttons: [
-        $.extend({}, vex.dialog.buttons.YES, text: 'Use color and date')
-        vex.dialog.buttons.NO
-    ]
+    message: 'Enter your username and password:'
     input: """
-        <style>
-            .vex-custom-field-wrapper {
-                margin: 1em 0;
-            }
-            .vex-custom-field-wrapper > label {
-                display: inline-block;
-                margin-bottom: .2em;
-            }
-        </style>
-        <div class="vex-custom-field-wrapper">
-            <label for="date">Date</label>
-            <div class="vex-custom-input-wrapper">
-                <input name="date" type="date" value="#{ todayDateString }" />
-            </div>
-        </div>
-        <div class="vex-custom-field-wrapper">
-            <label for="color">Color</label>
-            <div class="vex-custom-input-wrapper">
-                <input name="color" type="color" value="#ff00cc" />
-            </div>
-        </div>
+        <input name="username" type="text" placeholder="Username" />
+        <input name="password" type="password" placeholder="Password" />
     """
+    buttons: [
+        $.extend({}, vex.dialog.buttons.YES, text: 'Login')
+        $.extend({}, vex.dialog.buttons.NO, text: 'Back')
+    ]
     callback: (data) ->
         return console.log('Cancelled') if data is false
-        console.log 'Date', data.date, 'Color', data.color
-        $('.demo-result').show().html """
-            <h4>Result</h4>
-            <p>
-                Date: <b>#{ data.date}</b><br/>
-                Color: <input type="color" value="#{data.color}" readonly />
-            </p>
-        """
+        console.log 'Username', data.username, 'Password', data.password
 ```
 
 <!-- Resources for the demos -->
-<script src="/vex/js/vex.js"></script>
-<link rel="stylesheet" href="/vex/css/vex.css" />
-<script src="/vex/js/vex.dialog.js"></script>
-<link rel="stylesheet" href="/vex/css/vex.dialog.css" />
 <p style="-webkit-transform: translateZ(0)"></p>
+<script src="/vex/js/vex.js"></script>
+<script src="/vex/js/vex.dialog.js"></script>
+<link rel="stylesheet" href="/vex/css/vex.css" />
+<link rel="stylesheet" href="/vex/css/vex-theme-default.css">
+<script>
+    (function(){
+        vex.defaultOptions.className = 'vex-theme-default';
+    })();
+</script>

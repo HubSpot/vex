@@ -21,7 +21,7 @@ To get the basic styles, you'll addionally want to include:
 Vex Dialog exposes 4 main apis:
 
 - `vex.dialog.alert(stringOrOptions)`
-- `vex.dialog.conrirm(options)`
+- `vex.dialog.confirm(options)`
 - `vex.dialog.prompt(options)`
 - `vex.dialog.open(options)`
 
@@ -41,7 +41,7 @@ $('.demo-alert').click(function(){
 Play with this demo:
 
 ```coffeescript
-vex.dialog.alert 'Thanks for checking out Vex!';
+vex.dialog.alert 'Thanks for checking out Vex!'
 ```
 
 #### Confirm
