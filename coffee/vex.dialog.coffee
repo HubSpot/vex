@@ -102,9 +102,12 @@ dialog.prompt = (options) ->
 dialog.buildDialogForm = (options) ->
     $form = $('<form class="vex-dialog-form" />')
 
+    $message = $('<div class="vex-dialog-message" />')
+    $input = $('<div class="vex-dialog-input" />')
+
     $form
-        .append(options.message)
-        .append(options.input)
+        .append($message.append options.message)
+        .append($input.append options.input)
         .append(dialog.buttonsToDOM options.buttons)
         .bind('submit.vex', options.onSubmit)
 
