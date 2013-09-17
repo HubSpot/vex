@@ -157,8 +157,17 @@ vex.dialog.open
 ```
 
 <!-- Resources for the demos -->
+<p></p>
 <script src="/vex/js/vex.js"></script>
 <link rel="stylesheet" href="/vex/css/vex.css" />
 <script src="/vex/js/vex.dialog.js"></script>
-<link rel="stylesheet" href="/vex/css/vex.dialog.css" />
+<link rel="stylesheet" href="/vex/css/vex-theme-os.css" />
 <p style="-webkit-transform: translateZ(0)"></p>
+
+<a class=""></a>
+<script>
+// Prevent hsdoc from messing with the HTML
+(function(){
+    vex.defaultOptions.className = 'vex-theme-os';
+})();
+</script>
