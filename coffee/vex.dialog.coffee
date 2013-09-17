@@ -38,7 +38,7 @@ dialog.defaultOptions =
         dialog.buttons.NO
     ]
     showCloseButton: false
-    onSubmit: ->
+    onSubmit: (event) ->
         $form = $ @
         $vexContent = $form.parent()
         event.preventDefault()
