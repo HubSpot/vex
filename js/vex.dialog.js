@@ -47,7 +47,7 @@
     value: false,
     buttons: [dialog.buttons.YES, dialog.buttons.NO],
     showCloseButton: false,
-    onSubmit: function() {
+    onSubmit: function(event) {
       var $form, $vexContent;
       $form = $(this);
       $vexContent = $form.parent();
