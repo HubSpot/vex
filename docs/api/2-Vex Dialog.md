@@ -10,11 +10,7 @@ To use Vex Dialog, minimally, you must include:
 <script src="vex.dialog.js"></script>
 ```
 
-To get the basic styles, you'll addionally want to include:
-
-```html
-<link rel="stylesheet" href="vex.dialog.css" />
-```
+To get the basic styles, you'll addionally want to include a theme. See the Vex API documentation for how to include themes.
 
 ### API
 

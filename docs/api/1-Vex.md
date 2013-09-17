@@ -5,6 +5,37 @@
 <p>Calling `vex.open` directly is when you really know what you're doing. If you want things wrapped up neat and tidy you probably want to use `vex.dialog`. (See the Vex Dialog API)</p>
 </div>
 
+### Including
+
+To use Vex, minimally, you must include:
+
+```html
+<script src="vex.js"></script>
+```
+
+To get the basic styles, you'll addionally want to include:
+
+```html
+<link rel="stylesheet" href="vex.css" />
+```
+
+#### Themes
+
+To use a builtin theme, you must additionally include the theme style sheet, and set the theme className:
+
+```html
+<link rel="stylesheet" href="vex-theme-default.css" />
+<script>
+    vex.defaultOptions.className = 'vex-theme-default';
+</script>
+```
+
+At the moment, there are 5 themes:
+
+-
+
+### API
+
 #### Basics of Opening and Passing Content
 
 To open a dialog, call `vex.open`.
