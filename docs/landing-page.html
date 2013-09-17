@@ -495,7 +495,7 @@
                 <div class="reveal">
                     <p>Help us spread the word:</p>
                     <a class="button" href="http://github.hubspot.com/vex" target="_blank">Star Vex on GitHub</a>
-                    <a class="button" href="https://twitter.com/intent/tweet?text=Check+out+Vex%2C+a+modern+UI+library+for+creating+beautiful+and+functional+dialogs.+https%3A%2F%2Fgithub.com%2Fhubspot%2Fvex+via+%40HubSpotDev&source=clicktotweet" target="_blank">Tweet Vex</a>
+                    <a class="button" href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Flocalhost%3A8764%2Fvex%2Fdocs%2Flanding-page.html&text=Check%20out%20Vex%2C%20a%20modern%20UI%20library%20for%20creating%20beautiful%20and%20functional%20dialogs.&tw_p=tweetbutton&url=http%3A%2F%2Fgithub.hubspot.com%2Fvex&via=HubSpotDev" target="_blank">Tweet Vex</a>
                 </div>
             </div>
         </div>
@@ -518,6 +518,54 @@
             //$('.demo-link').click(function(){ demo.opener(); });
             $('.demo-link').click(function(){ demo.loadInitialDialogs(); });
         </script>
+
+
+
+        <style>
+            #retweet_button {
+                position: fixed;
+                bottom: 30px;
+                left: 50%;
+                width: 100px;
+                margin-left: -90px;
+                -webkit-filter: grayscale(1) contrast(1.3);
+            }
+            #retweet_button:hover {
+                -webkit-filter: none;
+            }
+
+            credits {
+                font-family: "proxima-nova", "Helvetica Neue", sans-serif;
+                position: fixed;
+                bottom: 35px;
+                left: 50%;
+                width: 130px;
+                margin-left: 20px;
+                font-size: 13px;
+                color: #aaa;
+            }
+
+            credits a, credits a:link, credits a:visited {
+                color: #aaa;
+                text-decoration: none;
+            }
+
+            credits a:hover {
+                text-decoration: underline;
+                color: #444;
+            }
+        </style>
+
+        <!-- Share -->
+        <div id="retweet_button">
+            <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://github.hubspot.com/vex" data-text="Check out Vex, a modern UI library for creating beautiful and functional dialogs." data-count="horizontal" data-via="HubSpotDev">Tweet</a>
+            <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+        </div>
+
+        <credits>
+            By <a href="http://dev.hubspot.com" target="_blank">HubSpot</a>
+        </credits>
+
         <!-- Force 3d acceleration always and forever :) -->
         <div style="-webkit-transform: translateZ(0)"></div>
     </body>
