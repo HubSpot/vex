@@ -17,6 +17,7 @@ vex =
     animationEndEvent: 'animationend webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend' # Inconsistent casings are intentional http://stackoverflow.com/a/12958895/131898
 
     baseClassNames:
+        vex: 'vex'
         content: 'vex-content'
         overlay: 'vex-overlay'
         close: 'vex-close'
@@ -31,6 +32,8 @@ vex =
         css: {}
         overlayClassName: ''
         overlayCSS: {}
+        contentClassName: ''
+        contentCSS: {}
         closeClassName: ''
         closeCSS: {}
 
@@ -39,6 +42,14 @@ vex =
 
         options.id = vex.globalID
         vex.globalID += 1
+
+        # Vex
+
+        options.$vex = $('<div>')
+            .addClass(vex.baseClassNames.vex)
+            .addClass(options.className)
+            .css(options.css)
+            .data(vex: options)
 
         # Overlay
 
@@ -53,16 +64,18 @@ vex =
                 return unless e.target is @
                 vex.close $(@).data().vex.id
 
+        options.$vex.append options.$vexOverlay
+
         # Content
 
         options.$vexContent = $('<div>')
             .addClass(vex.baseClassNames.content)
-            .addClass(options.className)
-            .css(options.css)
+            .addClass(options.contentClassName)
+            .css(options.contentCSS)
             .append(options.content)
             .data(vex: options)
 
-        options.$vexOverlay.append options.$vexContent
+        options.$vex.append options.$vexContent
 
         # Close button
 
@@ -78,7 +91,7 @@ vex =
 
         # Inject DOM and trigger callbacks/events
 
-        $(options.appendLocation).append options.$vexOverlay
+        $(options.appendLocation).append options.$vex
 
         # Call afterOpen callback and trigger vexOpen event
 
@@ -88,7 +101,7 @@ vex =
         return options.$vexContent # For chaining
 
     getAllVexes: ->
-        return $(""".#{vex.baseClassNames.overlay}:not(".#{vex.baseClassNames.closing}") .#{vex.baseClassNames.content}""")
+        return $(""".#{vex.baseClassNames.vex}:not(".#{vex.baseClassNames.closing}") .#{vex.baseClassNames.content}""")
 
     getVexByID: (id) ->
         return vex.getAllVexes().filter(-> $(@).data().vex.id is id)
@@ -113,7 +126,7 @@ vex =
         $vexContent = vex.getVexByID id
         return unless $vexContent.length
 
-        $vexOverlay = $vexContent.data().vex.$vexOverlay
+        $vex = $vexContent.data().vex.$vex
 
         options = $.extend {}, $vexContent.data().vex
 
@@ -122,12 +135,12 @@ vex =
 
         close = ->
             $vexContent.trigger 'vexClose', options
-            $vexOverlay.remove()
+            $vex.remove()
             options.afterClose $vexContent, options if options.afterClose
 
         if animationEndSupport
             beforeClose()
-            $vexOverlay
+            $vex
                 .unbind(vex.animationEndEvent).bind(vex.animationEndEvent, -> close())
                 .addClass(vex.baseClassNames.closing)
 
@@ -142,6 +155,6 @@ vex =
 
     showLoading: ->
         vex.hideLoading()
-        $('body').append('<div class="vex-loading-spinner"></div>')
+        $('body').append("""<div class="vex-loading-spinner #{vex.defaultOptions.className}"></div>""")
 
 window.vex = vex
