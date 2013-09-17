@@ -561,6 +561,27 @@
                 text-decoration: underline;
                 color: #444;
             }
+
+            .documentation-link {
+                font-family: "proxima-nova", "Helvetica Neue", sans-serif;
+                position: fixed;
+                bottom: 75px;
+                left: 50%;
+                width: 200px;
+                margin-left: -100px;
+                text-align: center;
+                font-size: 16px;
+            }
+
+            .documentation-link, .documentation-link:link, .documentation-link:visited {
+                color: #000;
+                text-decoration: none;
+            }
+
+            .documentation-link:hover {
+                text-decoration: underline;
+                color: #000;
+            }
         </style>
 
         <!-- Share -->
@@ -568,6 +589,10 @@
             <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://github.hubspot.com/vex/docs/welcome" data-text="Check out Vex, a modern UI library for creating beautiful and functional dialogs." data-count="horizontal" data-via="HubSpotDev">Tweet</a>
             <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
         </div>
+
+        <a class="documentation-link" href="http://github.hubspot.com/vex" target="_blank">
+            Vex Documentation
+        </a>
 
         <credits>
             By <a href="http://dev.hubspot.com" target="_blank">HubSpot</a>
