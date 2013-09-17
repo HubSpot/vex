@@ -2,6 +2,8 @@
 
 Dialogs for the 21st century.
 
+## [Demo](http://github.hubspot.com/vex/docs/welcome/) — [Documentation](http://github.hubspot.com/vex/)
+
 ### Take control of your dialogs
 
 Vex is a modern dialog library which is highly configurable, easily stylable, and gets out of the way. You'll love vex because it's tiny (`<5kb`), has a clear and simple API, works on mobile devices, and can be customized to match your style in seconds.
@@ -14,8 +16,6 @@ Vex is a modern dialog library which is highly configurable, easily stylable, an
 - Looks and behaves great on mobile devices
 - Open multiple dialogs at once and close them individually or all at once
 - Built in CSS spinner for asynchronous dialogs
-
-#### [Demo](http://github.hubspot.com/vex/docs/welcome/)
 
 #### Documentation
 
