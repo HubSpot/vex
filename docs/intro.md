@@ -17,7 +17,7 @@ Let's jump right into a hot demo.
 
 #### Demo
 
-<a class="demo-confirm hs-brand-button">Destory the planet</a>
+<a class="demo-confirm hs-brand-button">Destroy the planet</a>
 <div class="demo-result-simple hs-doc-callout hs-doc-callout-info" style="display: none"></div>
 <script>
 $('.demo-confirm').click(function(){
