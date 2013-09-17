@@ -30,9 +30,6 @@ dialog.buttons =
 dialog.defaultOptions =
     callback: (value) -> console.log('Vex dialog callback:', value) if console and console.log
     afterOpen: ->
-    className: 'vex-content-auto'
-    css:
-        width: 400
     message: 'Message'
     input: """<input name="vex" type="hidden" value="_vex-empty-value" />"""
     value: false
