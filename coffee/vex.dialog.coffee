@@ -71,6 +71,8 @@ dialog.open = (options) ->
     if options.focusFirstInput
         $vexContent.find('input[type="text"], input[type="submit"]').first().focus()
 
+    return $vexContent
+
 dialog.alert = (options) ->
     if typeof options is 'string'
         options = message: options
