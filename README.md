@@ -2,6 +2,27 @@
 
 Dialogs for the 21st century.
 
+### Take control of your dialogs
+
+Vex is a modern dialog library which is highly configurable, easily stylable, and gets out of the way. You'll love vex because it's tiny (`<5kb`), has a clear and simple API, works on mobile devices, and can be customized to match your style in seconds.
+
+#### Features
+
+- Drop-in replacement for `alert`, `confirm`, and `prompt`
+- Easilly configurable animations which are smooth as butter
+- Tiny footprint (`<7kb`) and only depends on `jQuery`
+- Looks and behaves great on mobile devices
+- Open multiple dialogs at once and close them individually or all at once
+- Built in CSS spinner for asynchronous dialogs
+
+#### [Demo](http://github.hubspot.com/vex/docs/welcome/)
+
+#### Documentation
+
+- [Documentation Home](http://github.hubspot.com/vex/).
+- [Vex Documentation](http://github.hubspot.com/vex/api/vex/).
+- [Vex Dialog Documentation](http://github.hubspot.com/vex/api/vex_dialog/).
+
 ### How To Use Vex
 
 #### Basics of Opening and Passing Content
@@ -18,22 +39,12 @@ vex.open
         console.log 'vexClose'
 ```
 
-In addition, you can wait to append your content until after the dialog has opened. (Visually, it will be perceived the same way.)
-
-```coffeescript
-vex.open
-    afterOpen: ($vexContent) ->
-        # console.log $vexContent.data()
-        $vexContent.append $el
-    afterClose: ->
-        console.log 'vexClose'
-```
-
 Instead of using callbacks, you can choose to chain off the open call and bind to vexOpen and vexClose events. For example:
 
 ```coffeescript
 vex
     .open()
+    .append($el)
     .bind('vexOpen', (options) ->
         options.$vexContent.append $el
     )
@@ -42,18 +53,28 @@ vex
     )
 ```
 
-Also, since opening/closing is synchronous, you don't even have to wait for the vexOpen event. Just append right away!
+Read more about Vex in the [API docs](http://github.hubspot.com/vex/api/vex/).
 
-```coffeescript
-vex.open().append($el).bind('vexClose', -> console.log 'vexClose')
+#### Vex Dialog
+
+When including `vex.dialog` (also 5kb uncompressed), you get dropin replacements for `alert`, `confirm`, and `prompt`.
+
+```html
+<script src="vex.dialog.js"></script>
 ```
 
-You can also close vex dialogs by id:
-```coffeescript
-$vexContent = vex.open()
-vex.close($vexContent.data().vex.id)
-```
+### API
 
+Vex Dialog exposes 4 main apis:
+
+- `vex.dialog.alert(stringOrOptions)`
+- `vex.dialog.confirm(options)`
+- `vex.dialog.prompt(options)`
+- `vex.dialog.open(options)`
+
+(Internally, `alert`, `confirm`, and `prompt` call `open` with a different compositions of options.)
+
+Read more about Vex dialog in the [API docs](http://github.hubspot.com/vex/api/vex_dialog/).
 
 #### Options
 
@@ -74,9 +95,3 @@ defaultOptions:
     closeClassName: ''
     closeCSS: {}
 ```
-
-There are some class names in `vex.sass` you can use for the `className` property:
-
-- Use `vex-content-auto` when making a simple dialog.
-- Use `vex-content-tall` when you want to support something with a scrollable middle.
-- Use `vex-content-tall-and-wide` or `fullscreen` when you want to take up most or all of the screen, respectively.
