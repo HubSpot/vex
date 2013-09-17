@@ -42,10 +42,6 @@
       }
     },
     afterOpen: function() {},
-    className: 'vex-content-auto',
-    css: {
-      width: 400
-    },
     message: 'Message',
     input: "<input name=\"vex\" type=\"hidden\" value=\"_vex-empty-value\" />",
     value: false,
@@ -78,8 +74,9 @@
     };
     $vexContent = vex.open(options);
     if (options.focusFirstInput) {
-      return $vexContent.find('input[type="text"], input[type="submit"]').first().focus();
+      $vexContent.find('input[type="text"], input[type="submit"]').first().focus();
     }
+    return $vexContent;
   };
   dialog.alert = function(options) {
     if (typeof options === 'string') {
@@ -110,9 +107,11 @@
     return vex.dialog.open(options);
   };
   dialog.buildDialogForm = function(options) {
-    var $form;
+    var $form, $input, $message;
     $form = $('<form class="vex-dialog-form" />');
-    $form.append(options.message).append(options.input).append(dialog.buttonsToDOM(options.buttons)).bind('submit.vex', options.onSubmit);
+    $message = $('<div class="vex-dialog-message" />');
+    $input = $('<div class="vex-dialog-input" />');
+    $form.append($message.append(options.message)).append($input.append(options.input)).append(dialog.buttonsToDOM(options.buttons)).bind('submit.vex', options.onSubmit);
     return $form;
   };
   dialog.getFormValueOnSubmit = function(formData) {

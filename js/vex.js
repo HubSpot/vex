@@ -11,6 +11,7 @@
     globalID: 1,
     animationEndEvent: 'animationend webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend',
     baseClassNames: {
+      vex: 'vex',
       content: 'vex-content',
       overlay: 'vex-overlay',
       close: 'vex-close',
@@ -25,6 +26,8 @@
       css: {},
       overlayClassName: '',
       overlayCSS: {},
+      contentClassName: '',
+      contentCSS: {},
       closeClassName: '',
       closeCSS: {}
     },
@@ -32,6 +35,9 @@
       options = $.extend({}, vex.defaultOptions, options);
       options.id = vex.globalID;
       vex.globalID += 1;
+      options.$vex = $('<div>').addClass(vex.baseClassNames.vex).addClass(options.className).css(options.css).data({
+        vex: options
+      });
       options.$vexOverlay = $('<div>').addClass(vex.baseClassNames.overlay).addClass(options.overlayClassName).css(options.overlayCSS).data({
         vex: options
       });
@@ -43,10 +49,11 @@
           return vex.close($(this).data().vex.id);
         });
       }
-      options.$vexContent = $('<div>').addClass(vex.baseClassNames.content).addClass(options.className).css(options.css).append(options.content).data({
+      options.$vex.append(options.$vexOverlay);
+      options.$vexContent = $('<div>').addClass(vex.baseClassNames.content).addClass(options.contentClassName).css(options.contentCSS).append(options.content).data({
         vex: options
       });
-      options.$vexOverlay.append(options.$vexContent);
+      options.$vex.append(options.$vexContent);
       if (options.showCloseButton) {
         options.$closeButton = $('<div>').addClass(vex.baseClassNames.close).addClass(options.closeClassName).css(options.closeCSS).data({
           vex: options
@@ -55,7 +62,7 @@
         });
         options.$vexContent.append(options.$closeButton);
       }
-      $(options.appendLocation).append(options.$vexOverlay);
+      $(options.appendLocation).append(options.$vex);
       if (options.afterOpen) {
         options.afterOpen(options.$vexContent, options);
       }
@@ -65,7 +72,7 @@
       return options.$vexContent;
     },
     getAllVexes: function() {
-      return $("." + vex.baseClassNames.overlay + ":not(\"." + vex.baseClassNames.closing + "\") ." + vex.baseClassNames.content);
+      return $("." + vex.baseClassNames.vex + ":not(\"." + vex.baseClassNames.closing + "\") ." + vex.baseClassNames.content);
     },
     getVexByID: function(id) {
       return vex.getAllVexes().filter(function() {
@@ -97,12 +104,12 @@
       return true;
     },
     closeByID: function(id) {
-      var $vexContent, $vexOverlay, beforeClose, close, options;
+      var $vex, $vexContent, beforeClose, close, options;
       $vexContent = vex.getVexByID(id);
       if (!$vexContent.length) {
         return;
       }
-      $vexOverlay = $vexContent.data().vex.$vexOverlay;
+      $vex = $vexContent.data().vex.$vex;
       options = $.extend({}, $vexContent.data().vex);
       beforeClose = function() {
         if (options.beforeClose) {
@@ -111,14 +118,14 @@
       };
       close = function() {
         $vexContent.trigger('vexClose', options);
-        $vexOverlay.remove();
+        $vex.remove();
         if (options.afterClose) {
           return options.afterClose($vexContent, options);
         }
       };
       if (animationEndSupport) {
         beforeClose();
-        $vexOverlay.unbind(vex.animationEndEvent).bind(vex.animationEndEvent, function() {
+        $vex.unbind(vex.animationEndEvent).bind(vex.animationEndEvent, function() {
           return close();
         }).addClass(vex.baseClassNames.closing);
       } else {
@@ -132,7 +139,7 @@
     },
     showLoading: function() {
       vex.hideLoading();
-      return $('body').append('<div class="vex-loading-spinner"></div>');
+      return $('body').append("<div class=\"vex-loading-spinner " + vex.defaultOptions.className + "\"></div>");
     }
   };
   window.vex = vex;
