@@ -289,10 +289,11 @@
 
 /* line 50, ../sass/vex.sass */
 .vex-dialog-form .vex-dialog-buttons .vex-dialog-button {
+  -webkit-appearance: none;
   cursor: pointer;
 }
 
-/* line 53, ../sass/vex.sass */
+/* line 54, ../sass/vex.sass */
 .vex-loading-spinner {
   animation: vex-rotation 0.7s linear infinite;
   -webkit-animation: vex-rotation 0.7s linear infinite;
