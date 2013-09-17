@@ -2,7 +2,7 @@
 
 Dialogs for the 21st century.
 
-## [Demo](http://github.hubspot.com/vex/docs/welcome/) — [Documentation](http://github.hubspot.com/vex/)
+### [Demo](http://github.hubspot.com/vex/docs/welcome/) — [Documentation](http://github.hubspot.com/vex/)
 
 ### Take control of your dialogs
 
