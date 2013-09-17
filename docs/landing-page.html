@@ -368,7 +368,7 @@
                 for (var i = 4; i > -1; i--) {
                     vex.dialog.alert({
                         appendLocation: '.stack',
-                        message: $('.stack-tempates > div:nth-child(' + (i + 1) + ')'),
+                        message: $('.stack-tempates > div:nth-child(' + (i + 1) + ')').html(),
                         className: demo.initialDialogsClassName,
                         buttons: [
                             $.extend({}, vex.dialog.buttons.YES, { text: '►' })
@@ -386,6 +386,8 @@
 
             demo.updateInitialDialogNumbers = function() {
                 var $remaining = $('.stack > .vex:not(".vex-closing")');
+
+                $('.stack').show();
 
                 $.each($remaining.removeClass('v0 v1 v2 v3 v4').toArray().reverse(), function(i, item){
                     $(item).addClass('v' + i);
@@ -438,7 +440,7 @@
                 if ($remaining.length === 0) {
                     $('body').removeClass('page-intro');
                     setTimeout(function(){
-                        $('.stack').remove();
+                        $('.stack').hide();
                     }, 600);
                 }
             }
