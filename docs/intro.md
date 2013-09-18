@@ -74,8 +74,8 @@ Play with this example:
 vex.dialog.open
     message: 'Enter your username and password:'
     input: """
-        <input name="username" type="text" placeholder="Username" />
-        <input name="password" type="password" placeholder="Password" />
+        <input name="username" type="text" placeholder="Username" required />
+        <input name="password" type="password" placeholder="Password" required />
     """
     buttons: [
         $.extend({}, vex.dialog.buttons.YES, text: 'Login')
