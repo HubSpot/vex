@@ -122,8 +122,13 @@ There are some class names in `vex.sass` you can use for the `className` propert
 
 
 <!-- Resources for the demos -->
-<script src="/vex/js/vex.js"></script>
-<link rel="stylesheet" href="/vex/css/vex.css" />
-<script src="/vex/js/vex.dialog.js"></script>
-<link rel="stylesheet" href="/vex/css/vex.dialog.css" />
 <p style="-webkit-transform: translateZ(0)"></p>
+<script src="/vex/js/vex.js"></script>
+<script src="/vex/js/vex.dialog.js"></script>
+<link rel="stylesheet" href="/vex/css/vex.css" />
+<link rel="stylesheet" href="/vex/css/vex-theme-os.css">
+<script>
+    (function(){
+        vex.defaultOptions.className = 'vex-theme-os';
+    })();
+</script>

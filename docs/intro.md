@@ -91,9 +91,9 @@ vex.dialog.open
 <script src="/vex/js/vex.js"></script>
 <script src="/vex/js/vex.dialog.js"></script>
 <link rel="stylesheet" href="/vex/css/vex.css" />
-<link rel="stylesheet" href="/vex/css/vex-theme-default.css">
+<link rel="stylesheet" href="/vex/css/vex-theme-os.css">
 <script>
     (function(){
-        vex.defaultOptions.className = 'vex-theme-default';
+        vex.defaultOptions.className = 'vex-theme-os';
     })();
 </script>
