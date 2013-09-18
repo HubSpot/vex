@@ -6,13 +6,13 @@ Dialogs for the 21st century.
 
 ### Take control of your dialogs
 
-Vex is a modern dialog library which is highly configurable, easily stylable, and gets out of the way. You'll love vex because it's tiny (`<5kb`), has a clear and simple API, works on mobile devices, and can be customized to match your style in seconds.
+Vex is a modern dialog library which is highly configurable, easily stylable, and gets out of the way. You'll love vex because it's tiny (`6kb` minified, `2kb` minified+gz), has a clear and simple API, works on mobile devices, and can be customized to match your style in seconds.
 
 #### Features
 
 - Drop-in replacement for `alert`, `confirm`, and `prompt`
 - Easilly configurable animations which are smooth as butter
-- Tiny footprint (`<7kb`) and only depends on `jQuery`
+- Tiny footprint (`6kb` minified) and only depends on `jQuery`
 - Looks and behaves great on mobile devices
 - Open multiple dialogs at once and close them individually or all at once
 - Built in CSS spinner for asynchronous dialogs
@@ -57,7 +57,7 @@ Read more about Vex in the [API docs](http://github.hubspot.com/vex/api/vex/).
 
 #### Vex Dialog
 
-When including `vex.dialog` (also 5kb uncompressed), you get dropin replacements for `alert`, `confirm`, and `prompt`.
+When including `vex.dialog`, you get dropin replacements for `alert`, `confirm`, and `prompt`.
 
 ```html
 <script src="vex.dialog.js"></script>

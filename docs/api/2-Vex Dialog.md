@@ -1,6 +1,6 @@
 ## Vex Dialog
 
-When including `vex.dialog` (also 5kb uncompressed), you get dropin replacements for `alert`, `confirm`, and `prompt`.
+When including `vex.dialog`, you get dropin replacements for `alert`, `confirm`, and `prompt`.
 
 ### Including
 
