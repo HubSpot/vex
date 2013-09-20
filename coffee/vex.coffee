@@ -121,8 +121,8 @@ vex =
         return vex.closeByID id
 
     closeAll: ->
-        ids = vex.getAllVexes().map(-> $(@).data().vex.id)
-        return false unless ids and ids.length
+        ids = vex.getAllVexes().map(-> $(@).data().vex.id).toArray()
+        return false unless ids?.length
 
         $.each ids.reverse(), (index, id) -> vex.closeByID id
 
@@ -158,7 +158,7 @@ vex =
 
     closeByEscape: ->
         ids = vex.getAllVexes().map(-> $(@).data().vex.id).toArray()
-        return false unless ids and ids.length
+        return false unless ids?.length
 
         id = ids.sort().reverse()[0]
         $lastVex = vex.getVexByID id
