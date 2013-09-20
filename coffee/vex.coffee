@@ -1,12 +1,17 @@
 $ = jQuery
 
-# Detect CSS Animation Support
-
 animationEndSupport = false
 
 $ ->
+    # Detect CSS Animation Support
+
     s = (document.body || document.documentElement).style
     animationEndSupport = s.animation isnt undefined or s.WebkitAnimation isnt undefined or s.MozAnimation isnt undefined or s.MsAnimation isnt undefined or s.OAnimation isnt undefined
+
+    # Register global handler for ESC
+
+    $(window).bind 'keyup.vex', (event) ->
+        vex.closeByEscape() if event.keyCode is 27
 
 # Vex
 
@@ -26,6 +31,7 @@ vex =
     defaultOptions:
         content: ''
         showCloseButton: true
+        escapeButtonCloses: true
         overlayClosesOnClick: true
         appendLocation: 'body'
         className: ''
@@ -108,15 +114,15 @@ vex =
 
     close: (id) ->
         if not id
-            $lastVexContent = vex.getAllVexes().last()
-            return false unless $lastVexContent.length
-            id = $lastVexContent.data().vex.id
+            $lastVex = vex.getAllVexes().last()
+            return false unless $lastVex.length
+            id = $lastVex.data().vex.id
 
         return vex.closeByID id
 
     closeAll: ->
-        ids = vex.getAllVexes().map(-> $(@).data().vex.id)
-        return false unless ids and ids.length
+        ids = vex.getAllVexes().map(-> $(@).data().vex.id).toArray()
+        return false unless ids?.length
 
         $.each ids.reverse(), (index, id) -> vex.closeByID id
 
@@ -149,6 +155,16 @@ vex =
             close()
 
         return true
+
+    closeByEscape: ->
+        ids = vex.getAllVexes().map(-> $(@).data().vex.id).toArray()
+        return false unless ids?.length
+
+        id = Math.max ids...
+        $lastVex = vex.getVexByID id
+        return false if $lastVex.data().vex.escapeButtonCloses isnt true
+
+        return vex.closeByID id
 
     hideLoading:  ->
         $('.vex-loading-spinner').remove()
