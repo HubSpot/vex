@@ -8,11 +8,50 @@ $ ->
     s = (document.body || document.documentElement).style
     animationEndSupport = s.animation isnt undefined or s.WebkitAnimation isnt undefined or s.MozAnimation isnt undefined or s.MsAnimation isnt undefined or s.OAnimation isnt undefined
 
+class EscapeStack
+    constructor: ->
+        @empty()
+
+    empty: ->
+        @_stack = []
+
+    add: (vexId, shouldClose) ->
+        @_stack.push(
+            id: vexId
+            shouldClose: shouldClose
+        )
+        @rebind()
+
+    remove: (vexId) ->
+        return if vexId.length is 0
+        newStack = []
+        for item in @_stack
+            if not (item.id is vexId)
+                newStack.push(item)
+        @_stack = newStack
+        @rebind()
+
+    rebind: ->
+        if @lastHandler?
+            $('body').unbind('keyup', @lastHandler)
+
+        top = @_stack[@_stack.length - 1]
+
+        return unless top?.shouldClose
+        @lastHandler = (e) =>
+            return true unless e.keyCode is 27
+            vex.closeByID(top.id)
+            return false
+
+        $('body').bind('keyup', @lastHandler)
+
+
 # Vex
 
 vex =
 
     globalID: 1
+    escapeStack: new EscapeStack()
 
     animationEndEvent: 'animationend webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend' # Inconsistent casings are intentional http://stackoverflow.com/a/12958895/131898
 
@@ -27,6 +66,7 @@ vex =
         content: ''
         showCloseButton: true
         overlayClosesOnClick: true
+        escapeButtonCloses: true
         appendLocation: 'body'
         className: ''
         css: {}
@@ -97,6 +137,7 @@ vex =
 
         options.afterOpen options.$vexContent, options if options.afterOpen
         setTimeout (-> options.$vexContent.trigger 'vexOpen', options), 0
+        vex.escapeStack.add(options.id, options.escapeButtonCloses)
 
         return options.$vexContent # For chaining
 
@@ -119,6 +160,8 @@ vex =
         return false unless ids and ids.length
 
         $.each ids.reverse(), (index, id) -> vex.closeByID id
+
+        vex.escapeStack.empty()
 
         return true
 
@@ -148,6 +191,8 @@ vex =
             beforeClose()
             close()
 
+        vex.escapeStack.remove(id)
+
         return true
 
     hideLoading:  ->
@@ -158,3 +203,4 @@ vex =
         $('body').append("""<div class="vex-loading-spinner #{vex.defaultOptions.className}"></div>""")
 
 window.vex = vex
+
