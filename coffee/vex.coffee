@@ -160,7 +160,7 @@ vex =
         ids = vex.getAllVexes().map(-> $(@).data().vex.id).toArray()
         return false unless ids?.length
 
-        id = ids.sort().shift()
+        id = Math.max ids...
         $lastVex = vex.getVexByID id
         return false if $lastVex.data().vex.escapeButtonCloses isnt true
 
