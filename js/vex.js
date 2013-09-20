@@ -5,7 +5,12 @@
   $(function() {
     var s;
     s = (document.body || document.documentElement).style;
-    return animationEndSupport = s.animation !== void 0 || s.WebkitAnimation !== void 0 || s.MozAnimation !== void 0 || s.MsAnimation !== void 0 || s.OAnimation !== void 0;
+    animationEndSupport = s.animation !== void 0 || s.WebkitAnimation !== void 0 || s.MozAnimation !== void 0 || s.MsAnimation !== void 0 || s.OAnimation !== void 0;
+    return $(window).bind('keyup.vex', function(event) {
+      if (event.keyCode === 27) {
+        return vex.closeByEscape();
+      }
+    });
   });
   vex = {
     globalID: 1,
@@ -20,6 +25,7 @@
     defaultOptions: {
       content: '',
       showCloseButton: true,
+      escapeButtonCloses: true,
       overlayClosesOnClick: true,
       appendLocation: 'body',
       className: '',
@@ -80,13 +86,13 @@
       });
     },
     close: function(id) {
-      var $lastVexContent;
+      var $lastVex;
       if (!id) {
-        $lastVexContent = vex.getAllVexes().last();
-        if (!$lastVexContent.length) {
+        $lastVex = vex.getAllVexes().last();
+        if (!$lastVex.length) {
           return false;
         }
-        id = $lastVexContent.data().vex.id;
+        id = $lastVex.data().vex.id;
       }
       return vex.closeByID(id);
     },
@@ -94,8 +100,8 @@
       var ids;
       ids = vex.getAllVexes().map(function() {
         return $(this).data().vex.id;
-      });
-      if (!(ids && ids.length)) {
+      }).toArray();
+      if (!(ids != null ? ids.length : void 0)) {
         return false;
       }
       $.each(ids.reverse(), function(index, id) {
@@ -133,6 +139,21 @@
         close();
       }
       return true;
+    },
+    closeByEscape: function() {
+      var $lastVex, id, ids;
+      ids = vex.getAllVexes().map(function() {
+        return $(this).data().vex.id;
+      }).toArray();
+      if (!(ids != null ? ids.length : void 0)) {
+        return false;
+      }
+      id = Math.max.apply(Math, ids);
+      $lastVex = vex.getVexByID(id);
+      if ($lastVex.data().vex.escapeButtonCloses !== true) {
+        return false;
+      }
+      return vex.closeByID(id);
     },
     hideLoading: function() {
       return $('.vex-loading-spinner').remove();
