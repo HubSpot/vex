@@ -1,14 +1,77 @@
 (function() {
-  var $, animationEndSupport, vex;
+  var $, EscapeStack, animationEndSupport, vex;
+
   $ = jQuery;
+
   animationEndSupport = false;
+
   $(function() {
     var s;
     s = (document.body || document.documentElement).style;
     return animationEndSupport = s.animation !== void 0 || s.WebkitAnimation !== void 0 || s.MozAnimation !== void 0 || s.MsAnimation !== void 0 || s.OAnimation !== void 0;
   });
+
+  EscapeStack = (function() {
+    function EscapeStack() {
+      this.empty();
+    }
+
+    EscapeStack.prototype.empty = function() {
+      return this._stack = [];
+    };
+
+    EscapeStack.prototype.add = function(vexId, shouldClose) {
+      this._stack.push({
+        id: vexId,
+        shouldClose: shouldClose
+      });
+      return this.rebind();
+    };
+
+    EscapeStack.prototype.remove = function(vexId) {
+      var item, newStack, _i, _len, _ref;
+      if (vexId.length === 0) {
+        return;
+      }
+      newStack = [];
+      _ref = this._stack;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        item = _ref[_i];
+        if (!(item.id === vexId)) {
+          newStack.push(item);
+        }
+      }
+      this._stack = newStack;
+      return this.rebind();
+    };
+
+    EscapeStack.prototype.rebind = function() {
+      var top,
+        _this = this;
+      if (this.lastHandler != null) {
+        $('body').unbind('keyup', this.lastHandler);
+      }
+      top = this._stack[this._stack.length - 1];
+      if (!(top != null ? top.shouldClose : void 0)) {
+        return;
+      }
+      this.lastHandler = function(e) {
+        if (e.keyCode !== 27) {
+          return true;
+        }
+        vex.closeByID(top.id);
+        return false;
+      };
+      return $('body').bind('keyup', this.lastHandler);
+    };
+
+    return EscapeStack;
+
+  })();
+
   vex = {
     globalID: 1,
+    escapeStack: new EscapeStack(),
     animationEndEvent: 'animationend webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend',
     baseClassNames: {
       vex: 'vex',
@@ -21,6 +84,7 @@
       content: '',
       showCloseButton: true,
       overlayClosesOnClick: true,
+      escapeButtonCloses: true,
       appendLocation: 'body',
       className: '',
       css: {},
@@ -69,6 +133,7 @@
       setTimeout((function() {
         return options.$vexContent.trigger('vexOpen', options);
       }), 0);
+      vex.escapeStack.add(options.id, options.escapeButtonCloses);
       return options.$vexContent;
     },
     getAllVexes: function() {
@@ -101,6 +166,7 @@
       $.each(ids.reverse(), function(index, id) {
         return vex.closeByID(id);
       });
+      vex.escapeStack.empty();
       return true;
     },
     closeByID: function(id) {
@@ -132,6 +198,7 @@
         beforeClose();
         close();
       }
+      vex.escapeStack.remove(id);
       return true;
     },
     hideLoading: function() {
@@ -142,5 +209,7 @@
       return $('body').append("<div class=\"vex-loading-spinner " + vex.defaultOptions.className + "\"></div>");
     }
   };
+
   window.vex = vex;
+
 }).call(this);
