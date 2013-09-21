@@ -743,7 +743,7 @@
 }
 
 /* line 8, ../sass/vex-theme-top.sass */
-.vex.vex-theme-os.vex-closing .vex-content {
+.vex.vex-theme-top.vex-closing .vex-content {
   animation: vex-dropout 0.5s;
   -webkit-animation: vex-dropout 0.5s;
   -moz-animation: vex-dropout 0.5s;
@@ -752,7 +752,7 @@
   -webkit-backface-visibility: hidden;
 }
 /* line 11, ../sass/vex-theme-top.sass */
-.vex.vex-theme-os .vex-content {
+.vex.vex-theme-top .vex-content {
   animation: vex-dropin 0.5s;
   -webkit-animation: vex-dropin 0.5s;
   -moz-animation: vex-dropin 0.5s;
