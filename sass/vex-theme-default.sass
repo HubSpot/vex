@@ -4,22 +4,24 @@
 @import mixins
 @import keyframes
 
-+keyframes-vex-dropin
-+keyframes-vex-dropout
++keyframes-vex-flyin
++keyframes-vex-flyout
 +keyframes-vex-pulse
 
 $blue: #3288e6
 
 .vex.vex-theme-default
+    padding-top: 160px
+    padding-bottom: 160px
 
     &.vex-closing .vex-content
-        +vex-animation(vex-dropout .5s)
+        +vex-animation(vex-flyout .5s)
 
     .vex-content
-        +vex-animation(vex-dropin .5s)
+        +vex-animation(vex-flyin .5s)
 
     .vex-content
-        +border-radius(0 0 5px 5px)
+        +border-radius(5px)
         font-family: "Helvetica Neue", sans-serif
         background: #f0f0f0
         color: #444
@@ -35,7 +37,7 @@ $blue: #3288e6
             color: inherit
 
     .vex-close
-        +border-radius(0 5px 0 0)
+        +border-radius(5px)
         position: absolute
         top: 0
         right: 0
