@@ -13,18 +13,42 @@ Vex is a modern dialog library which is highly configurable, easily stylable, an
 - Open multiple dialogs at once and close them individually or all at once
 - Built in CSS spinner for asynchronous dialogs
 
-Let's jump right into a hot demo.
+#### Requirements
 
-#### Demo
+- jQuery
+
+#### Browser Support
+
+- IE8+
+- Firefox 4+
+- Current WebKit (Chrome, Safari)
+- Opera
+
+#### Including
+
+For the most common usage of Vex, you'll want to include following:
+
+```html
+<script src="vex.combined.min.js"></script>
+<script>vex.defaultOptions.className = 'vex-theme-os';</script>
+<link rel="stylesheet" href="vex.css" />
+<link rel="stylesheet" href="vex-theme-os.css" />
+```
+
+That will give you all of the APIs for both Vex and Vex Dialog, and set you up with the "Operating System" theme. If you'd prefer another theme, check out [Themes](/vex/api/themes).
+
+#### Confirm Demo
+
+One of the simplest ways to use Vex is to call `vex.dialog.alert`, `vex.dialog.confirm`, or `vex.dialog.prompt`. In this demo, we're using `vex.dialog.confirm` to ask the user to confirm the answer to a simple question.
 
 <a class="demo-confirm hs-brand-button">Destroy the planet</a>
-<div class="demo-result-simple hs-doc-callout hs-doc-callout-info" style="display: none"></div>
+<div class="demo-result-confirm hs-doc-callout hs-doc-callout-info" style="display: none"></div>
 <script>
 $('.demo-confirm').click(function(){
     vex.dialog.confirm({
         message: 'Are you absolutely sure you want to destroy the alien planet?',
         callback: function(value) {
-            $('.demo-result-simple').show().html('<h4>Result</h4><p>' + (value ? 'Successfully destroyed the planet.' : 'Chicken.') + '</p>');
+            $('.demo-result-confirm').show().html('<h4>Result</h4><p>' + (value ? 'Successfully destroyed the planet.' : 'Chicken.') + '</p>');
         }
     });
 });
@@ -39,24 +63,26 @@ vex.dialog.confirm
         console.log if value then 'Successfully destroyed the planet.' else 'Chicken.'
 ```
 
-### Demo
+#### Login Demo
 
-<a class="demo hs-brand-button">Log in</a>
-<div class="demo-result hs-doc-callout hs-doc-callout-info" style="display: none"></div>
+Here's a more complex demo in which we use `vex.dialog.open` (a more generic method which `alert`, `confirm`, and `prompt` all call internally) to build a login dialog.
+
+<a class="demo-login hs-brand-button">Log in</a>
+<div class="demo-result-login hs-doc-callout hs-doc-callout-info" style="display: none"></div>
 <script>
-    $('.demo').click(function(){
+    $('.demo-login').click(function(){
         vex.dialog.open({
             message: 'Enter your username and password:',
             input: '' +
-                '<input name="username" type="text" placeholder="Username" />' +
-                '<input name="password" type="password" placeholder="Password" />' +
+                '<input name="username" type="text" placeholder="Username" required />' +
+                '<input name="password" type="password" placeholder="Password" required />' +
             '',
             buttons: [
                 $.extend({}, vex.dialog.buttons.YES, { text: 'Login' }),
                 $.extend({}, vex.dialog.buttons.NO, { text: 'Back' })
             ],
             callback: function (data) {
-                $('.demo-result').show().html('' +
+                $('.demo-result-login').show().html('' +
                     '<h4>Result</h4>' +
                     '<p>' +
                         'Username: <b>' + data.username + '</b><br/>' +
@@ -85,6 +111,17 @@ vex.dialog.open
         return console.log('Cancelled') if data is false
         console.log 'Username', data.username, 'Password', data.password
 ```
+
+#### Learn More
+
+To learn more about how to use Vex, visit our API pages.
+
+- [The Basics](http://github.hubspot.com/vex/api/the-basics)
+
+#### Credits
+
+Vex was built by [Adam Schwartz](http://twitter.com/adamfschwartz)
+
 
 <!-- Resources for the demos -->
 <p style="-webkit-transform: translateZ(0)"></p>

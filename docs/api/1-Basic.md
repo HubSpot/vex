@@ -1,18 +1,6 @@
-## Vex Dialog
+## Basic
 
-When including `vex.dialog`, you get dropin replacements for `alert`, `confirm`, and `prompt`.
-
-### Including
-
-To use Vex Dialog, minimally, you must include:
-
-```html
-<script src="vex.dialog.js"></script>
-```
-
-To get the basic styles, you'll addionally want to include a theme. See the Vex API documentation for how to include themes.
-
-### API
+### Dialog API
 
 Vex Dialog exposes 4 main apis:
 

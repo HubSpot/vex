@@ -1,45 +1,34 @@
-## Vex
+## Advanced
 
-### Including
+### DOM Structure
 
-To use Vex, minimally, you must include:
-
-```html
-<script src="vex.js"></script>
-```
-
-To get the basic styles, you'll addionally want to include:
+When opening a dialog, vex appends the following HTML to `appendLocation` (which defaults to `body`).
 
 ```html
-<link rel="stylesheet" href="vex.css" />
+<div class="vex">
+    <div class="vex-overlay"></div>
+    <div class="vex-content">
+        <div class="vex-close"></div>
+    </div>
+</div>
 ```
 
-#### Themes
+If `showCloseButton` is set to false, `<div class="vex-close"></div>` will be ommitted.
 
-To use a builtin theme, you must additionally include the theme style sheet, and set the theme className:
+Optional class names or inline CSS can be added to any of these elements by setting any the following options (with defaults shown):
 
-```html
-<link rel="stylesheet" href="vex-theme-default.css" />
-<script>
-    vex.defaultOptions.className = 'vex-theme-default';
-</script>
+```
+className: ''
+css: {}
+overlayClassName: ''
+overlayCSS: {}
+contentClassName: ''
+contentCSS: {}
+closeClassName: ''
+closeCSS: {}
 ```
 
-At the moment, there are 5 themes:
-
-<table class="hs-table">
-<tr>
-<th>Name</th>
-<th>`className`</th>
-</tr>
-<tbody>
-<tr><td>Default</td> <td>`vex-theme-default`</td></tr>
-<tr><td>Operating System</td> <td>`vex-theme-os`</td></tr>
-<tr><td>Plain</td> <td>`vex-theme-plain`</td></tr>
-<tr><td>Wireframe</td> <td>`vex-theme-wireframe`</td></tr>
-<tr><td>Flat Attack!</td> <td>`vex-theme-flat-attack`</td></tr>
-</tbody>
-</table>
+The CSS options take an object to be passed to jQuery's `.css` function.
 
 ### API
 
@@ -103,23 +92,29 @@ Here are the defaults:
 defaultOptions:
     content: ''
     showCloseButton: true
+    escapeButtonCloses: true
     overlayClosesOnClick: true
     appendLocation: 'body'
     className: ''
     css: {}
     overlayClassName: ''
     overlayCSS: {}
+    contentClassName: ''
+    contentCSS: {}
     closeClassName: ''
     closeCSS: {}
 ```
 
-There are some class names in `vex.sass` you can use for the `className` property:
+### Note about Includes
 
-- Use `vex-content-auto` when making a simple dialog.
-- Use `vex-content-tall` when you want to support something with a scrollable middle.
-- Use `vex-content-tall-and-wide` or `fullscreen` when you want to take up most or all of the screen, respectively.
+To use Vex, minimally, you must include:
 
+```html
+<script src="vex.js"></script>
+<link rel="stylesheet" href="vex.css" />
+```
 
+We also recommend including `vex.dialog.js` and a theme file. However, these are not actually required. To include both `vex.js` and `vex.dialog.js`, use `vex.combined.js` (or `vex.combined.min.js`). All of these files can be found in the ZIP which you can [download here](/vex).
 
 <!-- Resources for the demos -->
 <p style="-webkit-transform: translateZ(0)"></p>
