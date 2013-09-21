@@ -2,6 +2,6 @@ title: "vex"
 description: "Dialogs for the 21st century"
 source: "*.js"
 examples: "**/*.md"
-assets: "{js/vex.js,js/vex.dialog.js,css/vex.css,css/vex-theme-default.css,css/vex-theme-os.css,css/vex-theme-plain.css,css/vex-theme-wireframe.css,css/vex-theme-flat-attack.css,docs/welcome/index.html,docs/vex.gif}"
+assets: "{js/vex.js,js/vex.dialog.js,css/vex.css,css/vex-theme-*.css,docs/welcome/index.html,docs/vex.gif}"
 package:
-  release: "1.0.1"
+  release: "1.1.0"
