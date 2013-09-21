@@ -477,7 +477,7 @@
   clear: both;
 }
 /* line 94, ../sass/vex-theme-os.sass */
-.vex.vex-theme-os .vex-dialog-form .vex-dialog-buttons .vex-dialog-button {
+.vex.vex-theme-os .vex-dialog-button {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -494,11 +494,11 @@
   padding: 0.75em 2em;
 }
 /* line 106, ../sass/vex-theme-os.sass */
-.vex.vex-theme-os .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-last {
+.vex.vex-theme-os .vex-dialog-button.vex-last {
   margin-left: 0;
 }
 /* line 109, ../sass/vex-theme-os.sass */
-.vex.vex-theme-os .vex-dialog-form .vex-dialog-buttons .vex-dialog-button:focus {
+.vex.vex-theme-os .vex-dialog-button:focus {
   animation: vex-pulse 1.1s infinite;
   -webkit-animation: vex-pulse 1.1s infinite;
   -moz-animation: vex-pulse 1.1s infinite;
@@ -509,7 +509,7 @@
 }
 @media (max-width: 568px) {
   /* line 109, ../sass/vex-theme-os.sass */
-  .vex.vex-theme-os .vex-dialog-form .vex-dialog-buttons .vex-dialog-button:focus {
+  .vex.vex-theme-os .vex-dialog-button:focus {
     animation: none;
     -webkit-animation: none;
     -moz-animation: none;
@@ -519,12 +519,12 @@
   }
 }
 /* line 118, ../sass/vex-theme-os.sass */
-.vex.vex-theme-os .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-primary {
+.vex.vex-theme-os .vex-dialog-button.vex-dialog-button-primary {
   background: #3288e6;
   color: white;
 }
 /* line 122, ../sass/vex-theme-os.sass */
-.vex.vex-theme-os .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-secondary {
+.vex.vex-theme-os .vex-dialog-button.vex-dialog-button-secondary {
   background: #e0e0e0;
   color: #777777;
 }

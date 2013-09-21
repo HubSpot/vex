@@ -344,7 +344,7 @@
   clear: both;
 }
 /* line 114, ../sass/vex-theme-flat-attack.sass */
-.vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-buttons .vex-dialog-button {
+.vex.vex-theme-flat-attack .vex-dialog-button {
   border: 0;
   margin: 0;
   float: right;
@@ -357,31 +357,31 @@
   font-family: inherit;
 }
 /* line 126, ../sass/vex-theme-flat-attack.sass */
-.vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-last {
+.vex.vex-theme-flat-attack .vex-dialog-button.vex-last {
   margin-left: 0;
 }
 /* line 129, ../sass/vex-theme-flat-attack.sass */
-.vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-buttons .vex-dialog-button:focus {
+.vex.vex-theme-flat-attack .vex-dialog-button:focus {
   outline: none;
 }
 /* line 132, ../sass/vex-theme-flat-attack.sass */
-.vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-primary {
+.vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-primary {
   background: #666666;
   color: white;
 }
 /* line 136, ../sass/vex-theme-flat-attack.sass */
-.vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-primary:focus {
+.vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-primary:focus {
   -webkit-box-shadow: inset 0 3px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: inset 0 3px rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 3px rgba(0, 0, 0, 0.2);
 }
 /* line 139, ../sass/vex-theme-flat-attack.sass */
-.vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-secondary {
+.vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-secondary {
   background: white;
   color: #cccccc;
 }
 /* line 143, ../sass/vex-theme-flat-attack.sass */
-.vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-secondary:focus {
+.vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-secondary:focus {
   -webkit-box-shadow: inset 0 3px #aaaaaa;
   -moz-box-shadow: inset 0 3px #aaaaaa;
   box-shadow: inset 0 3px #aaaaaa;
@@ -389,7 +389,7 @@
   color: #777777;
 }
 /* line 148, ../sass/vex-theme-flat-attack.sass */
-.vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-secondary:hover, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-secondary:active {
+.vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-secondary:hover, .vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-secondary:active {
   color: #777777;
 }
 /* line 16, ../sass/vex-theme-flat-attack.sass */

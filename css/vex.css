@@ -291,13 +291,14 @@
 .vex-dialog-form {
   margin: 0;
 }
-/* line 51, ../sass/vex.sass */
-.vex-dialog-form .vex-dialog-buttons .vex-dialog-button {
+
+/* line 49, ../sass/vex.sass */
+.vex-dialog-button {
   -webkit-appearance: none;
   cursor: pointer;
 }
 
-/* line 55, ../sass/vex.sass */
+/* line 53, ../sass/vex.sass */
 .vex-loading-spinner {
   animation: vex-rotation 0.7s linear infinite;
   -webkit-animation: vex-rotation 0.7s linear infinite;
