@@ -21,7 +21,7 @@ At the moment, there are 6 themes:
 <tr><td>Plain</td><td>`vex-theme-plain`</td><td><a href data-theme="vex-theme-plain">Example</td></tr>
 <tr><td>Wireframe</td><td>`vex-theme-wireframe`</td><td><a href data-theme="vex-theme-wireframe">Example</td></tr>
 <tr><td>Flat Attack!</td><td>`vex-theme-flat-attack`</td><td><a href data-theme="vex-theme-flat-attack">Example</td></tr>
-<tr><td>Top</td><td>`vex-theme-top</td><td><a href data-theme="vex-theme-top">Example</td></tr>
+<tr><td>Top</td><td>`vex-theme-top`</td><td><a href data-theme="vex-theme-top">Example</td></tr>
 </tbody>
 </table>
 
