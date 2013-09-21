@@ -256,128 +256,6 @@
             vex.defaultOptions.className = 'vex-theme-flat-attack';
             vex.dialog.defaultOptions.showCloseButton = true;
 
-            demo.opener = function() {
-                $('body').addClass('demo-start')
-                vex.dialog.confirm({
-                    message: '<h1>Tired of writing dialogs in JS?</h1>',
-                    showCloseButton: false,
-                    className: demo.className + ' vex-theme-flat-attack-green',
-                    overlayCSS: {
-                        background: '#34b989'
-                    },
-                    buttons: [
-                        $.extend({}, vex.dialog.buttons.YES, { text: 'YES!' }),
-                        $.extend({}, vex.dialog.buttons.NO, { text: 'No' })
-                    ],
-                    callback: function (value) {
-                        if (value === true) {
-                            demo.openerYes();
-                        } else {
-                            demo.openerNo();
-                        }
-                    }
-                });
-            };
-
-            demo.openerYes = function() {
-                vex.dialog.alert({
-                    message: '<p style="margin: 0">Well, you\'re in luck.</p><h2><u>Vex</u> makes this easy.</h2><p>Here\'s the code for a simple alert:<pre><code style="background: #eee; padding: 24px; margin-bottom: 30px; display: block">vex.dialog.alert("Hello World");</code></pre></p><p>Let\'s jump right in...<p>',
-                    showCloseButton: false,
-                    className: demo.className + ' vex-theme-flat-attack-blue',
-                    overlayCSS: {
-                        background: '#477FA5'
-                    },
-                    buttons: [
-                        $.extend({}, vex.dialog.buttons.YES, { text: '►' })
-                    ],
-                    callback: function () {
-                        demo.examples();
-                    }
-                });
-            };
-
-            demo.openerNo = function() {
-                vex.dialog.alert({
-                    message: '<h1>Well that\'s not the spirit! Let\'s try that again.</h1>',
-                    showCloseButton: false,
-                    className: demo.className,
-                    buttons: [
-                        $.extend({}, vex.dialog.buttons.YES, { text: 'OK...' })
-                    ],
-                    callback: function () {
-                        demo.opener();
-                    }
-                });
-            };
-
-            demo.examples = function() {
-                var $vexContent = vex.dialog.alert({
-                    message: '' +
-                        '<h1>Examples</h1>' +
-                        '<p>Change the dialog theme:</p>' +
-                        '<p class="themes"><a data-theme="vex-theme-default" class="selected">Default</a><a data-theme="vex-theme-os">OS</a><a data-theme="vex-theme-plain">Plain</a><a data-theme="vex-theme-flat-attack">Flat</a></p>' +
-                        '<p>Choose a type of dialog to open:</p>' +
-                        '<p class="examples"><a data-example="alert">Alert</a><a data-example="confirm">Confirm</a><a data-example="prompt">Prompt</a><a data-example="login">Login</a></p>' +
-                    '',
-                    className: demo.className + ' vex-theme-flat-attack-red',
-                    overlayCSS: {
-                        background: '#ce4a55'
-                    },
-                    showCloseButton: false,
-                    buttons: [
-                        $.extend({}, vex.dialog.buttons.YES, { text: '►' })
-                    ],
-                    callback: function () {
-                        demo.finish();
-                    }
-                });
-                var theme = 'vex-theme-default';
-                var examples = {
-                    alert: function() {
-                        vex.dialog.alert({ className: theme, message: 'This is an alert.' });
-                    },
-                    confirm: function() {
-                        vex.dialog.confirm({ className: theme, message: 'Confirm this for me.', callback: function(){} });
-                    },
-                    prompt: function() {
-                        vex.dialog.prompt({ className: theme, message: 'Prompt:', callback: function(){} });
-                    },
-                    login: function() {
-                        vex.dialog.open({
-                            className: theme,
-                            message: 'Enter your username and password:',
-                            input: '' +
-                                '<input name="username" type="text" placeholder="Username" required />' +
-                                '<input name="password" type="password" placeholder="Password" required />' +
-                            '',
-                            buttons: [
-                                $.extend({}, vex.dialog.buttons.YES, { text: 'Login' }),
-                                $.extend({}, vex.dialog.buttons.NO, { text: 'Back' })
-                            ],
-                            callback: function (data) {
-                                console.log('Username: <b>' + data.username + '</b><br/>Password: <b>' + data.password + '</b>');
-                            }
-                        });
-                    }
-                };
-                $vexContent.find('[data-example]').each(function(){
-                    $(this).click(function(){
-                        examples[$(this).data('example')]();
-                    });
-                });
-                $vexContent.find('[data-theme]').each(function(){
-                    $(this).click(function(){
-                        theme = $(this).data('theme');
-                        $vexContent.find('[data-theme]').removeClass('selected');
-                        $(this).addClass('selected');
-                    });
-                });
-            };
-
-            demo.finish = function() {
-                $('body').removeClass('demo-start');
-            };
-
             demo.loadInitialDialogs = function(){
                 $('body').addClass('page-intro');
 
@@ -393,16 +271,16 @@
                         ],
                         callback: function(value) {
                             setTimeout(function(){
-                                demo.updateInitialDialogNumbers();
+                                demo.advanceDemoDialogs();
                             }, 0);
                         }
                     });
                 }
 
-                demo.updateInitialDialogNumbers();
+                demo.advanceDemoDialogs();
             };
 
-            demo.updateInitialDialogNumbers = function() {
+            demo.advanceDemoDialogs = function() {
                 var $remaining = $('.stack > .vex:not(".vex-closing")');
 
                 $('.stack').show();
@@ -533,7 +411,6 @@
         </style>
         <div class="stack"></div>
         <script>
-            demo.finish();
             $('.demo-link').click(function(){
                 if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || $(window).width() <= 568) {
                     vex.dialog.alert({
