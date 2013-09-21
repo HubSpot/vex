@@ -348,11 +348,11 @@
 }
 /* line 21, ../sass/vex-theme-top.sass */
 .vex.vex-theme-top .vex-content {
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -ms-border-radius: 0 0 5px 5px;
+  -o-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
   font-family: "Helvetica Neue", sans-serif;
   background: #f0f0f0;
   color: #444444;
