@@ -7,7 +7,7 @@ To use a builtin theme, you must include the theme style sheet, and set vex `cla
 <script>vex.defaultOptions.className = 'vex-theme-default';</script>
 ```
 
-At the moment, there are 5 themes:
+At the moment, there are 6 themes:
 
 <table class="hs-table">
 <tr>
@@ -21,6 +21,7 @@ At the moment, there are 5 themes:
 <tr><td>Plain</td><td>`vex-theme-plain`</td><td><a href data-theme="vex-theme-plain">Example</td></tr>
 <tr><td>Wireframe</td><td>`vex-theme-wireframe`</td><td><a href data-theme="vex-theme-wireframe">Example</td></tr>
 <tr><td>Flat Attack!</td><td>`vex-theme-flat-attack`</td><td><a href data-theme="vex-theme-flat-attack">Example</td></tr>
+<tr><td>Top</td><td>`vex-theme-top</td><td><a href data-theme="vex-theme-top">Example</td></tr>
 </tbody>
 </table>
 
@@ -45,6 +46,7 @@ vex.dialog.alert
 <link rel="stylesheet" href="/vex/css/vex-theme-plain.css">
 <link rel="stylesheet" href="/vex/css/vex-theme-wireframe.css">
 <link rel="stylesheet" href="/vex/css/vex-theme-flat-attack.css">
+<link rel="stylesheet" href="/vex/css/vex-theme-top.css">
 <script>
     (function(){
         vex.defaultOptions.className = 'vex-theme-os';
