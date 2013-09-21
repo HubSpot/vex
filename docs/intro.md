@@ -116,7 +116,9 @@ vex.dialog.open
 
 To learn more about how to use Vex, visit our API pages.
 
-- [The Basics](http://github.hubspot.com/vex/api/the-basics)
+- [Basic](http://github.hubspot.com/vex/api/basic)
+- [Themes](http://github.hubspot.com/vex/api/themes)
+- [Advanced](http://github.hubspot.com/vex/api/advanced)
 
 #### Credits
 
