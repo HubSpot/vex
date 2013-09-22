@@ -174,11 +174,11 @@ vex =
         $('body').append("""<div class="vex-loading-spinner #{vex.defaultOptions.className}"></div>""")
 
 if typeof define is 'function' and define.amd
-  # AMD
-  define -> vex
+    # AMD
+    define -> vex
 else if typeof exports is 'object'
-  # CommonJS
-  module.exports = vex
+    # CommonJS
+    module.exports = vex
 else
-  # Global
-  window.vex = vex
+    # Global
+    window.vex = vex

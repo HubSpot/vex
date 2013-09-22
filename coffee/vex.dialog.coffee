@@ -132,11 +132,11 @@ dialog.buttonsToDOM = (buttons) ->
     return $buttons
 
 if typeof define is 'function' and define.amd
-  # AMD
-  define -> dialog
+    # AMD
+    define -> dialog
 else if typeof exports is 'object'
-  # CommonJS
-  module.exports = dialog
+    # CommonJS
+    module.exports = dialog
 else
-  # Global
-  window.vex.dialog = dialog
+    # Global
+    window.vex.dialog = dialog
