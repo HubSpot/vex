@@ -4,7 +4,7 @@ module.exports = (grunt) ->
     coffee:
       compile:
         files:
-          'vex.js': 'vex.coffee'
+          'js/vex.js': 'coffee/vex.coffee'
 
     watch:
       coffee:
@@ -17,7 +17,7 @@ module.exports = (grunt) ->
 
       dist:
         files:
-          'vex.min.js': 'vex.js'
+          'js/vex.min.js': 'js/vex.js'
 
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
