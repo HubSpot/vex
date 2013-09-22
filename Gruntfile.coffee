@@ -5,6 +5,7 @@ module.exports = (grunt) ->
       compile:
         files:
           'js/vex.js': 'coffee/vex.coffee'
+          'js/vex.dialog.js': 'coffee/vex.dialog.coffee'
 
     watch:
       coffee:
@@ -18,6 +19,7 @@ module.exports = (grunt) ->
       dist:
         files:
           'js/vex.min.js': 'js/vex.js'
+          'js/vex.dialog.min.js': 'js/vex.dialog.js'
 
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
