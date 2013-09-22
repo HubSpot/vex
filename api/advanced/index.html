@@ -1,0 +1,118 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="chrome=1"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>vex</title><link rel="icon" href="http://static.hubspot.com/favicon.ico"><link rel="stylesheet" href="https://static2cdn.hubspot.com/hubspot_public_assets/static-1.112/shared/sass/hubspot_public_assets.css"><link rel="stylesheet" href="https://static.hubspot.com/bundles/navigation.css"><link rel="stylesheet" href="/static-resources/css/print.css"><link rel="stylesheet" href="/static-resources/css/highlight-theme-github.css"><link rel="stylesheet" href="/static-resources/css/navigation-tweaks.css"><link rel="stylesheet" href="/static-resources/css/documentation.css"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><link rel="stylesheet" href="/vex//resources/executr/lib/CodeMirror/codemirror.css"><link rel="stylesheet" href="/vex//resources/executr/build/css/executr.css"><script src="/vex//resources/executr/lib/CodeMirror/codemirror.js"></script><script src="/vex//resources/executr/lib/CodeMirror/mode/coffeescript/coffeescript.js"></script><script src="/vex//resources/executr/lib/CodeMirror/mode/javascript/javascript.js"></script><script src="/vex//resources/executr/lib/coffee-script.js"></script><script src="/vex//resources/executr/lib/underscore.min.js"></script><script src="/vex//resources/executr/lib/js2coffee.min.js"></script><script src="/vex//resources/executr/build/js/executr.js"></script><script src="/vex//resources/executr/build/js/executr-run.js"></script><script src="//use.typekit.net/jbn8qxr.js"></script><script>try{Typekit.load();}catch(e){}
+</script></head><body><div id="hs-nav-v3" class="nav-width-flex signed-out-nav">
+    <div class="hs-nav-section main-nav">
+        <div class="nav-section-inner">
+            <ul class="nav-links-left">
+                <li class="first"><a class="nav-logo" href="http://www.hubspot.com/"><img height="34" src="https://static.hubspot.com/style-guide/img/nav-sprocket.png" width="29"></a></li>
+                <li>
+                    <a href="http://dev.hubspot.com">
+                        HubSpot Dev &amp; Design
+                    </a>
+                </li>
+                <li>
+                    <a href="http://hubspot.github.com">
+                        Open Source
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav-links-right">
+                <li class="first">
+                    <a href="http://dev.hubspot.com/jobs/" class="sign-in">You should work at HubSpot</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="hs-page-width-normal"><div class="row-fluid"><div class="span6"><h1 class="hs-doc-page-header"><a class="hs-doc-homepage-link" href="../../">vex</a></h1></div><div class="span6 hidden-phone"><div class="hs-doc-slim-github-link-wrapper"><a class="hs-doc-slim-github-link" href="http://github.com/HubSpot/vex">On GitHub</a></div></div></div></div><div class="hs-page-width-normal"><div class="row-fluid"><div class="span3"><div class="hs-doc-sidenav"><nav><ul class="hs-public-sidenav"><li class=""><a href="../../">Home</a></li><li><b>api/</b></li><li class=""><a href="../../api/basic">Basic</a></li><li class=""><a href="../../api/themes">Themes</a></li><li class="current-nav-item"><a href="../../api/advanced">Advanced</a></li></ul></nav></div></div><div class="span9"><div class="hs-doc-content"><h2>Advanced</h2>
+<h3>DOM Structure</h3>
+<p>When opening a dialog, vex appends the following HTML to <code>appendLocation</code> (which defaults to <code>body</code>).</p>
+<pre><code class="lang-html"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"vex"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"vex-overlay"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"vex-content"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"vex-close"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre>
+<p>If <code>showCloseButton</code> is set to false, <code>&lt;div class=&quot;vex-close&quot;&gt;&lt;/div&gt;</code> will be ommitted.</p>
+<p>Optional class names or inline CSS can be added to any of these elements by setting any the following options (with defaults shown):</p>
+<pre><code><span class="attribute">className</span>: <span class="string">''</span>
+<span class="attribute">css</span>: <span class="string">{}</span>
+<span class="attribute">overlayClassName</span>: <span class="string">''</span>
+<span class="attribute">overlayCSS</span>: <span class="string">{}</span>
+<span class="attribute">contentClassName</span>: <span class="string">''</span>
+<span class="attribute">contentCSS</span>: <span class="string">{}</span>
+<span class="attribute">closeClassName</span>: <span class="string">''</span>
+<span class="attribute">closeCSS</span>: <span class="string">{}</span></code></pre>
+<p>The CSS options take an object to be passed to jQuery&#39;s <code>.css</code> function.</p>
+<h3>API</h3>
+<h4>Basics of Opening and Passing Content</h4>
+<p>To open a dialog, call <code>vex.open</code>.</p>
+<pre><code class="lang-coffeescript">vex.open
+    content: <span class="string">'&lt;div&gt;Content&lt;/div&gt;'</span>
+    afterOpen: ($vexContent) -&gt;
+        <span class="comment"># console.log $vexContent.data().vex</span>
+        $vexContent.append $el
+    afterClose: -&gt;
+        console.log <span class="string">'vexClose'</span></code></pre>
+<p>In addition, you can wait to append your content until after the dialog has opened. (Visually, it will be perceived the same way.)</p>
+<pre><code class="lang-coffeescript">vex.open
+    afterOpen: ($vexContent) -&gt;
+        <span class="comment"># console.log $vexContent.data()</span>
+        $vexContent.append $el
+    afterClose: -&gt;
+        console.log <span class="string">'vexClose'</span></code></pre>
+<p>Instead of using callbacks, you can choose to chain off the open call and bind to vexOpen and vexClose events. For example:</p>
+<pre><code class="lang-coffeescript">vex
+    .open()
+    .bind(<span class="string">'vexOpen'</span>, (options) -&gt;
+        options.$vexContent.append $el
+    )
+    .bind(<span class="string">'vexClose'</span>, -&gt;
+        console.log <span class="string">'vexClose'</span>
+    )</code></pre>
+<p>Also, since opening/closing is synchronous, you don&#39;t even have to wait for the vexOpen event. Just append right away!</p>
+<pre><code class="lang-coffeescript">vex.open().append($el).bind(<span class="string">'vexClose'</span>, -&gt; console.log <span class="string">'vexClose'</span>)</code></pre>
+<p>You can also close vex dialogs by id:</p>
+<pre><code class="lang-coffeescript">$vexContent = vex.open()
+vex.close($vexContent.data().vex.id)</code></pre>
+<h4>Options</h4>
+<p>When calling <code>vex.open()</code> you can pass a number of options to handle styling and certain behaviors.</p>
+<p>Here are the defaults:</p>
+<pre><code class="lang-coffeescript">defaultOptions:
+    content: <span class="string">''</span>
+    showCloseButton: <span class="literal">true</span>
+    escapeButtonCloses: <span class="literal">true</span>
+    overlayClosesOnClick: <span class="literal">true</span>
+    appendLocation: <span class="string">'body'</span>
+    className: <span class="string">''</span>
+    css: {}
+    overlayClassName: <span class="string">''</span>
+    overlayCSS: {}
+    contentClassName: <span class="string">''</span>
+    contentCSS: {}
+    closeClassName: <span class="string">''</span>
+    closeCSS: {}</code></pre>
+<h3>Note about Includes</h3>
+<p>To use Vex, minimally, you must include:</p>
+<pre><code class="lang-html"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"vex.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"vex.css"</span> /&gt;</span></code></pre>
+<p>We also recommend including <code>vex.dialog.js</code> and a theme file. However, these are not actually required. To include both <code>vex.js</code> and <code>vex.dialog.js</code>, use <code>vex.combined.js</code> (or <code>vex.combined.min.js</code>). All of these files can be found in the ZIP which you can <a href="/vex">download here</a>.</p>
+<p><!-- Resources for the demos --></p>
+<p><p style="-webkit-transform: translateZ(0)"></p></p>
+<script src="/vex/js/vex.js"></script>
+<script src="/vex/js/vex.dialog.js"></script>
+<link rel="stylesheet" href="/vex/css/vex.css" />
+<link rel="stylesheet" href="/vex/css/vex-theme-os.css">
+<script>
+    (function(){
+        vex.defaultOptions.className = 'vex-theme-os';
+    })();
+</script></div></div></div></div><div class="hs3-public-footer"><div class="row-fluid hs-page-width-normal"><div class="span3 hidden-phone"><h3>HubSpot</h3><ul><li><a href="http://www.hubspot.com">Home</a></li><li><a href="http://www.hubspot.com/software">Products</a></li><li><a href="http://www.hubspot.com/internet-marketing-company/">About</a></li></ul></div><div class="span3"><h3>Projects</h3><ul><li><a href="http://github.hubspot.com/messenger">Messenger</a></li><li><a href="http://github.hubspot.com/facewall">Facewall</a></li><li><a href="http://github.hubspot.com/jquery-zoomer">jQuery Zoomer</a></li><li><a href="http://github.hubspot.com/humanize">Humanize</a></li><li><a href="http://github.hubspot.com/teeble">Teeble</a></li></ul></div><div class="span3"><h3>Development Team</h3><ul><li><a href="http://dev.hubspot.com">Home</a></li><li><a href="http://dev.hubspot.com/teams">Teams</a></li><li><a href="http://dev.hubspot.com/people">People</a></li><li><a href="http://dev.hubspot.com/jobs">Jobs</a></li></ul></div><div class="span3 hidden-phone"><h3>Developer API</h3><ul><li><a href="http://developers.hubspot.com/">Developer Documentation</a></li></ul></div></div></div><!-- Start of Async HubSpot Analytics Code -->
+<script type="text/javascript">
+    (function(d,s,i,r) {
+        if (d.getElementById(i)){return;}
+        var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+        n.id=i;n.src='//js.hubspot.com/analytics/'+(Math.ceil(new Date()/r)*r)+'/51294.js';
+        e.parentNode.insertBefore(n, e);
+    })(document,"script","hs-analytics",300000);
+</script>
+<!-- End of Async HubSpot Analytics Code --></body></html>
