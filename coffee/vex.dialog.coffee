@@ -131,4 +131,12 @@ dialog.buttonsToDOM = (buttons) ->
 
     return $buttons
 
-window.vex.dialog = dialog
+if typeof define is 'function' and define.amd
+  # AMD
+  define -> dialog
+else if typeof exports is 'object'
+  # CommonJS
+  module.exports = dialog
+else
+  # Global
+  window.vex.dialog = dialog
