@@ -17,9 +17,20 @@ module.exports = (grunt) ->
         banner: "/*! <%= pkg.name %> <%= pkg.version %> */\n"
 
       dist:
-        files:
-          'js/vex.min.js': 'js/vex.js'
-          'js/vex.dialog.min.js': 'js/vex.dialog.js'
+        files: [
+          {
+            dest: 'js/vex.min.js',
+            src: 'js/vex.js'
+          },
+          {
+            dest: 'js/vex.dialog.min.js',
+            src: 'js/vex.dialog.js',
+          }
+          {
+            dest: 'js/vex.combined.min.js',
+            src: ['js/vex.js', 'js/vex.dialog.js']
+          }
+        ]
 
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
