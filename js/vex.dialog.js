@@ -1,8 +1,10 @@
 (function() {
   var $formToObject, dialog;
+
   if (!window.vex) {
     return $.error('Vex is required to use vex.dialog');
   }
+
   $formToObject = function($form) {
     var object;
     object = {};
@@ -18,7 +20,9 @@
     });
     return object;
   };
+
   dialog = {};
+
   dialog.buttons = {
     YES: {
       text: 'OK',
@@ -35,6 +39,7 @@
       }
     }
   };
+
   dialog.defaultOptions = {
     callback: function(value) {
       if (console && console.log) {
@@ -58,13 +63,16 @@
     },
     focusFirstInput: true
   };
+
   dialog.defaultAlertOptions = {
     message: 'Alert',
     buttons: [dialog.buttons.YES]
   };
+
   dialog.defaultConfirmOptions = {
     message: 'Confirm'
   };
+
   dialog.open = function(options) {
     var $vexContent;
     options = $.extend({}, vex.defaultOptions, dialog.defaultOptions, options);
@@ -78,6 +86,7 @@
     }
     return $vexContent;
   };
+
   dialog.alert = function(options) {
     if (typeof options === 'string') {
       options = {
@@ -87,6 +96,7 @@
     options = $.extend({}, vex.dialog.defaultAlertOptions, options);
     return vex.dialog.open(options);
   };
+
   dialog.confirm = function(options) {
     if (typeof options === 'string') {
       return $.error('vex.dialog.confirm(options) requires options.callback.');
@@ -94,6 +104,7 @@
     options = $.extend({}, vex.dialog.defaultConfirmOptions, options);
     return vex.dialog.open(options);
   };
+
   dialog.prompt = function(options) {
     var defaultPromptOptions;
     if (typeof options === 'string') {
@@ -106,6 +117,7 @@
     options = $.extend({}, defaultPromptOptions, options);
     return vex.dialog.open(options);
   };
+
   dialog.buildDialogForm = function(options) {
     var $form, $input, $message;
     $form = $('<form class="vex-dialog-form" />');
@@ -114,6 +126,7 @@
     $form.append($message.append(options.message)).append($input.append(options.input)).append(dialog.buttonsToDOM(options.buttons)).bind('submit.vex', options.onSubmit);
     return $form;
   };
+
   dialog.getFormValueOnSubmit = function(formData) {
     if (formData.vex) {
       if (formData.vex === '_vex-empty-value') {
@@ -124,6 +137,7 @@
       return formData;
     }
   };
+
   dialog.buttonsToDOM = function(buttons) {
     var $buttons;
     $buttons = $('<div class="vex-dialog-buttons" />');
@@ -136,5 +150,7 @@
     });
     return $buttons;
   };
+
   window.vex.dialog = dialog;
+
 }).call(this);

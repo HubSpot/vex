@@ -1,7 +1,10 @@
 (function() {
   var $, animationEndSupport, vex;
+
   $ = jQuery;
+
   animationEndSupport = false;
+
   $(function() {
     var s;
     s = (document.body || document.documentElement).style;
@@ -12,6 +15,7 @@
       }
     });
   });
+
   vex = {
     globalID: 1,
     animationEndEvent: 'animationend webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend',
@@ -163,5 +167,7 @@
       return $('body').append("<div class=\"vex-loading-spinner " + vex.defaultOptions.className + "\"></div>");
     }
   };
+
   window.vex = vex;
+
 }).call(this);
