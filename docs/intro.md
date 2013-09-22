@@ -12,6 +12,7 @@ Vex is a modern dialog library which is highly configurable, easily stylable, an
 - Looks and behaves great on mobile devices
 - Open multiple dialogs at once and close them individually or all at once
 - Built in CSS spinner for asynchronous dialogs
+- AMD support
 
 #### Requirements
 
