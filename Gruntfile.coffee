@@ -13,24 +13,23 @@ module.exports = (grunt) ->
         tasks: ["coffee", "uglify"]
 
     uglify:
-      options:
-        banner: "/*! <%= pkg.name %> <%= pkg.version %> */\n"
+      vex:
+        src: 'js/vex.js'
+        dest: 'js/vex.min.js'
+        options:
+          banner: "/*! vex.js <%= pkg.version %> */\n"
 
-      dist:
-        files: [
-          {
-            dest: 'js/vex.min.js',
-            src: 'js/vex.js'
-          },
-          {
-            dest: 'js/vex.dialog.min.js',
-            src: 'js/vex.dialog.js',
-          }
-          {
-            dest: 'js/vex.combined.min.js',
-            src: ['js/vex.js', 'js/vex.dialog.js']
-          }
-        ]
+      vexDialog:
+        dest: 'js/vex.dialog.min.js',
+        src: 'js/vex.dialog.js',
+        options:
+          banner: "/*! vex.dialog.js <%= pkg.version %> */\n"
+
+      vexCombined:
+        dest: 'js/vex.combined.min.js',
+        src: ['js/vex.js', 'js/vex.dialog.js']
+        options:
+          banner: "/*! vex.js, vex.dialog.js <%= pkg.version %> */\n"
 
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
