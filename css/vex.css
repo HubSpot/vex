@@ -236,7 +236,14 @@
   left: 0;
 }
 
-/* line 23, ../sass/vex.sass */
+/* line 24, ../sass/vex.sass */
+.vex-overlay {
+  background: black;
+  filter: alpha(opacity=40);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+}
+
+/* line 29, ../sass/vex.sass */
 .vex-overlay {
   animation: vex-fadein 0.5s;
   -webkit-animation: vex-fadein 0.5s;
@@ -251,7 +258,7 @@
   bottom: 0;
   left: 0;
 }
-/* line 32, ../sass/vex.sass */
+/* line 38, ../sass/vex.sass */
 .vex.vex-closing .vex-overlay {
   animation: vex-fadeout 0.5s;
   -webkit-animation: vex-fadeout 0.5s;
@@ -261,7 +268,7 @@
   -webkit-backface-visibility: hidden;
 }
 
-/* line 35, ../sass/vex.sass */
+/* line 41, ../sass/vex.sass */
 .vex-content {
   animation: vex-fadein 0.5s;
   -webkit-animation: vex-fadein 0.5s;
@@ -271,7 +278,7 @@
   -webkit-backface-visibility: hidden;
   background: white;
 }
-/* line 39, ../sass/vex.sass */
+/* line 45, ../sass/vex.sass */
 .vex.vex-closing .vex-content {
   animation: vex-fadeout 0.5s;
   -webkit-animation: vex-fadeout 0.5s;
@@ -281,24 +288,24 @@
   -webkit-backface-visibility: hidden;
 }
 
-/* line 42, ../sass/vex.sass */
+/* line 48, ../sass/vex.sass */
 .vex-close:before {
   font-family: Arial, sans-serif;
   content: "\00D7";
 }
 
-/* line 46, ../sass/vex.sass */
+/* line 52, ../sass/vex.sass */
 .vex-dialog-form {
   margin: 0;
 }
 
-/* line 49, ../sass/vex.sass */
+/* line 55, ../sass/vex.sass */
 .vex-dialog-button {
   -webkit-appearance: none;
   cursor: pointer;
 }
 
-/* line 53, ../sass/vex.sass */
+/* line 59, ../sass/vex.sass */
 .vex-loading-spinner {
   animation: vex-rotation 0.7s linear infinite;
   -webkit-animation: vex-rotation 0.7s linear infinite;
