@@ -1,6 +1,5 @@
 (function() {
   var vexFactory;
-
   vexFactory = function($) {
     var animationEndSupport, vex;
     animationEndSupport = false;
@@ -166,7 +165,6 @@
       }
     };
   };
-
   if (typeof define === 'function' && define.amd) {
     define(['jquery'], vexFactory);
   } else if (typeof exports === 'object') {
@@ -174,5 +172,4 @@
   } else {
     window.vex = vexFactory(jQuery);
   }
-
 }).call(this);

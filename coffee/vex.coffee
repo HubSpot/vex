@@ -1,4 +1,3 @@
-
 vexFactory = ($) ->
 
     animationEndSupport = false

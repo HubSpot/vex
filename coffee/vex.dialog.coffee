@@ -136,7 +136,6 @@ vexDialogFactory = ($, vex) ->
     # return dialog from factory
     dialog
 
-
 if typeof define is 'function' and define.amd
     # AMD
     define ['jquery', 'vex'], vexDialogFactory

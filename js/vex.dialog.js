@@ -1,6 +1,5 @@
 (function() {
   var vexDialogFactory;
-
   vexDialogFactory = function($, vex) {
     var $formToObject, dialog;
     if (vex == null) {
@@ -141,7 +140,6 @@
     };
     return dialog;
   };
-
   if (typeof define === 'function' && define.amd) {
     define(['jquery', 'vex'], vexDialogFactory);
   } else if (typeof exports === 'object') {
@@ -149,5 +147,4 @@
   } else {
     window.vex.dialog = vexDialogFactory(window.jQuery, window.vex);
   }
-
 }).call(this);
