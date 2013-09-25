@@ -24,6 +24,8 @@
     +vex-animation(vex-fadein .5s)
     position: fixed
     background: rgba(0, 0, 0, .4)
+    filter: alpha(opacity=50) /* IE 5–7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)" /* IE 8 */
     top: 0
     right: 0
     bottom: 0
