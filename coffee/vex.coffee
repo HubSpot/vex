@@ -27,6 +27,7 @@ vexFactory = ($) ->
             overlay: 'vex-overlay'
             close: 'vex-close'
             closing: 'vex-closing'
+            open: 'vex-open'
 
         defaultOptions:
             content: ''
@@ -99,6 +100,10 @@ vexFactory = ($) ->
 
             $(options.appendLocation).append options.$vex
 
+            # Set up body className
+
+            vex.setupBodyClassName options.$vex
+
             # Call afterOpen callback and trigger vexOpen event
 
             options.afterOpen options.$vexContent, options if options.afterOpen
@@ -165,6 +170,11 @@ vexFactory = ($) ->
             return false if $lastVex.data().vex.escapeButtonCloses isnt true
 
             return vex.closeByID id
+
+        setupBodyClassName: ($vex) ->
+            $vex
+                .bind('vexOpen.vex', -> $('body').addClass(vex.baseClassNames.open))
+                .bind('vexClose.vex', -> $('body').removeClass(vex.baseClassNames.open) unless vex.getAllVexes().length)
 
         hideLoading:  ->
             $('.vex-loading-spinner').remove()

@@ -327,3 +327,8 @@
   width: 2em;
   background: white;
 }
+
+/* line 75, ../sass/vex.sass */
+body.vex-open {
+  overflow: hidden;
+}
