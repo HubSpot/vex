@@ -3,5 +3,3 @@ description: "Dialogs for the 21st century"
 source: "*.js"
 examples: "**/*.md"
 assets: "{js/vex.js,js/vex.dialog.js,css/vex.css,css/vex-theme-*.css,docs/welcome/index.html,docs/vex.gif}"
-package:
-  release: "1.3.1"
