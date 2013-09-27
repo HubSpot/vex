@@ -40,10 +40,28 @@
 
 =keyframes-vex-dropin
     +vex-keyframes("vex-dropin")
+        // We start at 0 first and, while hidden
+        // move to -800px, where the animation
+        // really begins. This was necessary because
+        // otherwise, when starting the animation
+        // at -800px, the browser scrolls up 800px
+        // to try to display this object position
+        // above the page.
+        // https://github.com/HubSpot/vex/issues/21
         0%
+            +vex-transform(translateY(0))
+            opacity: 0
+        1%
             +vex-transform(translateY(-800px))
+            opacity: 0
+
+        // Real animation begins here
+        2%
+            +vex-transform(translateY(-800px))
+            opacity: 1
         100%
             +vex-transform(translateY(0))
+            opacity: 1
 
 =keyframes-vex-dropout
     +vex-keyframes("vex-dropout")
