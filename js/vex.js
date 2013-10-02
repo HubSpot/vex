@@ -23,7 +23,8 @@
         overlay: 'vex-overlay',
         close: 'vex-close',
         closing: 'vex-closing',
-        open: 'vex-open'
+        open: 'vex-open',
+        scroll: 'vex-scroll'
       },
       defaultOptions: {
         content: '',
@@ -160,11 +161,20 @@
         return vex.closeByID(id);
       },
       setupBodyClassName: function($vex) {
+        var $body, bodyScroll;
+        $body = $('body');
+        bodyScroll = $(document).height() > $(window).height();
         return $vex.bind('vexOpen.vex', function() {
-          return $('body').addClass(vex.baseClassNames.open);
+          if (bodyScroll) {
+            $body.addClass(vex.baseClassNames.scroll);
+          }
+          return $body.addClass(vex.baseClassNames.open);
         }).bind('vexClose.vex', function() {
+          if (bodyScroll) {
+            $body.removeClass(vex.baseClassNames.scroll);
+          }
           if (!vex.getAllVexes().length) {
-            return $('body').removeClass(vex.baseClassNames.open);
+            return $body.removeClass(vex.baseClassNames.open);
           }
         });
       },

@@ -28,6 +28,7 @@ vexFactory = ($) ->
             close: 'vex-close'
             closing: 'vex-closing'
             open: 'vex-open'
+            scroll: 'vex-scroll'
 
         defaultOptions:
             content: ''
@@ -172,9 +173,17 @@ vexFactory = ($) ->
             return vex.closeByID id
 
         setupBodyClassName: ($vex) ->
+            $body = $('body')
+            bodyScroll = $(document).height() > $(window).height()
             $vex
-                .bind('vexOpen.vex', -> $('body').addClass(vex.baseClassNames.open))
-                .bind('vexClose.vex', -> $('body').removeClass(vex.baseClassNames.open) unless vex.getAllVexes().length)
+                .bind('vexOpen.vex', -> 
+                    $body.addClass(vex.baseClassNames.scroll) if bodyScroll
+                    $body.addClass(vex.baseClassNames.open)
+                )
+                .bind('vexClose.vex', -> 
+                    $body.removeClass(vex.baseClassNames.scroll) if bodyScroll
+                    $body.removeClass(vex.baseClassNames.open) unless vex.getAllVexes().length
+                )
 
         hideLoading:  ->
             $('.vex-loading-spinner').remove()
