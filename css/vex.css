@@ -333,3 +333,8 @@
 body.vex-open {
   overflow: hidden;
 }
+
+/* line 79, ../sass/vex.sass */
+.vex-open.vex-scroll {
+  margin-right: 15px;
+}
