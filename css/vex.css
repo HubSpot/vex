@@ -119,7 +119,7 @@
 }
 
 @keyframes vex-rotation {
-  /* line 77, ../sass/_keyframes.sass */
+  /* line 95, ../sass/_keyframes.sass */
   0% {
     transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
@@ -128,7 +128,7 @@
     -o-transform: rotate(0deg);
   }
 
-  /* line 79, ../sass/_keyframes.sass */
+  /* line 97, ../sass/_keyframes.sass */
   100% {
     transform: rotate(359deg);
     -webkit-transform: rotate(359deg);
@@ -139,7 +139,7 @@
 }
 
 @-webkit-keyframes vex-rotation {
-  /* line 77, ../sass/_keyframes.sass */
+  /* line 95, ../sass/_keyframes.sass */
   0% {
     transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
@@ -148,7 +148,7 @@
     -o-transform: rotate(0deg);
   }
 
-  /* line 79, ../sass/_keyframes.sass */
+  /* line 97, ../sass/_keyframes.sass */
   100% {
     transform: rotate(359deg);
     -webkit-transform: rotate(359deg);
@@ -159,7 +159,7 @@
 }
 
 @-moz-keyframes vex-rotation {
-  /* line 77, ../sass/_keyframes.sass */
+  /* line 95, ../sass/_keyframes.sass */
   0% {
     transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
@@ -168,7 +168,7 @@
     -o-transform: rotate(0deg);
   }
 
-  /* line 79, ../sass/_keyframes.sass */
+  /* line 97, ../sass/_keyframes.sass */
   100% {
     transform: rotate(359deg);
     -webkit-transform: rotate(359deg);
@@ -179,7 +179,7 @@
 }
 
 @-ms-keyframes vex-rotation {
-  /* line 77, ../sass/_keyframes.sass */
+  /* line 95, ../sass/_keyframes.sass */
   0% {
     transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
@@ -188,7 +188,7 @@
     -o-transform: rotate(0deg);
   }
 
-  /* line 79, ../sass/_keyframes.sass */
+  /* line 97, ../sass/_keyframes.sass */
   100% {
     transform: rotate(359deg);
     -webkit-transform: rotate(359deg);
@@ -199,7 +199,7 @@
 }
 
 @-o-keyframes vex-rotation {
-  /* line 77, ../sass/_keyframes.sass */
+  /* line 95, ../sass/_keyframes.sass */
   0% {
     transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
@@ -208,7 +208,7 @@
     -o-transform: rotate(0deg);
   }
 
-  /* line 79, ../sass/_keyframes.sass */
+  /* line 97, ../sass/_keyframes.sass */
   100% {
     transform: rotate(359deg);
     -webkit-transform: rotate(359deg);
@@ -229,6 +229,7 @@
 .vex {
   position: fixed;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
   z-index: 1111;
   top: 0;
   right: 0;
@@ -236,7 +237,14 @@
   left: 0;
 }
 
-/* line 23, ../sass/vex.sass */
+/* line 25, ../sass/vex.sass */
+.vex-overlay {
+  background: black;
+  filter: alpha(opacity=40);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+}
+
+/* line 30, ../sass/vex.sass */
 .vex-overlay {
   animation: vex-fadein 0.5s;
   -webkit-animation: vex-fadein 0.5s;
@@ -251,7 +259,7 @@
   bottom: 0;
   left: 0;
 }
-/* line 32, ../sass/vex.sass */
+/* line 39, ../sass/vex.sass */
 .vex.vex-closing .vex-overlay {
   animation: vex-fadeout 0.5s;
   -webkit-animation: vex-fadeout 0.5s;
@@ -261,7 +269,7 @@
   -webkit-backface-visibility: hidden;
 }
 
-/* line 35, ../sass/vex.sass */
+/* line 42, ../sass/vex.sass */
 .vex-content {
   animation: vex-fadein 0.5s;
   -webkit-animation: vex-fadein 0.5s;
@@ -271,7 +279,7 @@
   -webkit-backface-visibility: hidden;
   background: white;
 }
-/* line 39, ../sass/vex.sass */
+/* line 46, ../sass/vex.sass */
 .vex.vex-closing .vex-content {
   animation: vex-fadeout 0.5s;
   -webkit-animation: vex-fadeout 0.5s;
@@ -281,24 +289,24 @@
   -webkit-backface-visibility: hidden;
 }
 
-/* line 42, ../sass/vex.sass */
+/* line 49, ../sass/vex.sass */
 .vex-close:before {
   font-family: Arial, sans-serif;
   content: "\00D7";
 }
 
-/* line 46, ../sass/vex.sass */
+/* line 53, ../sass/vex.sass */
 .vex-dialog-form {
   margin: 0;
 }
 
-/* line 49, ../sass/vex.sass */
+/* line 56, ../sass/vex.sass */
 .vex-dialog-button {
   -webkit-appearance: none;
   cursor: pointer;
 }
 
-/* line 53, ../sass/vex.sass */
+/* line 60, ../sass/vex.sass */
 .vex-loading-spinner {
   animation: vex-rotation 0.7s linear infinite;
   -webkit-animation: vex-rotation 0.7s linear infinite;
@@ -319,4 +327,9 @@
   height: 2em;
   width: 2em;
   background: white;
+}
+
+/* line 76, ../sass/vex.sass */
+body.vex-open {
+  overflow: hidden;
 }

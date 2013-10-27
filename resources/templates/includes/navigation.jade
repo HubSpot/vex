@@ -4,7 +4,7 @@
 
     ul.hs-public-sidenav
 
-      li(class=(path == 'index.html' ? 'current-nav-item' : ''))
+      li(class=(index == path ? 'current-nav-item' : ''))
         a(href=linkPrefix) Home
 
       each group, name in docs
@@ -13,7 +13,7 @@
             b= name
 
         each doc in group
-          li(class=(doc.path == path ? 'current-nav-item' : ''))
+          li(class=(doc.fullPath == path ? 'current-nav-item' : ''))
             a(href=linkPrefix + doc.link)= doc.displayPath
 
       if sources.length

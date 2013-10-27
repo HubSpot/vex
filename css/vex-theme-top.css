@@ -1,105 +1,215 @@
 @keyframes vex-dropin {
-  /* line 43, ../sass/_keyframes.sass */
+  /* line 51, ../sass/_keyframes.sass */
   0% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    opacity: 0;
+  }
+
+  /* line 54, ../sass/_keyframes.sass */
+  1% {
     transform: translateY(-800px);
     -webkit-transform: translateY(-800px);
     -moz-transform: translateY(-800px);
     -ms-transform: translateY(-800px);
     -o-transform: translateY(-800px);
+    opacity: 0;
   }
 
-  /* line 45, ../sass/_keyframes.sass */
+  /* line 59, ../sass/_keyframes.sass */
+  2% {
+    transform: translateY(-800px);
+    -webkit-transform: translateY(-800px);
+    -moz-transform: translateY(-800px);
+    -ms-transform: translateY(-800px);
+    -o-transform: translateY(-800px);
+    opacity: 1;
+  }
+
+  /* line 62, ../sass/_keyframes.sass */
   100% {
     transform: translateY(0);
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
     -o-transform: translateY(0);
+    opacity: 1;
   }
 }
 
 @-webkit-keyframes vex-dropin {
-  /* line 43, ../sass/_keyframes.sass */
+  /* line 51, ../sass/_keyframes.sass */
   0% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    opacity: 0;
+  }
+
+  /* line 54, ../sass/_keyframes.sass */
+  1% {
     transform: translateY(-800px);
     -webkit-transform: translateY(-800px);
     -moz-transform: translateY(-800px);
     -ms-transform: translateY(-800px);
     -o-transform: translateY(-800px);
+    opacity: 0;
   }
 
-  /* line 45, ../sass/_keyframes.sass */
+  /* line 59, ../sass/_keyframes.sass */
+  2% {
+    transform: translateY(-800px);
+    -webkit-transform: translateY(-800px);
+    -moz-transform: translateY(-800px);
+    -ms-transform: translateY(-800px);
+    -o-transform: translateY(-800px);
+    opacity: 1;
+  }
+
+  /* line 62, ../sass/_keyframes.sass */
   100% {
     transform: translateY(0);
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
     -o-transform: translateY(0);
+    opacity: 1;
   }
 }
 
 @-moz-keyframes vex-dropin {
-  /* line 43, ../sass/_keyframes.sass */
+  /* line 51, ../sass/_keyframes.sass */
   0% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    opacity: 0;
+  }
+
+  /* line 54, ../sass/_keyframes.sass */
+  1% {
     transform: translateY(-800px);
     -webkit-transform: translateY(-800px);
     -moz-transform: translateY(-800px);
     -ms-transform: translateY(-800px);
     -o-transform: translateY(-800px);
+    opacity: 0;
   }
 
-  /* line 45, ../sass/_keyframes.sass */
+  /* line 59, ../sass/_keyframes.sass */
+  2% {
+    transform: translateY(-800px);
+    -webkit-transform: translateY(-800px);
+    -moz-transform: translateY(-800px);
+    -ms-transform: translateY(-800px);
+    -o-transform: translateY(-800px);
+    opacity: 1;
+  }
+
+  /* line 62, ../sass/_keyframes.sass */
   100% {
     transform: translateY(0);
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
     -o-transform: translateY(0);
+    opacity: 1;
   }
 }
 
 @-ms-keyframes vex-dropin {
-  /* line 43, ../sass/_keyframes.sass */
+  /* line 51, ../sass/_keyframes.sass */
   0% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    opacity: 0;
+  }
+
+  /* line 54, ../sass/_keyframes.sass */
+  1% {
     transform: translateY(-800px);
     -webkit-transform: translateY(-800px);
     -moz-transform: translateY(-800px);
     -ms-transform: translateY(-800px);
     -o-transform: translateY(-800px);
+    opacity: 0;
   }
 
-  /* line 45, ../sass/_keyframes.sass */
+  /* line 59, ../sass/_keyframes.sass */
+  2% {
+    transform: translateY(-800px);
+    -webkit-transform: translateY(-800px);
+    -moz-transform: translateY(-800px);
+    -ms-transform: translateY(-800px);
+    -o-transform: translateY(-800px);
+    opacity: 1;
+  }
+
+  /* line 62, ../sass/_keyframes.sass */
   100% {
     transform: translateY(0);
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
     -o-transform: translateY(0);
+    opacity: 1;
   }
 }
 
 @-o-keyframes vex-dropin {
-  /* line 43, ../sass/_keyframes.sass */
+  /* line 51, ../sass/_keyframes.sass */
   0% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    opacity: 0;
+  }
+
+  /* line 54, ../sass/_keyframes.sass */
+  1% {
     transform: translateY(-800px);
     -webkit-transform: translateY(-800px);
     -moz-transform: translateY(-800px);
     -ms-transform: translateY(-800px);
     -o-transform: translateY(-800px);
+    opacity: 0;
   }
 
-  /* line 45, ../sass/_keyframes.sass */
+  /* line 59, ../sass/_keyframes.sass */
+  2% {
+    transform: translateY(-800px);
+    -webkit-transform: translateY(-800px);
+    -moz-transform: translateY(-800px);
+    -ms-transform: translateY(-800px);
+    -o-transform: translateY(-800px);
+    opacity: 1;
+  }
+
+  /* line 62, ../sass/_keyframes.sass */
   100% {
     transform: translateY(0);
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
     -o-transform: translateY(0);
+    opacity: 1;
   }
 }
 
 @keyframes vex-dropout {
-  /* line 50, ../sass/_keyframes.sass */
+  /* line 68, ../sass/_keyframes.sass */
   0% {
     transform: translateY(0);
     -webkit-transform: translateY(0);
@@ -108,7 +218,7 @@
     -o-transform: translateY(0);
   }
 
-  /* line 52, ../sass/_keyframes.sass */
+  /* line 70, ../sass/_keyframes.sass */
   100% {
     transform: translateY(-800px);
     -webkit-transform: translateY(-800px);
@@ -119,7 +229,7 @@
 }
 
 @-webkit-keyframes vex-dropout {
-  /* line 50, ../sass/_keyframes.sass */
+  /* line 68, ../sass/_keyframes.sass */
   0% {
     transform: translateY(0);
     -webkit-transform: translateY(0);
@@ -128,7 +238,7 @@
     -o-transform: translateY(0);
   }
 
-  /* line 52, ../sass/_keyframes.sass */
+  /* line 70, ../sass/_keyframes.sass */
   100% {
     transform: translateY(-800px);
     -webkit-transform: translateY(-800px);
@@ -139,7 +249,7 @@
 }
 
 @-moz-keyframes vex-dropout {
-  /* line 50, ../sass/_keyframes.sass */
+  /* line 68, ../sass/_keyframes.sass */
   0% {
     transform: translateY(0);
     -webkit-transform: translateY(0);
@@ -148,7 +258,7 @@
     -o-transform: translateY(0);
   }
 
-  /* line 52, ../sass/_keyframes.sass */
+  /* line 70, ../sass/_keyframes.sass */
   100% {
     transform: translateY(-800px);
     -webkit-transform: translateY(-800px);
@@ -159,7 +269,7 @@
 }
 
 @-ms-keyframes vex-dropout {
-  /* line 50, ../sass/_keyframes.sass */
+  /* line 68, ../sass/_keyframes.sass */
   0% {
     transform: translateY(0);
     -webkit-transform: translateY(0);
@@ -168,7 +278,7 @@
     -o-transform: translateY(0);
   }
 
-  /* line 52, ../sass/_keyframes.sass */
+  /* line 70, ../sass/_keyframes.sass */
   100% {
     transform: translateY(-800px);
     -webkit-transform: translateY(-800px);
@@ -179,7 +289,7 @@
 }
 
 @-o-keyframes vex-dropout {
-  /* line 50, ../sass/_keyframes.sass */
+  /* line 68, ../sass/_keyframes.sass */
   0% {
     transform: translateY(0);
     -webkit-transform: translateY(0);
@@ -188,7 +298,7 @@
     -o-transform: translateY(0);
   }
 
-  /* line 52, ../sass/_keyframes.sass */
+  /* line 70, ../sass/_keyframes.sass */
   100% {
     transform: translateY(-800px);
     -webkit-transform: translateY(-800px);
@@ -199,132 +309,117 @@
 }
 
 @keyframes vex-pulse {
-  /* line 86, ../sass/_keyframes.sass */
+  /* line 104, ../sass/_keyframes.sass */
   0% {
-    opacity: 1;
-    -webkit-filter: brightness(1);
+    -webkit-box-shadow: inset 0 0 0 300px transparent;
+    -moz-box-shadow: inset 0 0 0 300px transparent;
+    box-shadow: inset 0 0 0 300px transparent;
   }
 
-  /* line 89, ../sass/_keyframes.sass */
-  40% {
-    opacity: 0.7;
-    -webkit-filter: brightness(1);
+  /* line 106, ../sass/_keyframes.sass */
+  70% {
+    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
+    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
   }
 
-  /* line 92, ../sass/_keyframes.sass */
-  80% {
-    opacity: 1;
-    -webkit-filter: brightness(1.5);
-  }
-
-  /* line 95, ../sass/_keyframes.sass */
+  /* line 108, ../sass/_keyframes.sass */
   100% {
-    opacity: 1;
-    -webkit-filter: brightness(1);
+    -webkit-box-shadow: inset 0 0 0 300px transparent;
+    -moz-box-shadow: inset 0 0 0 300px transparent;
+    box-shadow: inset 0 0 0 300px transparent;
   }
 }
 
 @-webkit-keyframes vex-pulse {
-  /* line 86, ../sass/_keyframes.sass */
+  /* line 104, ../sass/_keyframes.sass */
   0% {
-    opacity: 1;
-    -webkit-filter: brightness(1);
+    -webkit-box-shadow: inset 0 0 0 300px transparent;
+    -moz-box-shadow: inset 0 0 0 300px transparent;
+    box-shadow: inset 0 0 0 300px transparent;
   }
 
-  /* line 89, ../sass/_keyframes.sass */
-  40% {
-    opacity: 0.7;
-    -webkit-filter: brightness(1);
+  /* line 106, ../sass/_keyframes.sass */
+  70% {
+    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
+    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
   }
 
-  /* line 92, ../sass/_keyframes.sass */
-  80% {
-    opacity: 1;
-    -webkit-filter: brightness(1.5);
-  }
-
-  /* line 95, ../sass/_keyframes.sass */
+  /* line 108, ../sass/_keyframes.sass */
   100% {
-    opacity: 1;
-    -webkit-filter: brightness(1);
+    -webkit-box-shadow: inset 0 0 0 300px transparent;
+    -moz-box-shadow: inset 0 0 0 300px transparent;
+    box-shadow: inset 0 0 0 300px transparent;
   }
 }
 
 @-moz-keyframes vex-pulse {
-  /* line 86, ../sass/_keyframes.sass */
+  /* line 104, ../sass/_keyframes.sass */
   0% {
-    opacity: 1;
-    -webkit-filter: brightness(1);
+    -webkit-box-shadow: inset 0 0 0 300px transparent;
+    -moz-box-shadow: inset 0 0 0 300px transparent;
+    box-shadow: inset 0 0 0 300px transparent;
   }
 
-  /* line 89, ../sass/_keyframes.sass */
-  40% {
-    opacity: 0.7;
-    -webkit-filter: brightness(1);
+  /* line 106, ../sass/_keyframes.sass */
+  70% {
+    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
+    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
   }
 
-  /* line 92, ../sass/_keyframes.sass */
-  80% {
-    opacity: 1;
-    -webkit-filter: brightness(1.5);
-  }
-
-  /* line 95, ../sass/_keyframes.sass */
+  /* line 108, ../sass/_keyframes.sass */
   100% {
-    opacity: 1;
-    -webkit-filter: brightness(1);
+    -webkit-box-shadow: inset 0 0 0 300px transparent;
+    -moz-box-shadow: inset 0 0 0 300px transparent;
+    box-shadow: inset 0 0 0 300px transparent;
   }
 }
 
 @-ms-keyframes vex-pulse {
-  /* line 86, ../sass/_keyframes.sass */
+  /* line 104, ../sass/_keyframes.sass */
   0% {
-    opacity: 1;
-    -webkit-filter: brightness(1);
+    -webkit-box-shadow: inset 0 0 0 300px transparent;
+    -moz-box-shadow: inset 0 0 0 300px transparent;
+    box-shadow: inset 0 0 0 300px transparent;
   }
 
-  /* line 89, ../sass/_keyframes.sass */
-  40% {
-    opacity: 0.7;
-    -webkit-filter: brightness(1);
+  /* line 106, ../sass/_keyframes.sass */
+  70% {
+    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
+    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
   }
 
-  /* line 92, ../sass/_keyframes.sass */
-  80% {
-    opacity: 1;
-    -webkit-filter: brightness(1.5);
-  }
-
-  /* line 95, ../sass/_keyframes.sass */
+  /* line 108, ../sass/_keyframes.sass */
   100% {
-    opacity: 1;
-    -webkit-filter: brightness(1);
+    -webkit-box-shadow: inset 0 0 0 300px transparent;
+    -moz-box-shadow: inset 0 0 0 300px transparent;
+    box-shadow: inset 0 0 0 300px transparent;
   }
 }
 
 @-o-keyframes vex-pulse {
-  /* line 86, ../sass/_keyframes.sass */
+  /* line 104, ../sass/_keyframes.sass */
   0% {
-    opacity: 1;
-    -webkit-filter: brightness(1);
+    -webkit-box-shadow: inset 0 0 0 300px transparent;
+    -moz-box-shadow: inset 0 0 0 300px transparent;
+    box-shadow: inset 0 0 0 300px transparent;
   }
 
-  /* line 89, ../sass/_keyframes.sass */
-  40% {
-    opacity: 0.7;
-    -webkit-filter: brightness(1);
+  /* line 106, ../sass/_keyframes.sass */
+  70% {
+    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
+    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
   }
 
-  /* line 92, ../sass/_keyframes.sass */
-  80% {
-    opacity: 1;
-    -webkit-filter: brightness(1.5);
-  }
-
-  /* line 95, ../sass/_keyframes.sass */
+  /* line 108, ../sass/_keyframes.sass */
   100% {
-    opacity: 1;
-    -webkit-filter: brightness(1);
+    -webkit-box-shadow: inset 0 0 0 300px transparent;
+    -moz-box-shadow: inset 0 0 0 300px transparent;
+    box-shadow: inset 0 0 0 300px transparent;
   }
 }
 

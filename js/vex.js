@@ -1,5 +1,6 @@
 (function() {
   var vexFactory;
+
   vexFactory = function($) {
     var animationEndSupport, vex;
     animationEndSupport = false;
@@ -21,7 +22,8 @@
         content: 'vex-content',
         overlay: 'vex-overlay',
         close: 'vex-close',
-        closing: 'vex-closing'
+        closing: 'vex-closing',
+        open: 'vex-open'
       },
       defaultOptions: {
         content: '',
@@ -70,6 +72,7 @@
           options.$vexContent.append(options.$closeButton);
         }
         $(options.appendLocation).append(options.$vex);
+        vex.setupBodyClassName(options.$vex);
         if (options.afterOpen) {
           options.afterOpen(options.$vexContent, options);
         }
@@ -156,6 +159,15 @@
         }
         return vex.closeByID(id);
       },
+      setupBodyClassName: function($vex) {
+        return $vex.bind('vexOpen.vex', function() {
+          return $('body').addClass(vex.baseClassNames.open);
+        }).bind('vexClose.vex', function() {
+          if (!vex.getAllVexes().length) {
+            return $('body').removeClass(vex.baseClassNames.open);
+          }
+        });
+      },
       hideLoading: function() {
         return $('.vex-loading-spinner').remove();
       },
@@ -165,6 +177,7 @@
       }
     };
   };
+
   if (typeof define === 'function' && define.amd) {
     define(['jquery'], vexFactory);
   } else if (typeof exports === 'object') {
@@ -172,4 +185,5 @@
   } else {
     window.vex = vexFactory(jQuery);
   }
+
 }).call(this);
