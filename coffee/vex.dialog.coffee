@@ -30,7 +30,7 @@ vexDialogFactory = ($, vex) ->
                 vex.close $vexContent.data().vex.id
 
     dialog.defaultOptions =
-        callback: (value) -> console.log('Vex dialog callback:', value) if console and console.log
+        callback: (value) ->
         afterOpen: ->
         message: 'Message'
         input: """<input name="vex" type="hidden" value="_vex-empty-value" />"""
