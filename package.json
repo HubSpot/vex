@@ -1,6 +1,6 @@
 {
   "name": "vex",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Beautiful, functional, dialogs in Javascript",
   "author": "Adam Schwartz <aschwartz@hubspot.com>",
   "license": "MIT",
