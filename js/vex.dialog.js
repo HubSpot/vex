@@ -39,11 +39,7 @@
       }
     };
     dialog.defaultOptions = {
-      callback: function(value) {
-        if (console && console.log) {
-          return console.log('Vex dialog callback:', value);
-        }
-      },
+      callback: function(value) {},
       afterOpen: function() {},
       message: 'Message',
       input: "<input name=\"vex\" type=\"hidden\" value=\"_vex-empty-value\" />",
