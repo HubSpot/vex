@@ -94,7 +94,7 @@ vexDialogFactory = ($, vex) ->
 
         defaultPromptOptions =
             message: """<label for="vex">#{ options.label or 'Prompt:' }</label>"""
-            input: """<input name="vex" type="text" class="vex-dialog-prompt-input" placeholder="#{ options.placeholder or '' }" />"""
+            input: """<input name="vex" type="text" class="vex-dialog-prompt-input" placeholder="#{ options.placeholder or '' }"  value="#{ options.value or '' }" />"""
 
         options = $.extend {}, defaultPromptOptions, options
 

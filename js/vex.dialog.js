@@ -100,7 +100,7 @@
       }
       defaultPromptOptions = {
         message: "<label for=\"vex\">" + (options.label || 'Prompt:') + "</label>",
-        input: "<input name=\"vex\" type=\"text\" class=\"vex-dialog-prompt-input\" placeholder=\"" + (options.placeholder || '') + "\" />"
+        input: "<input name=\"vex\" type=\"text\" class=\"vex-dialog-prompt-input\" placeholder=\"" + (options.placeholder || '') + "\"  value=\"" + (options.value || '') + "\" />"
       };
       options = $.extend({}, defaultPromptOptions, options);
       return dialog.open(options);
