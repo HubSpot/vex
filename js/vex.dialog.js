@@ -114,7 +114,7 @@
       return $form;
     };
     dialog.getFormValueOnSubmit = function(formData) {
-      if (formData.vex) {
+      if (formData.vex || formData.vex === "") {
         if (formData.vex === '_vex-empty-value') {
           return true;
         }
