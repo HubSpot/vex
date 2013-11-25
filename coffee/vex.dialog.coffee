@@ -115,7 +115,7 @@ vexDialogFactory = ($, vex) ->
         return $form
 
     dialog.getFormValueOnSubmit = (formData) ->
-        if formData.vex
+        if formData.vex or formData.vex is ''
             return true if formData.vex is '_vex-empty-value'
             return formData.vex
 
