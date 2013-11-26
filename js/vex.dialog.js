@@ -73,7 +73,7 @@
       };
       $vexContent = vex.open(options);
       if (options.focusFirstInput) {
-        $vexContent.find('input[type="text"], input[type="submit"]').first().focus();
+        $vexContent.find('input[type="submit"], textarea, input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="time"], input[type="url"], input[type="week"]').first().focus();
       }
       return $vexContent;
     };
