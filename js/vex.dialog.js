@@ -73,7 +73,7 @@
       };
       $vexContent = vex.open(options);
       if (options.focusFirstInput) {
-        $vexContent.find('input[type="text"], input[type="submit"]').first().focus();
+        $vexContent.find('input[type="text"], input[type="password"], input[type="submit"]').first().focus();
       }
       return $vexContent;
     };
