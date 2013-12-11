@@ -38,6 +38,11 @@ For the most common usage of Vex, you'll want to include following:
 
 That will give you all of the APIs for both Vex and Vex Dialog, and set you up with the "Operating System" theme. If you'd prefer another theme, check out [Themes](/vex/api/themes).
 
+<div class="hs-doc-callout hs-doc-callout-info">
+<h4>AMD / CommonJS</h4>
+<p>Note that when using a javascript dependency manager like RequireJS or CommonJS, you will not be able to use the <code>vex.combined.min.js</code> file. Instead, require <code>vex.dialog</code> and/or <code>vex</code>. (If you only wish to use <code>vex.dialog</code>, you do not need to require <code>vex</code> yourself, as it itself requires <code>vex</code>.)</p>
+</div>
+
 #### Confirm Demo
 
 One of the simplest ways to use Vex is to call `vex.dialog.alert`, `vex.dialog.confirm`, or `vex.dialog.prompt`. In this demo, we're using `vex.dialog.confirm` to ask the user to confirm the answer to a simple question.
