@@ -70,6 +70,38 @@
         100%
             +vex-transform(translateY(-800px))
 
+=keyframes-vex-slideup
+    +vex-keyframes("vex-slideup")
+        // We start at 0 first and, while hidden
+        // move to -800px, where the animation
+        // really begins. This was necessary because
+        // otherwise, when starting the animation
+        // at -800px, the browser scrolls up 800px
+        // to try to display this object positioned
+        // above the page.
+        // https://github.com/HubSpot/vex/issues/21
+        0%
+            +vex-transform(translateY(0))
+            opacity: 0
+        1%
+            +vex-transform(translateY(800px))
+            opacity: 0
+
+        // Real animation begins here
+        2%
+            +vex-transform(translateY(800px))
+            opacity: 1
+        100%
+            +vex-transform(translateY(0))
+            opacity: 1
+
+=keyframes-vex-slidedown
+    +vex-keyframes("vex-slidedown")
+        0%
+            +vex-transform(translateY(0))
+        100%
+            +vex-transform(translateY(800px))
+
 =keyframes-vex-flipin-horizontal
     +vex-keyframes("vex-flipin-horizontal")
         0%
