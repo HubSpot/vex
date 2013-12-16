@@ -30,7 +30,7 @@ module.exports = (grunt) ->
         src: ['js/vex.js', 'js/vex.dialog.js']
         options:
           banner: "/*! vex.js, vex.dialog.js <%= pkg.version %> */\n"
-    
+
     compass:
       dist:
         options:
@@ -42,4 +42,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-compass'
 
-  grunt.registerTask 'default', ['coffee', 'uglify']
+  grunt.registerTask 'default', ['coffee', 'uglify', 'compass']
