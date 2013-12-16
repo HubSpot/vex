@@ -22,6 +22,7 @@ At the moment, there are 6 themes:
 <tr><td>Wireframe</td><td>`vex-theme-wireframe`</td><td><a href data-theme="vex-theme-wireframe">Example</td></tr>
 <tr><td>Flat Attack!</td><td>`vex-theme-flat-attack`</td><td><a href data-theme="vex-theme-flat-attack">Example</td></tr>
 <tr><td>Top</td><td>`vex-theme-top`</td><td><a href data-theme="vex-theme-top">Example</td></tr>
+<tr><td>Bottom Right Corner</td><td>`vex-theme-bottom-right-corner`</td><td><a href data-theme="vex-theme-bottom-right-corner">Example</td></tr>
 </tbody>
 </table>
 
@@ -47,6 +48,7 @@ vex.dialog.alert
 <link rel="stylesheet" href="/vex/css/vex-theme-wireframe.css">
 <link rel="stylesheet" href="/vex/css/vex-theme-flat-attack.css">
 <link rel="stylesheet" href="/vex/css/vex-theme-top.css">
+<link rel="stylesheet" href="/vex/css/vex-theme-bottom-right-corner.css">
 <script>
     (function(){
         vex.defaultOptions.className = 'vex-theme-os';
