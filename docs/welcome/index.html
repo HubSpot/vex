@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <title>Vex – Beautiful, functional, dialogs in Javascript</title>
-        <meta name="description" content="Vex is a Javascript and CSS library for creating beautiful and functional dialogs. It is free and open source and was developed by HubSpot developers Adam Schwartz (@adamfschwartz) and Zack Bloom (@zackbloom).">
+        <title>Vex – Beautiful, functional, modal dialogs in Javascript</title>
+        <meta name="description" content="Vex is a Javascript and CSS library for creating beautiful and functional modal dialogs. It is free and open source and was developed by HubSpot developers Adam Schwartz (@adamfschwartz) and Zack Bloom (@zackbloom).">
         <link rel="icon" href="http://static.hubspot.com/favicon.ico">
         <script type="text/javascript" src="//use.typekit.net/jbn8qxr.js"></script>
         <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -318,7 +318,9 @@
                                     $.extend({}, vex.dialog.buttons.NO, { text: 'Back' })
                                 ],
                                 callback: function (data) {
-                                    console.log('Username: <b>' + data.username + '</b><br/>Password: <b>' + data.password + '</b>');
+                                    if (console && console.log) {
+                                        console.log('Username: <b>' + data.username + '</b><br/>Password: <b>' + data.password + '</b>');
+                                    }
                                 }
                             });
                         }
@@ -433,6 +435,7 @@
                 width: 100px;
                 margin-left: -90px;
                 -webkit-filter: grayscale(1) contrast(1.3);
+                -webkit-transform: translateZ(0);
             }
             #retweet_button:hover {
                 -webkit-filter: none;
