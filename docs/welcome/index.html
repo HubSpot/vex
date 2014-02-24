@@ -318,7 +318,9 @@
                                     $.extend({}, vex.dialog.buttons.NO, { text: 'Back' })
                                 ],
                                 callback: function (data) {
-                                    console.log('Username: <b>' + data.username + '</b><br/>Password: <b>' + data.password + '</b>');
+                                    if (console && console.log) {
+                                        console.log('Username: <b>' + data.username + '</b><br/>Password: <b>' + data.password + '</b>');
+                                    }
                                 }
                             });
                         }
