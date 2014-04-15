@@ -1,3 +1,4 @@
+/* define the encoding, or it will raise an error like: Invalid GBK character "\xE2" */
 @keyframes vex-fadein {
   /* line 9, ../sass/_keyframes.sass */
   0% {
@@ -218,14 +219,14 @@
   }
 }
 
-/* line 11, ../sass/vex.sass */
+/* line 14, ../sass/vex.sass */
 .vex, .vex *, .vex *:before, .vex *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-/* line 14, ../sass/vex.sass */
+/* line 17, ../sass/vex.sass */
 .vex {
   position: fixed;
   overflow: auto;
@@ -237,14 +238,14 @@
   left: 0;
 }
 
-/* line 25, ../sass/vex.sass */
+/* line 28, ../sass/vex.sass */
 .vex-overlay {
   background: black;
   filter: alpha(opacity=40);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
 }
 
-/* line 30, ../sass/vex.sass */
+/* line 33, ../sass/vex.sass */
 .vex-overlay {
   animation: vex-fadein 0.5s;
   -webkit-animation: vex-fadein 0.5s;
@@ -259,7 +260,7 @@
   bottom: 0;
   left: 0;
 }
-/* line 39, ../sass/vex.sass */
+/* line 42, ../sass/vex.sass */
 .vex.vex-closing .vex-overlay {
   animation: vex-fadeout 0.5s;
   -webkit-animation: vex-fadeout 0.5s;
@@ -269,7 +270,7 @@
   -webkit-backface-visibility: hidden;
 }
 
-/* line 42, ../sass/vex.sass */
+/* line 45, ../sass/vex.sass */
 .vex-content {
   animation: vex-fadein 0.5s;
   -webkit-animation: vex-fadein 0.5s;
@@ -279,7 +280,7 @@
   -webkit-backface-visibility: hidden;
   background: white;
 }
-/* line 46, ../sass/vex.sass */
+/* line 49, ../sass/vex.sass */
 .vex.vex-closing .vex-content {
   animation: vex-fadeout 0.5s;
   -webkit-animation: vex-fadeout 0.5s;
@@ -289,24 +290,24 @@
   -webkit-backface-visibility: hidden;
 }
 
-/* line 49, ../sass/vex.sass */
+/* line 52, ../sass/vex.sass */
 .vex-close:before {
   font-family: Arial, sans-serif;
   content: "\00D7";
 }
 
-/* line 53, ../sass/vex.sass */
+/* line 56, ../sass/vex.sass */
 .vex-dialog-form {
   margin: 0;
 }
 
-/* line 56, ../sass/vex.sass */
+/* line 59, ../sass/vex.sass */
 .vex-dialog-button {
   -webkit-appearance: none;
   cursor: pointer;
 }
 
-/* line 60, ../sass/vex.sass */
+/* line 63, ../sass/vex.sass */
 .vex-loading-spinner {
   animation: vex-rotation 0.7s linear infinite;
   -webkit-animation: vex-rotation 0.7s linear infinite;
@@ -329,7 +330,7 @@
   background: white;
 }
 
-/* line 76, ../sass/vex.sass */
+/* line 79, ../sass/vex.sass */
 body.vex-open {
   overflow: hidden;
 }
