@@ -455,7 +455,7 @@
 .vex.vex-theme-os .vex-dialog-form .vex-dialog-buttons {
   *zoom: 1;
 }
-/* line 38, ../../../../../.rvm/gems/ruby-1.9.3-p194/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.5/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .vex.vex-theme-os .vex-dialog-form .vex-dialog-buttons:after {
   content: "";
   display: table;

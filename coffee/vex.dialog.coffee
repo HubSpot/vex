@@ -60,6 +60,13 @@ vexDialogFactory = ($, vex) ->
 
     dialog.open = (options) ->
         options = $.extend {}, vex.defaultOptions, dialog.defaultOptions, options
+        
+        if options.okText and options.buttons[0] and typeof options.okText is 'string'
+            options.buttons[0].text = options.okText
+        
+        if options.cancelText and options.buttons[1] and typeof options.cancelText is 'string'
+            options.buttons[1].text = options.cancelText
+        
         options.content = dialog.buildDialogForm options
 
         options.beforeClose = ($vexContent) ->

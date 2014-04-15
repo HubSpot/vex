@@ -67,6 +67,12 @@
     dialog.open = function(options) {
       var $vexContent;
       options = $.extend({}, vex.defaultOptions, dialog.defaultOptions, options);
+      if (options.okText && options.buttons[0] && typeof options.okText === 'string') {
+        options.buttons[0].text = options.okText;
+      }
+      if (options.cancelText && options.buttons[1] && typeof options.cancelText === 'string') {
+        options.buttons[1].text = options.cancelText;
+      }
       options.content = dialog.buildDialogForm(options);
       options.beforeClose = function($vexContent) {
         return options.callback($vexContent.data().vex.value);
