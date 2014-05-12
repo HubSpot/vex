@@ -129,6 +129,7 @@
         close = function() {
           $vexContent.trigger('vexClose', options);
           $vex.remove();
+          $('body').trigger('vexAfterClose', options);
           if (options.afterClose) {
             return options.afterClose($vexContent, options);
           }
@@ -160,9 +161,9 @@
         return vex.closeByID(id);
       },
       setupBodyClassName: function($vex) {
-        return $vex.bind('vexOpen.vex', function() {
+        return $('body').bind('vexOpen.vex', function() {
           return $('body').addClass(vex.baseClassNames.open);
-        }).bind('vexClose.vex', function() {
+        }).bind('vexAfterClose.vex', function() {
           if (!vex.getAllVexes().length) {
             return $('body').removeClass(vex.baseClassNames.open);
           }
