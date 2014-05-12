@@ -147,6 +147,7 @@ vexFactory = ($) ->
             close = ->
                 $vexContent.trigger 'vexClose', options
                 $vex.remove()
+                $('body').trigger 'vexAfterClose', options # Triggered on the body since $vexContent was removed
                 options.afterClose $vexContent, options if options.afterClose
 
             if animationEndSupport
@@ -172,9 +173,9 @@ vexFactory = ($) ->
             return vex.closeByID id
 
         setupBodyClassName: ($vex) ->
-            $vex
+            $('body')
                 .bind('vexOpen.vex', -> $('body').addClass(vex.baseClassNames.open))
-                .bind('vexClose.vex', -> $('body').removeClass(vex.baseClassNames.open) unless vex.getAllVexes().length)
+                .bind('vexAfterClose.vex', -> $('body').removeClass(vex.baseClassNames.open) unless vex.getAllVexes().length)
 
         hideLoading:  ->
             $('.vex-loading-spinner').remove()
