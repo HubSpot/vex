@@ -127,11 +127,13 @@
       var $buttons;
       $buttons = $('<div class="vex-dialog-buttons" />');
       $.each(buttons, function(index, button) {
-        return $buttons.append($("<input type=\"" + button.type + "\" />").val(button.text).addClass(button.className + ' vex-dialog-button ' + (index === 0 ? 'vex-first ' : '') + (index === buttons.length - 1 ? 'vex-last ' : '')).bind('click.vex', function(e) {
+        var $button;
+        $button = $("<input type=\"" + button.type + "\" />").val(button.text).addClass(button.className + ' vex-dialog-button ' + (index === 0 ? 'vex-first ' : '') + (index === buttons.length - 1 ? 'vex-last ' : '')).bind('click.vex', function(e) {
           if (button.click) {
             return button.click($(this).parents("." + vex.baseClassNames.content), e);
           }
-        }));
+        });
+        return $button.appendTo($buttons);
       });
       return $buttons;
     };

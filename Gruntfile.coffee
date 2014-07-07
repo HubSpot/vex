@@ -12,6 +12,17 @@ module.exports = (grunt) ->
         files: ['vex.coffee']
         tasks: ["coffee", "uglify"]
 
+    concat:
+      vexCombined:
+        src: ['js/vex.js', 'js/vex.dialog.js']
+        dest: 'js/vex.combined.js'
+
+        options:
+          process: (source, path) ->
+            source = source.replace "define(['jquery'], vexFactory)", "define('vex', ['jquery'], vexFactory)"
+            source = source.replace "define(['jquery', 'vex'], vexDialogFactory)", "define('vex.dialog', ['jquery', 'vex'], vexDialogFactory)"
+            source
+
     uglify:
       vex:
         src: 'js/vex.js'
@@ -27,7 +38,7 @@ module.exports = (grunt) ->
 
       vexCombined:
         dest: 'js/vex.combined.min.js',
-        src: ['js/vex.js', 'js/vex.dialog.js']
+        src: 'js/vex.combined.js'
         options:
           banner: "/*! vex.js, vex.dialog.js <%= pkg.version %> */\n"
 
@@ -41,5 +52,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-compass'
+  grunt.loadNpmTasks 'grunt-contrib-concat'
 
-  grunt.registerTask 'default', ['coffee', 'uglify', 'compass']
+  grunt.registerTask 'default', ['coffee', 'concat', 'uglify', 'compass']
