@@ -482,6 +482,18 @@
                 text-decoration: underline;
                 color: #000;
             }
+
+            #retweet_button, credits, .documentation-link {
+                transition: opacity 200ms;
+                opacity: 1;
+                z-index: 99;
+            }
+
+            body.demo-start #retweet_button, body.demo-start credits, body.demo-start .documentation-link,
+            body.page-intro #retweet_button, body.page-intro credits, body.page-intro .documentation-link {
+                opacity: 0;
+                z-index: -1;
+            }
         </style>
 
         <!-- Share -->
