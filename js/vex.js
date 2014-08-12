@@ -114,7 +114,7 @@
         return true;
       },
       closeByID: function(id) {
-        var $vex, $vexContent, beforeClose, close, options;
+        var $vex, $vexContent, beforeClose, close, hasAnimation, options;
         $vexContent = vex.getVexByID(id);
         if (!$vexContent.length) {
           return;
@@ -134,7 +134,26 @@
             return options.afterClose($vexContent, options);
           }
         };
-        if (animationEndSupport) {
+        hasAnimation = function() {
+          var $clone, name, prefix, _i, _len, _ref;
+          $clone = $($vex[0].cloneNode(false));
+          $clone.addClass(vex.baseClassNames.closing).css({
+            display: 'none'
+          });
+          $('body').append($clone);
+          _ref = ['-webkit-', '-moz-', '-o-', ''];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            prefix = _ref[_i];
+            name = $clone.css("" + prefix + "animation-name");
+            if (name && name !== 'none') {
+              $clone.remove();
+              return true;
+            }
+          }
+          $clone.remove();
+          return false;
+        };
+        if (animationEndSupport && hasAnimation()) {
           beforeClose();
           $vex.unbind(vex.animationEndEvent).bind(vex.animationEndEvent, function() {
             return close();

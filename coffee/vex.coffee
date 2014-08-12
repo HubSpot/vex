@@ -150,7 +150,19 @@ vexFactory = ($) ->
                 $('body').trigger 'vexAfterClose', options # Triggered on the body since $vexContent was removed
                 options.afterClose $vexContent, options if options.afterClose
 
-            if animationEndSupport
+            hasAnimation = ->
+                $clone = $ $vex[0].cloneNode false
+                $clone.addClass(vex.baseClassNames.closing).css display: 'none'
+                $('body').append $clone
+                for prefix in [ '-webkit-', '-moz-', '-o-', '' ]
+                    name = $clone.css "#{prefix}animation-name"
+                    if name and name isnt 'none'
+                        $clone.remove()
+                        return true
+                $clone.remove()
+                false
+
+            if animationEndSupport and hasAnimation()
                 beforeClose()
                 $vex
                     .unbind(vex.animationEndEvent).bind(vex.animationEndEvent, -> close())
