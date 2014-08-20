@@ -143,7 +143,7 @@
   if (typeof define === 'function' && define.amd) {
     define(['jquery', 'vex'], vexDialogFactory);
   } else if (typeof exports === 'object') {
-    module.exports = vexDialogFactory(require('jquery'), require('vex'));
+    module.exports = vexDialogFactory(require('jquery'), require('./vex.js'));
   } else {
     window.vex.dialog = vexDialogFactory(window.jQuery, window.vex);
   }
