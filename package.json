@@ -5,6 +5,10 @@
   "author": "Adam Schwartz <aschwartz@hubspot.com>",
   "license": "MIT",
   "main": "js/vex.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HubSpot/vex.git"
+  },
   "devDependencies": {
     "grunt-contrib-coffee": "~0.7.0",
     "coffee-script": "~1.6.3",
