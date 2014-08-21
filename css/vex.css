@@ -9,7 +9,6 @@
     opacity: 1;
   }
 }
-
 @-webkit-keyframes vex-fadein {
   /* line 9, ../sass/_keyframes.sass */
   0% {
@@ -21,7 +20,6 @@
     opacity: 1;
   }
 }
-
 @-moz-keyframes vex-fadein {
   /* line 9, ../sass/_keyframes.sass */
   0% {
@@ -33,7 +31,6 @@
     opacity: 1;
   }
 }
-
 @-ms-keyframes vex-fadein {
   /* line 9, ../sass/_keyframes.sass */
   0% {
@@ -45,7 +42,6 @@
     opacity: 1;
   }
 }
-
 @-o-keyframes vex-fadein {
   /* line 9, ../sass/_keyframes.sass */
   0% {
@@ -57,7 +53,6 @@
     opacity: 1;
   }
 }
-
 @keyframes vex-fadeout {
   /* line 16, ../sass/_keyframes.sass */
   0% {
@@ -69,7 +64,6 @@
     opacity: 0;
   }
 }
-
 @-webkit-keyframes vex-fadeout {
   /* line 16, ../sass/_keyframes.sass */
   0% {
@@ -81,7 +75,6 @@
     opacity: 0;
   }
 }
-
 @-moz-keyframes vex-fadeout {
   /* line 16, ../sass/_keyframes.sass */
   0% {
@@ -93,7 +86,6 @@
     opacity: 0;
   }
 }
-
 @-ms-keyframes vex-fadeout {
   /* line 16, ../sass/_keyframes.sass */
   0% {
@@ -105,7 +97,6 @@
     opacity: 0;
   }
 }
-
 @-o-keyframes vex-fadeout {
   /* line 16, ../sass/_keyframes.sass */
   0% {
@@ -117,7 +108,6 @@
     opacity: 0;
   }
 }
-
 @keyframes vex-rotation {
   /* line 127, ../sass/_keyframes.sass */
   0% {
@@ -137,7 +127,6 @@
     -o-transform: rotate(359deg);
   }
 }
-
 @-webkit-keyframes vex-rotation {
   /* line 127, ../sass/_keyframes.sass */
   0% {
@@ -157,7 +146,6 @@
     -o-transform: rotate(359deg);
   }
 }
-
 @-moz-keyframes vex-rotation {
   /* line 127, ../sass/_keyframes.sass */
   0% {
@@ -177,7 +165,6 @@
     -o-transform: rotate(359deg);
   }
 }
-
 @-ms-keyframes vex-rotation {
   /* line 127, ../sass/_keyframes.sass */
   0% {
@@ -197,7 +184,6 @@
     -o-transform: rotate(359deg);
   }
 }
-
 @-o-keyframes vex-rotation {
   /* line 127, ../sass/_keyframes.sass */
   0% {
@@ -217,11 +203,10 @@
     -o-transform: rotate(359deg);
   }
 }
-
 /* line 11, ../sass/vex.sass */
 .vex, .vex *, .vex *:before, .vex *:after {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -314,8 +299,8 @@
   -ms-animation: vex-rotation 0.7s linear infinite;
   -o-animation: vex-rotation 0.7s linear infinite;
   -webkit-backface-visibility: hidden;
-  -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
   position: fixed;
   z-index: 1112;
