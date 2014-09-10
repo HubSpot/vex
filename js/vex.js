@@ -72,7 +72,9 @@
           options.$vexContent.append(options.$closeButton);
         }
         $(options.appendLocation).append(options.$vex);
-        vex.setupBodyClassName(options.$vex);
+        if (!options.dontPreventScroll) {
+          vex.setupBodyClassName(options.$vex);
+        }
         if (options.afterOpen) {
           options.afterOpen(options.$vexContent, options);
         }
