@@ -9,11 +9,11 @@ Vex Dialog exposes 4 main apis:
 - `vex.dialog.prompt(options)`
 - `vex.dialog.open(options)`
 
-(Internally, `alert`, `confirm`, and `prompt` call `open` with a different compositions of options.)
+(Internally, `alert`, `confirm`, and `prompt` call `open` with different compositions of options.)
 
 #### Alert
 
-Use alerts when you want to display a message to the user, but you don't want to give them any choice to procede.
+Use alerts when you want to display a message to the user, but you don't want to give them any choice to proceed.
 
 <a class="demo-alert hs-brand-button">Open an alert</a>
 <script>
@@ -95,7 +95,7 @@ vex.dialog.buttons.NO.text = 'Aahw hell no'
 
 ##### Demo
 
-Putting this all together, lets create a dialog with the following custimizations:
+Putting this all together, lets create a dialog with the following customizations:
 
 - Display a date input and a color input,
 - Add an extra button which resets the color input to the default value (`#000`)
