@@ -7,7 +7,7 @@ Vex is a modern dialog library which is highly configurable, easily stylable, an
 #### Features
 
 - Drop-in replacement for `alert`, `confirm`, and `prompt`
-- Easilly configurable animations which are smooth as butter
+- Easily configurable animations which are smooth as butter
 - Tiny footprint (`6kb` minified) and only depends on `jQuery`
 - Looks and behaves great on mobile devices
 - Open multiple dialogs at once and close them individually or all at once
@@ -27,7 +27,7 @@ Vex is a modern dialog library which is highly configurable, easily stylable, an
 
 #### Including
 
-For the most common usage of Vex, you'll want to include following:
+For the most common usage of Vex, you'll want to include the following:
 
 ```html
 <script src="vex.combined.min.js"></script>
