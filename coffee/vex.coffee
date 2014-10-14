@@ -102,7 +102,7 @@ vexFactory = ($) ->
 
             # Set up body className
 
-            vex.setupBodyClassName options.$vex
+            vex.setupBodyClassName options.$vex unless options.dontPreventScroll
 
             # Call afterOpen callback and trigger vexOpen event
 
