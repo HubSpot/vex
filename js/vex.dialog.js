@@ -128,7 +128,7 @@
       $buttons = $('<div class="vex-dialog-buttons" />');
       $.each(buttons, function(index, button) {
         var $button;
-        $button = $("<input type=\"" + button.type + "\" />").val(button.text).addClass(button.className + ' vex-dialog-button ' + (index === 0 ? 'vex-first ' : '') + (index === buttons.length - 1 ? 'vex-last ' : '')).bind('click.vex', function(e) {
+        $button = $("<button type=\"" + button.type + "\" />").val(button.text).text(button.text).addClass(button.className + ' vex-dialog-button ' + (index === 0 ? 'vex-first ' : '') + (index === buttons.length - 1 ? 'vex-last ' : '')).bind('click.vex', function(e) {
           if (button.click) {
             return button.click($(this).parents("." + vex.baseClassNames.content), e);
           }
