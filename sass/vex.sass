@@ -54,8 +54,10 @@
     margin: 0 // Browser reset
 
 .vex-dialog-button
-    -webkit-appearance: none
+    text-rendering: optimizeLegibility
+    +appearance(none)
     cursor: pointer
+    -webkit-tap-highlight-color: transparent
 
 .vex-loading-spinner
     +vex-animation(vex-rotation .7s linear infinite)

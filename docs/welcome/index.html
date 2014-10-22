@@ -291,7 +291,7 @@
                     $(item).addClass('v' + i);
                 });
 
-                $('.stack > .v0:not(".vex-closing") input[type="submit"]').focus();
+                $('.stack > .v0:not(".vex-closing") button[type="submit"]').focus();
 
                 if ($remaining.length === 3) {
                     $('.vex:not(".vex-closing")').removeClass('vex-theme-wireframe').addClass('vex-theme-os');
@@ -487,12 +487,13 @@
                 transition: opacity 200ms;
                 opacity: 1;
                 z-index: 99;
+                point-events: all;
             }
 
             body.demo-start #retweet_button, body.demo-start credits, body.demo-start .documentation-link,
             body.page-intro #retweet_button, body.page-intro credits, body.page-intro .documentation-link {
                 opacity: 0;
-                z-index: -1;
+                pointer-events: none;
             }
         </style>
 
