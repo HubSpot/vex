@@ -302,11 +302,15 @@
 
 /* line 56, ../sass/vex.sass */
 .vex-dialog-button {
+  text-rendering: optimizeLegibility;
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* line 60, ../sass/vex.sass */
+/* line 62, ../sass/vex.sass */
 .vex-loading-spinner {
   animation: vex-rotation 0.7s linear infinite;
   -webkit-animation: vex-rotation 0.7s linear infinite;
@@ -329,7 +333,7 @@
   background: white;
 }
 
-/* line 76, ../sass/vex.sass */
+/* line 78, ../sass/vex.sass */
 body.vex-open {
   overflow: hidden;
 }
