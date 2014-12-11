@@ -59,6 +59,11 @@
 <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"vex.css"</span> /&gt;</span>
 <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"vex-theme-os.css"</span> /&gt;</span></code></pre>
 <p>That will give you all of the APIs for both Vex and Vex Dialog, and set you up with the &quot;Operating System&quot; theme. If you&#39;d prefer another theme, check out <a href="/vex/api/themes">Themes</a>.</p>
+<p>The <code>vex.combined.min.js</code> file includes:</p>
+<ul>
+<li><code>vex.dialog.js</code> which adds the functionality that mimics the native browser alert, confirm, and prompt (everything you see in the <a href="/vex/api/basic">Basic docs</a> examples).</li>
+<li><code>vex.js</code> which is a lightweight barebones generic dialog wrapper. See the <a href="/vex/api/advanced">Advanced usage docs</a> for more information.</li>
+</ul>
 <div class="hs-doc-callout hs-doc-callout-info">
 <h4>AMD / CommonJS</h4>
 <p>Note that when using a javascript dependency manager like RequireJS or CommonJS, you will not be able to use the <code>vex.combined.min.js</code> file. Instead, require <code>vex.dialog</code> and/or <code>vex</code>. (If you only wish to use <code>vex.dialog</code>, you do not need to require <code>vex</code> yourself, as it itself requires <code>vex</code>.)</p>
