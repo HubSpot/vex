@@ -129,7 +129,7 @@ vexDialogFactory = ($, vex) ->
             $button = $("""<button type="#{button.type}"></button>""")
                 .text(button.text)
                 .addClass(button.className + ' vex-dialog-button ' + (if index is 0 then 'vex-first ' else '') + (if index is buttons.length - 1 then 'vex-last ' else ''))
-                .bind('click.vex', (e) -> button.click($(@).parents(".#{vex.baseClassNames.content}"), e) if button.click)
+                .bind('click.vex', (e) -> button.click($(@).parents(vex.getSelectorFromBaseClass(vex.baseClassNames.content)), e) if button.click)
 
             $button.appendTo $buttons
 

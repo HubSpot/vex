@@ -81,8 +81,11 @@
         }), 0);
         return options.$vexContent;
       },
+      getSelectorFromBaseClass: function(baseClass) {
+        return "." + (baseClass.split(' ').join('.'));
+      },
       getAllVexes: function() {
-        return $("." + vex.baseClassNames.vex + ":not(\"." + vex.baseClassNames.closing + "\") ." + vex.baseClassNames.content);
+        return $("." + vex.baseClassNames.vex + ":not(\"." + vex.baseClassNames.closing + "\") " + (vex.getSelectorFromBaseClass(vex.baseClassNames.content)));
       },
       getVexByID: function(id) {
         return vex.getAllVexes().filter(function() {
