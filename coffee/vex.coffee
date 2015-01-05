@@ -111,8 +111,11 @@ vexFactory = ($) ->
 
             return options.$vexContent # For chaining
 
+        getBaseClassesAsSelector: ->
+            return ".#{vex.baseClassNames.content.split(' ').join('.')}"
+
         getAllVexes: ->
-            return $(""".#{vex.baseClassNames.vex}:not(".#{vex.baseClassNames.closing}") .#{vex.baseClassNames.content.split(" ").join(".")}""")
+            return $(""".#{vex.baseClassNames.vex}:not(".#{vex.baseClassNames.closing}") #{vex.getBaseClassesAsSelector()}""")
 
         getVexByID: (id) ->
             return vex.getAllVexes().filter(-> $(@).data().vex.id is id)
