@@ -38,7 +38,8 @@
         contentClassName: '',
         contentCSS: {},
         closeClassName: '',
-        closeCSS: {}
+        closeCSS: {},
+        verticalCenter: false
       },
       open: function(options) {
         options = $.extend({}, vex.defaultOptions, options);
@@ -72,6 +73,17 @@
           options.$vexContent.append(options.$closeButton);
         }
         $(options.appendLocation).append(options.$vex);
+
+        // once we append, we are in the DOM. Check our height for possible initial vertical centering
+        if (options.verticalCenter) {
+          var centeringMargin = (options.$vex.height() - options.$vexContent.outerHeight()) / 2;
+
+          // make sure that we wouldnt accidentally center our modal offscreen
+          if (centeringMargin > 0) {
+            options.$vexContent.css('margin-top', centeringMargin);
+          }
+        }
+
         vex.setupBodyClassName(options.$vex);
         if (options.afterOpen) {
           options.afterOpen(options.$vexContent, options);
