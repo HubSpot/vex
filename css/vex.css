@@ -220,6 +220,11 @@
 }
 
 /* line 49, ../sass/vex.sass */
+.vex-content-wrap {
+  position: relative;
+}
+
+/* line 52, ../sass/vex.sass */
 .vex-content {
   animation: vex-fadein 0.5s;
   -webkit-animation: vex-fadein 0.5s;
@@ -229,7 +234,7 @@
   -webkit-backface-visibility: hidden;
   background: #fff;
 }
-/* line 53, ../sass/vex.sass */
+/* line 56, ../sass/vex.sass */
 .vex.vex-closing .vex-content {
   animation: vex-fadeout 0.5s;
   -webkit-animation: vex-fadeout 0.5s;
@@ -239,18 +244,18 @@
   -webkit-backface-visibility: hidden;
 }
 
-/* line 56, ../sass/vex.sass */
+/* line 59, ../sass/vex.sass */
 .vex-close:before {
   font-family: Arial, sans-serif;
   content: "×";
 }
 
-/* line 60, ../sass/vex.sass */
+/* line 63, ../sass/vex.sass */
 .vex-dialog-form {
   margin: 0;
 }
 
-/* line 63, ../sass/vex.sass */
+/* line 66, ../sass/vex.sass */
 .vex-dialog-button {
   text-rendering: optimizeLegibility;
   -moz-appearance: none;
@@ -259,7 +264,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* line 69, ../sass/vex.sass */
+/* line 72, ../sass/vex.sass */
 .vex-loading-spinner {
   animation: vex-rotation 0.7s linear infinite;
   -webkit-animation: vex-rotation 0.7s linear infinite;
@@ -282,7 +287,7 @@
   background: #fff;
 }
 
-/* line 85, ../sass/vex.sass */
+/* line 88, ../sass/vex.sass */
 body.vex-open {
   overflow: hidden;
 }

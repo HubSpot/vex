@@ -11,11 +11,12 @@
 $blue: #3288e6
 
 .vex.vex-theme-os
-    padding-top: 160px
-    padding-bottom: 160px
-
     &.vex-closing .vex-content
         +vex-animation(vex-flyout .5s)
+
+    .vex-content-wrap 
+        padding-top: 160px
+        padding-bottom: 160px
 
     .vex-content
         +vex-animation(vex-flyin .5s)
@@ -29,11 +30,11 @@ $blue: #3288e6
         color: #444
         padding: 1em
         position: relative
+        font-size: 1.1em
+        line-height: 1.5em
         margin: 0 auto
         max-width: 100%
         width: 450px
-        font-size: 1.1em
-        line-height: 1.5em
 
         h1, h2, h3, h4, h5, h6, p, ul, li
             color: inherit
