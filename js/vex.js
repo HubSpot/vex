@@ -73,6 +73,7 @@
         }
         $(options.appendLocation).append(options.$vex);
         vex.setupBodyClassName(options.$vex);
+        vex.setupBodyPadding(options.$vex);
         if (options.afterOpen) {
           options.afterOpen(options.$vexContent, options);
         }
@@ -172,12 +173,28 @@
           }
         });
       },
+      setupBodyPadding: function($vex) {
+        return $('body').bind('vexOpen.vex', function() {
+          return $('body').css('padding-right', vex.getScrollbarWidth());
+        }).bind('vexAfterClose.vex', function() {
+          if (!vex.getAllVexes().length) {
+            return $('body').css('padding-right', 0);
+          }
+        });
+      },
       hideLoading: function() {
         return $('.vex-loading-spinner').remove();
       },
       showLoading: function() {
         vex.hideLoading();
         return $('body').append("<div class=\"vex-loading-spinner " + vex.defaultOptions.className + "\"></div>");
+      },
+      getScrollbarWidth: function() {
+        var $scrollDiv, scrollbarWidth;
+        $scrollDiv = $('<div class="vex-scrollbar-measure"></div>').appendTo('body');
+        scrollbarWidth = $scrollDiv[0].offsetWidth - $scrollDiv[0].clientWidth;
+        $scrollDiv.remove();
+        return scrollbarWidth;
       }
     };
   };

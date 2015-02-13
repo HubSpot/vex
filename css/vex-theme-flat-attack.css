@@ -1,5 +1,4 @@
 @keyframes vex-flipin-horizontal {
-  /* line 107, ../sass/_keyframes.sass */
   0% {
     opacity: 0;
     transform: rotateY(-90deg);
@@ -8,8 +7,6 @@
     -ms-transform: rotateY(-90deg);
     -o-transform: rotateY(-90deg);
   }
-
-  /* line 110, ../sass/_keyframes.sass */
   100% {
     opacity: 1;
     transform: rotateY(0deg);
@@ -20,7 +17,6 @@
   }
 }
 @-webkit-keyframes vex-flipin-horizontal {
-  /* line 107, ../sass/_keyframes.sass */
   0% {
     opacity: 0;
     transform: rotateY(-90deg);
@@ -29,8 +25,6 @@
     -ms-transform: rotateY(-90deg);
     -o-transform: rotateY(-90deg);
   }
-
-  /* line 110, ../sass/_keyframes.sass */
   100% {
     opacity: 1;
     transform: rotateY(0deg);
@@ -41,7 +35,6 @@
   }
 }
 @-moz-keyframes vex-flipin-horizontal {
-  /* line 107, ../sass/_keyframes.sass */
   0% {
     opacity: 0;
     transform: rotateY(-90deg);
@@ -50,8 +43,6 @@
     -ms-transform: rotateY(-90deg);
     -o-transform: rotateY(-90deg);
   }
-
-  /* line 110, ../sass/_keyframes.sass */
   100% {
     opacity: 1;
     transform: rotateY(0deg);
@@ -62,7 +53,6 @@
   }
 }
 @-ms-keyframes vex-flipin-horizontal {
-  /* line 107, ../sass/_keyframes.sass */
   0% {
     opacity: 0;
     transform: rotateY(-90deg);
@@ -71,8 +61,6 @@
     -ms-transform: rotateY(-90deg);
     -o-transform: rotateY(-90deg);
   }
-
-  /* line 110, ../sass/_keyframes.sass */
   100% {
     opacity: 1;
     transform: rotateY(0deg);
@@ -83,7 +71,6 @@
   }
 }
 @-o-keyframes vex-flipin-horizontal {
-  /* line 107, ../sass/_keyframes.sass */
   0% {
     opacity: 0;
     transform: rotateY(-90deg);
@@ -92,8 +79,6 @@
     -ms-transform: rotateY(-90deg);
     -o-transform: rotateY(-90deg);
   }
-
-  /* line 110, ../sass/_keyframes.sass */
   100% {
     opacity: 1;
     transform: rotateY(0deg);
@@ -104,7 +89,6 @@
   }
 }
 @keyframes vex-flipout-horizontal {
-  /* line 116, ../sass/_keyframes.sass */
   0% {
     opacity: 1;
     transform: rotateY(0deg);
@@ -113,8 +97,6 @@
     -ms-transform: rotateY(0deg);
     -o-transform: rotateY(0deg);
   }
-
-  /* line 119, ../sass/_keyframes.sass */
   100% {
     opacity: 0;
     transform: rotateY(90deg);
@@ -125,7 +107,6 @@
   }
 }
 @-webkit-keyframes vex-flipout-horizontal {
-  /* line 116, ../sass/_keyframes.sass */
   0% {
     opacity: 1;
     transform: rotateY(0deg);
@@ -134,8 +115,6 @@
     -ms-transform: rotateY(0deg);
     -o-transform: rotateY(0deg);
   }
-
-  /* line 119, ../sass/_keyframes.sass */
   100% {
     opacity: 0;
     transform: rotateY(90deg);
@@ -146,7 +125,6 @@
   }
 }
 @-moz-keyframes vex-flipout-horizontal {
-  /* line 116, ../sass/_keyframes.sass */
   0% {
     opacity: 1;
     transform: rotateY(0deg);
@@ -155,8 +133,6 @@
     -ms-transform: rotateY(0deg);
     -o-transform: rotateY(0deg);
   }
-
-  /* line 119, ../sass/_keyframes.sass */
   100% {
     opacity: 0;
     transform: rotateY(90deg);
@@ -167,7 +143,6 @@
   }
 }
 @-ms-keyframes vex-flipout-horizontal {
-  /* line 116, ../sass/_keyframes.sass */
   0% {
     opacity: 1;
     transform: rotateY(0deg);
@@ -176,8 +151,6 @@
     -ms-transform: rotateY(0deg);
     -o-transform: rotateY(0deg);
   }
-
-  /* line 119, ../sass/_keyframes.sass */
   100% {
     opacity: 0;
     transform: rotateY(90deg);
@@ -188,7 +161,6 @@
   }
 }
 @-o-keyframes vex-flipout-horizontal {
-  /* line 116, ../sass/_keyframes.sass */
   0% {
     opacity: 1;
     transform: rotateY(0deg);
@@ -197,8 +169,6 @@
     -ms-transform: rotateY(0deg);
     -o-transform: rotateY(0deg);
   }
-
-  /* line 119, ../sass/_keyframes.sass */
   100% {
     opacity: 0;
     transform: rotateY(90deg);
@@ -245,8 +215,8 @@
 .vex.vex-theme-flat-attack .vex-content {
   font-family: "Helvetica Neue", sans-serif;
   font-weight: 200;
-  background: white;
-  color: #444444;
+  background: #fff;
+  color: #444;
   padding: 2em 2em 3em 2em;
   line-height: 1.5em;
   position: relative;
@@ -280,8 +250,8 @@
   text-align: center;
   top: 0;
   right: 0;
-  color: white;
-  background: #666666;
+  color: #fff;
+  background: #666;
 }
 /* line 85, ../sass/vex-theme-flat-attack.sass */
 .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-message {
@@ -308,9 +278,9 @@
 }
 /* line 103, ../sass/vex-theme-flat-attack.sass */
 .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input textarea:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="date"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="datetime"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="datetime-local"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="email"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="month"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="number"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="password"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="search"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="tel"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="text"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="time"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="url"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="week"]:focus {
-  -moz-box-shadow: inset 0 0 0 2px #666666;
-  -webkit-box-shadow: inset 0 0 0 2px #666666;
-  box-shadow: inset 0 0 0 2px #666666;
+  -moz-box-shadow: inset 0 0 0 2px #666;
+  -webkit-box-shadow: inset 0 0 0 2px #666;
+  box-shadow: inset 0 0 0 2px #666;
   outline: none;
 }
 /* line 107, ../sass/vex-theme-flat-attack.sass */
@@ -321,7 +291,7 @@
   margin-left: -2em;
   margin-right: -2em;
 }
-/* line 38, ../../../.rvm/gems/ruby-2.1.2/gems/compass-core-1.0.0.alpha.20/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/general/_clearfix.scss */
 .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-buttons:after {
   content: "";
   display: table;
@@ -353,8 +323,8 @@
 }
 /* line 133, ../sass/vex-theme-flat-attack.sass */
 .vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-primary {
-  background: #666666;
-  color: white;
+  background: #666;
+  color: #fff;
 }
 /* line 137, ../sass/vex-theme-flat-attack.sass */
 .vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-primary:focus {
@@ -364,20 +334,20 @@
 }
 /* line 140, ../sass/vex-theme-flat-attack.sass */
 .vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-secondary {
-  background: white;
-  color: #cccccc;
+  background: #fff;
+  color: #ccc;
 }
 /* line 144, ../sass/vex-theme-flat-attack.sass */
 .vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-secondary:focus {
-  -moz-box-shadow: inset 0 3px #aaaaaa;
-  -webkit-box-shadow: inset 0 3px #aaaaaa;
-  box-shadow: inset 0 3px #aaaaaa;
-  background: #eeeeee;
-  color: #777777;
+  -moz-box-shadow: inset 0 3px #aaa;
+  -webkit-box-shadow: inset 0 3px #aaa;
+  box-shadow: inset 0 3px #aaa;
+  background: #eee;
+  color: #777;
 }
 /* line 149, ../sass/vex-theme-flat-attack.sass */
 .vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-secondary:hover, .vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-secondary:active {
-  color: #777777;
+  color: #777;
 }
 /* line 16, ../sass/vex-theme-flat-attack.sass */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-close:before {
@@ -423,17 +393,17 @@
 }
 /* line 16, ../sass/vex-theme-flat-attack.sass */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-close:before {
-  background: #477fa5;
+  background: #477FA5;
 }
 /* line 25, ../sass/vex-theme-flat-attack.sass */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input textarea:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="date"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="datetime"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="datetime-local"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="email"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="month"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="number"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="password"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="search"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="tel"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="text"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="time"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="url"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="week"]:focus {
-  -moz-box-shadow: inset 0 0 0 2px #477fa5;
-  -webkit-box-shadow: inset 0 0 0 2px #477fa5;
-  box-shadow: inset 0 0 0 2px #477fa5;
+  -moz-box-shadow: inset 0 0 0 2px #477FA5;
+  -webkit-box-shadow: inset 0 0 0 2px #477FA5;
+  box-shadow: inset 0 0 0 2px #477FA5;
 }
 /* line 28, ../sass/vex-theme-flat-attack.sass */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-primary {
-  background: #477fa5;
+  background: #477FA5;
 }
 
 /* line 166, ../sass/vex-theme-flat-attack.sass */
