@@ -29,3 +29,72 @@
     -webkit-transform-style: preserve-3d
     -moz-transform-style: preserve-3d
     transform-style: preserve-3d
+
+// copied from Compass (https://github.com/Compass/compass) on the 21st of January 2015:
+
+$prefix-context: null
+$current-prefix: null
+$critical-usage-threshold: 0.01 !default
+$default-has-layout-approach: zoom !default
+$has-layout-support-threshold: $critical-usage-threshold !default
+
+// full mixin: https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/_support.scss
+=box-sizing($box-model)
+    -moz-box-sizing: $box-model
+    -webkit-box-sizing: $box-model
+    box-sizing: $box-model
+
+// full mixin: https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/css3/_box-shadow.scss
+=box-shadow($shadow...)
+    -moz-box-shadow: $shadow
+    -webkit-box-shadow: $shadow
+    box-shadow: $shadow
+
+// full mixin: https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/css3/_border-radius.scss
+=border-radius($radius)
+    -moz-border-radius: $radius
+    -webkit-border-radius: $radius
+    border-radius: $radius
+
+// full mixin: https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/css3/_transform.scss
+=perspective($p)
+    -moz-perspective: $p
+    -webkit-perspective: $p
+    perspective: $p
+
+// full mixin: https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/css3/_transform.scss
+=perspective-origin($origin: 50%)
+    -moz-perspective-origin: $origin
+    -webkit-perspective-origin: $origin
+    perspective-origin: $origin
+
+// full mixin: https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/_support.scss
+=appearance($appearance)
+    $appearance: unquote($appearance)
+    -moz-appearance: $appearance
+    -webkit-appearance: $appearance
+
+=has-layout($approach: $default-has-layout-approach)
+    @if support-legacy-browser("ie", "7", $threshold: $has-layout-support-threshold)
+        @if $approach == zoom
+            +has-layout-zoom
+        @else if $approach == block
+            +has-layout-block
+        @else
+            @warn "Unknown has-layout approach: #{$approach}"
+            +has-layout-zoom
+
+=has-layout-zoom
+    @if support-legacy-browser("ie", "7", $threshold: $has-layout-support-threshold)
+        *zoom: 1
+
+=pie-clearfix
+    &:after
+        content: ""
+        display: table
+        clear: both
+    +has-layout
+
+// full mixin: https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/_support.scss
+@function support-legacy-browser($browser, $min-version, $max-version: null, $threshold: $critical-usage-threshold)
+    @return true
