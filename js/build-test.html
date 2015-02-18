@@ -1,13 +1,11 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="vex.js"></script>
+<script src="vex.combined.min.js"></script>
 <link rel="stylesheet" href="../css/vex.css" />
-<link rel="stylesheet" href="../css/vex-theme-flat-attack.css" />
+<link rel="stylesheet" href="../css/vex-theme-os.css" />
 </head>
-<body style="height:5000px; text-align:center;">Test
+<body>
 <script>
-vex.defaultOptions.className = 'vex-theme-flat-attack';
-vex.open({
-    content: '<div style="height:2000px;">Test</div>'
-});
+vex.defaultOptions.className = 'vex-theme-os';
+vex.dialog.alert('Test');
 </script>

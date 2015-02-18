@@ -24,7 +24,6 @@ vexFactory = ($) ->
         baseClassNames:
             vex: 'vex'
             content: 'vex-content'
-            contentWrap: 'vex-content-wrap'
             overlay: 'vex-overlay'
             close: 'vex-close'
             closing: 'vex-closing'
@@ -40,8 +39,6 @@ vexFactory = ($) ->
             css: {}
             overlayClassName: ''
             overlayCSS: {}
-            contentWrapClassName: ''
-            contentWrapCSS: {}
             contentClassName: ''
             contentCSS: {}
             closeClassName: ''
@@ -69,26 +66,12 @@ vexFactory = ($) ->
                 .css(options.overlayCSS)
                 .data(vex: options)
 
-            options.$vex.append options.$vexOverlay
-
-            # Content Wrapper to allow better long modal scrolling
-
-            options.$vexContentWrap = $('<div>')
-                .addClass(vex.baseClassNames.contentWrap)
-                .addClass(options.contentWrapClassName)
-                .css(options.contentWrapCSS)
-                .data(vex: options)
-
-            # Handling clicks on overlay or wrapper
-
             if options.overlayClosesOnClick
                 options.$vexOverlay.bind 'click.vex', (e) ->
                     return unless e.target is @
                     vex.close $(@).data().vex.id
 
-                options.$vexContentWrap.bind 'click.vex', (e) ->
-                    return unless e.target is @
-                    vex.close $(@).data().vex.id
+            options.$vex.append options.$vexOverlay
 
             # Content
 
@@ -99,7 +82,7 @@ vexFactory = ($) ->
                 .append(options.content)
                 .data(vex: options)
 
-            options.$vex.append options.$vexContentWrap.append options.$vexContent
+            options.$vex.append options.$vexContent
 
             # Close button
 
@@ -124,10 +107,6 @@ vexFactory = ($) ->
             # Set up body padding to account for possible scrollbar
 
             vex.setupBodyPadding options.$vex
-
-            # Set up overlay margin. We do not want it to cover the scrollbar
-
-            vex.setupOverlayPosition options
 
             # Call afterOpen callback and trigger vexOpen event
 
@@ -209,11 +188,6 @@ vexFactory = ($) ->
             $('body')
                 .bind('vexOpen.vex', -> $('body').css('padding-right', vex.getScrollbarWidth()))
                 .bind('vexAfterClose.vex', -> $('body').css('padding-right', 0) unless vex.getAllVexes().length)
-
-        setupOverlayPosition: (options) ->
-            $('body')
-                .bind('vexOpen.vex', -> options.$vexOverlay.css('right', vex.getScrollbarWidth()))
-                .bind('vexAfterClose.vex', -> options.$vexOverlay.css('right', 0) unless vex.getAllVexes().length)
 
         hideLoading:  ->
             $('.vex-loading-spinner').remove()

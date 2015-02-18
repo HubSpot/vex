@@ -264,7 +264,12 @@
     box-shadow: inset 0 0 0 300px transparent;
   }
 }
-/* line 14, ../sass/vex-theme-os.sass */
+/* line 13, ../sass/vex-theme-os.sass */
+.vex.vex-theme-os {
+  padding-top: 160px;
+  padding-bottom: 160px;
+}
+/* line 17, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os.vex-closing .vex-content {
   animation: vex-flyout 0.5s;
   -webkit-animation: vex-flyout 0.5s;
@@ -273,12 +278,7 @@
   -o-animation: vex-flyout 0.5s;
   -webkit-backface-visibility: hidden;
 }
-/* line 17, ../sass/vex-theme-os.sass */
-.vex.vex-theme-os .vex-content-wrap {
-  padding-top: 160px;
-  padding-bottom: 160px;
-}
-/* line 21, ../sass/vex-theme-os.sass */
+/* line 20, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-content {
   animation: vex-flyin 0.5s;
   -webkit-animation: vex-flyin 0.5s;
@@ -287,7 +287,7 @@
   -o-animation: vex-flyin 0.5s;
   -webkit-backface-visibility: hidden;
 }
-/* line 24, ../sass/vex-theme-os.sass */
+/* line 23, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-content {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -301,17 +301,17 @@
   color: #444;
   padding: 1em;
   position: relative;
-  font-size: 1.1em;
-  line-height: 1.5em;
   margin: 0 auto;
   max-width: 100%;
   width: 450px;
+  font-size: 1.1em;
+  line-height: 1.5em;
 }
-/* line 39, ../sass/vex-theme-os.sass */
+/* line 38, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-content h1, .vex.vex-theme-os .vex-content h2, .vex.vex-theme-os .vex-content h3, .vex.vex-theme-os .vex-content h4, .vex.vex-theme-os .vex-content h5, .vex.vex-theme-os .vex-content h6, .vex.vex-theme-os .vex-content p, .vex.vex-theme-os .vex-content ul, .vex.vex-theme-os .vex-content li {
   color: inherit;
 }
-/* line 42, ../sass/vex-theme-os.sass */
+/* line 41, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-close {
   -moz-border-radius: 0 5px 0 0;
   -webkit-border-radius: 0;
@@ -321,7 +321,7 @@
   right: 0;
   cursor: pointer;
 }
-/* line 49, ../sass/vex-theme-os.sass */
+/* line 48, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-close:before {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -339,20 +339,20 @@
   color: #bbb;
   background: transparent;
 }
-/* line 64, ../sass/vex-theme-os.sass */
+/* line 63, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-close:hover:before, .vex.vex-theme-os .vex-close:active:before {
   color: #777;
   background: #e0e0e0;
 }
-/* line 70, ../sass/vex-theme-os.sass */
+/* line 69, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-dialog-form .vex-dialog-message {
   margin-bottom: 0.5em;
 }
-/* line 73, ../sass/vex-theme-os.sass */
+/* line 72, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-dialog-form .vex-dialog-input {
   margin-bottom: 1em;
 }
-/* line 76, ../sass/vex-theme-os.sass */
+/* line 75, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-dialog-form .vex-dialog-input textarea, .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="date"], .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="datetime"], .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="datetime-local"], .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="email"], .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="month"], .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="number"], .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="password"], .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="search"], .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="tel"], .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="text"], .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="time"], .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="url"], .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="week"] {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -367,14 +367,14 @@
   min-height: 2.5em;
   margin: 0 0 0.25em;
 }
-/* line 88, ../sass/vex-theme-os.sass */
+/* line 87, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-dialog-form .vex-dialog-input textarea:focus, .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="date"]:focus, .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="datetime"]:focus, .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="datetime-local"]:focus, .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="email"]:focus, .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="month"]:focus, .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="number"]:focus, .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="password"]:focus, .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="search"]:focus, .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="tel"]:focus, .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="text"]:focus, .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="time"]:focus, .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="url"]:focus, .vex.vex-theme-os .vex-dialog-form .vex-dialog-input input[type="week"]:focus {
   -moz-box-shadow: inset 0 0 0 1px #3288e6;
   -webkit-box-shadow: inset 0 0 0 1px #3288e6;
   box-shadow: inset 0 0 0 1px #3288e6;
   outline: none;
 }
-/* line 92, ../sass/vex-theme-os.sass */
+/* line 91, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-dialog-form .vex-dialog-buttons {
   *zoom: 1;
 }
@@ -384,7 +384,7 @@
   display: table;
   clear: both;
 }
-/* line 95, ../sass/vex-theme-os.sass */
+/* line 94, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-dialog-button {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -399,11 +399,11 @@
   line-height: 1em;
   padding: 0.75em 2em;
 }
-/* line 107, ../sass/vex-theme-os.sass */
+/* line 106, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-dialog-button.vex-last {
   margin-left: 0;
 }
-/* line 110, ../sass/vex-theme-os.sass */
+/* line 109, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-dialog-button:focus {
   animation: vex-pulse 1.1s infinite;
   -webkit-animation: vex-pulse 1.1s infinite;
@@ -414,7 +414,7 @@
   outline: none;
 }
 @media (max-width: 568px) {
-  /* line 110, ../sass/vex-theme-os.sass */
+  /* line 109, ../sass/vex-theme-os.sass */
   .vex.vex-theme-os .vex-dialog-button:focus {
     animation: none;
     -webkit-animation: none;
@@ -424,18 +424,18 @@
     -webkit-backface-visibility: hidden;
   }
 }
-/* line 119, ../sass/vex-theme-os.sass */
+/* line 118, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-dialog-button.vex-dialog-button-primary {
   background: #3288e6;
   color: #fff;
 }
-/* line 123, ../sass/vex-theme-os.sass */
+/* line 122, ../sass/vex-theme-os.sass */
 .vex.vex-theme-os .vex-dialog-button.vex-dialog-button-secondary {
   background: #e0e0e0;
   color: #777;
 }
 
-/* line 127, ../sass/vex-theme-os.sass */
+/* line 126, ../sass/vex-theme-os.sass */
 .vex-loading-spinner.vex-theme-os {
   -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 0 0.5em rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 0 0.5em rgba(0, 0, 0, 0.2);
