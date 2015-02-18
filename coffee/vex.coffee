@@ -104,10 +104,6 @@ vexFactory = ($) ->
 
             vex.setupBodyClassName options.$vex
 
-            # Set up body padding to account for possible scrollbar
-
-            vex.setupBodyPadding options.$vex
-
             # Call afterOpen callback and trigger vexOpen event
 
             options.afterOpen options.$vexContent, options if options.afterOpen
@@ -184,23 +180,12 @@ vexFactory = ($) ->
                 .bind('vexOpen.vex', -> $('body').addClass(vex.baseClassNames.open))
                 .bind('vexAfterClose.vex', -> $('body').removeClass(vex.baseClassNames.open) unless vex.getAllVexes().length)
 
-        setupBodyPadding: ($vex) ->
-            $('body')
-                .bind('vexOpen.vex', -> $('body').css('padding-right', vex.getScrollbarWidth()))
-                .bind('vexAfterClose.vex', -> $('body').css('padding-right', 0) unless vex.getAllVexes().length)
-
         hideLoading:  ->
             $('.vex-loading-spinner').remove()
 
         showLoading: ->
             vex.hideLoading()
             $('body').append("""<div class="vex-loading-spinner #{vex.defaultOptions.className}"></div>""")
-
-        getScrollbarWidth: -> 
-            $scrollDiv = $('<div class="vex-scrollbar-measure"></div>').appendTo('body')
-            scrollbarWidth = ($scrollDiv[0].offsetWidth - $scrollDiv[0].clientWidth)
-            $scrollDiv.remove()
-            return scrollbarWidth
 
 if typeof define is 'function' and define.amd
     # AMD
