@@ -6,7 +6,10 @@
     "Adam Schwartz <aschwartz@hubspot.com>"
   ],
   "description": "Beautiful, functional, dialogs in Javascript",
-  "main": "coffee/vex.coffee",
+  "main": [
+    "css/*",
+    "js/*.js"
+  ],
   "keywords": [
     "dialog",
     "modal",
