@@ -31,12 +31,6 @@ module.exports = (grunt) ->
         options:
           banner: "/*! vex.js, vex.dialog.js <%= pkg.version %> */\n"
 
-    compass:
-      dist:
-        options:
-          sassDir: 'sass'
-          cssDir: 'css'
-
     sass: 
       dist:
         cwd: 'sass'
@@ -49,7 +43,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
-  grunt.loadNpmTasks 'grunt-contrib-compass'
   grunt.loadNpmTasks 'grunt-sass'
 
   grunt.registerTask 'default', ['coffee', 'uglify', 'sass']
