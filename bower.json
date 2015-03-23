@@ -24,6 +24,12 @@
   "license": "MIT",
   "ignore": [
     "node_modules",
-    "bower_components"
+    "bower_components",
+    "docs",
+    ".gitignore",
+    ".hsdoc",
+    "Gruntfile.coffee",
+    "component.json",
+    "package.json"
   ]
 }
