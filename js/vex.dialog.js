@@ -65,11 +65,13 @@
       message: 'Confirm'
     };
     dialog.open = function(options) {
-      var $vexContent;
+      var $vexContent, beforeClose;
       options = $.extend({}, vex.defaultOptions, dialog.defaultOptions, options);
       options.content = dialog.buildDialogForm(options);
+      beforeClose = options.beforeClose;
       options.beforeClose = function($vexContent) {
-        return options.callback($vexContent.data().vex.value);
+        options.callback($vexContent.data().vex.value);
+        return typeof beforeClose === "function" ? beforeClose() : void 0;
       };
       $vexContent = vex.open(options);
       if (options.focusFirstInput) {
