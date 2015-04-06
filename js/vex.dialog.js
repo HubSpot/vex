@@ -70,8 +70,10 @@
       options.content = dialog.buildDialogForm(options);
       beforeClose = options.beforeClose;
       options.beforeClose = function($vexContent) {
-        options.callback($vexContent.data().vex.value);
-        return typeof beforeClose === "function" ? beforeClose() : void 0;
+        var value;
+        value = $vexContent.data().vex.value;
+        options.callback(value);
+        return typeof beforeClose === "function" ? beforeClose(value) : void 0;
       };
       $vexContent = vex.open(options);
       if (options.focusFirstInput) {
