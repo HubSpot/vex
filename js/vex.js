@@ -138,13 +138,15 @@
           }
         };
         if (animationEndSupport) {
-          beforeClose();
-          $vex.unbind(vex.animationEndEvent).bind(vex.animationEndEvent, function() {
-            return close();
-          }).addClass(vex.baseClassNames.closing);
+          if (beforeClose() !== false) {
+            $vex.unbind(vex.animationEndEvent).bind(vex.animationEndEvent, function() {
+              return close();
+            }).addClass(vex.baseClassNames.closing);
+          }
         } else {
-          beforeClose();
-          close();
+          if (beforeClose() !== false) {
+            close();
+          }
         }
         return true;
       },

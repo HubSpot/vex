@@ -154,14 +154,14 @@ vexFactory = ($) ->
                 options.afterClose $vexContent, options if options.afterClose
 
             if animationEndSupport
-                beforeClose()
-                $vex
-                    .unbind(vex.animationEndEvent).bind(vex.animationEndEvent, -> close())
-                    .addClass(vex.baseClassNames.closing)
+                unless beforeClose() is false
+                    $vex
+                        .unbind(vex.animationEndEvent).bind(vex.animationEndEvent, -> close())
+                        .addClass(vex.baseClassNames.closing)
 
             else
-                beforeClose()
-                close()
+                unless beforeClose() is false
+                    close()
 
             return true
 
