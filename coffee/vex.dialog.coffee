@@ -63,8 +63,7 @@ vexDialogFactory = ($, vex) ->
         options.content = dialog.buildDialogForm options
 
         beforeClose = options.beforeClose
-        options.beforeClose = ($vexContent) ->
-            config = $.extend {}, $vexContent.data().vex
+        options.beforeClose = ($vexContent, config) ->
             options.callback config.value
             beforeClose? $vexContent, config
 

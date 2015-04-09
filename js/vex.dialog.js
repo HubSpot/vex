@@ -69,9 +69,7 @@
       options = $.extend({}, vex.defaultOptions, dialog.defaultOptions, options);
       options.content = dialog.buildDialogForm(options);
       beforeClose = options.beforeClose;
-      options.beforeClose = function($vexContent) {
-        var config;
-        config = $.extend({}, $vexContent.data().vex);
+      options.beforeClose = function($vexContent, config) {
         options.callback(config.value);
         return typeof beforeClose === "function" ? beforeClose($vexContent, config) : void 0;
       };
