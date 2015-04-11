@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @keyframes vex-fadein {
   0% {
     opacity: 0; }
@@ -173,11 +174,11 @@
   /* IE 8 */ }
 
 .vex-overlay {
-  animation: vex-fadein 0.5s;
-  -webkit-animation: vex-fadein 0.5s;
-  -moz-animation: vex-fadein 0.5s;
-  -ms-animation: vex-fadein 0.5s;
-  -o-animation: vex-fadein 0.5s;
+  animation: vex-fadein .5s;
+  -webkit-animation: vex-fadein .5s;
+  -moz-animation: vex-fadein .5s;
+  -ms-animation: vex-fadein .5s;
+  -o-animation: vex-fadein .5s;
   -webkit-backface-visibility: hidden;
   position: fixed;
   background: rgba(0, 0, 0, 0.4);
@@ -186,27 +187,27 @@
   bottom: 0;
   left: 0; }
   .vex.vex-closing .vex-overlay {
-    animation: vex-fadeout 0.5s;
-    -webkit-animation: vex-fadeout 0.5s;
-    -moz-animation: vex-fadeout 0.5s;
-    -ms-animation: vex-fadeout 0.5s;
-    -o-animation: vex-fadeout 0.5s;
+    animation: vex-fadeout .5s;
+    -webkit-animation: vex-fadeout .5s;
+    -moz-animation: vex-fadeout .5s;
+    -ms-animation: vex-fadeout .5s;
+    -o-animation: vex-fadeout .5s;
     -webkit-backface-visibility: hidden; }
 
 .vex-content {
-  animation: vex-fadein 0.5s;
-  -webkit-animation: vex-fadein 0.5s;
-  -moz-animation: vex-fadein 0.5s;
-  -ms-animation: vex-fadein 0.5s;
-  -o-animation: vex-fadein 0.5s;
+  animation: vex-fadein .5s;
+  -webkit-animation: vex-fadein .5s;
+  -moz-animation: vex-fadein .5s;
+  -ms-animation: vex-fadein .5s;
+  -o-animation: vex-fadein .5s;
   -webkit-backface-visibility: hidden;
   background: #fff; }
   .vex.vex-closing .vex-content {
-    animation: vex-fadeout 0.5s;
-    -webkit-animation: vex-fadeout 0.5s;
-    -moz-animation: vex-fadeout 0.5s;
-    -ms-animation: vex-fadeout 0.5s;
-    -o-animation: vex-fadeout 0.5s;
+    animation: vex-fadeout .5s;
+    -webkit-animation: vex-fadeout .5s;
+    -moz-animation: vex-fadeout .5s;
+    -ms-animation: vex-fadeout .5s;
+    -o-animation: vex-fadeout .5s;
     -webkit-backface-visibility: hidden; }
 
 .vex-close:before {
@@ -224,11 +225,11 @@
   -webkit-tap-highlight-color: transparent; }
 
 .vex-loading-spinner {
-  animation: vex-rotation 0.7s linear infinite;
-  -webkit-animation: vex-rotation 0.7s linear infinite;
-  -moz-animation: vex-rotation 0.7s linear infinite;
-  -ms-animation: vex-rotation 0.7s linear infinite;
-  -o-animation: vex-rotation 0.7s linear infinite;
+  animation: vex-rotation .7s linear infinite;
+  -webkit-animation: vex-rotation .7s linear infinite;
+  -moz-animation: vex-rotation .7s linear infinite;
+  -ms-animation: vex-rotation .7s linear infinite;
+  -o-animation: vex-rotation .7s linear infinite;
   -webkit-backface-visibility: hidden;
   -moz-box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
