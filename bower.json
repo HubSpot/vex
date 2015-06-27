@@ -9,8 +9,8 @@
   "main": [
     "js/vex.js",
     "js/vex.dialog.js",
-    "js/vex.combined.js",,
-    "css/vex.css"
+    "js/vex.combined.js",
+    "css/vex.css",
     "css/vex-theme-bottom-right-corner.css",
     "css/vex-theme-default.css",
     "css/vex-theme-flat-attack.css",
