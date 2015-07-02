@@ -150,7 +150,7 @@
 
 .vex {
   position: fixed;
-  overflow: auto;
+  overflow: hidden;
   -webkit-overflow-scrolling: touch;
   z-index: 1111;
   top: 0;
@@ -192,6 +192,14 @@
     -ms-animation: vex-fadeout 0.5s;
     -o-animation: vex-fadeout 0.5s;
     -webkit-backface-visibility: hidden; }
+
+.vex-scrollable {
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
 
 .vex-content {
   animation: vex-fadein 0.5s;

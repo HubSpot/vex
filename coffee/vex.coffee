@@ -24,6 +24,7 @@ vexFactory = ($) ->
         baseClassNames:
             vex: 'vex'
             content: 'vex-content'
+            scrollable: 'vex-scrollable'
             overlay: 'vex-overlay'
             close: 'vex-close'
             closing: 'vex-closing'
@@ -39,6 +40,8 @@ vexFactory = ($) ->
             css: {}
             overlayClassName: ''
             overlayCSS: {}
+            scrollableClassName: ''
+            scrollableCSS: {}
             contentClassName: ''
             contentCSS: {}
             closeClassName: ''
@@ -73,6 +76,17 @@ vexFactory = ($) ->
 
             options.$vex.append options.$vexOverlay
 
+            # Scrollable
+
+            options.$vexScrollable = $('<div>')
+                .addClass(vex.baseClassNames.scrollable)
+                .addClass(options.scrollableClassName)
+                .css(options.scrollableCSS)
+                .append(options.scrollable)
+                .data(vex: options)
+
+            options.$vex.append options.$vexScrollable
+
             # Content
 
             options.$vexContent = $('<div>')
@@ -82,7 +96,7 @@ vexFactory = ($) ->
                 .append(options.content)
                 .data(vex: options)
 
-            options.$vex.append options.$vexContent
+            options.$vexScrollable.append options.$vexContent
 
             # Close button
 

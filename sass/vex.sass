@@ -11,7 +11,7 @@
 
 .vex
     position: fixed
-    overflow: auto
+    overflow: hidden
     -webkit-overflow-scrolling: touch
     z-index: 1111
     top: 0
@@ -43,6 +43,14 @@
 
     .vex.vex-closing &
         +vex-animation(vex-fadeout .5s)
+
+.vex-scrollable
+    overflow: auto
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
 
 .vex-content
     +vex-animation(vex-fadein .5s)
