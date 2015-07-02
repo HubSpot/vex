@@ -20,6 +20,7 @@
       baseClassNames: {
         vex: 'vex',
         content: 'vex-content',
+        scrollable: 'vex-scrollable',
         overlay: 'vex-overlay',
         close: 'vex-close',
         closing: 'vex-closing',
@@ -35,6 +36,8 @@
         css: {},
         overlayClassName: '',
         overlayCSS: {},
+        scrollableClassName: '',
+        scrollableCSS: {},
         contentClassName: '',
         contentCSS: {},
         closeClassName: '',
@@ -59,10 +62,14 @@
           });
         }
         options.$vex.append(options.$vexOverlay);
+        options.$vexScrollable = $('<div>').addClass(vex.baseClassNames.scrollable).addClass(options.scrollableClassName).css(options.scrollableCSS).append(options.scrollable).data({
+          vex: options
+        });
+        options.$vex.append(options.$vexScrollable);
         options.$vexContent = $('<div>').addClass(vex.baseClassNames.content).addClass(options.contentClassName).css(options.contentCSS).append(options.content).data({
           vex: options
         });
-        options.$vex.append(options.$vexContent);
+        options.$vexScrollable.append(options.$vexContent);
         if (options.showCloseButton) {
           options.$closeButton = $('<div>').addClass(vex.baseClassNames.close).addClass(options.closeClassName).css(options.closeCSS).data({
             vex: options
