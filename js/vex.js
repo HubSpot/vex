@@ -38,16 +38,22 @@
         contentClassName: '',
         contentCSS: {},
         closeClassName: '',
-        closeCSS: {}
+        closeCSS: {},
+        focusFirstInput: true,
+        giveBackFocus: true,
+        trapTabKey: true,
+        ariaMainContent: 'body > :not(.vex)'
       },
       open: function(options) {
+        var focusableElementsString, focusedElementBeforeModal, obj,
+          _this = this;
         options = $.extend({}, vex.defaultOptions, options);
         options.id = vex.globalID;
         vex.globalID += 1;
         options.$vex = $('<div>').addClass(vex.baseClassNames.vex).addClass(options.className).css(options.css).data({
           vex: options
         });
-        options.$vexOverlay = $('<div>').addClass(vex.baseClassNames.overlay).addClass(options.overlayClassName).css(options.overlayCSS).data({
+        options.$vexOverlay = $('<div>').attr('tabindex', '-1').addClass(vex.baseClassNames.overlay).addClass(options.overlayClassName).css(options.overlayCSS).data({
           vex: options
         });
         if (options.overlayClosesOnClick) {
@@ -59,7 +65,7 @@
           });
         }
         options.$vex.append(options.$vexOverlay);
-        options.$vexContent = $('<div>').addClass(vex.baseClassNames.content).addClass(options.contentClassName).css(options.contentCSS).append(options.content).data({
+        options.$vexContent = $('<div>').attr('role', 'dialog').addClass(vex.baseClassNames.content).addClass(options.contentClassName).css(options.contentCSS).append(options.content).data({
           vex: options
         });
         options.$vex.append(options.$vexContent);
@@ -73,12 +79,51 @@
         }
         $(options.appendLocation).append(options.$vex);
         vex.setupBodyClassName(options.$vex);
+        if (options.giveBackFocus) {
+          focusedElementBeforeModal = jQuery(':focus');
+        }
         if (options.afterOpen) {
           options.afterOpen(options.$vexContent, options);
         }
         setTimeout((function() {
           return options.$vexContent.trigger('vexOpen', options);
         }), 0);
+        focusableElementsString = "a[href], area[href], input:not([disabled]), select:not([disabled]), textarea, button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]";
+        if (options.focusFirstInput) {
+          obj = options.$vexContent.find('*');
+          obj.filter(focusableElementsString).filter(':visible').first().focus();
+        }
+        if (options.trapTabKey) {
+          if (options.ariaMainContent) {
+            $(options.ariaMainContent).attr('aria-hidden', true);
+          }
+          options.$vexContent.keydown(function(evt) {
+            var focusableItems, focusedItem, focusedItemIndex, numberOfFocusableItems, o;
+            if (evt.which === 9) {
+              o = options.$vexContent.find('*');
+              focusableItems = o.filter(focusableElementsString).filter(':visible');
+              focusedItem = jQuery(':focus');
+              numberOfFocusableItems = focusableItems.length;
+              focusedItemIndex = focusableItems.index(focusedItem);
+              if (evt.shiftKey) {
+                if (focusedItemIndex === 0) {
+                  focusableItems.get(numberOfFocusableItems - 1).focus();
+                  return evt.preventDefault();
+                }
+              } else {
+                if (focusedItemIndex === numberOfFocusableItems - 1) {
+                  focusableItems.get(0).focus();
+                  return evt.preventDefault();
+                }
+              }
+            }
+          });
+        }
+        if (options.giveBackFocus) {
+          options.$vexContent.bind('vexClose', function() {
+            return focusedElementBeforeModal.focus();
+          });
+        }
         return options.$vexContent;
       },
       getSelectorFromBaseClass: function(baseClass) {
@@ -130,6 +175,9 @@
           }
         };
         close = function() {
+          if (options.ariaMainContent) {
+            $(options.ariaMainContent).attr('aria-hidden', false);
+          }
           $vexContent.trigger('vexClose', options);
           $vex.remove();
           $('body').trigger('vexAfterClose', options);

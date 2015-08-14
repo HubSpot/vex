@@ -43,6 +43,10 @@ vexFactory = ($) ->
             contentCSS: {}
             closeClassName: ''
             closeCSS: {}
+            focusFirstInput: true
+            giveBackFocus: true
+            trapTabKey: true
+            ariaMainContent: 'body > :not(.vex)'
 
         open: (options) ->
             options = $.extend {}, vex.defaultOptions, options
@@ -61,6 +65,7 @@ vexFactory = ($) ->
             # Overlay
 
             options.$vexOverlay = $('<div>')
+                .attr('tabindex', '-1')
                 .addClass(vex.baseClassNames.overlay)
                 .addClass(options.overlayClassName)
                 .css(options.overlayCSS)
@@ -76,6 +81,7 @@ vexFactory = ($) ->
             # Content
 
             options.$vexContent = $('<div>')
+                .attr('role', 'dialog')
                 .addClass(vex.baseClassNames.content)
                 .addClass(options.contentClassName)
                 .css(options.contentCSS)
@@ -104,10 +110,44 @@ vexFactory = ($) ->
 
             vex.setupBodyClassName options.$vex
 
+            focusedElementBeforeModal = jQuery(':focus') if options.giveBackFocus
+
             # Call afterOpen callback and trigger vexOpen event
 
             options.afterOpen options.$vexContent, options if options.afterOpen
             setTimeout (-> options.$vexContent.trigger 'vexOpen', options), 0
+
+            focusableElementsString = "a[href], area[href], input:not([disabled]), select:not([disabled]), textarea, button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]"
+
+            if options.focusFirstInput
+                obj = options.$vexContent.find('*')
+                obj.filter(focusableElementsString).filter(':visible').first().focus()
+
+            if options.trapTabKey
+                $(options.ariaMainContent).attr('aria-hidden', true) if options.ariaMainContent
+
+                options.$vexContent.keydown (evt) =>
+                    if evt.which == 9
+                        o = options.$vexContent.find('*')
+                        focusableItems = o.filter(focusableElementsString).filter(':visible')
+
+                        focusedItem = jQuery(':focus')
+                        numberOfFocusableItems = focusableItems.length
+
+                        focusedItemIndex = focusableItems.index(focusedItem)
+
+                        if evt.shiftKey
+                            if focusedItemIndex == 0
+                              focusableItems.get(numberOfFocusableItems - 1).focus()
+                              evt.preventDefault()
+                        else
+                            if focusedItemIndex == numberOfFocusableItems - 1
+                              focusableItems.get(0).focus()
+                              evt.preventDefault()
+
+              if options.giveBackFocus
+                  options.$vexContent.bind 'vexClose', ->
+                      focusedElementBeforeModal.focus()
 
             return options.$vexContent # For chaining
 
@@ -148,6 +188,8 @@ vexFactory = ($) ->
                 options.beforeClose $vexContent, options if options.beforeClose
 
             close = ->
+                $(options.ariaMainContent).attr('aria-hidden', false) if options.ariaMainContent
+
                 $vexContent.trigger 'vexClose', options
                 $vex.remove()
                 $('body').trigger 'vexAfterClose', options # Triggered on the body since $vexContent was removed
