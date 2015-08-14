@@ -64,7 +64,7 @@
         });
         options.$vex.append(options.$vexContent);
         if (options.showCloseButton) {
-          options.$closeButton = $('<div>').addClass(vex.baseClassNames.close).addClass(options.closeClassName).css(options.closeCSS).data({
+          options.$closeButton = $('<button title="close modal">&times;</button>').addClass(vex.baseClassNames.close).addClass(options.closeClassName).css(options.closeCSS).data({
             vex: options
           }).bind('click.vex', function() {
             return vex.close($(this).data().vex.id);

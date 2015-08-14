@@ -25,26 +25,21 @@ $blue: #3288e6
             color: inherit
 
     .vex-close
+        background-color: white
+        border: none
         position: absolute
         top: 0
         right: 0
         cursor: pointer
+        font-size: 26px
+        height: 30px
+        width: 30px
+        font-weight: normal
+        text-align: center
+        color: #bbb
+        font-family: Arial, sans-serif
 
-        &:before
-            position: absolute
-            content: "\00D7"
-            font-size: 26px
-            font-weight: normal
-            line-height: 31px
-            height: 30px
-            width: 30px
-            text-align: center
-            top: 3px
-            right: 3px
-            color: #bbb
-            background: transparent
-
-        &:hover:before, &:active:before
+        &:hover, &:active
             color: #777
             background: #e0e0e0
 
