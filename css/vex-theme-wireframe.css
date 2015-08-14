@@ -3,12 +3,10 @@
     -moz-box-shadow: inset 0 0 0 300px transparent;
     -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; }
-
   70% {
     -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
   100% {
     -moz-box-shadow: inset 0 0 0 300px transparent;
     -webkit-box-shadow: inset 0 0 0 300px transparent;
@@ -19,12 +17,10 @@
     -moz-box-shadow: inset 0 0 0 300px transparent;
     -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; }
-
   70% {
     -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
   100% {
     -moz-box-shadow: inset 0 0 0 300px transparent;
     -webkit-box-shadow: inset 0 0 0 300px transparent;
@@ -35,12 +31,10 @@
     -moz-box-shadow: inset 0 0 0 300px transparent;
     -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; }
-
   70% {
     -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
   100% {
     -moz-box-shadow: inset 0 0 0 300px transparent;
     -webkit-box-shadow: inset 0 0 0 300px transparent;
@@ -51,12 +45,10 @@
     -moz-box-shadow: inset 0 0 0 300px transparent;
     -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; }
-
   70% {
     -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
   100% {
     -moz-box-shadow: inset 0 0 0 300px transparent;
     -webkit-box-shadow: inset 0 0 0 300px transparent;
@@ -67,12 +59,10 @@
     -moz-box-shadow: inset 0 0 0 300px transparent;
     -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; }
-
   70% {
     -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
   100% {
     -moz-box-shadow: inset 0 0 0 300px transparent;
     -webkit-box-shadow: inset 0 0 0 300px transparent;
@@ -98,26 +88,23 @@
     .vex.vex-theme-wireframe .vex-content h1, .vex.vex-theme-wireframe .vex-content h2, .vex.vex-theme-wireframe .vex-content h3, .vex.vex-theme-wireframe .vex-content h4, .vex.vex-theme-wireframe .vex-content h5, .vex.vex-theme-wireframe .vex-content h6, .vex.vex-theme-wireframe .vex-content p, .vex.vex-theme-wireframe .vex-content ul, .vex.vex-theme-wireframe .vex-content li {
       color: inherit; }
   .vex.vex-theme-wireframe .vex-close {
+    background-color: white;
+    border: none;
     position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer; }
-    .vex.vex-theme-wireframe .vex-close:before {
-      position: absolute;
-      content: "\00D7";
-      font-size: 40px;
-      font-weight: normal;
-      line-height: 80px;
-      height: 80px;
-      width: 80px;
-      text-align: center;
-      top: 3px;
-      right: 3px;
-      color: #000; }
-    .vex.vex-theme-wireframe .vex-close:hover:before, .vex.vex-theme-wireframe .vex-close:active:before {
+    top: 3px;
+    right: 3px;
+    cursor: pointer;
+    font-size: 40px;
+    height: 80px;
+    width: 80px;
+    font-weight: normal;
+    text-align: center;
+    color: #000;
+    font-family: "Helvetica Neue", sans-serif; }
+    .vex.vex-theme-wireframe .vex-close:hover, .vex.vex-theme-wireframe .vex-close:active {
       color: #000; }
   .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-message {
-    margin-bottom: 0.5em; }
+    margin-bottom: .5em; }
   .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input {
     margin-bottom: 1em; }
     .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input textarea, .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="date"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="datetime"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="datetime-local"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="email"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="month"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="number"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="password"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="search"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="tel"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="text"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="time"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="url"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="week"] {
@@ -148,8 +135,8 @@
     margin: 0 0 0 0.5em;
     font-family: inherit;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.8em;
+    letter-spacing: .1em;
+    font-size: .8em;
     line-height: 1em;
     padding: 0.75em 2em; }
     .vex.vex-theme-wireframe .vex-dialog-button.vex-last {

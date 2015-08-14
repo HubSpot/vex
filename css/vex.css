@@ -1,70 +1,60 @@
 @keyframes vex-fadein {
   0% {
     opacity: 0; }
-
   100% {
     opacity: 1; } }
 
 @-webkit-keyframes vex-fadein {
   0% {
     opacity: 0; }
-
   100% {
     opacity: 1; } }
 
 @-moz-keyframes vex-fadein {
   0% {
     opacity: 0; }
-
   100% {
     opacity: 1; } }
 
 @-ms-keyframes vex-fadein {
   0% {
     opacity: 0; }
-
   100% {
     opacity: 1; } }
 
 @-o-keyframes vex-fadein {
   0% {
     opacity: 0; }
-
   100% {
     opacity: 1; } }
 
 @keyframes vex-fadeout {
   0% {
     opacity: 1; }
-
   100% {
     opacity: 0; } }
 
 @-webkit-keyframes vex-fadeout {
   0% {
     opacity: 1; }
-
   100% {
     opacity: 0; } }
 
 @-moz-keyframes vex-fadeout {
   0% {
     opacity: 1; }
-
   100% {
     opacity: 0; } }
 
 @-ms-keyframes vex-fadeout {
   0% {
     opacity: 1; }
-
   100% {
     opacity: 0; } }
 
 @-o-keyframes vex-fadeout {
   0% {
     opacity: 1; }
-
   100% {
     opacity: 0; } }
 
@@ -75,7 +65,6 @@
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
     -o-transform: rotate(0deg); }
-
   100% {
     transform: rotate(359deg);
     -webkit-transform: rotate(359deg);
@@ -90,7 +79,6 @@
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
     -o-transform: rotate(0deg); }
-
   100% {
     transform: rotate(359deg);
     -webkit-transform: rotate(359deg);
@@ -105,7 +93,6 @@
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
     -o-transform: rotate(0deg); }
-
   100% {
     transform: rotate(359deg);
     -webkit-transform: rotate(359deg);
@@ -120,7 +107,6 @@
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
     -o-transform: rotate(0deg); }
-
   100% {
     transform: rotate(359deg);
     -webkit-transform: rotate(359deg);
@@ -135,7 +121,6 @@
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
     -o-transform: rotate(0deg); }
-
   100% {
     transform: rotate(359deg);
     -webkit-transform: rotate(359deg);
@@ -168,9 +153,7 @@
 .vex-overlay {
   background: #000;
   filter: alpha(opacity=40);
-  /* IE 5–7 */
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
-  /* IE 8 */ }
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)"; }
 
 .vex-overlay {
   animation: vex-fadein 0.5s;
@@ -208,10 +191,6 @@
     -ms-animation: vex-fadeout 0.5s;
     -o-animation: vex-fadeout 0.5s;
     -webkit-backface-visibility: hidden; }
-
-.vex-close:before {
-  font-family: Arial, sans-serif;
-  content: "\00D7"; }
 
 .vex-dialog-form {
   margin: 0; }

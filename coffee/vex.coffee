@@ -87,7 +87,7 @@ vexFactory = ($) ->
             # Close button
 
             if options.showCloseButton
-                options.$closeButton = $('<div>')
+                options.$closeButton = $('<button title="close modal">&times;</button>')
                     .addClass(vex.baseClassNames.close)
                     .addClass(options.closeClassName)
                     .css(options.closeCSS)

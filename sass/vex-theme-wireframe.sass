@@ -27,25 +27,21 @@
             color: inherit
 
     .vex-close
+        background-color: white
+        border: none
         position: absolute
-        top: 0
-        right: 0
+        top: 3px
+        right: 3px
         cursor: pointer
+        font-size: 40px
+        height: 80px
+        width: 80px
+        font-weight: normal
+        text-align: center
+        color: #000
+        font-family: "Helvetica Neue", sans-serif
 
-        &:before
-            position: absolute
-            content: "\00D7"
-            font-size: 40px
-            font-weight: normal
-            line-height: 80px
-            height: 80px
-            width: 80px
-            text-align: center
-            top: 3px
-            right: 3px
-            color: #000
-
-        &:hover:before, &:active:before
+        &:hover, &:active
             color: #000
 
     .vex-dialog-form
