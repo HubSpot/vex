@@ -1,81 +1,17 @@
 @keyframes vex-pulse {
   0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; }
-
   70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
   100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; } }
 
 @-webkit-keyframes vex-pulse {
   0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; }
-
   70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
   100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; } }
-
-@-moz-keyframes vex-pulse {
-  0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; }
-
-  70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
-  100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; } }
-
-@-ms-keyframes vex-pulse {
-  0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; }
-
-  70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
-  100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; } }
-
-@-o-keyframes vex-pulse {
-  0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; }
-
-  70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
-  100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; } }
 
 .vex.vex-theme-wireframe {
@@ -117,7 +53,7 @@
     .vex.vex-theme-wireframe .vex-close:hover:before, .vex.vex-theme-wireframe .vex-close:active:before {
       color: #000; }
   .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-message {
-    margin-bottom: 0.5em; }
+    margin-bottom: .5em; }
   .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input {
     margin-bottom: 1em; }
     .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input textarea, .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="date"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="datetime"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="datetime-local"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="email"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="month"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="number"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="password"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="search"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="tel"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="text"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="time"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="url"], .vex.vex-theme-wireframe .vex-dialog-form .vex-dialog-input input[type="week"] {
@@ -140,16 +76,14 @@
       display: table;
       clear: both; }
   .vex.vex-theme-wireframe .vex-dialog-button {
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
     border-radius: 0;
     border: 0;
     float: right;
     margin: 0 0 0 0.5em;
     font-family: inherit;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.8em;
+    letter-spacing: .1em;
+    font-size: .8em;
     line-height: 1em;
     padding: 0.75em 2em; }
     .vex.vex-theme-wireframe .vex-dialog-button.vex-last {

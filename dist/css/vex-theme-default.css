@@ -6,7 +6,6 @@
     -moz-transform: translateY(-40px);
     -ms-transform: translateY(-40px);
     -o-transform: translateY(-40px); }
-
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -23,58 +22,6 @@
     -moz-transform: translateY(-40px);
     -ms-transform: translateY(-40px);
     -o-transform: translateY(-40px); }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0); } }
-
-@-moz-keyframes vex-flyin {
-  0% {
-    opacity: 0;
-    transform: translateY(-40px);
-    -webkit-transform: translateY(-40px);
-    -moz-transform: translateY(-40px);
-    -ms-transform: translateY(-40px);
-    -o-transform: translateY(-40px); }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0); } }
-
-@-ms-keyframes vex-flyin {
-  0% {
-    opacity: 0;
-    transform: translateY(-40px);
-    -webkit-transform: translateY(-40px);
-    -moz-transform: translateY(-40px);
-    -ms-transform: translateY(-40px);
-    -o-transform: translateY(-40px); }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0); } }
-
-@-o-keyframes vex-flyin {
-  0% {
-    opacity: 0;
-    transform: translateY(-40px);
-    -webkit-transform: translateY(-40px);
-    -moz-transform: translateY(-40px);
-    -ms-transform: translateY(-40px);
-    -o-transform: translateY(-40px); }
-
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -91,7 +38,6 @@
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
     -o-transform: translateY(0); }
-
   100% {
     opacity: 0;
     transform: translateY(-40px);
@@ -108,58 +54,6 @@
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
     -o-transform: translateY(0); }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-40px);
-    -webkit-transform: translateY(-40px);
-    -moz-transform: translateY(-40px);
-    -ms-transform: translateY(-40px);
-    -o-transform: translateY(-40px); } }
-
-@-moz-keyframes vex-flyout {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0); }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-40px);
-    -webkit-transform: translateY(-40px);
-    -moz-transform: translateY(-40px);
-    -ms-transform: translateY(-40px);
-    -o-transform: translateY(-40px); } }
-
-@-ms-keyframes vex-flyout {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0); }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-40px);
-    -webkit-transform: translateY(-40px);
-    -moz-transform: translateY(-40px);
-    -ms-transform: translateY(-40px);
-    -o-transform: translateY(-40px); } }
-
-@-o-keyframes vex-flyout {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0); }
-
   100% {
     opacity: 0;
     transform: translateY(-40px);
@@ -170,82 +64,18 @@
 
 @keyframes vex-pulse {
   0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; }
-
   70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
   100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; } }
 
 @-webkit-keyframes vex-pulse {
   0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; }
-
   70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
   100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; } }
-
-@-moz-keyframes vex-pulse {
-  0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; }
-
-  70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
-  100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; } }
-
-@-ms-keyframes vex-pulse {
-  0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; }
-
-  70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
-  100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; } }
-
-@-o-keyframes vex-pulse {
-  0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; }
-
-  70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-
-  100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; } }
 
 .vex.vex-theme-default {
@@ -266,8 +96,6 @@
     -o-animation: vex-flyin 0.5s;
     -webkit-backface-visibility: hidden; }
   .vex.vex-theme-default .vex-content {
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
     border-radius: 5px;
     font-family: "Helvetica Neue", sans-serif;
     background: #f0f0f0;
@@ -282,16 +110,12 @@
     .vex.vex-theme-default .vex-content h1, .vex.vex-theme-default .vex-content h2, .vex.vex-theme-default .vex-content h3, .vex.vex-theme-default .vex-content h4, .vex.vex-theme-default .vex-content h5, .vex.vex-theme-default .vex-content h6, .vex.vex-theme-default .vex-content p, .vex.vex-theme-default .vex-content ul, .vex.vex-theme-default .vex-content li {
       color: inherit; }
   .vex.vex-theme-default .vex-close {
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
     border-radius: 5px;
     position: absolute;
     top: 0;
     right: 0;
     cursor: pointer; }
     .vex.vex-theme-default .vex-close:before {
-      -moz-border-radius: 3px;
-      -webkit-border-radius: 3px;
       border-radius: 3px;
       position: absolute;
       content: "\00D7";
@@ -309,12 +133,10 @@
       color: #777;
       background: #e0e0e0; }
   .vex.vex-theme-default .vex-dialog-form .vex-dialog-message {
-    margin-bottom: 0.5em; }
+    margin-bottom: .5em; }
   .vex.vex-theme-default .vex-dialog-form .vex-dialog-input {
     margin-bottom: 1em; }
     .vex.vex-theme-default .vex-dialog-form .vex-dialog-input textarea, .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="date"], .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="datetime"], .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="datetime-local"], .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="email"], .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="month"], .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="number"], .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="password"], .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="search"], .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="tel"], .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="text"], .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="time"], .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="url"], .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="week"] {
-      -moz-border-radius: 3px;
-      -webkit-border-radius: 3px;
       border-radius: 3px;
       background: #fff;
       width: 100%;
@@ -326,8 +148,6 @@
       min-height: 2.5em;
       margin: 0 0 0.25em; }
       .vex.vex-theme-default .vex-dialog-form .vex-dialog-input textarea:focus, .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="date"]:focus, .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="datetime"]:focus, .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="datetime-local"]:focus, .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="email"]:focus, .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="month"]:focus, .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="number"]:focus, .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="password"]:focus, .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="search"]:focus, .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="tel"]:focus, .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="text"]:focus, .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="time"]:focus, .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="url"]:focus, .vex.vex-theme-default .vex-dialog-form .vex-dialog-input input[type="week"]:focus {
-        -moz-box-shadow: inset 0 0 0 2px #8dbdf1;
-        -webkit-box-shadow: inset 0 0 0 2px #8dbdf1;
         box-shadow: inset 0 0 0 2px #8dbdf1;
         outline: none; }
   .vex.vex-theme-default .vex-dialog-form .vex-dialog-buttons {
@@ -337,16 +157,14 @@
       display: table;
       clear: both; }
   .vex.vex-theme-default .vex-dialog-button {
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
     border-radius: 3px;
     border: 0;
     float: right;
     margin: 0 0 0 0.5em;
     font-family: inherit;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.8em;
+    letter-spacing: .1em;
+    font-size: .8em;
     line-height: 1em;
     padding: 0.75em 2em; }
     .vex.vex-theme-default .vex-dialog-button.vex-last {
@@ -375,14 +193,10 @@
       color: #777; }
 
 .vex-loading-spinner.vex-theme-default {
-  -moz-box-shadow: 0 0 0 0.5em #f0f0f0, 0 0 1px 0.5em rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 0 0 0.5em #f0f0f0, 0 0 1px 0.5em rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 0 0.5em #f0f0f0, 0 0 1px 0.5em rgba(0, 0, 0, 0.3);
-  -moz-border-radius: 100%;
-  -webkit-border-radius: 100%;
   border-radius: 100%;
   background: #f0f0f0;
-  border: 0.2em solid transparent;
+  border: .2em solid transparent;
   border-top-color: #bbb;
   top: -1.1em;
   bottom: auto; }

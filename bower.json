@@ -7,17 +7,17 @@
   ],
   "description": "Beautiful, functional, dialogs in Javascript",
   "main": [
-    "js/vex.js",
-    "js/vex.dialog.js",
-    "js/vex.combined.js",
-    "css/vex.css",
-    "css/vex-theme-bottom-right-corner.css",
-    "css/vex-theme-default.css",
-    "css/vex-theme-flat-attack.css",
-    "css/vex-theme-os.css",
-    "css/vex-theme-plain.css",
-    "css/vex-theme-top.css",
-    "css/vex-theme-wireframe.css"
+    "dist/js/vex.js",
+    "dist/js/vex.dialog.js",
+    "dist/js/vex.combined.js",
+    "dist/css/vex.css",
+    "dist/css/vex-theme-bottom-right-corner.css",
+    "dist/css/vex-theme-default.css",
+    "dist/css/vex-theme-flat-attack.css",
+    "dist/css/vex-theme-os.css",
+    "dist/css/vex-theme-plain.css",
+    "dist/css/vex-theme-top.css",
+    "dist/css/vex-theme-wireframe.css"
   ],
   "keywords": [
     "dialog",
@@ -37,7 +37,7 @@
     "docs",
     ".gitignore",
     ".hsdoc",
-    "Gruntfile.coffee",
+    "gulpfile.js",
     "component.json",
     "package.json"
   ]
