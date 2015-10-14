@@ -15,8 +15,7 @@
 var animationEndSupport = false;
 
 $(function () {
-  var s = undefined;
-  s = (document.body || document.documentElement).style;
+  var s = (document.body || document.documentElement).style;
   animationEndSupport = s.animation !== void 0 || s.WebkitAnimation !== void 0 || s.MozAnimation !== void 0 || s.MsAnimation !== void 0 || s.OAnimation !== void 0;
   return $(window).bind('keyup.vex', function (event) {
     if (event.keyCode === 27) {
@@ -63,10 +62,10 @@ var vex = {
     });
     if (options.overlayClosesOnClick) {
       options.$vexOverlay.bind('click.vex', function (e) {
-        if (e.target !== undefined) {
+        if (e.target !== this) {
           return;
         }
-        return vex.close($(undefined).data().vex.id);
+        return vex.close($(this).data().vex.id);
       });
     }
     options.$vex.append(options.$vexOverlay);
@@ -78,7 +77,7 @@ var vex = {
       options.$closeButton = $('<div>').addClass(vex.baseClassNames.close).addClass(options.closeClassName).css(options.closeCSS).data({
         vex: options
       }).bind('click.vex', function () {
-        return vex.close($(undefined).data().vex.id);
+        return vex.close($(this).data().vex.id);
       });
       options.$vexContent.append(options.$closeButton);
     }
@@ -104,9 +103,8 @@ var vex = {
     });
   },
   close: function close(id) {
-    var $lastVex = undefined;
     if (!id) {
-      $lastVex = vex.getAllVexes().last();
+      var $lastVex = vex.getAllVexes().last();
       if (!$lastVex.length) {
         return false;
       }
@@ -115,8 +113,7 @@ var vex = {
     return vex.closeByID(id);
   },
   closeAll: function closeAll() {
-    var ids = undefined;
-    ids = vex.getAllVexes().map(function () {
+    var ids = vex.getAllVexes().map(function () {
       return $(this).data().vex.id;
     }).toArray();
     if (!(ids != null ? ids.length : void 0)) {
@@ -162,7 +159,7 @@ var vex = {
   },
   closeByEscape: function closeByEscape() {
     var ids = vex.getAllVexes().map(function () {
-      return $(undefined).data().vex.id;
+      return $(this).data().vex.id;
     }).toArray();
     if (!(ids != null ? ids.length : void 0)) {
       return false;

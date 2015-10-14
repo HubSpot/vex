@@ -16,8 +16,7 @@
 var animationEndSupport = false;
 
 $(function () {
-  var s = undefined;
-  s = (document.body || document.documentElement).style;
+  var s = (document.body || document.documentElement).style;
   animationEndSupport = s.animation !== void 0 || s.WebkitAnimation !== void 0 || s.MozAnimation !== void 0 || s.MsAnimation !== void 0 || s.OAnimation !== void 0;
   return $(window).bind('keyup.vex', function (event) {
     if (event.keyCode === 27) {
@@ -64,10 +63,10 @@ var vex = {
     });
     if (options.overlayClosesOnClick) {
       options.$vexOverlay.bind('click.vex', function (e) {
-        if (e.target !== undefined) {
+        if (e.target !== this) {
           return;
         }
-        return vex.close($(undefined).data().vex.id);
+        return vex.close($(this).data().vex.id);
       });
     }
     options.$vex.append(options.$vexOverlay);
@@ -79,7 +78,7 @@ var vex = {
       options.$closeButton = $('<div>').addClass(vex.baseClassNames.close).addClass(options.closeClassName).css(options.closeCSS).data({
         vex: options
       }).bind('click.vex', function () {
-        return vex.close($(undefined).data().vex.id);
+        return vex.close($(this).data().vex.id);
       });
       options.$vexContent.append(options.$closeButton);
     }
@@ -105,9 +104,8 @@ var vex = {
     });
   },
   close: function close(id) {
-    var $lastVex = undefined;
     if (!id) {
-      $lastVex = vex.getAllVexes().last();
+      var $lastVex = vex.getAllVexes().last();
       if (!$lastVex.length) {
         return false;
       }
@@ -116,8 +114,7 @@ var vex = {
     return vex.closeByID(id);
   },
   closeAll: function closeAll() {
-    var ids = undefined;
-    ids = vex.getAllVexes().map(function () {
+    var ids = vex.getAllVexes().map(function () {
       return $(this).data().vex.id;
     }).toArray();
     if (!(ids != null ? ids.length : void 0)) {
@@ -163,7 +160,7 @@ var vex = {
   },
   closeByEscape: function closeByEscape() {
     var ids = vex.getAllVexes().map(function () {
-      return $(undefined).data().vex.id;
+      return $(this).data().vex.id;
     }).toArray();
     if (!(ids != null ? ids.length : void 0)) {
       return false;
@@ -217,11 +214,11 @@ if (typeof vex === 'undefined') {
 var $formToObject = function $formToObject($form) {
   var object = {};
   $.each($form.serializeArray(), function () {
-    if (object[undefined.name]) {
-      object[undefined.name] = !object[undefined.name].push ? [object[undefined.name]] : object[undefined.name];
-      return object[undefined.name].push(undefined.value || '');
+    if (object[this.name]) {
+      object[this.name] = !object[this.name].push ? [object[this.name]] : object[this.name];
+      return object[this.name].push(this.value || '');
     } else {
-      return object[undefined.name] = undefined.value || '';
+      return object[this.name] = this.value || '';
     }
   });
   return object;
@@ -255,7 +252,7 @@ dialog.defaultOptions = {
   buttons: [dialog.buttons.YES, dialog.buttons.NO],
   showCloseButton: false,
   onSubmit: function onSubmit(event) {
-    var $form = $(undefined);
+    var $form = $(this);
     var $vexContent = $form.parent();
     event.preventDefault();
     event.stopPropagation();
@@ -343,7 +340,7 @@ dialog.buttonsToDOM = function (buttons) {
   $.each(buttons, function (index, button) {
     var $button = $("<button type=\"" + button.type + "\"></button>").text(button.text).addClass(button.className + ' vex-dialog-button ' + (index === 0 ? 'vex-first ' : '') + (index === buttons.length - 1 ? 'vex-last ' : '')).bind('click.vex', function (e) {
       if (button.click) {
-        return button.click($(undefined).parents(vex.getSelectorFromBaseClass(vex.baseClassNames.content)), e);
+        return button.click($(this).parents(vex.getSelectorFromBaseClass(vex.baseClassNames.content)), e);
       }
     });
     return $button.appendTo($buttons);

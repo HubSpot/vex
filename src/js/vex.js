@@ -1,8 +1,7 @@
 let animationEndSupport = false;
 
 $(() => {
-  let s;
-  s = (document.body || document.documentElement).style;
+  let s = (document.body || document.documentElement).style;
   animationEndSupport = s.animation !== void 0 || s.WebkitAnimation !== void 0 || s.MozAnimation !== void 0 || s.MsAnimation !== void 0 || s.OAnimation !== void 0;
   return $(window).bind('keyup.vex', (event) => {
     if (event.keyCode === 27) {
@@ -48,7 +47,7 @@ let vex = {
       vex: options
     });
     if (options.overlayClosesOnClick) {
-      options.$vexOverlay.bind('click.vex', (e) => {
+      options.$vexOverlay.bind('click.vex', function(e) {
         if (e.target !== this) {
           return;
         }
@@ -63,7 +62,7 @@ let vex = {
     if (options.showCloseButton) {
       options.$closeButton = $('<div>').addClass(vex.baseClassNames.close).addClass(options.closeClassName).css(options.closeCSS).data({
         vex: options
-      }).bind('click.vex', () => {
+      }).bind('click.vex', function() {
         return vex.close($(this).data().vex.id);
       });
       options.$vexContent.append(options.$closeButton);
@@ -90,9 +89,8 @@ let vex = {
     });
   },
   close: (id) => {
-    let $lastVex;
     if (!id) {
-      $lastVex = vex.getAllVexes().last();
+      let $lastVex = vex.getAllVexes().last();
       if (!$lastVex.length) {
         return false;
       }
@@ -101,8 +99,7 @@ let vex = {
     return vex.closeByID(id);
   },
   closeAll: () => {
-    let ids;
-    ids = vex.getAllVexes().map(function() {
+    let ids = vex.getAllVexes().map(function() {
       return $(this).data().vex.id;
     }).toArray();
     if (!(ids != null ? ids.length : void 0)) {
@@ -147,7 +144,7 @@ let vex = {
     return true;
   },
   closeByEscape: () => {
-    let ids = vex.getAllVexes().map(() => {
+    let ids = vex.getAllVexes().map(function() {
       return $(this).data().vex.id;
     }).toArray();
     if (!(ids != null ? ids.length : void 0)) {

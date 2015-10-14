@@ -4,7 +4,7 @@ if (typeof vex === 'undefined') {
 
 let $formToObject = ($form) => {
   let object = {};
-  $.each($form.serializeArray(), () => {
+  $.each($form.serializeArray(), function() {
     if (object[this.name]) {
       object[this.name] = (!object[this.name].push) ? [object[this.name]] : object[this.name];
       return object[this.name].push(this.value || '');
@@ -42,7 +42,7 @@ dialog.defaultOptions = {
   value: false,
   buttons: [dialog.buttons.YES, dialog.buttons.NO],
   showCloseButton: false,
-  onSubmit: (event) => {
+  onSubmit(event) {
     let $form = $(this);
     let $vexContent = $form.parent();
     event.preventDefault();
@@ -132,7 +132,7 @@ dialog.buttonsToDOM = (buttons) => {
     let $button = $("<button type=\"" + button.type + "\"></button>")
         .text(button.text)
         .addClass(button.className + ' vex-dialog-button ' + (index === 0 ? 'vex-first ' : '') + (index === buttons.length - 1 ? 'vex-last ' : ''))
-        .bind('click.vex', (e) => {
+        .bind('click.vex', function(e) {
           if (button.click) {
             return button.click($(this).parents(vex.getSelectorFromBaseClass(vex.baseClassNames.content)), e);
           }
