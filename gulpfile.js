@@ -34,7 +34,10 @@ gulp.task('js', function() {
   gulp.src('./src/js/vex.js')
     .pipe(plumber())
     .pipe(babel())
-    .pipe(umd(umdOptions))
+    .pipe(umd({
+      exports: 'vex',
+      namespace: 'vex'
+    }))
     .pipe(header(banner))
 
     // Original
@@ -49,7 +52,10 @@ gulp.task('js', function() {
   gulp.src('./src/js/vex.dialog.js')
     .pipe(plumber())
     .pipe(babel())
-    .pipe(umd(umdOptions))
+    .pipe(umd({
+      exports: 'dialog',
+      namespace: 'vex.dialog'
+    }))
     .pipe(header(banner))
 
     // Original
@@ -62,13 +68,10 @@ gulp.task('js', function() {
 
   // Vex-Combined
   gulp.src([
-    './src/js/vex.js',
-    './src/js/vex.dialog.js'
+    './dist/js/vex.js',
+    './dist/js/vex.dialog.js'
   ])
-    .pipe(plumber())
-    .pipe(babel())
     .pipe(concat('vex.combined.js'))
-    .pipe(umd(umdOptions))
     .pipe(header(banner))
 
     // Original
