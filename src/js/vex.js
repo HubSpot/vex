@@ -1,7 +1,7 @@
 let animationEndSupport = false;
 
 $(() => {
-  let s = (document.body || document.documentElement).style;
+  const s = (document.body || document.documentElement).style;
   animationEndSupport = s.animation !== void 0 || s.WebkitAnimation !== void 0 || s.MozAnimation !== void 0 || s.MsAnimation !== void 0 || s.OAnimation !== void 0;
   return $(window).bind('keyup.vex', (event) => {
     if (event.keyCode === 27) {
@@ -10,7 +10,7 @@ $(() => {
   });
 });
 
-let vex = {
+const vex = {
   globalID: 1,
   animationEndEvent: 'animationend webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend',
   baseClassNames: {
@@ -90,7 +90,7 @@ let vex = {
   },
   close: (id) => {
     if (!id) {
-      let $lastVex = vex.getAllVexes().last();
+      const $lastVex = vex.getAllVexes().last();
       if (!$lastVex.length) {
         return false;
       }
@@ -99,7 +99,7 @@ let vex = {
     return vex.closeByID(id);
   },
   closeAll: () => {
-    let ids = vex.getAllVexes().map(function() {
+    const ids = vex.getAllVexes().map(function() {
       return $(this).data().vex.id;
     }).toArray();
     if (!(ids != null ? ids.length : void 0)) {
@@ -111,18 +111,18 @@ let vex = {
     return true;
   },
   closeByID: (id) => {
-    let $vexContent = vex.getVexByID(id);
+    const $vexContent = vex.getVexByID(id);
     if (!$vexContent.length) {
       return;
     }
-    let $vex = $vexContent.data().vex.$vex;
-    let options = $.extend({}, $vexContent.data().vex);
-    let beforeClose = () => {
+    const $vex = $vexContent.data().vex.$vex;
+    const options = $.extend({}, $vexContent.data().vex);
+    const beforeClose = () => {
       if (options.beforeClose) {
         return options.beforeClose($vexContent, options);
       }
     };
-    let close = () => {
+    const close = () => {
       $vexContent.trigger('vexClose', options);
       $vex.remove();
       $('body').trigger('vexAfterClose', options);
@@ -144,14 +144,14 @@ let vex = {
     return true;
   },
   closeByEscape: () => {
-    let ids = vex.getAllVexes().map(function() {
+    const ids = vex.getAllVexes().map(function() {
       return $(this).data().vex.id;
     }).toArray();
     if (!(ids != null ? ids.length : void 0)) {
       return false;
     }
-    let id = Math.max.apply(Math, ids);
-    let $lastVex = vex.getVexByID(id);
+    const id = Math.max.apply(Math, ids);
+    const $lastVex = vex.getVexByID(id);
     if ($lastVex.data().vex.escapeButtonCloses !== true) {
       return false;
     }

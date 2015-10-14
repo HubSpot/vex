@@ -1,5 +1,4 @@
 /*! vex-js 2.3.2 */
-/*! vex-js 2.3.2 */
 
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -189,26 +188,10 @@ var vex = {
     return $('body').append("<div class=\"vex-loading-spinner " + vex.defaultOptions.className + "\"></div>");
   }
 };
-return vex;
-
-}));
-
-/*! vex-js 2.3.2 */
-
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(factory);
-  } else if (typeof exports === 'object') {
-    module.exports = factory(require, exports, module);
-  } else {
-    root.vex.dialog = factory();
-  }
-}(this, function(require, exports, module) {
-
 'use strict';
 
 if (typeof vex === 'undefined') {
-  throw new Error('You must include Vex to use vex.dialog');
+  throw new Error('You must include vex to use vex.dialog');
 }
 
 var $formToObject = function $formToObject($form) {
@@ -347,6 +330,8 @@ dialog.buttonsToDOM = function (buttons) {
   });
   return $buttons;
 };
-return dialog;
+
+vex.dialog = dialog;
+return vex;
 
 }));
