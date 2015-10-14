@@ -17,8 +17,8 @@ var distDir = './dist';
 var pkg = require('./package.json');
 var banner = ['/*!', pkg.name, pkg.version, '*/\n'].join(' ');
 var umdOptions = {
-  exports: 'Vex',
-  namespace: 'Vex'
+  exports: 'vex',
+  namespace: 'vex'
 };
 
 
@@ -30,48 +30,15 @@ gulp.task('clean', function() {
 
 // Javascript
 gulp.task('js', function() {
-  // Vex
-  gulp.src('./src/js/vex.js')
-    .pipe(plumber())
-    .pipe(babel())
-    .pipe(umd({
-      exports: 'vex',
-      namespace: 'vex'
-    }))
-    .pipe(header(banner))
-
-    // Original
-    .pipe(gulp.dest(distDir + '/js'))
-
-    // Minified
-    .pipe(uglify())
-    .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest(distDir + '/js'));
-
-  // Vex-Dialog
-  gulp.src('./src/js/vex.dialog.js')
-    .pipe(plumber())
-    .pipe(babel())
-    .pipe(umd({
-      exports: 'dialog',
-      namespace: 'vex.dialog'
-    }))
-    .pipe(header(banner))
-
-    // Original
-    .pipe(gulp.dest(distDir + '/js'))
-
-    // Minified
-    .pipe(uglify())
-    .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest(distDir + '/js'));
-
   // Vex-Combined
   gulp.src([
-    './dist/js/vex.js',
-    './dist/js/vex.dialog.js'
+    './src/js/vex.js',
+    './src/js/vex.dialog.js'
   ])
+    .pipe(plumber())
+    .pipe(babel())
     .pipe(concat('vex.combined.js'))
+    .pipe(umd(umdOptions))
     .pipe(header(banner))
 
     // Original
@@ -82,7 +49,6 @@ gulp.task('js', function() {
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest(distDir + '/js'));
 });
-
 
 // CSS
 gulp.task('css', function() {
