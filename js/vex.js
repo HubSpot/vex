@@ -117,7 +117,7 @@
         return true;
       },
       closeByID: function(id) {
-        var $vex, $vexContent, beforeClose, close, options;
+        var $vex, $vexContent, beforeClose, close, hasAnimation, options;
         $vexContent = vex.getVexByID(id);
         if (!$vexContent.length) {
           return;
@@ -137,7 +137,8 @@
             return options.afterClose($vexContent, options);
           }
         };
-        if (animationEndSupport) {
+        hasAnimation = $vex.css('animationName') !== 'none' && $vex.css('animationDuration') !== '0s';
+        if (animationEndSupport && hasAnimation) {
           if (beforeClose() !== false) {
             $vex.unbind(vex.animationEndEvent).bind(vex.animationEndEvent, function() {
               return close();
