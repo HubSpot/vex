@@ -153,7 +153,7 @@ vexFactory = ($) ->
                 $('body').trigger 'vexAfterClose', options # Triggered on the body since $vexContent was removed
                 options.afterClose $vexContent, options if options.afterClose
 
-            hasAnimation = $vex.css('animationName') != 'none' && $vex.css('animationDuration') != '0s'
+            hasAnimation = $vexContent.css('animationName') != 'none' && $vexContent.css('animationDuration') != '0s'
 
             if animationEndSupport && hasAnimation
                 unless beforeClose() is false
