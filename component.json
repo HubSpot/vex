@@ -2,7 +2,7 @@
   "name": "vex",
   "repo": "HubSpot/vex",
   "description": "Beautiful, functional, dialogs in Javascript",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "homepage": "http://github.hubspot.com/vex",
   "license": "MIT",
   "keywords": [

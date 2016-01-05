@@ -137,7 +137,7 @@
             return options.afterClose($vexContent, options);
           }
         };
-        hasAnimation = $vex.css('animationName') !== 'none' && $vex.css('animationDuration') !== '0s';
+        hasAnimation = $vexContent.css('animationName') !== 'none' && $vexContent.css('animationDuration') !== '0s';
         if (animationEndSupport && hasAnimation) {
           if (beforeClose() !== false) {
             $vex.unbind(vex.animationEndEvent).bind(vex.animationEndEvent, function() {
