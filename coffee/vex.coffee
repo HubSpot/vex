@@ -69,11 +69,6 @@ vexFactory = ($) ->
                 .css(options.overlayCSS)
                 .data(vex: options)
 
-            if options.overlayClosesOnClick
-                options.$vexOverlay.bind 'click.vex', (e) ->
-                    return unless e.target is @
-                    vex.close $(@).data().vex.id
-
             options.$vex.append options.$vexOverlay
 
             # Scrollable
@@ -84,6 +79,11 @@ vexFactory = ($) ->
                 .css(options.scrollableCSS)
                 .append(options.scrollable)
                 .data(vex: options)
+
+            if options.overlayClosesOnClick
+                options.$vexScrollable.bind 'click.vex', (e) ->
+                    return unless e.target is @
+                    vex.close $(@).data().vex.id
 
             options.$vex.append options.$vexScrollable
 

@@ -53,18 +53,18 @@
         options.$vexOverlay = $('<div>').addClass(vex.baseClassNames.overlay).addClass(options.overlayClassName).css(options.overlayCSS).data({
           vex: options
         });
+        options.$vex.append(options.$vexOverlay);
+        options.$vexScrollable = $('<div>').addClass(vex.baseClassNames.scrollable).addClass(options.scrollableClassName).css(options.scrollableCSS).append(options.scrollable).data({
+          vex: options
+        });
         if (options.overlayClosesOnClick) {
-          options.$vexOverlay.bind('click.vex', function(e) {
+          options.$vexScrollable.bind('click.vex', function(e) {
             if (e.target !== this) {
               return;
             }
             return vex.close($(this).data().vex.id);
           });
         }
-        options.$vex.append(options.$vexOverlay);
-        options.$vexScrollable = $('<div>').addClass(vex.baseClassNames.scrollable).addClass(options.scrollableClassName).css(options.scrollableCSS).append(options.scrollable).data({
-          vex: options
-        });
         options.$vex.append(options.$vexScrollable);
         options.$vexContent = $('<div>').addClass(vex.baseClassNames.content).addClass(options.contentClassName).css(options.contentCSS).append(options.content).data({
           vex: options
