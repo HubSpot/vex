@@ -35,7 +35,7 @@ vexFactory = ($) ->
             escapeButtonCloses: true
             overlayClosesOnClick: true
             appendLocation: 'body'
-            className: ''
+            className: 'vex-theme-default'
             css: {}
             overlayClassName: ''
             overlayCSS: {}
