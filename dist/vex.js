@@ -564,6 +564,10 @@ var vexFactory = function () {
 
       var close = function () {
         // TODO event triggering ('vexClose')
+        if (!options.vex.parentNode) {
+          options.vex = null
+          return
+        }
         options.vex.parentNode.removeChild(options.vex)
         this.setupBodyClassNameOnAfterClose()
         if (options.afterClose) {
@@ -572,12 +576,15 @@ var vexFactory = function () {
         // TODO event triggering ('afterClose')
       }.bind(this)
 
-      var hasAnimation = window.getComputedStyle(vexContent).getPropertyValue('animation-name') !== 'none' &&
-        window.getComputedStyle(vexContent).getPropertyValue('animation-duration') !== '0s'
+      var style = window.getComputedStyle(vexContent)
+      function hasAnimationPre(prefix) {
+        return style.getPropertyValue(prefix + 'animation-name') !== 'none' && style.getPropertyValue(prefix + 'animation-duration') !== '0s'
+      }
+      var hasAnimation = hasAnimationPre('') || hasAnimationPre('-webkit-') || hasAnimationPre('-moz-') || hasAnimationPre('-o-')
 
       if (animationEndSupport && hasAnimation) {
         if (beforeClose() !== false) {
-          addListeners(this.animationEndEvent, options.vex, function () {
+          addListeners(this.animationEndEvent, options.vex, function (e) {
             close()
           })
           options.vex.classList.add(this.baseClassNames.closing)
@@ -637,7 +644,7 @@ var vexFactory = function () {
 
   vex.dialog = require('./vex.dialog')(vex)
 
-  document.addEventListener('DOMContentLoaded', function (event) {
+  var onLoad = function (event) {
     // Detect CSS Animation Support
 
     var s = (document.body || document.documentElement).style
@@ -649,7 +656,13 @@ var vexFactory = function () {
         vex.closeByEscape()
       }
     })
-  })
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'loaded') {
+    onLoad()
+  } else {
+    document.addEventListener('DOMContentLoaded', onLoad)
+  }
 
   return vex
 }
