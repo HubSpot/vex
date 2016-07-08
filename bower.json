@@ -1,15 +1,18 @@
 {
-  "name": "vex",
-  "version": "2.3.4",
+  "name": "vex-no-jquery",
+  "version": "3.0.0",
   "homepage": "http://github.hubspot.com/vex/docs/welcome",
   "authors": [
-    "Adam Schwartz <aschwartz@hubspot.com>"
+    "Brendan Batliner <brendan@omnipointment.com>"
   ],
-  "description": "Beautiful, functional, dialogs in Javascript",
+  "description": "Beautiful, functional, dialogs in vanilla JavaScript",
   "main": [
-    "js/vex.js",
-    "js/vex.dialog.js",
-    "js/vex.combined.js",
+    "dist/vex.js",
+    "dist/vex.dialog.js",
+    "dist/vex.combined.js",
+    "dist/vex.min.js",
+    "dist/vex.dialog.min.js",
+    "dist/vex.combined.min.js",
     "css/vex.css",
     "css/vex-theme-bottom-right-corner.css",
     "css/vex-theme-default.css",

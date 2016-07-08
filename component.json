@@ -1,8 +1,8 @@
 {
-  "name": "vex",
-  "repo": "HubSpot/vex",
-  "description": "Beautiful, functional, dialogs in Javascript",
-  "version": "2.3.4",
+  "name": "vex-no-jquery",
+  "repo": "bbatliner/vex",
+  "description": "Beautiful, functional, dialogs in vanilla JavaScript",
+  "version": "3.0.0",
   "homepage": "http://github.hubspot.com/vex",
   "license": "MIT",
   "keywords": [
@@ -12,8 +12,12 @@
     "modal"
   ],
   "scripts": [
-    "js/vex.js",
-    "js/vex.dialog.js"
+    "dist/vex.js",
+    "dist/vex.dialog.js",
+    "dist/vex.combined.js",
+    "dist/vex.min.js",
+    "dist/vex.dialog.min.js",
+    "dist/vex.combined.min.js"
   ],
   "styles": [
     "css/vex.css",
@@ -23,8 +27,5 @@
     "css/vex-theme-wireframe.css",
     "css/vex-theme-flat-attack.css",
     "css/vex-theme-top.css"
-  ],
-  "dependencies": {
-    "component/jquery": "*"
-  }
+  ]
 }
