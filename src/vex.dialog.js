@@ -1,4 +1,5 @@
 var domify = require('domify')
+var isDom = require('is-dom')
 
 var vexDialogFactory = function (vex) {
   if (!vex) {
@@ -141,11 +142,11 @@ var vexDialogFactory = function (vex) {
 
     var message = document.createElement('div')
     message.classList.add('vex-dialog-message')
-    message.appendChild(domify(options.message))
+    message.appendChild(isDom(options.message) ? options.message : domify(options.message))
 
     var input = document.createElement('div')
     input.classList.add('vex-dialog-input')
-    input.appendChild(domify(options.input))
+    input.appendChild(isDom(options.input) ? options.input : domify(options.input))
 
     form.appendChild(message)
     form.appendChild(input)

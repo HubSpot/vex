@@ -23,6 +23,7 @@ if (typeof Object.assign !== 'function') {
 }
 
 var domify = require('domify')
+var isDom = require('is-dom')
 
 var addListeners = function (events, element, fn) {
   for (var i = 0; i < events.length; i++) {
@@ -115,7 +116,7 @@ var vexFactory = function () {
       }
       options.vexContent.setAttribute('data-vex-id', options.id)
       // TODO .css(options.contentCSS)
-      options.vexContent.appendChild(domify(options.content))
+      options.vexContent.appendChild(isDom(options.content) ? options.content : domify(options.content))
 
       options.vex.appendChild(options.vexContent)
 

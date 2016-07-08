@@ -10,7 +10,8 @@
     "url": "https://github.com/bbatliner/vex"
   },
   "dependencies": {
-    "domify": "^1.4.0"
+    "domify": "^1.4.0",
+    "is-dom": "^1.0.5"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

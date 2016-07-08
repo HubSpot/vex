@@ -113,7 +113,25 @@ function parse(html, doc) {
 }
 
 },{}],2:[function(require,module,exports){
+/*global window*/
+
+/**
+ * Check if object is dom node.
+ *
+ * @param {Object} val
+ * @return {Boolean}
+ * @api public
+ */
+
+module.exports = function isNode(val){
+  if (!val || typeof val !== 'object') return false;
+  if (window && 'object' == typeof window.Node) return val instanceof window.Node;
+  return 'number' == typeof val.nodeType && 'string' == typeof val.nodeName;
+}
+
+},{}],3:[function(require,module,exports){
 var domify = require('domify')
+var isDom = require('is-dom')
 
 var vexDialogFactory = function (vex) {
   if (!vex) {
@@ -256,11 +274,11 @@ var vexDialogFactory = function (vex) {
 
     var message = document.createElement('div')
     message.classList.add('vex-dialog-message')
-    message.appendChild(domify(options.message))
+    message.appendChild(isDom(options.message) ? options.message : domify(options.message))
 
     var input = document.createElement('div')
     input.classList.add('vex-dialog-input')
-    input.appendChild(domify(options.input))
+    input.appendChild(isDom(options.input) ? options.input : domify(options.input))
 
     form.appendChild(message)
     form.appendChild(input)
@@ -320,7 +338,7 @@ var vexDialogFactory = function (vex) {
 
 module.exports = vexDialogFactory
 
-},{"domify":1}],3:[function(require,module,exports){
+},{"domify":1,"is-dom":2}],4:[function(require,module,exports){
 // Object.assign polyfill
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
 if (typeof Object.assign !== 'function') {
@@ -346,6 +364,7 @@ if (typeof Object.assign !== 'function') {
 }
 
 var domify = require('domify')
+var isDom = require('is-dom')
 
 var addListeners = function (events, element, fn) {
   for (var i = 0; i < events.length; i++) {
@@ -438,7 +457,7 @@ var vexFactory = function () {
       }
       options.vexContent.setAttribute('data-vex-id', options.id)
       // TODO .css(options.contentCSS)
-      options.vexContent.appendChild(domify(options.content))
+      options.vexContent.appendChild(isDom(options.content) ? options.content : domify(options.content))
 
       options.vex.appendChild(options.vexContent)
 
@@ -637,5 +656,5 @@ var vexFactory = function () {
 
 module.exports = vexFactory()
 
-},{"./vex.dialog":2,"domify":1}]},{},[3])(3)
+},{"./vex.dialog":3,"domify":1,"is-dom":2}]},{},[4])(4)
 });
