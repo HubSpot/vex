@@ -1,6 +1,6 @@
 {
   "name": "vex-nojquery",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "Beautiful, functional, dialogs in vanilla JavaScript",
   "author": "Brendan Batliner <brendan@omnipointment.com>",
   "license": "MIT",

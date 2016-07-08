@@ -1,5 +1,28 @@
-var deps = require('./deps')
-var domify = deps.domify
+// Object.assign polyfill
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+if (typeof Object.assign !== 'function') {
+  Object.assign = function (target) {
+    'use strict'
+    if (target == null) {
+      throw new TypeError('Cannot convert undefined or null to object')
+    }
+
+    target = Object(target)
+    for (var index = 1; index < arguments.length; index++) {
+      var source = arguments[index]
+      if (source != null) {
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key]
+          }
+        }
+      }
+    }
+    return target
+  }
+}
+
+var domify = require('domify')
 
 var addListeners = function (events, element, fn) {
   for (var i = 0; i < events.length; i++) {
@@ -270,6 +293,8 @@ var vexFactory = function () {
     }
   }
 
+  vex.dialog = require('./vex.dialog')(vex)
+
   document.addEventListener('DOMContentLoaded', function (event) {
     // Detect CSS Animation Support
 
@@ -287,13 +312,4 @@ var vexFactory = function () {
   return vex
 }
 
-if (typeof define === 'function' && define.amd) { // eslint-disable-line
-  // AMD
-  define([], vexFactory) // eslint-disable-line
-} else if (typeof exports === 'object') {
-  // CommonJS
-  module.exports = vexFactory()
-} else {
-  // Global
-  window.vex = vexFactory()
-}
+module.exports = vexFactory()

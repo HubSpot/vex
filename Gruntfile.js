@@ -5,17 +5,12 @@ module.exports = function (grunt) {
     browserify: {
       vex: {
         src: 'src/vex.js',
-        dest: 'dist/vex.js'
-      },
-
-      vexDialog: {
-        src: 'src/vex.dialog.js',
-        dest: 'dist/vex.dialog.js'
-      },
-
-      vexCombined: {
-        src: 'src/vex.combined.js',
-        dest: 'dist/vex.combined.js'
+        dest: 'dist/vex.js',
+        options: {
+          browserifyOptions: {
+            'standalone': 'vex'
+          }
+        }
       }
     },
 
@@ -25,22 +20,6 @@ module.exports = function (grunt) {
         dest: 'dist/vex.min.js',
         options: {
           banner: '/*! vex.js <%= pkg.version %> */\n'
-        }
-      },
-
-      vexDialog: {
-        src: 'dist/vex.dialog.js',
-        dest: 'dist/vex.dialog.min.js',
-        options: {
-          banner: '/*! vex.dialog.js <%= pkg.version %> */\n'
-        }
-      },
-
-      vexCombined: {
-        src: 'dist/vex.combined.js',
-        dest: 'dist/vex.combined.min.js',
-        options: {
-          banner: '/*! vex.js, vex.dialog.js <%= pkg.version %> */\n'
         }
       }
     },

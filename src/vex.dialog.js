@@ -1,5 +1,4 @@
-var deps = require('./deps')
-var domify = deps.domify
+var domify = require('domify')
 
 var vexDialogFactory = function (vex) {
   if (!vex) {
@@ -198,19 +197,10 @@ var vexDialogFactory = function (vex) {
       domButtons.appendChild(domButton)
     }
 
-    return buttons
+    return domButtons
   }
 
   return dialog
 }
 
-if (typeof define === 'function' && define.amd) { // eslint-disable-line
-  // AMD
-  define(['vex'], vexDialogFactory) // eslint-disable-line
-} else if (typeof exports === 'object') {
-  // CommonJS
-  module.exports = vexDialogFactory(require('./vex.js'))
-} else {
-  // Global
-  window.vex = vexDialogFactory(window.vex)
-}
+module.exports = vexDialogFactory
