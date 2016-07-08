@@ -395,25 +395,26 @@ module.exports = function isNode(val){
 // Object.create polyfill
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
 if (typeof Object.create !== 'function') {
-  Object.create = (function(undefined) {
-    var Temp = function() {}
+  Object.create = (function () {
+    var Temp = function () {}
     return function (prototype, propertiesObject) {
-      if(prototype !== Object(prototype) && prototype !== null) {
+      if (prototype !== Object(prototype) && prototype !== null) {
         throw TypeError('Argument must be an object, or null')
       }
       Temp.prototype = prototype || {}
       if (propertiesObject !== undefined) {
         Object.defineProperties(Temp.prototype, propertiesObject)
-      } 
+      }
       var result = new Temp()
       Temp.prototype = null
       // to imitate the case of Object.create(null)
       if (prototype === null) {
-         result.__proto__ = null
-      } 
+        // eslint-disable-next-line
+        result.__proto__ = null
+      }
       return result
-    };
-  })();
+    }
+  })()
 }
 
 var domify = require('domify')
@@ -484,7 +485,6 @@ var Dialog = function (Vex) {
 
         var beforeClose = options.beforeClose
         options.beforeClose = function () {
-          debugger;
           options.callback(this.value)
           if (beforeClose) {
             beforeClose.call(this)
@@ -781,6 +781,13 @@ Vex.defaultOptions = {
   closeClassName: '',
   closeCSS: {}
 }
+
+// TODO A way to identify Vexes
+// TODO Close all Vexes
+// TODO Close Vex by ID
+// TODO Get all Vexes
+// TODO Get Vex by ID
+// TODO Loading symbols?
 
 Vex.Dialog = require('./vex.dialog')(Vex)
 
