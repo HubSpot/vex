@@ -34,11 +34,13 @@ var addListeners = function (events, element, fn) {
 var vexFactory = function () {
   var animationEndSupport = false
 
-  // Internal lookup table of vexes by id
-  var vexes = {}
+  
 
   // Vex
   var vex = {
+
+    // Internal lookup table of vexes by id
+    vexes: {},
 
     globalID: 1,
 
@@ -138,7 +140,7 @@ var vexFactory = function () {
 
       // Lookup
 
-      vexes[options.id] = options
+      this.vexes[options.id] = options
 
       // Inject DOM and trigger callbacks/events
 
@@ -213,7 +215,7 @@ var vexFactory = function () {
         return
       }
 
-      var options = Object.assign({}, vexes[parseInt(vexContent.getAttribute('data-vex-id'))])
+      var options = Object.assign({}, this.vexes[parseInt(vexContent.getAttribute('data-vex-id'))])
 
       var beforeClose = function () {
         if (options.beforeClose) {
@@ -269,7 +271,7 @@ var vexFactory = function () {
 
       var id = Math.max.apply(null, ids)
 
-      if (vexes[id].escapeButtonCloses) {
+      if (this.vexes[id].escapeButtonCloses) {
         return false
       }
 

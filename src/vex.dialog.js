@@ -1,22 +1,21 @@
 var domify = require('domify')
 var isDom = require('is-dom')
+var serialize = require('form-serialize')
 
 var vexDialogFactory = function (vex) {
   if (!vex) {
     throw new Error('Vex is required to use vex.dialog')
   }
 
-  // TODO
-  // var formToObject = function (form) {
-  //   object = {}
-  //   $.each $form.serializeArray(), ->
-  //     if object[@name]
-  //       object[@name] = [object[@name]] if !object[@name].push
-  //       object[@name].push(@value || '')
-  //     else
-  //       object[@name] = @value || '';
-  //   object
-  // }
+  var getVexContentFromTarget = function (vexContent) {
+    while (!vexContent.classList.contains('vex-content')) {
+      if (!vexContent.parentNode) {
+        throw new Error('Could not find vex-content')
+      }
+      vexContent = vexContent.parentNode
+    }
+    return vexContent
+  }
 
   var dialog = {}
 
@@ -32,9 +31,9 @@ var vexDialogFactory = function (vex) {
       type: 'button',
       className: 'vex-dialog-button-secondary',
       click: function (vexContent, event) {
-        // TODO
-        // $vexContent.data().vex.value = false
-        vex.close(parseInt(vexContent.getAttribute('data-vex-id')))
+        var id = parseInt(vexContent.getAttribute('data-vex-id'))
+        vex.vexes[id].vex.value = false
+        vex.close(id)
       }
     }
   }
@@ -50,18 +49,12 @@ var vexDialogFactory = function (vex) {
       dialog.buttons.NO
     ],
     showCloseButton: false,
-    onSubmit: function (event) {
-      var vexContent = event.target
-      while (vexContent.classList.contains('vex-content')) {
-        if (!vexContent.parentNode) {
-          throw new Error('Could not find vex-content')
-        }
-        vexContent = vexContent.parentNode
-      }
+    onSubmit: function (e) {
+      var vexContent = getVexContentFromTarget(event.target)
+      var id = parseInt(vexContent.getAttribute('data-vex-id'))
       event.preventDefault()
-      // TODO
-      // $vexContent.data().vex.value = dialog.getFormValueOnSubmit(formToObject, form)
-      return vex.close(vexContent.getAttribute('data-vex-id'))
+      vex.vexes[id].value = serialize(e.target, { hash: true })
+      return vex.close(id)
     },
     focusFirstInput: true
   }
@@ -92,8 +85,7 @@ var vexDialogFactory = function (vex) {
     vexContent = vex.open(options)
 
     if (options.focusFirstInput) {
-      var firstInput = vexContent.querySelector('button[type="submit"], button[type="button"], input[type="submit"], input[type="button"], textarea, input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="time"], input[type="url"], input[type="week"]')
-      firstInput.focus()
+      vexContent.querySelector('button, input, textarea').focus()
     }
 
     return vexContent
@@ -156,17 +148,6 @@ var vexDialogFactory = function (vex) {
     return form
   }
 
-  dialog.getFormValueOnSubmit = function (formData) {
-    if (formData.vex || formData.vex === '') {
-      if (formData.vex === '_vex-empty-value') {
-        return true
-      }
-      return formData.vex
-    } else {
-      return formData
-    }
-  }
-
   dialog.buttonsToDOM = function (buttons) {
     var domButtons = document.createElement('div')
     domButtons.classList.add('vex-dialog-buttons')
@@ -184,17 +165,11 @@ var vexDialogFactory = function (vex) {
         domButton.classList.add('vex-last')
       }
       domButton.addEventListener('click', function (e) {
-        var vexContent = event.target
-        while (vexContent.classList.contains('vex-content')) {
-          if (!vexContent.parentNode) {
-            throw new Error('Could not find vex-content')
-          }
-          vexContent = vexContent.parentNode
+        var vexContent = getVexContentFromTarget(e.target)
+        if (this.click) {
+          this.click(vexContent, e)
         }
-        if (button.click) {
-          button.click(vexContent, e)
-        }
-      })
+      }.bind(button))
       domButtons.appendChild(domButton)
     }
 
