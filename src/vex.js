@@ -160,6 +160,7 @@ var Vex = function () {
   }
 
   // TODO Event handlers (like onRemove) to remove this listener
+  // This actually throws errors right now...
   // Register global handler for ESC
   window.addEventListener('keyup', function (event) {
     if (event.keyCode === 27) {

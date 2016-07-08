@@ -78,12 +78,12 @@ var buttonsToDOM = function (buttons) {
   return domButtons
 }
 
-var Dialog = function (Vex) {
+var plugin = function (Vex) {
   if (!Vex) {
     throw new Error('Vex not found.')
   }
-  return function () {
-    var proto = Vex()
+  var proto = Vex()
+  var Dialog = function () {
     return Object.assign(Object.create(proto), {
       open: function (options) {
         options = Object.assign({}, Dialog.defaultOptions, options)
@@ -137,55 +137,57 @@ var Dialog = function (Vex) {
       }
     })
   }
-}
 
-Dialog.buttons = {
-  YES: {
-    text: 'OK',
-    type: 'submit',
-    className: 'vex-dialog-button-primary'
-  },
+  Dialog.buttons = {
+    YES: {
+      text: 'OK',
+      type: 'submit',
+      className: 'vex-dialog-button-primary'
+    },
 
-  NO: {
-    text: 'Cancel',
-    type: 'button',
-    className: 'vex-dialog-button-secondary',
-    click: function () {
-      this.close()
+    NO: {
+      text: 'Cancel',
+      type: 'button',
+      className: 'vex-dialog-button-secondary',
+      click: function () {
+        this.close()
+      }
     }
   }
+
+  Dialog.defaultOptions = {
+    callback: function () {},
+    afterOpen: function () {},
+    message: 'Message',
+    input: '<input name="vex" type="hidden" value="_vex-empty-value" />',
+    value: false,
+    buttons: [
+      Dialog.buttons.YES,
+      Dialog.buttons.NO
+    ],
+    showCloseButton: false,
+    onSubmit: function (e) {
+      e.preventDefault()
+      this.value = serialize(this.form, { hash: true })
+      return this.close()
+    },
+    focusFirstInput: true
+  }
+
+  Dialog.defaultAlertOptions = {
+    message: 'Alert',
+    buttons: [
+      Dialog.buttons.YES
+    ]
+  }
+
+  Dialog.defaultPromptOptions = {}
+
+  Dialog.defaultConfirmOptions = {
+    message: 'Confirm'
+  }
+
+  return Dialog
 }
 
-Dialog.defaultOptions = {
-  callback: function () {},
-  afterOpen: function () {},
-  message: 'Message',
-  input: '<input name="vex" type="hidden" value="_vex-empty-value" />',
-  value: false,
-  buttons: [
-    Dialog.buttons.YES,
-    Dialog.buttons.NO
-  ],
-  showCloseButton: false,
-  onSubmit: function (e) {
-    e.preventDefault()
-    this.value = serialize(this.form, { hash: true })
-    return this.close()
-  },
-  focusFirstInput: true
-}
-
-Dialog.defaultAlertOptions = {
-  message: 'Alert',
-  buttons: [
-    Dialog.buttons.YES
-  ]
-}
-
-Dialog.defaultPromptOptions = {}
-
-Dialog.defaultConfirmOptions = {
-  message: 'Confirm'
-}
-
-module.exports = Dialog
+module.exports = plugin
