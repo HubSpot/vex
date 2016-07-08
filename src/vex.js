@@ -195,6 +195,13 @@ Vex.defaultOptions = {
   closeCSS: {}
 }
 
+// TODO A way to identify Vexes
+// TODO Close all Vexes
+// TODO Close Vex by ID
+// TODO Get all Vexes
+// TODO Get Vex by ID
+// TODO Loading symbols?
+
 Vex.Dialog = require('./vex.dialog')(Vex)
 
 module.exports = Vex
