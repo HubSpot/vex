@@ -312,7 +312,7 @@ var vexDialogFactory = function (vex) {
       domButtons.appendChild(domButton)
     }
 
-    return buttons
+    return domButtons
   }
 
   return dialog
