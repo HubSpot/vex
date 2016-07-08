@@ -91,7 +91,7 @@ var plugin = function (Vex) {
 
         var beforeClose = options.beforeClose
         options.beforeClose = function () {
-          options.callback(this.value)
+          options.callback(this.value || false)
           if (beforeClose) {
             beforeClose.call(this)
           }
@@ -160,7 +160,6 @@ var plugin = function (Vex) {
     afterOpen: function () {},
     message: 'Message',
     input: '<input name="vex" type="hidden" value="_vex-empty-value" />',
-    value: false,
     buttons: [
       Dialog.buttons.YES,
       Dialog.buttons.NO
