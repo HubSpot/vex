@@ -3,19 +3,19 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     browserify: {
-      vex: {
+      Vex: {
         src: 'src/vex.js',
         dest: 'dist/vex.js',
         options: {
           browserifyOptions: {
-            'standalone': 'vex'
+            'standalone': 'Vex'
           }
         }
       }
     },
 
     uglify: {
-      vex: {
+      Vex: {
         src: 'dist/vex.js',
         dest: 'dist/vex.min.js',
         options: {

@@ -1,4 +1,4 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.vex = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Vex = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 
 /**
  * Expose `parse`.
@@ -392,188 +392,197 @@ module.exports = function isNode(val){
 }
 
 },{}],4:[function(require,module,exports){
+// Object.create polyfill
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
+if (typeof Object.create !== 'function') {
+  Object.create = (function(undefined) {
+    var Temp = function() {}
+    return function (prototype, propertiesObject) {
+      if(prototype !== Object(prototype) && prototype !== null) {
+        throw TypeError('Argument must be an object, or null')
+      }
+      Temp.prototype = prototype || {}
+      if (propertiesObject !== undefined) {
+        Object.defineProperties(Temp.prototype, propertiesObject)
+      } 
+      var result = new Temp()
+      Temp.prototype = null
+      // to imitate the case of Object.create(null)
+      if (prototype === null) {
+         result.__proto__ = null
+      } 
+      return result
+    };
+  })();
+}
+
 var domify = require('domify')
 var isDom = require('is-dom')
 var serialize = require('form-serialize')
 
-var vexDialogFactory = function (vex) {
-  if (!vex) {
-    throw new Error('Vex is required to use vex.dialog')
-  }
+var buildDialogForm = function (options) {
+  var form = document.createElement('form')
+  form.classList.add('vex-dialog-form')
 
-  var getVexContentFromTarget = function (vexContent) {
-    while (!vexContent.classList.contains('vex-content')) {
-      if (!vexContent.parentNode) {
-        throw new Error('Could not find vex-content')
-      }
-      vexContent = vexContent.parentNode
-    }
-    return vexContent
-  }
+  var message = document.createElement('div')
+  message.classList.add('vex-dialog-message')
+  message.appendChild(isDom(options.message) ? options.message : domify(options.message))
 
-  var dialog = {}
+  var input = document.createElement('div')
+  input.classList.add('vex-dialog-input')
+  input.appendChild(isDom(options.input) ? options.input : domify(options.input))
 
-  dialog.buttons = {
-    YES: {
-      text: 'OK',
-      type: 'submit',
-      className: 'vex-dialog-button-primary'
-    },
+  form.appendChild(message)
+  form.appendChild(input)
+  form.appendChild(buttonsToDOM.call(this, options.buttons))
+  form.addEventListener('submit', options.onSubmit.bind(this))
 
-    NO: {
-      text: 'Cancel',
-      type: 'button',
-      className: 'vex-dialog-button-secondary',
-      click: function (vexContent, event) {
-        var id = parseInt(vexContent.getAttribute('data-vex-id'))
-        vex.vexes[id].vex.value = false
-        vex.close(id)
-      }
-    }
-  }
-
-  dialog.defaultOptions = {
-    callback: function () {},
-    afterOpen: function () {},
-    message: 'Message',
-    input: '<input name="vex" type="hidden" value="_vex-empty-value" />',
-    value: false,
-    buttons: [
-      dialog.buttons.YES,
-      dialog.buttons.NO
-    ],
-    showCloseButton: false,
-    onSubmit: function (e) {
-      var vexContent = getVexContentFromTarget(event.target)
-      var id = parseInt(vexContent.getAttribute('data-vex-id'))
-      event.preventDefault()
-      vex.vexes[id].value = serialize(e.target, { hash: true })
-      return vex.close(id)
-    },
-    focusFirstInput: true
-  }
-
-  dialog.defaultAlertOptions = {
-    message: 'Alert',
-    buttons: [
-      dialog.buttons.YES
-    ]
-  }
-
-  dialog.defaultConfirmOptions = {
-    message: 'Confirm'
-  }
-
-  dialog.open = function (options) {
-    options = Object.assign({}, vex.defaultOptions, dialog.defaultOptions, options)
-    options.content = dialog.buildDialogForm(options)
-
-    beforeClose = options.beforeClose
-    options.beforeClose = function (vexContent, config) {
-      options.callback(config.value)
-      if (beforeClose) {
-        beforeClose(vexContent, config)
-      }
-    }
-
-    vexContent = vex.open(options)
-
-    if (options.focusFirstInput) {
-      vexContent.querySelector('button, input, textarea').focus()
-    }
-
-    return vexContent
-  }
-
-  dialog.alert = function (options) {
-    if (typeof options === 'string') {
-      options = {
-        message: options
-      }
-    }
-
-    options = Object.assign({}, dialog.defaultAlertOptions, options)
-
-    return dialog.open(options)
-  }
-
-  dialog.confirm = function (options) {
-    if (typeof options === 'string') {
-      throw new Error('dialog.confirm(options) requires options.callback.')
-    }
-
-    options = Object.assign({}, dialog.defaultConfirmOptions, options)
-
-    return dialog.open(options)
-  }
-
-  dialog.prompt = function (options) {
-    if (typeof options === 'string') {
-      throw new Error('dialog.prompt(options) requires options.callback.')
-    }
-
-    var defaultPromptOptions = {
-      message: '<label for="vex">' + options.label || 'Prompt:' + '</label>',
-      input: '<input name="vex" type="text" class="vex-dialog-prompt-input" placeholder="' + options.placeholder || '' + '" value="' + options.value || '' + '" />'
-    }
-
-    options = Object.assign({}, defaultPromptOptions, options)
-
-    return dialog.open(options)
-  }
-
-  dialog.buildDialogForm = function (options) {
-    var form = document.createElement('form')
-    form.classList.add('vex-dialog-form')
-
-    var message = document.createElement('div')
-    message.classList.add('vex-dialog-message')
-    message.appendChild(isDom(options.message) ? options.message : domify(options.message))
-
-    var input = document.createElement('div')
-    input.classList.add('vex-dialog-input')
-    input.appendChild(isDom(options.input) ? options.input : domify(options.input))
-
-    form.appendChild(message)
-    form.appendChild(input)
-    form.appendChild(dialog.buttonsToDOM(options.buttons))
-    form.addEventListener('submit', options.onSubmit)
-
-    return form
-  }
-
-  dialog.buttonsToDOM = function (buttons) {
-    var domButtons = document.createElement('div')
-    domButtons.classList.add('vex-dialog-buttons')
-
-    for (var i = 0; i < buttons.length; i++) {
-      var button = buttons[i]
-      var domButton = document.createElement('button')
-      domButton.type = button.type
-      domButton.textContent = button.text
-      domButton.classList.add(button.className)
-      domButton.classList.add('vex-dialog-button')
-      if (i === 0) {
-        domButton.classList.add('vex-first')
-      } else if (i === buttons.length - 1) {
-        domButton.classList.add('vex-last')
-      }
-      domButton.addEventListener('click', function (e) {
-        var vexContent = getVexContentFromTarget(e.target)
-        if (this.click) {
-          this.click(vexContent, e)
-        }
-      }.bind(button))
-      domButtons.appendChild(domButton)
-    }
-
-    return domButtons
-  }
-
-  return dialog
+  return form
 }
 
-module.exports = vexDialogFactory
+var buttonsToDOM = function (buttons) {
+  var domButtons = document.createElement('div')
+  domButtons.classList.add('vex-dialog-buttons')
+
+  for (var i = 0; i < buttons.length; i++) {
+    var button = buttons[i]
+    var domButton = document.createElement('button')
+    domButton.type = button.type
+    domButton.textContent = button.text
+    domButton.classList.add(button.className)
+    domButton.classList.add('vex-dialog-button')
+    if (i === 0) {
+      domButton.classList.add('vex-first')
+    } else if (i === buttons.length - 1) {
+      domButton.classList.add('vex-last')
+    }
+    // Attach click listener to button with closure
+    (function (button) {
+      domButton.addEventListener('click', function (e) {
+        if (button.click) {
+          button.click.call(this, e)
+        }
+      }.bind(this))
+    }.bind(this)(button))
+
+    domButtons.appendChild(domButton)
+  }
+
+  return domButtons
+}
+
+var Dialog = function (Vex) {
+  if (!Vex) {
+    throw new Error('Vex not found.')
+  }
+  return function () {
+    var proto = Vex()
+    return Object.assign(Object.create(proto), {
+      open: function (options) {
+        options = Object.assign({}, Dialog.defaultOptions, options)
+        this.form = options.content = buildDialogForm.call(this, options)
+
+        var beforeClose = options.beforeClose
+        options.beforeClose = function () {
+          debugger;
+          options.callback(this.value)
+          if (beforeClose) {
+            beforeClose.call(this)
+          }
+        }
+
+        var vex = proto.open(options)
+
+        if (options.focusFirstInput) {
+          vex.contentEl.querySelector('button, input, textarea').focus()
+        }
+
+        return vex
+      },
+
+      alert: function (options) {
+        if (typeof options === 'string') {
+          options = {
+            message: options
+          }
+        }
+        options = Object.assign({}, Dialog.defaultOptions, Dialog.defaultAlertOptions, options)
+        return this.open(options)
+      },
+
+      confirm: function (options) {
+        if (typeof options === 'string') {
+          throw new Error('Dialog.confirm(options) requires options.callback.')
+        }
+        options = Object.assign({}, Dialog.defaultOptions, Dialog.defaultConfirmOptions, options)
+        return this.open(options)
+      },
+
+      prompt: function (options) {
+        if (typeof options === 'string') {
+          throw new Error('Dialog.prompt(options) requires options.callback.')
+        }
+        var variableDefaults = {
+          message: '<label for="vex">' + (options.label || 'Prompt:') + '</label>',
+          input: '<input name="vex" type="text" class="vex-dialog-prompt-input" placeholder="' + (options.placeholder || '') + '" value="' + (options.value || '') + '" />'
+        }
+        options = Object.assign({}, Dialog.defaultOptions, Dialog.defaultPromptOptions, options, variableDefaults)
+        return this.open(options)
+      }
+    })
+  }
+}
+
+Dialog.buttons = {
+  YES: {
+    text: 'OK',
+    type: 'submit',
+    className: 'vex-dialog-button-primary'
+  },
+
+  NO: {
+    text: 'Cancel',
+    type: 'button',
+    className: 'vex-dialog-button-secondary',
+    click: function () {
+      this.close()
+    }
+  }
+}
+
+Dialog.defaultOptions = {
+  callback: function () {},
+  afterOpen: function () {},
+  message: 'Message',
+  input: '<input name="vex" type="hidden" value="_vex-empty-value" />',
+  value: false,
+  buttons: [
+    Dialog.buttons.YES,
+    Dialog.buttons.NO
+  ],
+  showCloseButton: false,
+  onSubmit: function (e) {
+    e.preventDefault()
+    this.value = serialize(this.form, { hash: true })
+    return this.close()
+  },
+  focusFirstInput: true
+}
+
+Dialog.defaultAlertOptions = {
+  message: 'Alert',
+  buttons: [
+    Dialog.buttons.YES
+  ]
+}
+
+Dialog.defaultPromptOptions = {}
+
+Dialog.defaultConfirmOptions = {
+  message: 'Confirm'
+}
+
+module.exports = Dialog
 
 },{"domify":1,"form-serialize":2,"is-dom":3}],5:[function(require,module,exports){
 // Object.assign polyfill
@@ -609,197 +618,96 @@ var addListeners = function (events, element, fn) {
   }
 }
 
-var vexFactory = function () {
-  var animationEndSupport = false
+// Detect CSS Animation End Support
+var animationEndEvent = ['animationend', 'webkitAnimationEnd', 'mozAnimationEnd', 'MSAnimationEnd', 'oanimationend']
+var animationEndSupport = false
+var onLoad = function (event) {
+  var s = (document.body || document.documentElement).style
+  animationEndSupport = s.animation !== undefined || s.WebkitAnimation !== undefined || s.MozAnimation !== undefined || s.MsAnimation !== undefined || s.OAnimation !== undefined
+}
+if (document.readyState === 'complete' || document.readyState === 'loaded') {
+  onLoad()
+} else {
+  document.addEventListener('DOMContentLoaded', onLoad)
+}
 
-  
-
+var Vex = function () {
   // Vex
   var vex = {
-
-    // Internal lookup table of vexes by id
-    vexes: {},
-
-    globalID: 1,
-
-    // Inconsistent casings are intentional
-    // http://stackoverflow.com/a/12958895/131898
-    animationEndEvent: ['animationend', 'webkitAnimationEnd', 'mozAnimationEnd', 'MSAnimationEnd', 'oanimationend'],
-
-    baseClassNames: {
-      vex: 'vex',
-      content: 'vex-content',
-      overlay: 'vex-overlay',
-      close: 'vex-close',
-      closing: 'vex-closing',
-      open: 'vex-open'
-    },
-
-    defaultOptions: {
-      content: '',
-      showCloseButton: true,
-      escapeButtonCloses: true,
-      overlayClosesOnClick: true,
-      appendLocation: 'body',
-      className: '',
-      css: {},
-      overlayClassName: '',
-      overlayCSS: {},
-      contentClassName: '',
-      contentCSS: {},
-      closeClassName: '',
-      closeCSS: {}
-    },
-
     open: function (options) {
-      options = Object.assign({}, this.defaultOptions, options)
-
-      options.id = this.globalID
-      this.globalID += 1
+      this.options = options = Object.assign({}, Vex.defaultOptions, options)
 
       // Vex
-
-      options.vex = document.createElement('div')
-      options.vex.classList.add(this.baseClassNames.vex)
+      this.rootEl = options.vex = document.createElement('div')
+      options.vex.classList.add(Vex.baseClassNames.vex)
       if (options.className) {
         options.vex.classList.add(options.className)
       }
       // TODO .css(options.css)
-      options.vex.setAttribute('data-vex-id', options.id)
 
       // Overlay
-
       options.vexOverlay = document.createElement('div')
-      options.vexOverlay.classList.add(this.baseClassNames.overlay)
+      options.vexOverlay.classList.add(Vex.baseClassNames.overlay)
       if (options.overlayClassName) {
         options.vexOverlay.classList.add(options.overlayClassName)
       }
       // TODO .css(options.overlayCSS)
-
       if (options.overlayClosesOnClick) {
         options.vexOverlay.addEventListener('click', function (e) {
           if (e.target !== options.vexOverlay) {
             return
           }
-          this.close(options.id)
+          this.close()
         }.bind(this))
       }
-
       options.vex.appendChild(options.vexOverlay)
 
       // Content
-
-      options.vexContent = document.createElement('div')
-      options.vexContent.classList.add(this.baseClassNames.content)
+      this.contentEl = options.vexContent = document.createElement('div')
+      options.vexContent.classList.add(Vex.baseClassNames.content)
       if (options.contentClassName) {
         options.vexContent.classList.add(options.contentClassName)
       }
-      options.vexContent.setAttribute('data-vex-id', options.id)
       // TODO .css(options.contentCSS)
       options.vexContent.appendChild(isDom(options.content) ? options.content : domify(options.content))
-
       options.vex.appendChild(options.vexContent)
 
       // Close button
-
       if (options.showCloseButton) {
         options.closeButton = document.createElement('div')
-        options.closeButton.classList.add(this.baseClassNames.close)
+        options.closeButton.classList.add(Vex.baseClassNames.close)
         if (options.closeClassName) {
           options.closeButton.classList.add(options.closeClassName)
         }
         // TODO .css(options.closeCSS)
-        options.closeButton.addEventListener('click', function () {
-          this.close(options.id)
-        }.bind(this))
-
+        options.closeButton.addEventListener('click', this.close.bind(this))
         options.vexContent.appendChild(options.closeButton)
       }
 
-      // Lookup
-
-      this.vexes[options.id] = options
-
-      // Inject DOM and trigger callbacks/events
-
+      // Inject DOM
       document.querySelector(options.appendLocation).appendChild(options.vex)
 
       // Call afterOpen callback and trigger vexOpen event
-
       if (options.afterOpen) {
         options.afterOpen(options.vexContent, options)
       }
       // TODO: trigger events ('open')
-      setTimeout(this.setupBodyClassNameOnOpen.bind(this), 0)
+      setTimeout(function () {
+        document.body.classList.add(Vex.baseClassNames.open)
+      }, 0)
 
       // For chaining
-      return options.vexContent
+      return this
     },
 
-    getSelectorFromBaseClass: function (baseClass) {
-      return '.' + baseClass.split(' ').join('.')
-    },
-
-    getAllVexes: function () {
-      var notClosingSelector = '.' + this.baseClassNames.vex + ':not(.' + this.baseClassNames.closing + ')'
-      return document.querySelectorAll(notClosingSelector)
-    },
-
-    getVexByID: function (id) {
-      var allVexes = this.getAllVexes()
-      for (var i = 0; i < allVexes.length; i++) {
-        if (parseInt(allVexes[i].getAttribute('data-vex-id')) === id) {
-          return allVexes[i]
-        }
-      }
-      return null
-    },
-
-    close: function (id) {
-      if (!id) {
-        var allVexes = this.getAllVexes()
-        var lastVex = allVexes[allVexes.length - 1]
-        if (!lastVex) {
-          return false
-        }
-        id = parseInt(lastVex.getAttribute('data-vex-id'))
-      }
-
-      return this.closeByID(id)
-    },
-
-    closeAll: function () {
-      var ids = []
-      var allVexes = this.getAllVexes()
-      for (var i = 0; i < allVexes.length; i++) {
-        ids.push(parseInt(allVexes[i].getAttribute('data-vex-id')))
-      }
-      if (ids.length === 0) {
-        return false
-      }
-
-      ids.reverse()
-
-      for (var j = 0; j < ids.length; j++) {
-        this.closeByID(ids[j])
-      }
-
-      return true
-    },
-
-    closeByID: function (id) {
-      var vexContent = this.getVexByID(id)
-      if (!vexContent) {
-        return
-      }
-
-      var options = Object.assign({}, this.vexes[parseInt(vexContent.getAttribute('data-vex-id'))])
+    close: function () {
+      var options = this.options
 
       var beforeClose = function () {
         if (options.beforeClose) {
-          options.beforeClose(vexContent, options)
+          options.beforeClose.call(this)
         }
-      }
+      }.bind(this)
 
       var close = function () {
         // TODO event triggering ('vexClose')
@@ -808,25 +716,25 @@ var vexFactory = function () {
           return
         }
         options.vex.parentNode.removeChild(options.vex)
-        this.setupBodyClassNameOnAfterClose()
+        document.body.classList.remove(Vex.baseClassNames.open)
         if (options.afterClose) {
-          options.afterClose(vexContent, options)
+          options.afterClose.call(this)
         }
         // TODO event triggering ('afterClose')
       }.bind(this)
 
-      var style = window.getComputedStyle(vexContent)
-      function hasAnimationPre(prefix) {
+      var style = window.getComputedStyle(this.contentEl)
+      function hasAnimationPre (prefix) {
         return style.getPropertyValue(prefix + 'animation-name') !== 'none' && style.getPropertyValue(prefix + 'animation-duration') !== '0s'
       }
       var hasAnimation = hasAnimationPre('') || hasAnimationPre('-webkit-') || hasAnimationPre('-moz-') || hasAnimationPre('-o-')
 
       if (animationEndSupport && hasAnimation) {
         if (beforeClose() !== false) {
-          addListeners(this.animationEndEvent, options.vex, function (e) {
+          addListeners(animationEndEvent, options.vex, function (e) {
             close()
           })
-          options.vex.classList.add(this.baseClassNames.closing)
+          options.vex.classList.add(Vex.baseClassNames.closing)
         }
       } else {
         if (beforeClose() !== false) {
@@ -835,78 +743,48 @@ var vexFactory = function () {
       }
 
       return true
-    },
-
-    closeByEscape: function () {
-      var ids = []
-      var allVexes = this.getAllVexes()
-      for (var i = 0; i < allVexes.length; i++) {
-        ids.push(parseInt(allVexes.getAttribute('data-vex-id')))
-      }
-      if (ids.length === 0) {
-        return false
-      }
-
-      var id = Math.max.apply(null, ids)
-
-      if (this.vexes[id].escapeButtonCloses) {
-        return false
-      }
-
-      return this.closeByID(id)
-    },
-
-    setupBodyClassNameOnOpen: function () {
-      document.body.classList.add(this.baseClassNames.open)
-    },
-
-    setupBodyClassNameOnAfterClose: function () {
-      if (!this.getAllVexes().length) {
-        document.body.classList.remove(this.baseClassNames.open)
-      }
-    },
-
-    hideLoading: function () {
-      var el = document.querySelector('.vex-loading-spinner')
-      if (el) {
-        el.parentNode.removeChild(el)
-      }
-    },
-
-    showLoading: function () {
-      this.hideLoading()
-      var el = document.createElement('div')
-      el.classList = 'vex-loading-spinner ' + this.defaultOptions.className
-      document.body.appendChild(el)
     }
   }
 
-  vex.dialog = require('./vex.dialog')(vex)
-
-  var onLoad = function (event) {
-    // Detect CSS Animation Support
-
-    var s = (document.body || document.documentElement).style
-    animationEndSupport = s.animation !== undefined || s.WebkitAnimation !== undefined || s.MozAnimation !== undefined || s.MsAnimation !== undefined || s.OAnimation !== undefined
-
-    // Register global handler for ESC
-    window.addEventListener('keyup', function (event) {
-      if (event.keyCode === 27) {
-        vex.closeByEscape()
-      }
-    })
-  }
-
-  if (document.readyState === 'complete' || document.readyState === 'loaded') {
-    onLoad()
-  } else {
-    document.addEventListener('DOMContentLoaded', onLoad)
-  }
+  // TODO Event handlers (like onRemove) to remove this listener
+  // Register global handler for ESC
+  window.addEventListener('keyup', function (event) {
+    if (event.keyCode === 27) {
+      vex.close()
+    }
+  })
 
   return vex
 }
 
-module.exports = vexFactory()
+Vex.baseClassNames = {
+  vex: 'vex',
+  content: 'vex-content',
+  overlay: 'vex-overlay',
+  close: 'vex-close',
+  closing: 'vex-closing',
+  open: 'vex-open'
+}
+
+Vex.defaultOptions = {
+  content: '',
+  showCloseButton: true,
+  escapeButtonCloses: true,
+  overlayClosesOnClick: true,
+  appendLocation: 'body',
+  className: '',
+  css: {},
+  overlayClassName: '',
+  overlayCSS: {},
+  contentClassName: '',
+  contentCSS: {},
+  closeClassName: '',
+  closeCSS: {}
+}
+
+Vex.Dialog = require('./vex.dialog')(Vex)
+
+module.exports = Vex
 
 },{"./vex.dialog":4,"domify":1,"is-dom":3}]},{},[5])(5)
 });

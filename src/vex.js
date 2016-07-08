@@ -31,197 +31,96 @@ var addListeners = function (events, element, fn) {
   }
 }
 
-var vexFactory = function () {
-  var animationEndSupport = false
+// Detect CSS Animation End Support
+var animationEndEvent = ['animationend', 'webkitAnimationEnd', 'mozAnimationEnd', 'MSAnimationEnd', 'oanimationend']
+var animationEndSupport = false
+var onLoad = function (event) {
+  var s = (document.body || document.documentElement).style
+  animationEndSupport = s.animation !== undefined || s.WebkitAnimation !== undefined || s.MozAnimation !== undefined || s.MsAnimation !== undefined || s.OAnimation !== undefined
+}
+if (document.readyState === 'complete' || document.readyState === 'loaded') {
+  onLoad()
+} else {
+  document.addEventListener('DOMContentLoaded', onLoad)
+}
 
-  
-
+var Vex = function () {
   // Vex
   var vex = {
-
-    // Internal lookup table of vexes by id
-    vexes: {},
-
-    globalID: 1,
-
-    // Inconsistent casings are intentional
-    // http://stackoverflow.com/a/12958895/131898
-    animationEndEvent: ['animationend', 'webkitAnimationEnd', 'mozAnimationEnd', 'MSAnimationEnd', 'oanimationend'],
-
-    baseClassNames: {
-      vex: 'vex',
-      content: 'vex-content',
-      overlay: 'vex-overlay',
-      close: 'vex-close',
-      closing: 'vex-closing',
-      open: 'vex-open'
-    },
-
-    defaultOptions: {
-      content: '',
-      showCloseButton: true,
-      escapeButtonCloses: true,
-      overlayClosesOnClick: true,
-      appendLocation: 'body',
-      className: '',
-      css: {},
-      overlayClassName: '',
-      overlayCSS: {},
-      contentClassName: '',
-      contentCSS: {},
-      closeClassName: '',
-      closeCSS: {}
-    },
-
     open: function (options) {
-      options = Object.assign({}, this.defaultOptions, options)
-
-      options.id = this.globalID
-      this.globalID += 1
+      this.options = options = Object.assign({}, Vex.defaultOptions, options)
 
       // Vex
-
-      options.vex = document.createElement('div')
-      options.vex.classList.add(this.baseClassNames.vex)
+      this.rootEl = options.vex = document.createElement('div')
+      options.vex.classList.add(Vex.baseClassNames.vex)
       if (options.className) {
         options.vex.classList.add(options.className)
       }
       // TODO .css(options.css)
-      options.vex.setAttribute('data-vex-id', options.id)
 
       // Overlay
-
       options.vexOverlay = document.createElement('div')
-      options.vexOverlay.classList.add(this.baseClassNames.overlay)
+      options.vexOverlay.classList.add(Vex.baseClassNames.overlay)
       if (options.overlayClassName) {
         options.vexOverlay.classList.add(options.overlayClassName)
       }
       // TODO .css(options.overlayCSS)
-
       if (options.overlayClosesOnClick) {
         options.vexOverlay.addEventListener('click', function (e) {
           if (e.target !== options.vexOverlay) {
             return
           }
-          this.close(options.id)
+          this.close()
         }.bind(this))
       }
-
       options.vex.appendChild(options.vexOverlay)
 
       // Content
-
-      options.vexContent = document.createElement('div')
-      options.vexContent.classList.add(this.baseClassNames.content)
+      this.contentEl = options.vexContent = document.createElement('div')
+      options.vexContent.classList.add(Vex.baseClassNames.content)
       if (options.contentClassName) {
         options.vexContent.classList.add(options.contentClassName)
       }
-      options.vexContent.setAttribute('data-vex-id', options.id)
       // TODO .css(options.contentCSS)
       options.vexContent.appendChild(isDom(options.content) ? options.content : domify(options.content))
-
       options.vex.appendChild(options.vexContent)
 
       // Close button
-
       if (options.showCloseButton) {
         options.closeButton = document.createElement('div')
-        options.closeButton.classList.add(this.baseClassNames.close)
+        options.closeButton.classList.add(Vex.baseClassNames.close)
         if (options.closeClassName) {
           options.closeButton.classList.add(options.closeClassName)
         }
         // TODO .css(options.closeCSS)
-        options.closeButton.addEventListener('click', function () {
-          this.close(options.id)
-        }.bind(this))
-
+        options.closeButton.addEventListener('click', this.close.bind(this))
         options.vexContent.appendChild(options.closeButton)
       }
 
-      // Lookup
-
-      this.vexes[options.id] = options
-
-      // Inject DOM and trigger callbacks/events
-
+      // Inject DOM
       document.querySelector(options.appendLocation).appendChild(options.vex)
 
       // Call afterOpen callback and trigger vexOpen event
-
       if (options.afterOpen) {
         options.afterOpen(options.vexContent, options)
       }
       // TODO: trigger events ('open')
-      setTimeout(this.setupBodyClassNameOnOpen.bind(this), 0)
+      setTimeout(function () {
+        document.body.classList.add(Vex.baseClassNames.open)
+      }, 0)
 
       // For chaining
-      return options.vexContent
+      return this
     },
 
-    getSelectorFromBaseClass: function (baseClass) {
-      return '.' + baseClass.split(' ').join('.')
-    },
-
-    getAllVexes: function () {
-      var notClosingSelector = '.' + this.baseClassNames.vex + ':not(.' + this.baseClassNames.closing + ')'
-      return document.querySelectorAll(notClosingSelector)
-    },
-
-    getVexByID: function (id) {
-      var allVexes = this.getAllVexes()
-      for (var i = 0; i < allVexes.length; i++) {
-        if (parseInt(allVexes[i].getAttribute('data-vex-id')) === id) {
-          return allVexes[i]
-        }
-      }
-      return null
-    },
-
-    close: function (id) {
-      if (!id) {
-        var allVexes = this.getAllVexes()
-        var lastVex = allVexes[allVexes.length - 1]
-        if (!lastVex) {
-          return false
-        }
-        id = parseInt(lastVex.getAttribute('data-vex-id'))
-      }
-
-      return this.closeByID(id)
-    },
-
-    closeAll: function () {
-      var ids = []
-      var allVexes = this.getAllVexes()
-      for (var i = 0; i < allVexes.length; i++) {
-        ids.push(parseInt(allVexes[i].getAttribute('data-vex-id')))
-      }
-      if (ids.length === 0) {
-        return false
-      }
-
-      ids.reverse()
-
-      for (var j = 0; j < ids.length; j++) {
-        this.closeByID(ids[j])
-      }
-
-      return true
-    },
-
-    closeByID: function (id) {
-      var vexContent = this.getVexByID(id)
-      if (!vexContent) {
-        return
-      }
-
-      var options = Object.assign({}, this.vexes[parseInt(vexContent.getAttribute('data-vex-id'))])
+    close: function () {
+      var options = this.options
 
       var beforeClose = function () {
         if (options.beforeClose) {
-          options.beforeClose(vexContent, options)
+          options.beforeClose.call(this)
         }
-      }
+      }.bind(this)
 
       var close = function () {
         // TODO event triggering ('vexClose')
@@ -230,25 +129,25 @@ var vexFactory = function () {
           return
         }
         options.vex.parentNode.removeChild(options.vex)
-        this.setupBodyClassNameOnAfterClose()
+        document.body.classList.remove(Vex.baseClassNames.open)
         if (options.afterClose) {
-          options.afterClose(vexContent, options)
+          options.afterClose.call(this)
         }
         // TODO event triggering ('afterClose')
       }.bind(this)
 
-      var style = window.getComputedStyle(vexContent)
-      function hasAnimationPre(prefix) {
+      var style = window.getComputedStyle(this.contentEl)
+      function hasAnimationPre (prefix) {
         return style.getPropertyValue(prefix + 'animation-name') !== 'none' && style.getPropertyValue(prefix + 'animation-duration') !== '0s'
       }
       var hasAnimation = hasAnimationPre('') || hasAnimationPre('-webkit-') || hasAnimationPre('-moz-') || hasAnimationPre('-o-')
 
       if (animationEndSupport && hasAnimation) {
         if (beforeClose() !== false) {
-          addListeners(this.animationEndEvent, options.vex, function (e) {
+          addListeners(animationEndEvent, options.vex, function (e) {
             close()
           })
-          options.vex.classList.add(this.baseClassNames.closing)
+          options.vex.classList.add(Vex.baseClassNames.closing)
         }
       } else {
         if (beforeClose() !== false) {
@@ -257,75 +156,45 @@ var vexFactory = function () {
       }
 
       return true
-    },
-
-    closeByEscape: function () {
-      var ids = []
-      var allVexes = this.getAllVexes()
-      for (var i = 0; i < allVexes.length; i++) {
-        ids.push(parseInt(allVexes.getAttribute('data-vex-id')))
-      }
-      if (ids.length === 0) {
-        return false
-      }
-
-      var id = Math.max.apply(null, ids)
-
-      if (this.vexes[id].escapeButtonCloses) {
-        return false
-      }
-
-      return this.closeByID(id)
-    },
-
-    setupBodyClassNameOnOpen: function () {
-      document.body.classList.add(this.baseClassNames.open)
-    },
-
-    setupBodyClassNameOnAfterClose: function () {
-      if (!this.getAllVexes().length) {
-        document.body.classList.remove(this.baseClassNames.open)
-      }
-    },
-
-    hideLoading: function () {
-      var el = document.querySelector('.vex-loading-spinner')
-      if (el) {
-        el.parentNode.removeChild(el)
-      }
-    },
-
-    showLoading: function () {
-      this.hideLoading()
-      var el = document.createElement('div')
-      el.classList = 'vex-loading-spinner ' + this.defaultOptions.className
-      document.body.appendChild(el)
     }
   }
 
-  vex.dialog = require('./vex.dialog')(vex)
-
-  var onLoad = function (event) {
-    // Detect CSS Animation Support
-
-    var s = (document.body || document.documentElement).style
-    animationEndSupport = s.animation !== undefined || s.WebkitAnimation !== undefined || s.MozAnimation !== undefined || s.MsAnimation !== undefined || s.OAnimation !== undefined
-
-    // Register global handler for ESC
-    window.addEventListener('keyup', function (event) {
-      if (event.keyCode === 27) {
-        vex.closeByEscape()
-      }
-    })
-  }
-
-  if (document.readyState === 'complete' || document.readyState === 'loaded') {
-    onLoad()
-  } else {
-    document.addEventListener('DOMContentLoaded', onLoad)
-  }
+  // TODO Event handlers (like onRemove) to remove this listener
+  // Register global handler for ESC
+  window.addEventListener('keyup', function (event) {
+    if (event.keyCode === 27) {
+      vex.close()
+    }
+  })
 
   return vex
 }
 
-module.exports = vexFactory()
+Vex.baseClassNames = {
+  vex: 'vex',
+  content: 'vex-content',
+  overlay: 'vex-overlay',
+  close: 'vex-close',
+  closing: 'vex-closing',
+  open: 'vex-open'
+}
+
+Vex.defaultOptions = {
+  content: '',
+  showCloseButton: true,
+  escapeButtonCloses: true,
+  overlayClosesOnClick: true,
+  appendLocation: 'body',
+  className: '',
+  css: {},
+  overlayClassName: '',
+  overlayCSS: {},
+  contentClassName: '',
+  contentCSS: {},
+  closeClassName: '',
+  closeCSS: {}
+}
+
+Vex.Dialog = require('./vex.dialog')(Vex)
+
+module.exports = Vex
