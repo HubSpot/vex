@@ -1,3 +1,7 @@
+// Small deps for string to HTML conversion
+var domify = require('domify')
+var isDom = require('is-dom')
+
 // Object.assign polyfill
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
 if (typeof Object.assign !== 'function') {
@@ -22,162 +26,184 @@ if (typeof Object.assign !== 'function') {
   }
 }
 
-var domify = require('domify')
-var isDom = require('is-dom')
-
-var addListeners = function (events, element, fn) {
-  for (var i = 0; i < events.length; i++) {
-    element.addEventListener(events[i], fn)
-  }
+// Object.create polyfill
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
+if (typeof Object.create !== 'function') {
+  Object.create = (function () {
+    var Temp = function () {}
+    return function (prototype, propertiesObject) {
+      if (prototype !== Object(prototype) && prototype !== null) {
+        throw TypeError('Argument must be an object, or null')
+      }
+      Temp.prototype = prototype || {}
+      if (propertiesObject !== undefined) {
+        Object.defineProperties(Temp.prototype, propertiesObject)
+      }
+      var result = new Temp()
+      Temp.prototype = null
+      // to imitate the case of Object.create(null)
+      if (prototype === null) {
+        // eslint-disable-next-line
+        result.__proto__ = null
+      }
+      return result
+    }
+  })()
 }
 
 // Detect CSS Animation End Support
-var animationEndEvent = ['animationend', 'webkitAnimationEnd', 'mozAnimationEnd', 'MSAnimationEnd', 'oanimationend']
-var animationEndSupport = false
-var onLoad = function (event) {
-  var s = (document.body || document.documentElement).style
-  animationEndSupport = s.animation !== undefined || s.WebkitAnimation !== undefined || s.MozAnimation !== undefined || s.MsAnimation !== undefined || s.OAnimation !== undefined
-}
-if (document.readyState === 'complete' || document.readyState === 'loaded') {
-  onLoad()
-} else {
-  document.addEventListener('DOMContentLoaded', onLoad)
-}
-
-var Vex = function () {
-  // Vex
-  var vex = {
-    open: function (options) {
-      this.options = options = Object.assign({}, Vex.defaultOptions, options)
-
-      // Vex
-      this.rootEl = options.vex = document.createElement('div')
-      options.vex.classList.add(Vex.baseClassNames.vex)
-      if (options.className) {
-        options.vex.classList.add(options.className)
-      }
-      // TODO .css(options.css)
-
-      // Overlay
-      options.vexOverlay = document.createElement('div')
-      options.vexOverlay.classList.add(Vex.baseClassNames.overlay)
-      if (options.overlayClassName) {
-        options.vexOverlay.classList.add(options.overlayClassName)
-      }
-      // TODO .css(options.overlayCSS)
-      if (options.overlayClosesOnClick) {
-        options.vexOverlay.addEventListener('click', function (e) {
-          if (e.target !== options.vexOverlay) {
-            return
-          }
-          this.close()
-        }.bind(this))
-      }
-      options.vex.appendChild(options.vexOverlay)
-
-      // Content
-      this.contentEl = options.vexContent = document.createElement('div')
-      options.vexContent.classList.add(Vex.baseClassNames.content)
-      if (options.contentClassName) {
-        options.vexContent.classList.add(options.contentClassName)
-      }
-      // TODO .css(options.contentCSS)
-      options.vexContent.appendChild(isDom(options.content) ? options.content : domify(options.content))
-      options.vex.appendChild(options.vexContent)
-
-      // Close button
-      if (options.showCloseButton) {
-        options.closeButton = document.createElement('div')
-        options.closeButton.classList.add(Vex.baseClassNames.close)
-        if (options.closeClassName) {
-          options.closeButton.classList.add(options.closeClassName)
-        }
-        // TODO .css(options.closeCSS)
-        options.closeButton.addEventListener('click', this.close.bind(this))
-        options.vexContent.appendChild(options.closeButton)
-      }
-
-      // Inject DOM
-      document.querySelector(options.appendLocation).appendChild(options.vex)
-
-      // Call afterOpen callback and trigger vexOpen event
-      if (options.afterOpen) {
-        options.afterOpen(options.vexContent, options)
-      }
-      // TODO: trigger events ('open')
-      setTimeout(function () {
-        document.body.classList.add(Vex.baseClassNames.open)
-      }, 0)
-
-      // For chaining
-      return this
-    },
-
-    close: function () {
-      var options = this.options
-
-      var beforeClose = function () {
-        if (options.beforeClose) {
-          options.beforeClose.call(this)
-        }
-      }.bind(this)
-
-      var close = function () {
-        // TODO event triggering ('vexClose')
-        if (!options.vex.parentNode) {
-          options.vex = null
-          return
-        }
-        options.vex.parentNode.removeChild(options.vex)
-        document.body.classList.remove(Vex.baseClassNames.open)
-        if (options.afterClose) {
-          options.afterClose.call(this)
-        }
-        // TODO event triggering ('afterClose')
-      }.bind(this)
-
-      var style = window.getComputedStyle(this.contentEl)
-      function hasAnimationPre (prefix) {
-        return style.getPropertyValue(prefix + 'animation-name') !== 'none' && style.getPropertyValue(prefix + 'animation-duration') !== '0s'
-      }
-      var hasAnimation = hasAnimationPre('') || hasAnimationPre('-webkit-') || hasAnimationPre('-moz-') || hasAnimationPre('-o-')
-
-      if (animationEndSupport && hasAnimation) {
-        if (beforeClose() !== false) {
-          addListeners(animationEndEvent, options.vex, function (e) {
-            close()
-          })
-          options.vex.classList.add(Vex.baseClassNames.closing)
-        }
-      } else {
-        if (beforeClose() !== false) {
-          close()
-        }
-      }
-
-      return true
+// https://github.com/limonte/sweetalert2/blob/99bd539f85e15ac170f69d35001d12e092ef0054/src/utils/dom.js#L194
+var animationEndEvent = (function() {
+  var el = document.createElement('div')
+  var eventNames = {
+    'WebkitAnimation': 'webkitAnimationEnd',
+    'MozAnimation': 'animationend',
+    'OAnimation': 'oanimationend',
+    'msAnimation': 'MSAnimationEnd',
+    'animation': 'animationend'
+  }
+  for (var i in eventNames) {
+    if (el.style[i] !== undefined) {
+      return eventNames[i];
     }
   }
+  return false;
+})();
 
-  // TODO Event handlers (like onRemove) to remove this listener
-  // This actually throws errors right now...
-  // Register global handler for ESC
-  window.addEventListener('keyup', function (event) {
-    if (event.keyCode === 27) {
-      vex.close()
-    }
-  })
-
-  return vex
-}
-
-Vex.baseClassNames = {
+// Vex base CSS classes
+var baseClassNames = {
   vex: 'vex',
   content: 'vex-content',
   overlay: 'vex-overlay',
   close: 'vex-close',
   closing: 'vex-closing',
   open: 'vex-open'
+}
+
+// Vex factory function
+var Vex = function () {
+  // Vex object
+  var vex = {}
+
+  // Register global handler for ESC
+  var escHandler = function (e) {
+    if (e.keyCode === 27) {
+      vex.close()
+    }
+  }
+  window.addEventListener('keyup', escHandler)
+
+  // Open
+  vex.open = function (opts) {
+    var options = this.options = Object.assign({}, Vex.defaultOptions, opts)
+
+    // Vex
+    var rootEl = this.rootEl = document.createElement('div')
+    rootEl.classList.add(baseClassNames.vex)
+    if (options.className) {
+      rootEl.classList = options.className
+    }
+
+    // Overlay
+    var overlayEl = this.overlayEl = document.createElement('div')
+    overlayEl.classList = baseClassNames.overlay
+    if (options.overlayClassName) {
+      overlayEl.classList = options.overlayClassName
+    }
+    if (options.overlayClosesOnClick) {
+      overlayEl.addEventListener('click', function (e) {
+        if (e.target === overlayEl) {
+          this.close()
+        }
+      }.bind(this))
+    }
+    rootEl.appendChild(overlayEl)
+
+    // Content
+    var contentEl = this.contentEl = document.createElement('div')
+    contentEl.classList.add(baseClassNames.content)
+    if (options.contentClassName) {
+      contentEl.classList.add(options.contentClassName)
+    }
+    contentEl.appendChild(isDom(options.content) ? options.content : domify(options.content))
+    rootEl.appendChild(contentEl)
+
+    // Close button
+    if (options.showCloseButton) {
+      var closeEl = this.closeEl = document.createElement('div')
+      closeEl.classList.add(baseClassNames.close)
+      if (options.closeClassName) {
+        closeEl.classList.add(options.closeClassName)
+      }
+      closeEl.addEventListener('click', this.close.bind(this))
+      contentEl.appendChild(closeEl)
+    }
+
+    // Inject DOM
+    document.querySelector(options.appendLocation).appendChild(rootEl)
+
+    // Call after open callback
+    if (options.afterOpen) {
+      options.afterOpen.call(this)
+    }
+
+    // Apply styling to the body during the next tick
+    setTimeout(function () {
+      document.body.classList.add(baseClassNames.open)
+    }, 0)
+
+    // For chaining
+    return this
+  }
+
+  // Close
+  vex.close = function () {
+    var options = this.options
+
+    var beforeClose = function () {
+      if (options.beforeClose) {
+        return options.beforeClose.call(this)
+      }
+      return true
+    }.bind(this)
+
+    var close = function () {
+      // Remove the dialog from the DOM
+      this.rootEl.parentNode.removeChild(this.rootEl)
+      // Remove styling from the body during the next tick
+      setTimeout(function () {
+        document.body.classList.remove(baseClassNames.open)
+      }, 0)
+      // Call after close callback
+      if (options.afterClose) {
+        options.afterClose.call(this)
+      }
+    }.bind(this)
+
+    if (beforeClose() === false) {
+      return false
+    }
+
+    var style = window.getComputedStyle(this.contentEl)
+    function hasAnimationPre (prefix) {
+      return style.getPropertyValue(prefix + 'animation-name') !== 'none' && style.getPropertyValue(prefix + 'animation-duration') !== '0s'
+    }
+    var hasAnimation = hasAnimationPre('') || hasAnimationPre('-webkit-') || hasAnimationPre('-moz-') || hasAnimationPre('-o-')
+
+    if (animationEndEvent && hasAnimation) {
+      this.rootEl.addEventListener(animationEndEvent, close)
+      this.rootEl.classList.add(baseClassNames.closing)
+    } else {
+      close()
+    }
+
+    // Cleanup global handler for ESC
+    window.removeEventListener('keyup', escHandler)
+
+    return true
+  }
+
+  return vex
 }
 
 Vex.defaultOptions = {
@@ -187,13 +213,9 @@ Vex.defaultOptions = {
   overlayClosesOnClick: true,
   appendLocation: 'body',
   className: '',
-  css: {},
   overlayClassName: '',
-  overlayCSS: {},
   contentClassName: '',
-  contentCSS: {},
-  closeClassName: '',
-  closeCSS: {}
+  closeClassName: ''
 }
 
 // TODO A way to identify Vexes
@@ -203,6 +225,20 @@ Vex.defaultOptions = {
 // TODO Get Vex by ID
 // TODO Loading symbols?
 
-Vex.Dialog = require('./vex.dialog')(Vex)
+Vex.registerPlugin = function (plugin, name) {
+  var pluginName = name || plugin.name;
+  if (Vex[pluginName]) {
+    throw new Error('Plugin ' + name + ' is already registered.')
+  }
+  var proto = Vex()
+  Vex[pluginName] = function () {
+    return Object.assign(Object.create(proto), plugin(proto))
+  }
+  for (var static in plugin) {
+    if (plugin.hasOwnProperty(static)) {
+      Vex[pluginName][static] = plugin.statics[static]
+    }
+  }
+}
 
 module.exports = Vex

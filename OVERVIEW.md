@@ -1,4 +1,4 @@
-## vex
+## vex-nojquery
 
 Dialogs for the 21st century.
 
@@ -6,16 +6,16 @@ Dialogs for the 21st century.
 
 ### Take control of your dialogs
 
-Vex is a modern dialog library which is highly configurable, easily stylable, and gets out of the way. You'll love vex because it's tiny (`6kb` minified, `2kb` minified+gz), has a clear and simple API, works on mobile devices, and can be customized to match your style in seconds.
+Vex is a modern dialog library which is highly configurable, easily stylable, and gets out of the way. You'll love vex because it's tiny (`10.2kb` minified, `3.8kb` minified + gzipped), has a clear and simple API, works on mobile devices, and can be customized to match your style in seconds.
 
 #### Features
 
 - Drop-in replacement for `alert`, `confirm`, and `prompt`
 - Easilly configurable animations which are smooth as butter
-- Tiny footprint (`6kb` minified) and only depends on `jQuery`
+- Tiny footprint
 - Looks and behaves great on mobile devices
-- Open multiple dialogs at once and close them individually or all at once
-- Built in CSS spinner for asynchronous dialogs
+- (TODO) Open multiple dialogs at once and close them individually or all at once
+- (TODO) Built in CSS spinner for asynchronous dialogs
 
 #### Documentation
 
@@ -27,71 +27,63 @@ Vex is a modern dialog library which is highly configurable, easily stylable, an
 
 #### Basics of Opening and Passing Content
 
-To open a dialog, call `vex.open`.
+Create a Vex object by calling `Vex()`.
 
-```coffeescript
-vex.open
-    content: '<div>Content</div>'
-    afterOpen: ($vexContent) ->
-        # console.log $vexContent.data().vex
-        $vexContent.append $el
-    afterClose: ->
-        console.log 'vexClose'
+```javascript
+var dialog = Vex()
 ```
 
-Instead of using callbacks, you can choose to chain off the open call and bind to vexOpen and vexClose events. For example:
+To open a dialog, call `Vex().open`.
 
-```coffeescript
-vex
-    .open()
-    .append($el)
-    .bind('vexOpen', (options) ->
-        options.$vexContent.append $el
-    )
-    .bind('vexClose', ->
-        console.log 'vexClose'
-    )
+```javascript
+dialog.open({
+    content: 'Hello, World!'
+})
+```
+
+The user can close the dialog manually, or you can call `Vex().close`.
+
+```javascript
+dialog.close()
 ```
 
 Read more about Vex in the [API docs](http://github.hubspot.com/vex/api/vex/).
 
 #### Vex Dialog
 
-When including `vex.dialog`, you get dropin replacements for `alert`, `confirm`, and `prompt`.
-
-```html
-<script src="vex.dialog.js"></script>
-```
+Included by default, Vex Dialog is a plugin for Vex that contains dropin replacements for `alert`, `confirm`, and `prompt`.
 
 ### API
 
-Vex Dialog exposes 4 main apis:
+Vex Dialog exposes four main methods:
 
-- `vex.dialog.alert(stringOrOptions)`
-- `vex.dialog.confirm(options)`
-- `vex.dialog.prompt(options)`
-- `vex.dialog.open(options)`
+- `Vex.Dialog().alert(stringOrOptions)`
+- `Vex.Dialog().confirm(options)`
+- `Vex.Dialog().prompt(options)`
+- `Vex.Dialog().open(options)`
 
-(Internally, `alert`, `confirm`, and `prompt` call `open` with a different compositions of options.)
-
-Read more about Vex dialog in the [API docs](http://github.hubspot.com/vex/api/vex_dialog/).
+Read more about Vex Dialog in the [API docs](http://github.hubspot.com/vex/api/vex_dialog/).
 
 #### Options
 
-When calling `vex.open()` you can pass a number of options to handle styling and certain behaviors.
+When calling `Vex().open` you can pass a number of options to handle styling and certain behaviors.
 
 Here are the defaults:
 
-```coffeescript
-defaultOptions:
-    content: ''
-    showCloseButton: true
-    overlayClosesOnClick: true
-    appendLocation: 'body'
-    className: ''
-    css: {}
-    overlayClassName: ''
-    overlayCSS: {}
-    closeClassName: ''
-    closeCSS: {}
+```javascript
+defaultOptions = {
+  content: '',
+  showCloseButton: true,
+  escapeButtonCloses: true,
+  overlayClosesOnClick: true,
+  appendLocation: 'body',
+  className: '',
+  css: {},
+  overlayClassName: '',
+  overlayCSS: {},
+  contentClassName: '',
+  contentCSS: {},
+  closeClassName: '',
+  closeCSS: {}
+}
 ```

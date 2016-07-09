@@ -1,28 +1,3 @@
-// Object.create polyfill
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
-if (typeof Object.create !== 'function') {
-  Object.create = (function () {
-    var Temp = function () {}
-    return function (prototype, propertiesObject) {
-      if (prototype !== Object(prototype) && prototype !== null) {
-        throw TypeError('Argument must be an object, or null')
-      }
-      Temp.prototype = prototype || {}
-      if (propertiesObject !== undefined) {
-        Object.defineProperties(Temp.prototype, propertiesObject)
-      }
-      var result = new Temp()
-      Temp.prototype = null
-      // to imitate the case of Object.create(null)
-      if (prototype === null) {
-        // eslint-disable-next-line
-        result.__proto__ = null
-      }
-      return result
-    }
-  })()
-}
-
 var domify = require('domify')
 var isDom = require('is-dom')
 var serialize = require('form-serialize')
@@ -78,115 +53,229 @@ var buttonsToDOM = function (buttons) {
   return domButtons
 }
 
-var plugin = function (Vex) {
-  if (!Vex) {
-    throw new Error('Vex not found.')
-  }
-  var proto = Vex()
-  var Dialog = function () {
-    return Object.assign(Object.create(proto), {
-      open: function (options) {
-        options = Object.assign({}, Dialog.defaultOptions, options)
-        this.form = options.content = buildDialogForm.call(this, options)
+var Dialog = function (vex) {
+  // Dialog plugin
+  return {
+    // Open
+    open: function (opts) {
+      var options = Object.assign({}, Dialog.defaultOptions, opts)
 
-        var beforeClose = options.beforeClose
-        options.beforeClose = function () {
-          options.callback(this.value || false)
-          if (beforeClose) {
-            beforeClose.call(this)
-          }
+      // Build the form from the options
+      this.form = options.content = buildDialogForm.call(this, options)
+
+      // Override the before close callback to also pass the value of the form
+      var beforeClose = options.beforeClose
+      options.beforeClose = function () {
+        options.callback(this.value || false)
+        if (beforeClose) {
+          beforeClose.call(this)
         }
+      }.bind(this)
 
-        var vex = proto.open(options)
+      // Open the dialog
+      var dialog = vex.open(options)
 
-        if (options.focusFirstInput) {
-          vex.contentEl.querySelector('button, input, textarea').focus()
-        }
-
-        return vex
-      },
-
-      alert: function (options) {
-        if (typeof options === 'string') {
-          options = {
-            message: options
-          }
-        }
-        options = Object.assign({}, Dialog.defaultOptions, Dialog.defaultAlertOptions, options)
-        return this.open(options)
-      },
-
-      confirm: function (options) {
-        if (typeof options === 'string') {
-          throw new Error('Dialog.confirm(options) requires options.callback.')
-        }
-        options = Object.assign({}, Dialog.defaultOptions, Dialog.defaultConfirmOptions, options)
-        return this.open(options)
-      },
-
-      prompt: function (options) {
-        if (typeof options === 'string') {
-          throw new Error('Dialog.prompt(options) requires options.callback.')
-        }
-        var variableDefaults = {
-          message: '<label for="vex">' + (options.label || 'Prompt:') + '</label>',
-          input: '<input name="vex" type="text" class="vex-dialog-prompt-input" placeholder="' + (options.placeholder || '') + '" value="' + (options.value || '') + '" />'
-        }
-        options = Object.assign({}, Dialog.defaultOptions, Dialog.defaultPromptOptions, options, variableDefaults)
-        return this.open(options)
+      // Optionally focus the first input in the form
+      if (options.focusFirstInput) {
+        dialog.contentEl.querySelector('button, input, textarea').focus()
       }
-    })
-  }
 
-  Dialog.buttons = {
-    YES: {
-      text: 'OK',
-      type: 'submit',
-      className: 'vex-dialog-button-primary'
+      // For chaining
+      return dialog
     },
 
-    NO: {
-      text: 'Cancel',
-      type: 'button',
-      className: 'vex-dialog-button-secondary',
-      click: function () {
-        this.close()
+    // Alert
+    alert: function (options) {
+      if (typeof options === 'string') {
+        options = {
+          message: options
+        }
       }
+      options = Object.assign({}, Dialog.defaultOptions, Dialog.defaultAlertOptions, options)
+      return this.open(options)
+    },
+
+    // Confirm
+    confirm: function (options) {
+      if (typeof options === 'string') {
+        throw new Error('Dialog.confirm(options) requires options.callback.')
+      }
+      options = Object.assign({}, Dialog.defaultOptions, Dialog.defaultConfirmOptions, options)
+      return this.open(options)
+    },
+
+    // Prompt
+    prompt: function (options) {
+      if (typeof options === 'string') {
+        throw new Error('Dialog.prompt(options) requires options.callback.')
+      }
+      var variableDefaults = {
+        message: '<label for="vex">' + (options.label || 'Prompt:') + '</label>',
+        input: '<input name="vex" type="text" class="vex-dialog-prompt-input" placeholder="' + (options.placeholder || '') + '" value="' + (options.value || '') + '" />'
+      }
+      options = Object.assign({}, Dialog.defaultOptions, Dialog.defaultPromptOptions, options, variableDefaults)
+      return this.open(options)
     }
   }
-
-  Dialog.defaultOptions = {
-    callback: function () {},
-    afterOpen: function () {},
-    message: 'Message',
-    input: '<input name="vex" type="hidden" value="_vex-empty-value" />',
-    buttons: [
-      Dialog.buttons.YES,
-      Dialog.buttons.NO
-    ],
-    showCloseButton: false,
-    onSubmit: function (e) {
-      e.preventDefault()
-      this.value = serialize(this.form, { hash: true })
-      return this.close()
-    },
-    focusFirstInput: true
-  }
-
-  Dialog.defaultAlertOptions = {
-    message: 'Alert',
-    buttons: [
-      Dialog.buttons.YES
-    ]
-  }
-
-  Dialog.defaultPromptOptions = {}
-
-  Dialog.defaultConfirmOptions = {
-    message: 'Confirm'
-  }
-
-  return Dialog
 }
 
-module.exports = plugin
+Dialog.buttons = {
+  YES: {
+    text: 'OK',
+    type: 'submit',
+    className: 'vex-dialog-button-primary'
+  },
+
+  NO: {
+    text: 'Cancel',
+    type: 'button',
+    className: 'vex-dialog-button-secondary',
+    click: function () {
+      this.close()
+    }
+  }
+}
+
+Dialog.defaultOptions = {
+  callback: function () {},
+  afterOpen: function () {},
+  message: 'Message',
+  input: '<input name="vex" type="hidden" value="_vex-empty-value" />',
+  buttons: [
+    Dialog.buttons.YES,
+    Dialog.buttons.NO
+  ],
+  showCloseButton: false,
+  onSubmit: function (e) {
+    e.preventDefault()
+    this.value = serialize(this.form, { hash: true })
+    return this.close()
+  },
+  focusFirstInput: true
+}
+
+Dialog.defaultAlertOptions = {
+  message: 'Alert',
+  buttons: [
+    Dialog.buttons.YES
+  ]
+}
+
+Dialog.defaultPromptOptions = {}
+
+Dialog.defaultConfirmOptions = {
+  message: 'Confirm'
+}
+
+// var plugin = function (Vex) {
+//   if (!Vex) {
+//     throw new Error('Vex not found.')
+//   }
+//   var proto = Vex()
+//   var Dialog = function () {
+//     return Object.assign(Object.create(proto), {
+//       open: function (options) {
+//         options = Object.assign({}, Dialog.defaultOptions, options)
+//         this.form = options.content = buildDialogForm.call(this, options)
+
+//         var beforeClose = options.beforeClose
+//         options.beforeClose = function () {
+//           options.callback(this.value || false)
+//           if (beforeClose) {
+//             beforeClose.call(this)
+//           }
+//         }
+
+//         var vex = proto.open(options)
+
+//         if (options.focusFirstInput) {
+//           vex.contentEl.querySelector('button, input, textarea').focus()
+//         }
+
+//         return vex
+//       },
+
+//       alert: function (options) {
+//         if (typeof options === 'string') {
+//           options = {
+//             message: options
+//           }
+//         }
+//         options = Object.assign({}, Dialog.defaultOptions, Dialog.defaultAlertOptions, options)
+//         return this.open(options)
+//       },
+
+//       confirm: function (options) {
+//         if (typeof options === 'string') {
+//           throw new Error('Dialog.confirm(options) requires options.callback.')
+//         }
+//         options = Object.assign({}, Dialog.defaultOptions, Dialog.defaultConfirmOptions, options)
+//         return this.open(options)
+//       },
+
+//       prompt: function (options) {
+//         if (typeof options === 'string') {
+//           throw new Error('Dialog.prompt(options) requires options.callback.')
+//         }
+//         var variableDefaults = {
+//           message: '<label for="vex">' + (options.label || 'Prompt:') + '</label>',
+//           input: '<input name="vex" type="text" class="vex-dialog-prompt-input" placeholder="' + (options.placeholder || '') + '" value="' + (options.value || '') + '" />'
+//         }
+//         options = Object.assign({}, Dialog.defaultOptions, Dialog.defaultPromptOptions, options, variableDefaults)
+//         return this.open(options)
+//       }
+//     })
+//   }
+
+//   Dialog.buttons = {
+//     YES: {
+//       text: 'OK',
+//       type: 'submit',
+//       className: 'vex-dialog-button-primary'
+//     },
+
+//     NO: {
+//       text: 'Cancel',
+//       type: 'button',
+//       className: 'vex-dialog-button-secondary',
+//       click: function () {
+//         this.close()
+//       }
+//     }
+//   }
+
+//   Dialog.defaultOptions = {
+//     callback: function () {},
+//     afterOpen: function () {},
+//     message: 'Message',
+//     input: '<input name="vex" type="hidden" value="_vex-empty-value" />',
+//     buttons: [
+//       Dialog.buttons.YES,
+//       Dialog.buttons.NO
+//     ],
+//     showCloseButton: false,
+//     onSubmit: function (e) {
+//       e.preventDefault()
+//       this.value = serialize(this.form, { hash: true })
+//       return this.close()
+//     },
+//     focusFirstInput: true
+//   }
+
+//   Dialog.defaultAlertOptions = {
+//     message: 'Alert',
+//     buttons: [
+//       Dialog.buttons.YES
+//     ]
+//   }
+
+//   Dialog.defaultPromptOptions = {}
+
+//   Dialog.defaultConfirmOptions = {
+//     message: 'Confirm'
+//   }
+
+//   return Dialog
+// }
+
+module.exports = Dialog
