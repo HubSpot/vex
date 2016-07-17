@@ -11,15 +11,14 @@ Plugins can be published individually to package managers such as npm or bower, 
 ```
 npm install --save vex-dialog
 ```
-Warning: `vex-dialog` package doesn't exist at this moment in time. Use `vex2-dialog`.
 
 ### Registering plugins
 
 All plugins must be registered with the main vex module.
 
 ```javascript
-var vex = require('vex2') // or window.vex, if included via script tag
-vex.registerPlugin(require('vex2-dialog')) // or window.vexDialog, if included via script tag
+var vex = require('vex') // or window.vex, if included via script tag
+vex.registerPlugin(require('vex-dialog')) // or window.vexDialog, if included via script tag
 
 // The plugin is registered under the vex namespace.
 vex.dialog.alert('I was made by a plugin!')
@@ -53,4 +52,4 @@ vex.helloWorld.open('Hello!') // logs 'you opened a vex with a plugin!'
 
 ### List of plugins
 
-- [vex-dialog](https://github.com/bbatliner/vex2-dialog)
+- [vex-dialog](https://github.com/bbatliner/vex-dialog)

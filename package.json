@@ -7,7 +7,7 @@
     "Brendan Batliner <brendan@omnipointment.com"
   ],
   "license": "MIT",
-  "main": "dist/vex.min.js",
+  "main": "dist/vex.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/HubSpot/vex.git"
