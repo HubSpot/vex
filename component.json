@@ -1,0 +1,26 @@
+{
+  "name": "vex",
+  "repo": "HubSpot/vex",
+  "description": "Beautiful, functional, dialogs in Javascript",
+  "version": "3.0.0",
+  "homepage": "http://github.hubspot.com/vex",
+  "license": "MIT",
+  "keywords": [
+    "client-side",
+    "notification",
+    "dialog",
+    "modal"
+  ],
+  "scripts": [
+    "dist/vex.combined.js"
+  ],
+  "styles": [
+    "css/vex.css",
+    "css/vex-theme-default.css",
+    "css/vex-theme-os.css",
+    "css/vex-theme-plain.css",
+    "css/vex-theme-wireframe.css",
+    "css/vex-theme-flat-attack.css",
+    "css/vex-theme-top.css"
+  ]
+}
