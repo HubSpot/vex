@@ -1,27 +1,36 @@
 {
-  "name": "vex-nojquery",
-  "version": "4.0.3",
-  "description": "Beautiful, functional, dialogs in vanilla JavaScript",
-  "author": "Brendan Batliner <brendan@omnipointment.com>",
+  "name": "vex-js",
+  "version": "3.0.0",
+  "description": "Beautiful, functional dialogs in vanilla JavaScript",
+  "contributors": [
+    "Adam Schwartz <aschwartz@hubspot.com>",
+    "Brendan Batliner <brendan@omnipointment.com"
+  ],
   "license": "MIT",
   "main": "dist/vex.min.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bbatliner/vex"
+    "url": "https://github.com/HubSpot/vex.git"
   },
   "dependencies": {
+    "classlist-polyfill": "^1.0.3",
     "domify": "^1.4.0",
-    "form-serialize": "^0.7.1",
-    "is-dom": "^1.0.5"
+    "vex-dialog": "^1.0.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-browserify": "^5.0.0",
-    "grunt-cli": "~0.1.9",
-    "grunt-contrib-compass": "~0.5.0",
-    "grunt-contrib-uglify": "~0.2.4",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-sass": "~1.1.0",
-    "standard": "^7.1.2"
+    "grunt": "latest",
+    "grunt-browserify": "latest",
+    "grunt-contrib-compass": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-sass": "latest",
+    "standard": "latest"
+  },
+  "scripts": {
+    "test": "standard"
+  },
+  "standard": {
+    "ignore": [
+      "/dist"
+    ]
   }
 }

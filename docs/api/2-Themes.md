@@ -30,11 +30,12 @@ Instead of setting `vex.defaultOptions.className`, you could instead set the `cl
 
 ### Inline Theme Example
 
-```coffeescript
-vex.defaultOptions.className = 'vex-theme-os';
-vex.dialog.alert
-    message: 'Testing the wireframe theme.'
-    className: 'vex-theme-wireframe' # Overwrites defaultOptions
+```javascript
+vex.defaultOptions.className = 'vex-theme-os'
+vex.dialog.alert({
+    message: 'Testing the wireframe theme.',
+    className: 'vex-theme-wireframe' // Overwrites defaultOptions
+})
 ```
 
 <!-- Resources for the demos -->

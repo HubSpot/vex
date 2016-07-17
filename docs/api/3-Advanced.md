@@ -15,20 +15,16 @@ When opening a dialog, vex appends the following HTML to `appendLocation` (which
 
 If `showCloseButton` is set to false, `<div class="vex-close"></div>` will be ommitted.
 
-Optional class names or inline CSS can be added to any of these elements by setting any the following options (with defaults shown):
+**Breaking change:** inline CSS can no longer be included in options. Use CSS classes, instead.
+
+Optional class names can be added to any of these elements by setting any the following options (with defaults shown):
 
 ```
 className: ''
-css: {}
 overlayClassName: ''
-overlayCSS: {}
 contentClassName: ''
-contentCSS: {}
 closeClassName: ''
-closeCSS: {}
 ```
-
-The CSS options take an object to be passed to jQuery's `.css` function.
 
 ### API
 
@@ -36,50 +32,44 @@ The CSS options take an object to be passed to jQuery's `.css` function.
 
 To open a dialog, call `vex.open`.
 
-```coffeescript
-vex.open
+```javascript
+vex.open({
     content: '<div>Content</div>'
-    afterOpen: ($vexContent) ->
-        # console.log $vexContent.data().vex
-        $vexContent.append $el
-    afterClose: ->
-        console.log 'vexClose'
+})
 ```
 
 In addition, you can wait to append your content until after the dialog has opened. (Visually, it will be perceived the same way.)
 
-```coffeescript
-vex.open
-    afterOpen: ($vexContent) ->
-        # console.log $vexContent.data()
-        $vexContent.append $el
-    afterClose: ->
-        console.log 'vexClose'
+```javascript
+vex.open({
+    afterOpen: function () {
+        this.contentEl.appendChild(el)
+    }
+})
 ```
 
-Instead of using callbacks, you can choose to chain off the open call and bind to vexOpen and vexClose events. For example:
-
-```coffeescript
-vex
-    .open()
-    .bind('vexOpen', (options) ->
-        options.$vexContent.append $el
-    )
-    .bind('vexClose', ->
-        console.log 'vexClose'
-    )
-```
+**Breaking change:** vexOpen and vexClose events are no longer emitted. Use the callbacks `afterOpen` and `afterClose`.
 
 Also, since opening/closing is synchronous, you don't even have to wait for the vexOpen event. Just append right away!
 
-```coffeescript
-vex.open().append($el).bind('vexClose', -> console.log 'vexClose')
+```javascript
+vex.open().contentEl.appendChild(el)
 ```
 
 You can also close vex dialogs by id:
-```coffeescript
-$vexContent = vex.open()
-vex.close($vexContent.data().vex.id)
+```javascript
+var dialog = vex.open()
+vex.close(dialog.id)
+```
+
+Or just the most recently opened vex:
+```javascript
+vex.closeTop()
+```
+
+Or all at once:
+```javascript
+vex.closeAll()
 ```
 
 #### Options
@@ -88,26 +78,23 @@ When calling `vex.open()` you can pass a number of options to handle styling and
 
 Here are the defaults:
 
-```coffeescript
-defaultOptions:
-    content: ''
-    showCloseButton: true
-    escapeButtonCloses: true
-    overlayClosesOnClick: true
-    appendLocation: 'body'
-    className: ''
-    css: {}
-    overlayClassName: ''
-    overlayCSS: {}
-    contentClassName: ''
-    contentCSS: {}
+```javascript
+defaultOptions: {
+    content: '',
+    showCloseButton: true,
+    escapeButtonCloses: true,
+    overlayClosesOnClick: true,
+    appendLocation: 'body',
+    className: '',
+    overlayClassName: '',
+    contentClassName: '',
     closeClassName: ''
-    closeCSS: {}
+}
 ```
 
 ### Note about Includes
 
-To use Vex, minimally, you must include:
+To use vex, minimally, you must include:
 
 ```html
 <script src="vex.js"></script>
