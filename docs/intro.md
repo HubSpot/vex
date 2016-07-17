@@ -167,8 +167,7 @@ vex was built by [Adam Schwartz](http://twitter.com/adamfschwartz)
 
 <!-- Resources for the demos -->
 <p style="-webkit-transform: translateZ(0)"></p>
-<script src="/vex/js/vex.js"></script>
-<script src="/vex/js/vex.dialog.js"></script>
+<script src="/vex/js/vex.combined.js"></script>
 <link rel="stylesheet" href="/vex/css/vex.css" />
 <link rel="stylesheet" href="/vex/css/vex-theme-os.css">
 <script>

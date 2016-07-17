@@ -2,7 +2,7 @@
 
 ### DOM Structure
 
-When opening a dialog, vex appends the following HTML to `appendLocation` (which defaults to `body`).
+When opening an instance, vex appends the following HTML to `appendLocation` (which defaults to `body`).
 
 ```html
 <div class="vex">
@@ -15,8 +15,6 @@ When opening a dialog, vex appends the following HTML to `appendLocation` (which
 
 If `showCloseButton` is set to false, `<div class="vex-close"></div>` will be ommitted.
 
-**Breaking change:** inline CSS can no longer be included in options. Use CSS classes, instead.
-
 Optional class names can be added to any of these elements by setting any the following options (with defaults shown):
 
 ```
@@ -26,51 +24,79 @@ contentClassName: ''
 closeClassName: ''
 ```
 
-### API
+### vex API
 
-#### Basics of Opening and Passing Content
+#### `vex.open(stringOrOptions)`
 
-To open a dialog, call `vex.open`.
+Returns: a vex instance
 
-```javascript
-vex.open({
-    content: '<div>Content</div>'
-})
-```
+Opens an instance. The content of the instance is either the string passed in to `vex.open` or the `content` option.
+The default options are documented below.
 
-In addition, you can wait to append your content until after the dialog has opened. (Visually, it will be perceived the same way.)
+#### `vex.close(vexInstanceOrId)`
 
-```javascript
-vex.open({
-    afterOpen: function () {
-        this.contentEl.appendChild(el)
-    }
-})
-```
+Returns: a boolean indicating whether the instance could be closed
 
-**Breaking change:** vexOpen and vexClose events are no longer emitted. Use the callbacks `afterOpen` and `afterClose`.
+Closes a vex instance. Pass either a vex instance or a numeric id, and vex will try to close the instance.
+Closing an instance will remove it from vex's internal lookup table to save memory, meaning after an instance is closed it will not be retrievable from either `vex.getAll()` or `vex.getById()`.
 
-Also, since opening/closing is synchronous, you don't even have to wait for the vexOpen event. Just append right away!
+#### `vex.closeTop()`
 
-```javascript
-vex.open().contentEl.appendChild(el)
-```
+Returns: a boolean indicating whether the top instance could be closed
 
-You can also close vex dialogs by id:
-```javascript
-var dialog = vex.open()
-vex.close(dialog.id)
-```
+Closes the most recently opened instance (on top).
 
-Or just the most recently opened vex:
-```javascript
-vex.closeTop()
-```
+#### `vex.closeAll()`
 
-Or all at once:
-```javascript
-vex.closeAll()
-```
+Returns: `true`
+
+Closes all vex instances.
+
+#### `vex.getById(id)`
+
+Returns: a vex instance or `undefined`
+
+Gets a single vex instance by its id.
+
+#### `vex.getAll()`
+
+Returns: an object whose keys are ids and values are vex instances mapped to those ids
+
+Gets all open vex instances.
+
+### vex instance API
+
+A vex instance is returned from `vex.open`.
+
+#### `vexInstance.close()`
+
+Returns: a boolean indicating whether the instance could be closed
+
+Closes this vex. Closing a vex instance will remove it from vex's internal lookup table to save memory, meaning after a vex is closed it will not be retrievable from either `vex.getAll()` or `vex.getById()`.
+
+#### `vexInstance.id`
+
+The id assigned to this instance by vex. Used for getting and closing instances.
+
+#### `vexInstance.rootEl`
+
+The root DOM element (`div.vex`).
+
+#### `vexInstance.overlayEl`
+
+The overlay DOM element (`div.vex-overlay`).
+
+#### `vexInstance.contentEl`
+
+The content DOM element (`div.vex-content`).
+
+#### `vexInstance.closeEl`
+
+The close button DOM element (`div.vex-close`).
+
+#### `vexInstance.isOpen`
+
+A boolean indicating whether the instance is open/visible.
 
 #### Options
 
@@ -92,6 +118,12 @@ defaultOptions: {
 }
 ```
 
+In addition to these string options, there are also three callback functions you can optionally provide:
+
+- `afterOpen` is called immediately after the vex instance is appended to the DOM
+- `afterClose` is called immediately after the vex instance is removed from the DOM
+- `beforeClose` is called before removing the instance from the DOM, and should return a boolean. If `beforeClose` returns false, the close will not go through and the vex instance will remain open. Useful for validation or any other checks you need to perform.
+
 ### Note about Includes
 
 To use vex, minimally, you must include:
@@ -101,12 +133,11 @@ To use vex, minimally, you must include:
 <link rel="stylesheet" href="vex.css" />
 ```
 
-We also recommend including `vex.dialog.js` and a theme file. However, these are not actually required. To include both `vex.js` and `vex.dialog.js`, use `vex.combined.js` (or `vex.combined.min.js`). All of these files can be found in the ZIP which you can [download here](/vex).
+We also recommend including `vex-dialog` and a theme file. However, these are not actually required. To include both `vex` and `vex-dialog`, use `vex.combined.js` (or `vex.combined.min.js`). All of these files can be found in the ZIP which you can [download here](/vex).
 
 <!-- Resources for the demos -->
 <p style="-webkit-transform: translateZ(0)"></p>
-<script src="/vex/js/vex.js"></script>
-<script src="/vex/js/vex.dialog.js"></script>
+<script src="/vex/js/vex.combined.js"></script>
 <link rel="stylesheet" href="/vex/css/vex.css" />
 <link rel="stylesheet" href="/vex/css/vex-theme-os.css">
 <script>
