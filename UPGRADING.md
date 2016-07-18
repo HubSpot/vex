@@ -10,7 +10,7 @@ These depended on jQuery's event system, and it would be too much overhead to in
 
 #### 3. The return value of `vex.open()` is no longer a jQuery element, but a "vex instance" with its own API
 
-For documentation of this API, see [the docs](/docs/api/3-Advanced.md).
+For documentation of this API, see [the API docs](/docs/api/3-Advanced.md).
 
 #### 4. `vex.dialog` has been replaced by its plugin counterpart, [`vex-dialog`](https://github.com/bbatliner/vex-dialog)
 
@@ -30,3 +30,6 @@ var vex = require('vex-js')
 vex.registerPlugin(require('vex-dialog'))
 ```
 
+#### 5. `vex-dialog` is *safe by default*, meaning the `message` option is treated as a regular string, not raw HTML
+
+An `unsafeMessage` option has been added, which will not escape any HTML. For more details, see [the docs](/docs/api/1-Basics.md).
