@@ -1,30 +1,10 @@
-// String to DOM function
-var domify = require('domify')
 // classList polyfill for old browsers
 require('classlist-polyfill')
-
 // Object.assign polyfill
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
-if (typeof Object.assign !== 'function') {
-  Object.assign = function (target) {
-    if (target == null) {
-      throw new TypeError('Cannot convert undefined or null to object')
-    }
+require('es6-object-assign').polyfill()
 
-    target = Object(target)
-    for (var index = 1; index < arguments.length; index++) {
-      var source = arguments[index]
-      if (source != null) {
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key]
-          }
-        }
-      }
-    }
-    return target
-  }
-}
+// String to DOM function
+var domify = require('domify')
 
 // Detect CSS Animation End Support
 // https://github.com/limonte/sweetalert2/blob/99bd539f85e15ac170f69d35001d12e092ef0054/src/utils/dom.js#L194

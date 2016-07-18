@@ -13,17 +13,18 @@
     "url": "https://github.com/HubSpot/vex.git"
   },
   "dependencies": {
-    "classlist-polyfill": "^1.0.3",
-    "domify": "^1.4.0",
-    "vex-dialog": "^1.0.0"
+    "classlist-polyfill": "1.0.3",
+    "domify": "1.4.0",
+    "es6-object-assign": "1.0.2",
+    "vex-dialog": "1.0.0"
   },
   "devDependencies": {
-    "grunt": "latest",
-    "grunt-browserify": "latest",
-    "grunt-contrib-compass": "latest",
-    "grunt-contrib-uglify": "latest",
-    "grunt-sass": "latest",
-    "standard": "latest"
+    "grunt": "1.0.1",
+    "grunt-browserify": "5.0.0",
+    "grunt-contrib-compass": "1.1.1",
+    "grunt-contrib-uglify": "1.0.1",
+    "grunt-sass": "1.2.0",
+    "standard": "7.1.2"
   },
   "scripts": {
     "test": "standard"

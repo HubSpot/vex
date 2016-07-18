@@ -2,7 +2,7 @@
 
 ### Take control of your dialogs
 
-vex is a modern dialog library which is highly configurable, easily stylable, and gets out of the way. You'll love vex because it's tiny (`5.1kb` minified and gzipped), has a clear and simple API, works on mobile devices, and can be customized to match your style in seconds.
+vex is a modern dialog library which is highly configurable, easily stylable, and gets out of the way. You'll love vex because it's tiny (`5.2kb` minified and gzipped), has a clear and simple API, works on mobile devices, and can be customized to match your style in seconds.
 
 #### Features
 

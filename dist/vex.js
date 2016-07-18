@@ -356,33 +356,61 @@ function parse(html, doc) {
 }
 
 },{}],3:[function(require,module,exports){
-// String to DOM function
-var domify = require('domify')
-// classList polyfill for old browsers
-require('classlist-polyfill')
+/**
+ * Code refactored from Mozilla Developer Network:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+ */
 
-// Object.assign polyfill
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
-if (typeof Object.assign !== 'function') {
-  Object.assign = function (target) {
-    if (target == null) {
-      throw new TypeError('Cannot convert undefined or null to object')
+'use strict';
+
+function assign(target, firstSource) {
+  if (target === undefined || target === null) {
+    throw new TypeError('Cannot convert first argument to object');
+  }
+
+  var to = Object(target);
+  for (var i = 1; i < arguments.length; i++) {
+    var nextSource = arguments[i];
+    if (nextSource === undefined || nextSource === null) {
+      continue;
     }
 
-    target = Object(target)
-    for (var index = 1; index < arguments.length; index++) {
-      var source = arguments[index]
-      if (source != null) {
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key]
-          }
-        }
+    var keysArray = Object.keys(Object(nextSource));
+    for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
+      var nextKey = keysArray[nextIndex];
+      var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
+      if (desc !== undefined && desc.enumerable) {
+        to[nextKey] = nextSource[nextKey];
       }
     }
-    return target
+  }
+  return to;
+}
+
+function polyfill() {
+  if (!Object.assign) {
+    Object.defineProperty(Object, 'assign', {
+      enumerable: false,
+      configurable: true,
+      writable: true,
+      value: assign
+    });
   }
 }
+
+module.exports = {
+  assign: assign,
+  polyfill: polyfill
+};
+
+},{}],4:[function(require,module,exports){
+// classList polyfill for old browsers
+require('classlist-polyfill')
+// Object.assign polyfill
+require('es6-object-assign').polyfill()
+
+// String to DOM function
+var domify = require('domify')
 
 // Detect CSS Animation End Support
 // https://github.com/limonte/sweetalert2/blob/99bd539f85e15ac170f69d35001d12e092ef0054/src/utils/dom.js#L194
@@ -644,5 +672,5 @@ vex.registerPlugin = function (pluginFn, name) {
 
 module.exports = vex
 
-},{"classlist-polyfill":1,"domify":2}]},{},[3])(3)
+},{"classlist-polyfill":1,"domify":2,"es6-object-assign":3}]},{},[4])(4)
 });
