@@ -9,7 +9,12 @@ vex-dialog exposes 4 main apis:
 - `vex.dialog.prompt(options)`
 - `vex.dialog.open(options)`
 
-(Internally, `alert`, `confirm`, and `prompt` call `open` with different compositions of options.)
+These all call the `vex.open` method with different combinations of options. [All of the options](/docs/api/3-Advanced.md#options) that `vex.open` supports are also supported here.
+
+vex-dialog provides *safe by default* behavior by treating the `message` you provide as a regular string, not raw HTML.
+
+If you need to pass through HTML to your dialog, use the `unsafeMessage` option.
+The `unsafeMessage` option is safe to use as long as you provide either static HTML *or* HTML-escape ([html-escape](https://www.npmjs.com/package/html-escape), [_.escape](https://lodash.com/docs#escape), etc.) any untrusted content passed through, such as user-supplied content.
 
 #### Alert
 
@@ -26,6 +31,19 @@ Play with this demo:
 
 ```javascript
 vex.dialog.alert('Thanks for checking out vex!')
+```
+
+When passing a string, the text is interpreted as a string and HTML-escaped for safety.
+
+If you want to pass HTML tags into the `alert()` method, you need to use the `unsafeMessage` option and handle any escaping of
+potentially unsafe content you provide to this option:
+
+```javascript
+// This use of raw HTML is made safe because the HTML is static.
+vex.dialog.alert({ unsafeMessage: '<b>Hello World!</b>' })
+
+// This use of raw HTML is made safe because the Underscore escape method is used to escape potentially unsafe content.
+vex.dialog.alert({ unsafeMessage: '<b>Hello ' + _.escape(user.firstName) + '!</b>' })
 ```
 
 #### Confirm
@@ -56,6 +74,8 @@ vex.dialog.confirm({
 })
 ```
 
+`message` is interpreted as a string and HTML-escaped for safety. Explicitly use the `unsafeMessage` option instead when you need to pass raw HTML, making sure to HTML-escape any untrusted content (see above for example).
+
 #### Prompt
 
 <a class="demo-prompt hs-brand-button">Open a prompt</a>
@@ -83,6 +103,8 @@ vex.dialog.prompt({
     }
 })
 ```
+
+`message` is interpreted as a string and HTML-escaped for safety. Explicitly use the `unsafeMessage` option instead when you need to pass raw HTML, making sure to HTML-escape any untrusted content (see above for example).
 
 #### Open
 
