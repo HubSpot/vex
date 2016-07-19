@@ -16,7 +16,7 @@
     "classlist-polyfill": "1.0.3",
     "domify": "1.4.0",
     "es6-object-assign": "1.0.2",
-    "vex-dialog": "1.0.0"
+    "vex-dialog": "1.0.1"
   },
   "devDependencies": {
     "grunt": "1.0.1",
