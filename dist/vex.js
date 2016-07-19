@@ -414,7 +414,7 @@ var domify = require('domify')
 
 // Detect CSS Animation End Support
 // https://github.com/limonte/sweetalert2/blob/99bd539f85e15ac170f69d35001d12e092ef0054/src/utils/dom.js#L194
-var animationEndEvent = (function () {
+var animationEndEvent = (function detectAnimationEndEvent () {
   var el = document.createElement('div')
   var eventNames = {
     'WebkitAnimation': 'webkitAnimationEnd',
@@ -447,7 +447,7 @@ var globalId = 1
 
 // vex itself is an object that exposes a simple API to open and close vex objects in various ways
 var vex = {
-  open: function (opts) {
+  open: function open (opts) {
     // The dialog instance
     var vexInstance = {}
 
@@ -462,24 +462,41 @@ var vex = {
 
     // Close function on the vex instance
     // This is how all API functions should close individual vexes
-    vexInstance.close = function () {
+    vexInstance.close = function instanceClose () {
       // Check state
       if (!this.isOpen) {
         return true
       }
 
       var options = this.options
-
-      var beforeClose = function () {
+      
+      // Allow the user to validate any info or abort the close with the beforeClose callback
+      var shouldClose = (function shouldClose () {
         // Call before close callback
         if (options.beforeClose) {
           return options.beforeClose.call(this)
         }
         // Otherwise indicate that it's ok to continue with close
         return true
-      }.bind(this)
+      }.bind(this)())
 
-      var close = function () {
+      // If beforeClose() fails, abort the close
+      if (shouldClose === false) {
+        return false
+      }
+
+      // Update state
+      this.isOpen = false
+
+      // Detect if the content el has any CSS animations defined
+      var style = window.getComputedStyle(this.contentEl)
+      function hasAnimationPre (prefix) {
+        return style.getPropertyValue(prefix + 'animation-name') !== 'none' && style.getPropertyValue(prefix + 'animation-duration') !== '0s'
+      }
+      var hasAnimation = hasAnimationPre('') || hasAnimationPre('-webkit-') || hasAnimationPre('-moz-') || hasAnimationPre('-o-')
+
+      // Define the function that will actually close the instance
+      var close = function close () {
         if (!this.rootEl.parentNode) {
           return
         }
@@ -498,21 +515,6 @@ var vex = {
           document.body.classList.remove(baseClassNames.open)
         }
       }.bind(this)
-
-      // If any user-defined validation or anything fails, abort the close
-      if (beforeClose() === false) {
-        return false
-      }
-
-      // Update state
-      this.isOpen = false
-
-      // Detect if the content el has any CSS animations defined
-      var style = window.getComputedStyle(this.contentEl)
-      function hasAnimationPre (prefix) {
-        return style.getPropertyValue(prefix + 'animation-name') !== 'none' && style.getPropertyValue(prefix + 'animation-duration') !== '0s'
-      }
-      var hasAnimation = hasAnimationPre('') || hasAnimationPre('-webkit-') || hasAnimationPre('-moz-') || hasAnimationPre('-o-')
 
       // Close the vex
       if (animationEndEvent && hasAnimation) {
@@ -550,7 +552,7 @@ var vex = {
       overlayEl.classList.add(options.overlayClassName)
     }
     if (options.overlayClosesOnClick) {
-      overlayEl.addEventListener('click', function (e) {
+      overlayEl.addEventListener('click', function overlayClickListener (e) {
         if (e.target === overlayEl) {
           vexInstance.close()
         }
@@ -594,7 +596,7 @@ var vex = {
   },
 
   // A top-level vex.close function to close dialogs by reference or id
-  close: function (vexOrId) {
+  close: function close (vexOrId) {
     var id
     if (vexOrId.id) {
       id = vexOrId.id
@@ -610,7 +612,7 @@ var vex = {
   },
 
   // Close the most recently created/opened vex
-  closeTop: function () {
+  closeTop: function closeTop () {
     var ids = Object.keys(vexes)
     if (!ids.length) {
       return false
@@ -619,7 +621,7 @@ var vex = {
   },
 
   // Close every vex!
-  closeAll: function () {
+  closeAll: function closeAll () {
     for (var id in vexes) {
       this.close(id)
     }
@@ -627,18 +629,18 @@ var vex = {
   },
 
   // A getter for the internal lookup table
-  getAll: function () {
+  getAll: function getAll () {
     return vexes
   },
 
   // A getter for the internal lookup table
-  getById: function (id) {
+  getById: function getById (id) {
     return vexes[id]
   }
 }
 
 // Close top vex on escape
-window.addEventListener('keyup', function (e) {
+window.addEventListener('keyup', function vexKeyupListener (e) {
   if (e.keyCode === 27) {
     vex.closeTop()
   }
@@ -661,7 +663,7 @@ vex.defaultOptions = {
 // TODO Loading symbols?
 
 // Plugin system!
-vex.registerPlugin = function (pluginFn, name) {
+vex.registerPlugin = function registerPlugin (pluginFn, name) {
   var plugin = pluginFn(vex)
   var pluginName = name || plugin.name
   if (vex[pluginName]) {
