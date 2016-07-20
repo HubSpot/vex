@@ -143,7 +143,7 @@
   };
 
   if (typeof define === 'function' && define.amd) {
-    define(['jquery', 'vex'], vexDialogFactory);
+    define(['jquery', 'vex-js'], vexDialogFactory);
   } else if (typeof exports === 'object') {
     module.exports = vexDialogFactory(require('jquery'), require('./vex.js'));
   } else {
