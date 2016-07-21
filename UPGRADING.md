@@ -12,6 +12,28 @@ These depended on jQuery's event system, and it would be too much overhead to in
 
 For documentation of this API, see [the API docs](/docs/api/3-Advanced.md).
 
+If you depend on jQuery for manipulating your vex instances, you can still wrap the `rootEl` property of the vex instance with jQuery and continue to use your jQuery code:
+
+Old (using a draggable example):
+```javascript
+/* $el = some jQuery element... */
+vex.open({
+    afterOpen: function ($vexContent) {
+        $vexContent.append($el)
+    }
+}).draggable()
+```
+
+vex 3:
+```javascript
+/* $el = some jQuery element... */
+$(vex.open({
+    afterOpen: function () {
+        $(this.contentEl).append($el)
+    }
+}).rootEl).draggable()
+```
+
 #### 4. `vex.dialog` has been replaced by its plugin counterpart, [`vex-dialog`](https://github.com/bbatliner/vex-dialog)
 
 While you can still use `vex.combined.js`, inclusion of vex in build systems such as Browserify or Webpack will require some changes.
