@@ -42,6 +42,23 @@ var globalId = 1
 // vex itself is an object that exposes a simple API to open and close vex objects in various ways
 var vex = {
   open: function open (opts) {
+    // Check for usage of deprecated options, and log a warning
+    var warnDeprecated = function warnDeprecated (prop) {
+      console.warn('The "' + prop + '" property is deprecated in vex 3. Use CSS classes and the appropriate "ClassName" options, instead.')
+    }
+    if (opts.css) {
+      warnDeprecated('css')
+    }
+    if (opts.overlayCSS) {
+      warnDeprecated('overlayCSS')
+    }
+    if (opts.contentCSS) {
+      warnDeprecated('contentCSS')
+    }
+    if (opts.closeCSS) {
+      warnDeprecated('closeCSS')
+    }
+
     // The dialog instance
     var vexInstance = {}
 
@@ -63,7 +80,7 @@ var vex = {
       }
 
       var options = this.options
-      
+
       // Allow the user to validate any info or abort the close with the beforeClose callback
       var shouldClose = (function shouldClose () {
         // Call before close callback
