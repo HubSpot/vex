@@ -124,6 +124,8 @@ In addition to these string options, there are also three callback functions you
 - `afterClose` is called immediately after the vex instance is removed from the DOM
 - `beforeClose` is called before removing the instance from the DOM, and should return a boolean. If `beforeClose` returns false, the close will not go through and the vex instance will remain open. Useful for validation or any other checks you need to perform.
 
+Each callback is called with the context of the vex instance. That is, the keyword `this` inside of these callback functions references the vex instance.
+
 ### Note about Includes
 
 To use vex, minimally, you must include:
