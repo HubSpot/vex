@@ -4,7 +4,8 @@
   "description": "Beautiful, functional dialogs in vanilla JavaScript",
   "contributors": [
     "Adam Schwartz <aschwartz@hubspot.com>",
-    "Brendan Batliner <brendan@omnipointment.com>"
+    "Brendan Batliner <brendan@omnipointment.com>",
+    "Mark Stosberg <mark@rideamigos.com>"
   ],
   "license": "MIT",
   "main": "dist/vex.js",
