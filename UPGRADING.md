@@ -52,6 +52,6 @@ var vex = require('vex-js')
 vex.registerPlugin(require('vex-dialog'))
 ```
 
-#### 5. `vex-dialog` is *safe by default*, meaning the `message` option is treated as a regular string, not raw HTML
+#### 5. `vex` and `vex-dialog` are *safe by default*, meaning the `content` and `message` options, respectively, are treated as a regular string, not raw HTML
 
-An `unsafeMessage` option has been added, which will not escape any HTML. For more details, see [the docs](/docs/api/1-Basic.md).
+The options `unsafeContent` and `unsafeMessage` option have been added, which will not escape any HTML. For more details, see [the dialog docs](/docs/api/1-Basic.md) and [the vex docs](/docs/api/3-Advanced.md).
