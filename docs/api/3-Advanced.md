@@ -30,7 +30,7 @@ closeClassName: ''
 
 Returns: a vex instance
 
-Opens an instance. The content of the instance is either the string passed in to `vex.open` or the `content` option.
+Opens an instance. The content of the instance is either the string passed in to `vex.open` or the `content`/`unsafeContent` option.
 The default options are documented below.
 
 #### `vex.close(vexInstanceOrId)`
@@ -107,6 +107,7 @@ Here are the defaults:
 ```javascript
 defaultOptions: {
     content: '',
+    unsafeContent: '',
     showCloseButton: true,
     escapeButtonCloses: true,
     overlayClosesOnClick: true,
@@ -117,6 +118,11 @@ defaultOptions: {
     closeClassName: ''
 }
 ```
+
+vex provides *safe by default* behavior by treating the `content` you provide as a regular string, not raw HTML.
+
+If you need to pass through HTML to your vex instances, use the `unsafeContent` option.
+The `unsafeContent` option is safe to use as long as you provide either static HTML *or* HTML-escape ([html-escape](https://www.npmjs.com/package/html-escape), [_.escape](https://lodash.com/docs#escape), etc.) any untrusted content passed through, such as user-supplied content.
 
 In addition to these string options, there are also three callback functions you can optionally provide:
 
