@@ -294,6 +294,14 @@ vex.defaultOptions = {
 
 // TODO Loading symbols?
 
+// Include escapeHtml function on the library object
+Object.defineProperty(vex, '_escapeHtml', {
+  configurable: false,
+  enumerable: false,
+  writable: false,
+  value: escapeHtml
+})
+
 // Plugin system!
 vex.registerPlugin = function registerPlugin (pluginFn, name) {
   var plugin = pluginFn(vex)
