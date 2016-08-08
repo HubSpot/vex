@@ -412,6 +412,31 @@ require('es6-object-assign').polyfill()
 // String to DOM function
 var domify = require('domify')
 
+// Use the DOM's HTML parsing to escape any dangerous strings
+var escapeHtml = function escapeHtml (str) {
+  if (typeof str !== 'undefined') {
+    var div = document.createElement('div')
+    div.appendChild(document.createTextNode(str))
+    return div.innerHTML
+  } else {
+    return ''
+  }
+}
+
+// Utility function to add space-delimited class strings to a DOM element's classList
+var addClasses = function addClasses (el, classStr) {
+  if (typeof classStr !== 'string' || classStr.length === 0) {
+    return
+  }
+  var classes = classStr.split(' ')
+  for (var i = 0; i < classes.length; i++) {
+    var className = classes[i]
+    if (className.length) {
+      el.classList.add(className)
+    }
+  }
+}
+
 // Detect CSS Animation End Support
 // https://github.com/limonte/sweetalert2/blob/99bd539f85e15ac170f69d35001d12e092ef0054/src/utils/dom.js#L194
 var animationEndEvent = (function detectAnimationEndEvent () {
@@ -448,6 +473,24 @@ var globalId = 1
 // vex itself is an object that exposes a simple API to open and close vex objects in various ways
 var vex = {
   open: function open (opts) {
+    // Check for usage of deprecated options, and log a warning
+    var warnDeprecated = function warnDeprecated (prop) {
+      console.warn('The "' + prop + '" property is deprecated in vex 3. Use CSS classes and the appropriate "ClassName" options, instead.')
+      console.warn('See http://github.hubspot.com/vex/api/advanced/#options')
+    }
+    if (opts.css) {
+      warnDeprecated('css')
+    }
+    if (opts.overlayCSS) {
+      warnDeprecated('overlayCSS')
+    }
+    if (opts.contentCSS) {
+      warnDeprecated('contentCSS')
+    }
+    if (opts.closeCSS) {
+      warnDeprecated('closeCSS')
+    }
+
     // The dialog instance
     var vexInstance = {}
 
@@ -469,7 +512,7 @@ var vex = {
       }
 
       var options = this.options
-      
+
       // Allow the user to validate any info or abort the close with the beforeClose callback
       var shouldClose = (function shouldClose () {
         // Call before close callback
@@ -535,22 +578,27 @@ var vex = {
         content: opts
       }
     }
+
+    // `content` is unsafe internally, so translate
+    // safe default: HTML-escape the content before passing it through
+    if (opts.unsafeContent && !opts.content) {
+      opts.content = opts.unsafeContent
+    } else if (opts.content) {
+      opts.content = escapeHtml(opts.content)
+    }
+
     // Store options on instance for future reference
     var options = vexInstance.options = Object.assign({}, vex.defaultOptions, opts)
 
     // vex root
     var rootEl = vexInstance.rootEl = document.createElement('div')
     rootEl.classList.add(baseClassNames.vex)
-    if (options.className) {
-      rootEl.classList.add(options.className)
-    }
+    addClasses(rootEl, options.className)
 
     // Overlay
     var overlayEl = vexInstance.overlayEl = document.createElement('div')
     overlayEl.classList.add(baseClassNames.overlay)
-    if (options.overlayClassName) {
-      overlayEl.classList.add(options.overlayClassName)
-    }
+    addClasses(overlayEl, options.overlayClassName)
     if (options.overlayClosesOnClick) {
       overlayEl.addEventListener('click', function overlayClickListener (e) {
         if (e.target === overlayEl) {
@@ -563,9 +611,7 @@ var vex = {
     // Content
     var contentEl = vexInstance.contentEl = document.createElement('div')
     contentEl.classList.add(baseClassNames.content)
-    if (options.contentClassName) {
-      contentEl.classList.add(options.contentClassName)
-    }
+    addClasses(contentEl, options.contentClassName)
     contentEl.appendChild(options.content instanceof window.Node ? options.content : domify(options.content))
     rootEl.appendChild(contentEl)
 
@@ -573,9 +619,7 @@ var vex = {
     if (options.showCloseButton) {
       var closeEl = vexInstance.closeEl = document.createElement('div')
       closeEl.classList.add(baseClassNames.close)
-      if (options.closeClassName) {
-        closeEl.classList.add(options.closeClassName)
-      }
+      addClasses(closeEl, options.closeClassName)
       closeEl.addEventListener('click', vexInstance.close.bind(vexInstance))
       contentEl.appendChild(closeEl)
     }
@@ -661,6 +705,14 @@ vex.defaultOptions = {
 }
 
 // TODO Loading symbols?
+
+// Include escapeHtml function on the library object
+Object.defineProperty(vex, '_escapeHtml', {
+  configurable: false,
+  enumerable: false,
+  writable: false,
+  value: escapeHtml
+})
 
 // Plugin system!
 vex.registerPlugin = function registerPlugin (pluginFn, name) {
