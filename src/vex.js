@@ -17,6 +17,20 @@ var escapeHtml = function escapeHtml (str) {
   }
 }
 
+// Utility function to add space-delimited class strings to a DOM element's classList
+var addClasses = function addClasses (el, classStr) {
+  if (typeof classStr !== 'string' || classStr.length === 0) {
+    return
+  }
+  var classes = classStr.split(' ')
+  for (var i = 0; i < classes.length; i++) {
+    var className = classes[i]
+    if (className.length) {
+      el.classList.add(className)
+    }
+  }
+}
+
 // Detect CSS Animation End Support
 // https://github.com/limonte/sweetalert2/blob/99bd539f85e15ac170f69d35001d12e092ef0054/src/utils/dom.js#L194
 var animationEndEvent = (function detectAnimationEndEvent () {
@@ -173,16 +187,12 @@ var vex = {
     // vex root
     var rootEl = vexInstance.rootEl = document.createElement('div')
     rootEl.classList.add(baseClassNames.vex)
-    if (options.className) {
-      rootEl.classList.add(options.className)
-    }
+    addClasses(rootEl, options.className)
 
     // Overlay
     var overlayEl = vexInstance.overlayEl = document.createElement('div')
     overlayEl.classList.add(baseClassNames.overlay)
-    if (options.overlayClassName) {
-      overlayEl.classList.add(options.overlayClassName)
-    }
+    addClasses(overlayEl, options.overlayClassName)
     if (options.overlayClosesOnClick) {
       overlayEl.addEventListener('click', function overlayClickListener (e) {
         if (e.target === overlayEl) {
@@ -195,9 +205,7 @@ var vex = {
     // Content
     var contentEl = vexInstance.contentEl = document.createElement('div')
     contentEl.classList.add(baseClassNames.content)
-    if (options.contentClassName) {
-      contentEl.classList.add(options.contentClassName)
-    }
+    addClasses(contentEl, options.contentClassName)
     contentEl.appendChild(options.content instanceof window.Node ? options.content : domify(options.content))
     rootEl.appendChild(contentEl)
 
@@ -205,9 +213,7 @@ var vex = {
     if (options.showCloseButton) {
       var closeEl = vexInstance.closeEl = document.createElement('div')
       closeEl.classList.add(baseClassNames.close)
-      if (options.closeClassName) {
-        closeEl.classList.add(options.closeClassName)
-      }
+      addClasses(closeEl, options.closeClassName)
       closeEl.addEventListener('click', vexInstance.close.bind(vexInstance))
       contentEl.appendChild(closeEl)
     }
