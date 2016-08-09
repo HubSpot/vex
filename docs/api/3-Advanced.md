@@ -2,7 +2,7 @@
 
 ### DOM Structure
 
-When opening a dialog, vex appends the following HTML to `appendLocation` (which defaults to `body`).
+When opening an instance, vex appends the following HTML to `appendLocation` (which defaults to `body`).
 
 ```html
 <div class="vex">
@@ -15,72 +15,88 @@ When opening a dialog, vex appends the following HTML to `appendLocation` (which
 
 If `showCloseButton` is set to false, `<div class="vex-close"></div>` will be ommitted.
 
-Optional class names or inline CSS can be added to any of these elements by setting any the following options (with defaults shown):
+Optional class names can be added to any of these elements by setting any the following options (with defaults shown):
 
 ```
 className: ''
-css: {}
 overlayClassName: ''
-overlayCSS: {}
 contentClassName: ''
-contentCSS: {}
 closeClassName: ''
-closeCSS: {}
 ```
 
-The CSS options take an object to be passed to jQuery's `.css` function.
+### vex API
 
-### API
+#### `vex.open(stringOrOptions)`
 
-#### Basics of Opening and Passing Content
+Returns: a vex instance
 
-To open a dialog, call `vex.open`.
+Opens an instance. The content of the instance is either the string passed in to `vex.open` or the `content`/`unsafeContent` option.
+The default options are documented below.
 
-```coffeescript
-vex.open
-    content: '<div>Content</div>'
-    afterOpen: ($vexContent) ->
-        # console.log $vexContent.data().vex
-        $vexContent.append $el
-    afterClose: ->
-        console.log 'vexClose'
-```
+#### `vex.close(vexInstanceOrId)`
 
-In addition, you can wait to append your content until after the dialog has opened. (Visually, it will be perceived the same way.)
+Returns: a boolean indicating whether the instance could be closed
 
-```coffeescript
-vex.open
-    afterOpen: ($vexContent) ->
-        # console.log $vexContent.data()
-        $vexContent.append $el
-    afterClose: ->
-        console.log 'vexClose'
-```
+Closes a vex instance. Pass either a vex instance or a numeric id, and vex will try to close the instance.
+Closing an instance will remove it from vex's internal lookup table to save memory, meaning after an instance is closed it will not be retrievable from either `vex.getAll()` or `vex.getById()`.
 
-Instead of using callbacks, you can choose to chain off the open call and bind to vexOpen and vexClose events. For example:
+#### `vex.closeTop()`
 
-```coffeescript
-vex
-    .open()
-    .bind('vexOpen', (options) ->
-        options.$vexContent.append $el
-    )
-    .bind('vexClose', ->
-        console.log 'vexClose'
-    )
-```
+Returns: a boolean indicating whether the top instance could be closed
 
-Also, since opening/closing is synchronous, you don't even have to wait for the vexOpen event. Just append right away!
+Closes the most recently opened instance (on top).
 
-```coffeescript
-vex.open().append($el).bind('vexClose', -> console.log 'vexClose')
-```
+#### `vex.closeAll()`
 
-You can also close vex dialogs by id:
-```coffeescript
-$vexContent = vex.open()
-vex.close($vexContent.data().vex.id)
-```
+Returns: `true`
+
+Closes all vex instances.
+
+#### `vex.getById(id)`
+
+Returns: a vex instance or `undefined`
+
+Gets a single vex instance by its id.
+
+#### `vex.getAll()`
+
+Returns: an object whose keys are ids and values are vex instances mapped to those ids
+
+Gets all open vex instances.
+
+### vex instance API
+
+A vex instance is returned from `vex.open`.
+
+#### `vexInstance.close()`
+
+Returns: a boolean indicating whether the instance could be closed
+
+Closes this vex. Closing a vex instance will remove it from vex's internal lookup table to save memory, meaning after a vex is closed it will not be retrievable from either `vex.getAll()` or `vex.getById()`.
+
+#### `vexInstance.id`
+
+The id assigned to this instance by vex. Used for getting and closing instances.
+
+#### `vexInstance.rootEl`
+
+The root DOM element (`div.vex`).
+
+#### `vexInstance.overlayEl`
+
+The overlay DOM element (`div.vex-overlay`).
+
+#### `vexInstance.contentEl`
+
+The content DOM element (`div.vex-content`).
+
+#### `vexInstance.closeEl`
+
+The close button DOM element (`div.vex-close`).
+
+#### `vexInstance.isOpen`
+
+A boolean indicating whether the instance is open/visible.
 
 #### Options
 
@@ -88,38 +104,48 @@ When calling `vex.open()` you can pass a number of options to handle styling and
 
 Here are the defaults:
 
-```coffeescript
-defaultOptions:
-    content: ''
-    showCloseButton: true
-    escapeButtonCloses: true
-    overlayClosesOnClick: true
-    appendLocation: 'body'
-    className: ''
-    css: {}
-    overlayClassName: ''
-    overlayCSS: {}
-    contentClassName: ''
-    contentCSS: {}
+```javascript
+defaultOptions: {
+    content: '',
+    unsafeContent: '',
+    showCloseButton: true,
+    escapeButtonCloses: true,
+    overlayClosesOnClick: true,
+    appendLocation: 'body',
+    className: '',
+    overlayClassName: '',
+    contentClassName: '',
     closeClassName: ''
-    closeCSS: {}
+}
 ```
+
+vex provides *safe by default* behavior by treating the `content` you provide as a regular string, not raw HTML.
+
+If you need to pass through HTML to your vex instances, use the `unsafeContent` option.
+The `unsafeContent` option is safe to use as long as you provide either static HTML *or* HTML-escape ([html-escape](https://www.npmjs.com/package/html-escape), [_.escape](https://lodash.com/docs#escape), etc.) any untrusted content passed through, such as user-supplied content.
+
+In addition to these string options, there are also three callback functions you can optionally provide:
+
+- `afterOpen` is called immediately after the vex instance is appended to the DOM
+- `afterClose` is called immediately after the vex instance is removed from the DOM
+- `beforeClose` is called before removing the instance from the DOM, and should return a boolean. If `beforeClose` returns false, the close will not go through and the vex instance will remain open. Useful for validation or any other checks you need to perform.
+
+Each callback is called with the context of the vex instance. That is, the keyword `this` inside of these callback functions references the vex instance.
 
 ### Note about Includes
 
-To use Vex, minimally, you must include:
+To use vex, minimally, you must include:
 
 ```html
 <script src="vex.js"></script>
 <link rel="stylesheet" href="vex.css" />
 ```
 
-We also recommend including `vex.dialog.js` and a theme file. However, these are not actually required. To include both `vex.js` and `vex.dialog.js`, use `vex.combined.js` (or `vex.combined.min.js`). All of these files can be found in the ZIP which you can [download here](/vex).
+We also recommend including `vex-dialog` and a theme file. However, these are not actually required. To include both `vex` and `vex-dialog`, use `vex.combined.js` (or `vex.combined.min.js`). All of these files can be found in the ZIP which you can [download here](/vex).
 
 <!-- Resources for the demos -->
 <p style="-webkit-transform: translateZ(0)"></p>
-<script src="/vex/js/vex.js"></script>
-<script src="/vex/js/vex.dialog.js"></script>
+<script src="/vex/js/vex.combined.js"></script>
 <link rel="stylesheet" href="/vex/css/vex.css" />
 <link rel="stylesheet" href="/vex/css/vex-theme-os.css">
 <script>
