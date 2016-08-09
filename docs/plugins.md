@@ -2,7 +2,7 @@
 
 vex has support for plugins that can extend and modify the behavior of vex.
 Plugins are a great way to extend the functionality of vex while keeping your dependencies lightweight.
-For these examples, we'll be using [vex-dialog](https://github.com/bbatliner/vex2-dialog), a plugin for vex that contains dropin replacements for `alert`, `confirm`, and `prompt`.
+For these examples, we'll be using [vex-dialog](https://github.com/bbatliner/vex-dialog), a plugin for vex that contains dropin replacements for `alert`, `confirm`, and `prompt`.
 
 ### Installing plugins
 
@@ -17,7 +17,7 @@ npm install --save vex-dialog
 All plugins must be registered with the main vex module.
 
 ```javascript
-var vex = require('vex') // or window.vex, if included via script tag
+var vex = require('vex-js') // or window.vex, if included via script tag
 vex.registerPlugin(require('vex-dialog')) // or window.vexDialog, if included via script tag
 
 // The plugin is registered under the vex namespace.

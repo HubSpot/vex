@@ -11,7 +11,6 @@ vex is a modern dialog library which is highly configurable, easily stylable, an
 - Lightweight with no external dependencies
 - Looks and behaves great on mobile devices
 - Open multiple dialogs at once and close them individually or all at once
-- Built in CSS spinner for asynchronous dialogs (TODO)
 - UMD support
 
 #### Requirements
@@ -50,7 +49,7 @@ For browserify/webpack, you'll still need to include the stylesheets on your pag
 ```
 
 ```javascript
-var vex = require('vex')
+var vex = require('vex-js')
 vex.registerPlugin(require('vex-dialog'))
 vex.defaultOptions.className = 'vex-theme-os'
 ```
