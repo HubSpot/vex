@@ -178,7 +178,7 @@ vex.dialog.open({
 
 <!-- Resources for the demos -->
 <p style="-webkit-transform: translateZ(0)"></p>
-<script src="/vex/js/vex.combined.js"></script>
+<script src="/vex/dist/vex.combined.js"></script>
 <link rel="stylesheet" href="/vex/css/vex.css" />
 <link rel="stylesheet" href="/vex/css/vex-theme-os.css">
 <script>
