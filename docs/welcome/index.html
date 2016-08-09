@@ -10,8 +10,7 @@
         <script type="text/javascript" src="//use.typekit.net/jbn8qxr.js"></script>
         <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script src="/vex/js/vex.js"></script>
-        <script src="/vex/js/vex.dialog.js"></script>
+        <script src="/vex/dist/vex.combined.js"></script>
         <link href="/vex/css/vex.css" rel="stylesheet" />
         <link href="/vex/css/vex-theme-default.css" rel="stylesheet" />
         <link href="/vex/css/vex-theme-os.css" rel="stylesheet" />
@@ -72,7 +71,7 @@
                 letter-spacing: 3px;
                 text-decoration: none;
                 cursor: pointer;
-                width: 140px;
+                width: 150px;
                 line-height: 1.3em;
             }
             .page a.demo-link {
@@ -266,6 +265,7 @@
                 for (var i = 4; i > -1; i--) {
                     vex.dialog.alert({
                         appendLocation: '.stack',
+                        message: null,
                         unsafeMessage: $('.stack-templates > div:nth-child(' + (i + 1) + ')').html(),
                         className: demo.initialDialogsClassName,
                         buttons: [
