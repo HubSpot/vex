@@ -57,7 +57,7 @@ vex.dialog.alert({
             $(this).click(function(e){
                 e.preventDefault();
                 vex.dialog.alert({
-                    message: 'Testing the <code>' + $(this).data('theme') + '</code> theme.',
+                    unsafeMessage: 'Testing the <code>' + $(this).data('theme') + '</code> theme.',
                     className: $(this).data('theme')
                 });
                 return false;
