@@ -19,6 +19,6 @@ vex is a modern dialog library which is highly configurable, easily stylable, an
 ### Documentation
 - [Getting started](/docs/intro.md)
 - [API Docs](/docs/api/1-Basic.md)
-- [Plugins](/docs/plugins.md)
+- [Plugins](/docs/api/4-Plugins.md)
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
