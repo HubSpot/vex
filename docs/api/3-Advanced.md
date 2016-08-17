@@ -145,9 +145,9 @@ We also recommend including `vex-dialog` and a theme file. However, these are no
 
 <!-- Resources for the demos -->
 <p style="-webkit-transform: translateZ(0)"></p>
-<script src="/vex/js/vex.combined.js"></script>
-<link rel="stylesheet" href="/vex/css/vex.css" />
-<link rel="stylesheet" href="/vex/css/vex-theme-os.css">
+<script src="/vex/dist/js/vex.combined.js"></script>
+<link rel="stylesheet" href="/vex/dist/css/vex.css" />
+<link rel="stylesheet" href="/vex/dist/css/vex-theme-os.css">
 <script>
     (function(){
         vex.defaultOptions.className = 'vex-theme-os';

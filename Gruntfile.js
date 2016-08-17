@@ -6,7 +6,7 @@ module.exports = function (grunt) {
     browserify: {
       vex: {
         src: 'src/vex.js',
-        dest: 'dist/vex.js',
+        dest: 'dist/js/vex.js',
         options: {
           browserifyOptions: {
             'standalone': 'vex'
@@ -15,7 +15,7 @@ module.exports = function (grunt) {
       },
       combined: {
         src: 'src/vex.combined.js',
-        dest: 'dist/vex.combined.js',
+        dest: 'dist/js/vex.combined.js',
         options: {
           browserifyOptions: {
             'standalone': 'vex'
@@ -26,16 +26,16 @@ module.exports = function (grunt) {
 
     uglify: {
       vex: {
-        src: 'dist/vex.js',
-        dest: 'dist/vex.min.js',
+        src: 'dist/js/vex.js',
+        dest: 'dist/js/vex.min.js',
         options: {
           banner: '/*! vex.js <%= pkg.version %> */\n',
           report: 'gzip'
         }
       },
       combined: {
-        src: 'dist/vex.combined.js',
-        dest: 'dist/vex.combined.min.js',
+        src: 'dist/js/vex.combined.js',
+        dest: 'dist/js/vex.combined.min.js',
         options: {
           banner: '/*! vex.combined.js: vex <%= pkg.version %>, vex-dialog <%= dialogPkg.version %> */\n',
           report: 'gzip'
@@ -47,7 +47,7 @@ module.exports = function (grunt) {
       dist: {
         options: {
           sassDir: 'sass',
-          cssDir: 'css'
+          cssDir: 'dist/css'
         }
       }
     },
@@ -55,7 +55,7 @@ module.exports = function (grunt) {
     sass: {
       dist: {
         cwd: 'sass',
-        dest: 'css',
+        dest: 'dist/css',
         expand: true,
         outputStyle: 'compressed',
         src: '*.sass',
