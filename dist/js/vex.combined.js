@@ -1342,6 +1342,9 @@ var baseClassNames = {
 var vexes = {}
 var globalId = 1
 
+// Private boolean to assist the escapeButtonCloses option
+var isEscapeActive = false
+
 // vex itself is an object that exposes a simple API to open and close vex objects in various ways
 var vex = {
   open: function open (opts) {
@@ -1384,6 +1387,11 @@ var vex = {
       }
 
       var options = this.options
+
+      // escapeButtonCloses is checked first
+      if (isEscapeActive && !options.escapeButtonCloses) {
+        return false
+      }
 
       // Allow the user to validate any info or abort the close with the beforeClose callback
       var shouldClose = (function shouldClose () {
@@ -1558,7 +1566,9 @@ var vex = {
 // Close top vex on escape
 window.addEventListener('keyup', function vexKeyupListener (e) {
   if (e.keyCode === 27) {
+    isEscapeActive = true
     vex.closeTop()
+    isEscapeActive = false
   }
 })
 // Close all vexes on history pop state (useful in single page apps)
