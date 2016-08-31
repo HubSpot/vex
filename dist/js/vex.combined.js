@@ -1131,7 +1131,7 @@ var plugin = function plugin (vex) {
       // before opening the dialog on the page.
 
       // Override the before close callback to also pass the value of the form
-      var beforeClose = options.beforeClose
+      var beforeClose = options.beforeClose && options.beforeClose.bind(dialogInstance)
       dialogInstance.options.beforeClose = function dialogBeforeClose () {
         // Only call the callback once - when the validation in beforeClose, if present, is true
         var shouldClose = beforeClose ? beforeClose() : true
