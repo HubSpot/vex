@@ -1,6 +1,6 @@
 {
   "name": "vex",
-  "version": "3.0.0-beta.1",
+  "version": "3.0.0",
   "homepage": "http://github.hubspot.com/vex/docs/welcome",
   "authors": [
     "Adam Schwartz <aschwartz@hubspot.com>",
