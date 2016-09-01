@@ -28,64 +28,43 @@
         </div>
     </div>
 </div>
-<div class="hs-page-width-normal"><div class="row-fluid"><div class="span6"><h1 class="hs-doc-page-header"><a class="hs-doc-homepage-link" href="../../">vex</a></h1></div><div class="span6 hidden-phone"><div class="hs-doc-slim-github-link-wrapper"><a class="hs-doc-slim-github-link" href="http://github.com/HubSpot/vex">★ On GitHub</a></div></div></div></div><div class="hs-page-width-normal"><div class="row-fluid"><div class="span3"><div class="hs-doc-sidenav"><nav><ul class="hs-public-sidenav"><li><a href="../../">Home</a></li><li><b>Api</b></li><li><a href="../../api/basic">Basic</a></li><li class="current-nav-item"><a href="../../api/themes">Themes</a></li><li><a href="../../api/advanced">Advanced</a></li><li><a href="../../api/plugins">Plugins</a></li></ul></nav></div></div><div class="span9"><div class="hs-doc-content"><h2 id="themes">Themes</h2>
-<p>To use a builtin theme, you must include the theme style sheet, and set vex <code>className</code> to match match:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"vex-theme-default.css"</span> /&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">vex.defaultOptions.className = <span class="hljs-string">'vex-theme-default'</span>;</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-</code></pre>
-<p>At the moment, there are 6 themes:</p>
-<table class="hs-table">
-<tr>
-<th>Name</th>
-<th><code>className</code></th>
-<th></th>
-</tr>
-<tbody>
-<tr><td>Default</td><td><code>vex-theme-default</code></td><td><a href data-theme="vex-theme-default">Example</td></tr>
-<tr><td>Operating System</td><td><code>vex-theme-os</code></td><td><a href data-theme="vex-theme-os">Example</td></tr>
-<tr><td>Plain</td><td><code>vex-theme-plain</code></td><td><a href data-theme="vex-theme-plain">Example</td></tr>
-<tr><td>Wireframe</td><td><code>vex-theme-wireframe</code></td><td><a href data-theme="vex-theme-wireframe">Example</td></tr>
-<tr><td>Flat Attack!</td><td><code>vex-theme-flat-attack</code></td><td><a href data-theme="vex-theme-flat-attack">Example</td></tr>
-<tr><td>Top</td><td><code>vex-theme-top</code></td><td><a href data-theme="vex-theme-top">Example</td></tr>
-<tr><td>Bottom Right Corner</td><td><code>vex-theme-bottom-right-corner</code></td><td><a href data-theme="vex-theme-bottom-right-corner">Example</td></tr>
-</tbody>
-</table>
+<div class="hs-page-width-normal"><div class="row-fluid"><div class="span6"><h1 class="hs-doc-page-header"><a class="hs-doc-homepage-link" href="../../">vex</a></h1></div><div class="span6 hidden-phone"><div class="hs-doc-slim-github-link-wrapper"><a class="hs-doc-slim-github-link" href="http://github.com/HubSpot/vex">★ On GitHub</a></div></div></div></div><div class="hs-page-width-normal"><div class="row-fluid"><div class="span3"><div class="hs-doc-sidenav"><nav><ul class="hs-public-sidenav"><li><a href="../../">Home</a></li><li><b>Api</b></li><li><a href="../../api/basic">Basic</a></li><li><a href="../../api/themes">Themes</a></li><li><a href="../../api/advanced">Advanced</a></li><li class="current-nav-item"><a href="../../api/plugins">Plugins</a></li></ul></nav></div></div><div class="span9"><div class="hs-doc-content"><h2 id="plugins">Plugins</h2>
+<p>vex has support for plugins that can extend and modify the behavior of vex.
+Plugins are a great way to extend the functionality of vex while keeping your dependencies lightweight.
+For these examples, we&#39;ll be using <a href="https://github.com/bbatliner/vex-dialog">vex-dialog</a>, a plugin for vex that contains dropin replacements for <code>alert</code>, <code>confirm</code>, and <code>prompt</code>.</p>
+<h3 id="installing-plugins">Installing plugins</h3>
+<p>Plugins can be published individually to package managers such as npm or bower, or included locally. For vex-dialog, we&#39;ll use npm.</p>
+<pre><code>npm <span class="hljs-operator"><span class="hljs-keyword">install</span> <span class="hljs-comment">--save vex-dialog</span></span>
+</code></pre><h3 id="registering-plugins">Registering plugins</h3>
+<p>All plugins must be registered with the main vex module.</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> vex = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vex-js'</span>) <span class="hljs-comment">// or window.vex, if included via script tag</span>
+vex.registerPlugin(<span class="hljs-built_in">require</span>(<span class="hljs-string">'vex-dialog'</span>)) <span class="hljs-comment">// or window.vexDialog, if included via script tag</span>
 
-<p>Instead of setting <code>vex.defaultOptions.className</code>, you could instead set the <code>className</code> option when opening a vex. Here&#39;s an example of that.</p>
-<h3 id="inline-theme-example">Inline Theme Example</h3>
-<pre><code class="lang-javascript">vex.defaultOptions.className = <span class="hljs-string">'vex-theme-os'</span>
-vex.dialog.alert({
-    message: <span class="hljs-string">'Testing the wireframe theme.'</span>,
-    className: <span class="hljs-string">'vex-theme-wireframe'</span> <span class="hljs-comment">// Overwrites defaultOptions</span>
-})
+<span class="hljs-comment">// The plugin is registered under the vex namespace.</span>
+vex.dialog.alert(<span class="hljs-string">'I was made by a plugin!'</span>)
 </code></pre>
-<!-- Resources for the demos -->
-<p><p style="-webkit-transform: translateZ(0)"></p></p>
-<script src="/vex/dist/js/vex.combined.js"></script>
-<link rel="stylesheet" href="/vex/dist/css/vex.css" />
-<link rel="stylesheet" href="/vex/dist/css/vex-theme-default.css">
-<link rel="stylesheet" href="/vex/dist/css/vex-theme-os.css">
-<link rel="stylesheet" href="/vex/dist/css/vex-theme-plain.css">
-<link rel="stylesheet" href="/vex/dist/css/vex-theme-wireframe.css">
-<link rel="stylesheet" href="/vex/dist/css/vex-theme-flat-attack.css">
-<link rel="stylesheet" href="/vex/dist/css/vex-theme-top.css">
-<link rel="stylesheet" href="/vex/dist/css/vex-theme-bottom-right-corner.css">
-<script>
-    (function(){
-        vex.defaultOptions.className = 'vex-theme-os';
-
-        $('[data-theme]').each(function(){
-            $(this).click(function(e){
-                e.preventDefault();
-                vex.dialog.alert({
-                    unsafeMessage: 'Testing the <code>' + $(this).data('theme') + '</code> theme.',
-                    className: $(this).data('theme')
-                });
-                return false;
-            });
-        });
-    })();
-</script>
+<h3 id="writing-your-own-plugins">Writing your own plugins</h3>
+<p>A vex plugin is a simple function that returns an object containing that plugin&#39;s functionality. The </p>
+<p>For example, here is a basic plugin that will log a message every time a vex is opened using the plugin:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> myFirstPlugin = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">vex</span>) </span>{
+    <span class="hljs-keyword">return</span> {
+        name : <span class="hljs-string">'helloWorld'</span>,
+        open : <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">options</span>) </span>{
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'you opened a vex with a plugin!'</span>)
+            <span class="hljs-keyword">return</span> vex.open(options)
+        }
+    }
+}
+</code></pre>
+<p>Then, register your plugin with vex:</p>
+<pre><code class="lang-javascript">vex.registerPlugin(myFirstPlugin)
+vex.helloWorld.open(<span class="hljs-string">'Hello!'</span>) <span class="hljs-comment">// logs 'you opened a vex with a plugin!'</span>
+<span class="hljs-comment">// also opens a vex!</span>
+</code></pre>
+<h3 id="list-of-plugins">List of plugins</h3>
+<ul>
+<li><a href="https://github.com/bbatliner/vex-dialog">vex-dialog</a></li>
+</ul>
 </div></div></div></div><div class="hs3-public-footer"><div class="row-fluid hs-page-width-normal"><div class="span3 hidden-phone"><h3>HubSpot</h3><ul><li><a href="http://www.hubspot.com">Home</a></li><li><a href="http://www.hubspot.com/products">Products</a></li><li><a href="http://www.hubspot.com/internet-marketing-company/">About</a></li></ul></div><div class="span3"><h3>Projects</h3><ul><li><a href="http://github.hubspot.com/tether/">Tether</a></li><li><a href="http://github.hubspot.com/offline/docs/welcome">Offline</a></li><li><a href="http://github.hubspot.com/vex/docs/welcome">Vex</a></li><li><a href="http://github.hubspot.com/pace/docs/welcome">PACE</a></li><li><a href="http://github.hubspot.com/odometer/docs/welcome">Odometer</a></li><li><a href="http://github.hubspot.com/shepherd/docs/welcome">Shepherd</a></li></ul></div><div class="span3"><h3>Development Team</h3><ul><li><a href="http://product.hubspot.com">Home</a></li><li><a href="http://github.hubspot.com/">Open Source</a></li><li><a href="http://product.hubspot.com/blog">Blog</a></li><li><a href="http://product.hubspot.com/hiring">Jobs</a></li></ul></div><div class="span3 hidden-phone"><h3>Developer API</h3><ul><li><a href="http://developers.hubspot.com/">Developer Documentation</a></li></ul></div></div></div><!-- Start of Async HubSpot Analytics Code -->
 <script type="text/javascript">
     (function(d,s,i,r) {
