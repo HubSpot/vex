@@ -294,7 +294,7 @@ window.addEventListener('keyup', function vexKeyupListener (e) {
   }
 })
 // Close all vexes on history pop state (useful in single page apps)
-window.addEventListener('popstate', vex.closeAll)
+window.addEventListener('popstate', vex.closeAll.bind(vex))
 
 vex.defaultOptions = {
   content: '',
