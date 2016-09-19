@@ -23,6 +23,7 @@ vex will run in any ES5-compatible environment, and includes polyfills for `clas
 
 This means the following browsers are compatible with vex:
 - IE 9+
+- Edge 13+
 - Firefox 21+
 - Chrome 23+
 - Safari 6+
