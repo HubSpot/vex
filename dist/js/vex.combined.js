@@ -1153,7 +1153,7 @@ var plugin = function plugin (vex) {
 
       // Optionally focus the first input in the form
       if (options.focusFirstInput) {
-        var el = dialogInstance.contentEl.querySelector('button, input, textarea')
+        var el = dialogInstance.contentEl.querySelector('button, input, select, textarea')
         if (el) {
           el.focus()
         }
