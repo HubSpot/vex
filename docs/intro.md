@@ -55,16 +55,14 @@ vex.registerPlugin(require('vex-dialog'))
 vex.defaultOptions.className = 'vex-theme-os'
 ```
 
-That will give you all of the APIs for both vex and vex-dialog, and set you up with the "Operating System" theme. If you'd prefer another theme, check out [Themes](/vex/api/themes).
+That will give you all of the APIs for both vex and vex-dialog, and set you up with the "Operating System" theme. If you'd prefer another theme, check out [Themes](http://github.hubspot.com/vex/api/themes).
 
 The `vex.combined.min.js` file includes:
-- `vex.dialog.js` which adds the functionality that mimics the native browser alert, confirm, and prompt (everything you see in the [Basic docs](/vex/api/basic) examples).
-- `vex.js` which is a lightweight barebones generic dialog wrapper. See the [Advanced usage docs](/vex/api/advanced) for more information.
+- `vex.dialog.js` which adds the functionality that mimics the native browser alert, confirm, and prompt (everything you see in the [Basic docs](http://github.hubspot.com/vex/api/basic) examples).
+- `vex.js` which is a lightweight barebones generic dialog wrapper. See the [Advanced usage docs](http://github.hubspot.com/vex/api/advanced) for more information.
 
-<div class="hs-doc-callout hs-doc-callout-info">
-<h4>Module Systems</h4>
-<p>Note that when using a JavaScript module system like RequireJS or CommonJS, especially as part of a build system like Browserify or Webpack, you will not be able to use the <code>vex.combined.min.js</code> file. Instead, require <code>vex</code> and register the <code>vex-dialog</code> plugin.
-</div>
+#### Module Systems
+Note that when using a JavaScript module system like RequireJS or CommonJS, especially as part of a build system like Browserify or Webpack, you will not be able to use the `vex.combined.min.js` file. Instead, require `vex` and register the `vex-dialog` plugin.
 
 #### Confirm Demo
 
