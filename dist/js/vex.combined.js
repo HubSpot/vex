@@ -1571,8 +1571,13 @@ window.addEventListener('keyup', function vexKeyupListener (e) {
     isEscapeActive = false
   }
 })
+
 // Close all vexes on history pop state (useful in single page apps)
-window.addEventListener('popstate', vex.closeAll)
+window.addEventListener('popstate', function(){
+  if(vex.defaultOptions.closeAllOnPopState){
+    vex.closeAll.call(vex);
+  }
+})
 
 vex.defaultOptions = {
   content: '',
@@ -1583,7 +1588,8 @@ vex.defaultOptions = {
   className: '',
   overlayClassName: '',
   contentClassName: '',
-  closeClassName: ''
+  closeClassName: '',
+  closeAllOnPopState:true
 }
 
 // TODO Loading symbols?
