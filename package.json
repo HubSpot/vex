@@ -1,6 +1,6 @@
 {
   "name": "vex-js",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Beautiful, functional dialogs in vanilla JavaScript",
   "contributors": [
     "Adam Schwartz <aschwartz@hubspot.com>",
@@ -28,7 +28,7 @@
     "standard": "7.1.2"
   },
   "scripts": {
-    "prepublish" : "grunt",
+    "prepublish": "grunt",
     "test": "standard",
     "build": "grunt"
   },
