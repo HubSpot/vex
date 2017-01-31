@@ -115,7 +115,8 @@ defaultOptions: {
     className: '',
     overlayClassName: '',
     contentClassName: '',
-    closeClassName: ''
+    closeClassName: '',
+    closeAllOnPopState:true
 }
 ```
 
@@ -131,6 +132,9 @@ In addition to these string options, there are also three callback functions you
 - `beforeClose` is called before removing the instance from the DOM, and should return a boolean. If `beforeClose` returns false, the close will not go through and the vex instance will remain open. Useful for validation or any other checks you need to perform.
 
 Each callback is called with the context of the vex instance. That is, the keyword `this` inside of these callback functions references the vex instance.
+
+Lastly, when using single-page applications, the default behavior is for vex to close all open dialogs on state transitions. 
+Setting `closeAllOnPopState` to `false` will allow these dialogs to persist across state changes. 
 
 ### Note about Includes
 
