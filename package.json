@@ -28,6 +28,7 @@
     "standard": "7.1.2"
   },
   "scripts": {
+    "prepublish" : "grunt",
     "test": "standard",
     "build": "grunt"
   },
