@@ -228,4 +228,7 @@
   background: #fff; }
 
 body.vex-open {
-  overflow: hidden; }
+  overflow: hidden; 
+  position: fixed;
+  width: 100%;
+}
