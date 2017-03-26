@@ -705,7 +705,7 @@ window.addEventListener('popstate', function () {
   if (vex.defaultOptions.closeAllOnPopState) {
     vex.closeAll()
   }
-})
+}.bind(this))
 
 vex.defaultOptions = {
   content: '',
