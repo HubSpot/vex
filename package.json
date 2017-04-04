@@ -1,6 +1,6 @@
 {
   "name": "vex-js",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Beautiful, functional dialogs in vanilla JavaScript",
   "contributors": [
     "Adam Schwartz <aschwartz@hubspot.com>",
@@ -17,7 +17,7 @@
     "classlist-polyfill": "1.0.3",
     "domify": "1.4.0",
     "es6-object-assign": "1.0.2",
-    "vex-dialog": "1.0.6"
+    "vex-dialog": "1.0.7"
   },
   "devDependencies": {
     "grunt": "1.0.1",

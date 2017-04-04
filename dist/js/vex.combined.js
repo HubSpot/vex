@@ -1076,7 +1076,7 @@ var buttonsToDOM = function buttonsToDOM (buttons) {
     var domButton = document.createElement('button')
     domButton.type = button.type
     domButton.textContent = button.text
-    domButton.classList.add(button.className)
+    domButton.className = button.className
     domButton.classList.add('vex-dialog-button')
     if (i === 0) {
       domButton.classList.add('vex-first')
@@ -1153,7 +1153,7 @@ var plugin = function plugin (vex) {
 
       // Optionally focus the first input in the form
       if (options.focusFirstInput) {
-        var el = dialogInstance.contentEl.querySelector('button, input, textarea')
+        var el = dialogInstance.contentEl.querySelector('button, input, select, textarea')
         if (el) {
           el.focus()
         }
@@ -1199,7 +1199,10 @@ var plugin = function plugin (vex) {
       // More closely mimics "window.prompt" in that a single string is returned
       var callback = options.callback
       options.callback = function promptCallback (value) {
-        value = value[Object.keys(value)[0]]
+        if (typeof value === 'object') {
+          var keys = Object.keys(value)
+          value = keys.length ? value[keys[0]] : ''
+        }
         callback(value)
       }
       return this.open(options)
