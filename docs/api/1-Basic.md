@@ -121,6 +121,16 @@ vex.dialog.buttons.YES.text = 'Okiedokie'
 vex.dialog.buttons.NO.text = 'Aahw hell no'
 ```
 
+Custom buttons should use the following structure:
+
+```javascript
+button {
+    type: string, // the DOM `type` attribute
+    text: string, // the textContent of the button
+    className: string // the CSS class(es)
+}
+```
+
 ##### Demo
 
 Putting this all together, let's create a dialog with the following customizations:
