@@ -55,11 +55,11 @@ vex.registerPlugin(require('vex-dialog'))
 vex.defaultOptions.className = 'vex-theme-os'
 ```
 
-That will give you all of the APIs for both vex and vex-dialog, and set you up with the "Operating System" theme. If you'd prefer another theme, check out [Themes](/vex/api/themes).
+That will give you all of the APIs for both vex and vex-dialog, and set you up with the "Operating System" theme. If you'd prefer another theme, check out [Themes](/docs/api/2-Themes.md).
 
 The `vex.combined.min.js` file includes:
-- `vex.dialog.js` which adds the functionality that mimics the native browser alert, confirm, and prompt (everything you see in the [Basic docs](/vex/api/basic) examples).
-- `vex.js` which is a lightweight barebones generic dialog wrapper. See the [Advanced usage docs](/vex/api/advanced) for more information.
+- `vex.dialog.js` which adds the functionality that mimics the native browser alert, confirm, and prompt (everything you see in the [Basic docs](/docs/api/1-Basic.md) examples).
+- `vex.js` which is a lightweight barebones generic dialog wrapper. See the [Advanced usage docs](/docs/api/3-Advanced.md) for more information.
 
 <div class="hs-doc-callout hs-doc-callout-info">
 <h4>Module Systems</h4>
@@ -156,9 +156,9 @@ vex.dialog.open({
 
 To learn more about how to use vex, visit our API pages.
 
-- [Basic](http://github.hubspot.com/vex/api/basic)
-- [Themes](http://github.hubspot.com/vex/api/themes)
-- [Advanced](http://github.hubspot.com/vex/api/advanced)
+- [Basic](/docs/api/3-Advanced.md)
+- [Themes](/docs/api/3-Advanced.md)
+- [Advanced](/docs/api/3-Advanced.md)
 
 #### Credits
 
