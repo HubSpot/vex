@@ -1491,8 +1491,8 @@ var vex = {
     overlayEl.classList.add(baseClassNames.overlay)
     addClasses(overlayEl, options.overlayClassName)
     if (options.overlayClosesOnClick) {
-      overlayEl.addEventListener('click', function overlayClickListener (e) {
-        if (e.target === overlayEl) {
+      rootEl.addEventListener('click', function overlayClickListener (e) {
+        if (e.target === rootEl) {
           vexInstance.close()
         }
       })
