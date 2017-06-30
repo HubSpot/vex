@@ -35,21 +35,22 @@
 .vex-overlay
     +vex-animation(vex-fadein .5s)
     position: fixed
+    z-index: 1111
     background: rgba(0, 0, 0, .4)
     top: 0
     right: 0
     bottom: 0
     left: 0
 
-    .vex.vex-closing &
-        +vex-animation(vex-fadeout .5s)
+.vex-overlay.vex-closing
+    +vex-animation(vex-fadeout .5s)
 
 .vex-content
     +vex-animation(vex-fadein .5s)
     background: #fff
 
-    .vex.vex-closing &
-        +vex-animation(vex-fadeout .5s)
+.vex.vex-closing .vex-content
+    +vex-animation(vex-fadeout .5s)
 
 .vex-close:before
     font-family: Arial, sans-serif

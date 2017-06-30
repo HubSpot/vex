@@ -147,10 +147,13 @@ var vex = {
         }
         // Run once
         this.rootEl.removeEventListener(animationEndEvent, close)
+		this.overlayEl.removeEventListener(animationEndEvent, close)
         // Remove from lookup table (prevent memory leaks)
         delete vexes[this.id]
         // Remove the dialog from the DOM
         this.rootEl.parentNode.removeChild(this.rootEl)
+		// Remove the overlay from the DOM
+        this.bodyEl.removeChild(this.overlayEl);
         // Call after close callback
         if (options.afterClose) {
           options.afterClose.call(this)
@@ -165,8 +168,10 @@ var vex = {
       if (animationEndEvent && hasAnimation) {
         // Setup the end event listener, to remove the el from the DOM
         this.rootEl.addEventListener(animationEndEvent, close)
+		this.overlayEl.addEventListener(animationEndEvent, close)
         // Add the closing class to the dialog, showing the close animation
         this.rootEl.classList.add(baseClassNames.closing)
+		this.overlayEl.classList.add(baseClassNames.closing)
       } else {
         close()
       }
@@ -192,6 +197,9 @@ var vex = {
     // Store options on instance for future reference
     var options = vexInstance.options = Object.assign({}, vex.defaultOptions, opts)
 
+    // Get Body Element
+    var bodyEl = vexInstance.bodyEl = document.getElementsByTagName('body')[0];
+
     // vex root
     var rootEl = vexInstance.rootEl = document.createElement('div')
     rootEl.classList.add(baseClassNames.vex)
@@ -202,13 +210,13 @@ var vex = {
     overlayEl.classList.add(baseClassNames.overlay)
     addClasses(overlayEl, options.overlayClassName)
     if (options.overlayClosesOnClick) {
-      overlayEl.addEventListener('click', function overlayClickListener (e) {
-        if (e.target === overlayEl) {
+      rootEl.addEventListener('click', function overlayClickListener (e) {
+        if (e.target === rootEl) {
           vexInstance.close()
         }
       })
     }
-    rootEl.appendChild(overlayEl)
+    bodyEl.appendChild(overlayEl)
 
     // Content
     var contentEl = vexInstance.contentEl = document.createElement('div')
