@@ -5,8 +5,8 @@
 When opening an instance, vex appends the following HTML to `appendLocation` (which defaults to `body`).
 
 ```html
+<div class="vex-overlay"></div>
 <div class="vex">
-    <div class="vex-overlay"></div>
     <div class="vex-content">
         <div class="vex-close"></div>
     </div>
