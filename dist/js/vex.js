@@ -553,12 +553,12 @@ var vex = {
         }
         // Run once
         this.rootEl.removeEventListener(animationEndEvent, close)
-		this.overlayEl.removeEventListener(animationEndEvent, close)
+        this.overlayEl.removeEventListener(animationEndEvent, close)
         // Remove from lookup table (prevent memory leaks)
         delete vexes[this.id]
         // Remove the dialog from the DOM
         this.rootEl.parentNode.removeChild(this.rootEl)
-		// Remove the overlay from the DOM
+        // Remove the overlay from the DOM
         this.bodyEl.removeChild(this.overlayEl);
         // Call after close callback
         if (options.afterClose) {
@@ -574,10 +574,10 @@ var vex = {
       if (animationEndEvent && hasAnimation) {
         // Setup the end event listener, to remove the el from the DOM
         this.rootEl.addEventListener(animationEndEvent, close)
-		this.overlayEl.addEventListener(animationEndEvent, close)
+        this.overlayEl.addEventListener(animationEndEvent, close)
         // Add the closing class to the dialog, showing the close animation
         this.rootEl.classList.add(baseClassNames.closing)
-		this.overlayEl.classList.add(baseClassNames.closing)
+        this.overlayEl.classList.add(baseClassNames.closing)
       } else {
         close()
       }
