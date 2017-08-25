@@ -169,11 +169,11 @@
   padding-bottom: 100px;
   font-size: 1.5em; }
   .vex.vex-theme-flat-attack.vex-closing .vex-content {
-    animation: vex-flipout-horizontal 0.5s;
-    -webkit-animation: vex-flipout-horizontal 0.5s;
-    -moz-animation: vex-flipout-horizontal 0.5s;
-    -ms-animation: vex-flipout-horizontal 0.5s;
-    -o-animation: vex-flipout-horizontal 0.5s;
+    animation: vex-flipout-horizontal 0.5s forwards;
+    -webkit-animation: vex-flipout-horizontal 0.5s forwards;
+    -moz-animation: vex-flipout-horizontal 0.5s forwards;
+    -ms-animation: vex-flipout-horizontal 0.5s forwards;
+    -o-animation: vex-flipout-horizontal 0.5s forwards;
     -webkit-backface-visibility: hidden; }
   .vex.vex-theme-flat-attack .vex-content {
     -webkit-transform-style: preserve-3d;

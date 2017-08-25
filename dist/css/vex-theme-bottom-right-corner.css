@@ -296,11 +296,11 @@
   .vex.vex-theme-bottom-right-corner .vex-overlay {
     display: none; }
   .vex.vex-theme-bottom-right-corner.vex-closing .vex-content {
-    animation: vex-slidedown 0.5s;
-    -webkit-animation: vex-slidedown 0.5s;
-    -moz-animation: vex-slidedown 0.5s;
-    -ms-animation: vex-slidedown 0.5s;
-    -o-animation: vex-slidedown 0.5s;
+    animation: vex-slidedown 0.5s forwards;
+    -webkit-animation: vex-slidedown 0.5s forwards;
+    -moz-animation: vex-slidedown 0.5s forwards;
+    -ms-animation: vex-slidedown 0.5s forwards;
+    -o-animation: vex-slidedown 0.5s forwards;
     -webkit-backface-visibility: hidden; }
   .vex.vex-theme-bottom-right-corner .vex-content {
     animation: vex-slideup 0.5s;

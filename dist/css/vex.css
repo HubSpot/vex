@@ -171,11 +171,11 @@
   left: 0; }
 
 .vex-overlay.vex-closing {
-  animation: vex-fadeout 0.5s;
-  -webkit-animation: vex-fadeout 0.5s;
-  -moz-animation: vex-fadeout 0.5s;
-  -ms-animation: vex-fadeout 0.5s;
-  -o-animation: vex-fadeout 0.5s;
+  animation: vex-fadeout 0.5s forwards;
+  -webkit-animation: vex-fadeout 0.5s forwards;
+  -moz-animation: vex-fadeout 0.5s forwards;
+  -ms-animation: vex-fadeout 0.5s forwards;
+  -o-animation: vex-fadeout 0.5s forwards;
   -webkit-backface-visibility: hidden; }
 
 .vex-content {
@@ -188,11 +188,11 @@
   background: #fff; }
 
 .vex.vex-closing .vex-content {
-  animation: vex-fadeout 0.5s;
-  -webkit-animation: vex-fadeout 0.5s;
-  -moz-animation: vex-fadeout 0.5s;
-  -ms-animation: vex-fadeout 0.5s;
-  -o-animation: vex-fadeout 0.5s;
+  animation: vex-fadeout 0.5s forwards;
+  -webkit-animation: vex-fadeout 0.5s forwards;
+  -moz-animation: vex-fadeout 0.5s forwards;
+  -ms-animation: vex-fadeout 0.5s forwards;
+  -o-animation: vex-fadeout 0.5s forwards;
   -webkit-backface-visibility: hidden; }
 
 .vex-close:before {
