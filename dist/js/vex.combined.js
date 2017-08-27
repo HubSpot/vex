@@ -1076,7 +1076,7 @@ var buttonsToDOM = function buttonsToDOM (buttons) {
     var domButton = document.createElement('button')
     domButton.type = button.type
     domButton.textContent = button.text
-    domButton.classList.add(button.className)
+    domButton.className = button.className
     domButton.classList.add('vex-dialog-button')
     if (i === 0) {
       domButton.classList.add('vex-first')
@@ -1153,7 +1153,7 @@ var plugin = function plugin (vex) {
 
       // Optionally focus the first input in the form
       if (options.focusFirstInput) {
-        var el = dialogInstance.contentEl.querySelector('button, input, textarea')
+        var el = dialogInstance.contentEl.querySelector('button, input, select, textarea')
         if (el) {
           el.focus()
         }
@@ -1199,7 +1199,10 @@ var plugin = function plugin (vex) {
       // More closely mimics "window.prompt" in that a single string is returned
       var callback = options.callback
       options.callback = function promptCallback (value) {
-        value = value[Object.keys(value)[0]]
+        if (typeof value === 'object') {
+          var keys = Object.keys(value)
+          value = keys.length ? value[keys[0]] : ''
+        }
         callback(value)
       }
       return this.open(options)
@@ -1425,10 +1428,13 @@ var vex = {
         }
         // Run once
         this.rootEl.removeEventListener(animationEndEvent, close)
+        this.overlayEl.removeEventListener(animationEndEvent, close)
         // Remove from lookup table (prevent memory leaks)
         delete vexes[this.id]
         // Remove the dialog from the DOM
         this.rootEl.parentNode.removeChild(this.rootEl)
+        // Remove the overlay from the DOM
+        this.bodyEl.removeChild(this.overlayEl);
         // Call after close callback
         if (options.afterClose) {
           options.afterClose.call(this)
@@ -1443,8 +1449,10 @@ var vex = {
       if (animationEndEvent && hasAnimation) {
         // Setup the end event listener, to remove the el from the DOM
         this.rootEl.addEventListener(animationEndEvent, close)
+        this.overlayEl.addEventListener(animationEndEvent, close)
         // Add the closing class to the dialog, showing the close animation
         this.rootEl.classList.add(baseClassNames.closing)
+        this.overlayEl.classList.add(baseClassNames.closing)
       } else {
         close()
       }
@@ -1470,6 +1478,9 @@ var vex = {
     // Store options on instance for future reference
     var options = vexInstance.options = Object.assign({}, vex.defaultOptions, opts)
 
+    // Get Body Element
+    var bodyEl = vexInstance.bodyEl = document.getElementsByTagName('body')[0];
+
     // vex root
     var rootEl = vexInstance.rootEl = document.createElement('div')
     rootEl.classList.add(baseClassNames.vex)
@@ -1480,13 +1491,13 @@ var vex = {
     overlayEl.classList.add(baseClassNames.overlay)
     addClasses(overlayEl, options.overlayClassName)
     if (options.overlayClosesOnClick) {
-      overlayEl.addEventListener('click', function overlayClickListener (e) {
-        if (e.target === overlayEl) {
+      rootEl.addEventListener('click', function overlayClickListener (e) {
+        if (e.target === rootEl) {
           vexInstance.close()
         }
       })
     }
-    rootEl.appendChild(overlayEl)
+    bodyEl.appendChild(overlayEl)
 
     // Content
     var contentEl = vexInstance.contentEl = document.createElement('div')
@@ -1571,8 +1582,13 @@ window.addEventListener('keyup', function vexKeyupListener (e) {
     isEscapeActive = false
   }
 })
+
 // Close all vexes on history pop state (useful in single page apps)
-window.addEventListener('popstate', vex.closeAll)
+window.addEventListener('popstate', function () {
+  if (vex.defaultOptions.closeAllOnPopState) {
+    vex.closeAll()
+  }
+})
 
 vex.defaultOptions = {
   content: '',
@@ -1583,7 +1599,8 @@ vex.defaultOptions = {
   className: '',
   overlayClassName: '',
   contentClassName: '',
-  closeClassName: ''
+  closeClassName: '',
+  closeAllOnPopState: true
 }
 
 // TODO Loading symbols?
