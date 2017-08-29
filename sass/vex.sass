@@ -43,14 +43,14 @@
     left: 0
 
 .vex-overlay.vex-closing
-    +vex-animation(vex-fadeout .5s)
+    +vex-animation(vex-fadeout .5s forwards)
 
 .vex-content
     +vex-animation(vex-fadein .5s)
     background: #fff
 
 .vex.vex-closing .vex-content
-    +vex-animation(vex-fadeout .5s)
+    +vex-animation(vex-fadeout .5s forwards)
 
 .vex-close:before
     font-family: Arial, sans-serif

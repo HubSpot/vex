@@ -289,11 +289,11 @@
     box-shadow: inset 0 0 0 300px transparent; } }
 
 .vex.vex-theme-top.vex-closing .vex-content {
-  animation: vex-dropout 0.5s;
-  -webkit-animation: vex-dropout 0.5s;
-  -moz-animation: vex-dropout 0.5s;
-  -ms-animation: vex-dropout 0.5s;
-  -o-animation: vex-dropout 0.5s;
+  animation: vex-dropout 0.5s forwards;
+  -webkit-animation: vex-dropout 0.5s forwards;
+  -moz-animation: vex-dropout 0.5s forwards;
+  -ms-animation: vex-dropout 0.5s forwards;
+  -o-animation: vex-dropout 0.5s forwards;
   -webkit-backface-visibility: hidden; }
 
 .vex.vex-theme-top .vex-content {
