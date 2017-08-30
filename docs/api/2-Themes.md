@@ -1,6 +1,6 @@
 ## Themes
 
-To use a builtin theme, you must include the theme style sheet, and set vex `className` to match match:
+To use a builtin theme, you must include the theme style sheet, and set vex `className` to match:
 
 ```html
 <link rel="stylesheet" href="vex-theme-default.css" />
