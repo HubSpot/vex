@@ -36,5 +36,13 @@
     "ignore": [
       "/dist"
     ]
-  }
+  },
+  "browserslist": [
+    "IE 9",
+    "Edge 13",
+    "Firefox 21",
+    "Chrome 23",
+    "Safari 6",
+    "Opera 15"
+  ]
 }
