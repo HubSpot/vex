@@ -1,98 +1,54 @@
-@keyframes vex-dropin {
-  0% {
-    transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
-    opacity: 0; }
-  1% {
-    transform: translateY(-800px);
-    -webkit-transform: translateY(-800px);
-    -moz-transform: translateY(-800px);
-    -ms-transform: translateY(-800px);
-    -o-transform: translateY(-800px);
-    opacity: 0; }
-  2% {
-    transform: translateY(-800px);
-    -webkit-transform: translateY(-800px);
-    -moz-transform: translateY(-800px);
-    -ms-transform: translateY(-800px);
-    -o-transform: translateY(-800px);
-    opacity: 1; }
-  100% {
-    transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
-    opacity: 1; } }
-
 @-webkit-keyframes vex-dropin {
   0% {
-    transform: translateY(0);
     -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
+    transform: translateY(0);
     opacity: 0; }
   1% {
-    transform: translateY(-800px);
     -webkit-transform: translateY(-800px);
-    -moz-transform: translateY(-800px);
-    -ms-transform: translateY(-800px);
-    -o-transform: translateY(-800px);
+    transform: translateY(-800px);
     opacity: 0; }
   2% {
-    transform: translateY(-800px);
     -webkit-transform: translateY(-800px);
-    -moz-transform: translateY(-800px);
-    -ms-transform: translateY(-800px);
-    -o-transform: translateY(-800px);
+    transform: translateY(-800px);
     opacity: 1; }
   100% {
-    transform: translateY(0);
     -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
+    transform: translateY(0);
     opacity: 1; } }
 
-@keyframes vex-dropout {
+@keyframes vex-dropin {
   0% {
-    transform: translateY(0);
     -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0); }
-  100% {
-    transform: translateY(-800px);
+    transform: translateY(0);
+    opacity: 0; }
+  1% {
     -webkit-transform: translateY(-800px);
-    -moz-transform: translateY(-800px);
-    -ms-transform: translateY(-800px);
-    -o-transform: translateY(-800px); } }
+    transform: translateY(-800px);
+    opacity: 0; }
+  2% {
+    -webkit-transform: translateY(-800px);
+    transform: translateY(-800px);
+    opacity: 1; }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1; } }
 
 @-webkit-keyframes vex-dropout {
   0% {
-    transform: translateY(0);
     -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0); }
+    transform: translateY(0); }
   100% {
-    transform: translateY(-800px);
     -webkit-transform: translateY(-800px);
-    -moz-transform: translateY(-800px);
-    -ms-transform: translateY(-800px);
-    -o-transform: translateY(-800px); } }
+    transform: translateY(-800px); } }
 
-@keyframes vex-pulse {
+@keyframes vex-dropout {
   0% {
-    box-shadow: inset 0 0 0 300px transparent; }
-  70% {
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
+    -webkit-transform: translateY(0);
+    transform: translateY(0); }
   100% {
-    box-shadow: inset 0 0 0 300px transparent; } }
+    -webkit-transform: translateY(-800px);
+    transform: translateY(-800px); } }
 
 @-webkit-keyframes vex-pulse {
   0% {
@@ -102,21 +58,21 @@
   100% {
     box-shadow: inset 0 0 0 300px transparent; } }
 
+@keyframes vex-pulse {
+  0% {
+    box-shadow: inset 0 0 0 300px transparent; }
+  70% {
+    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
+  100% {
+    box-shadow: inset 0 0 0 300px transparent; } }
+
 .vex.vex-theme-top.vex-closing .vex-content {
-  animation: vex-dropout 0.5s forwards;
-  -webkit-animation: vex-dropout 0.5s forwards;
-  -moz-animation: vex-dropout 0.5s forwards;
-  -ms-animation: vex-dropout 0.5s forwards;
-  -o-animation: vex-dropout 0.5s forwards;
-  -webkit-backface-visibility: hidden; }
+  -webkit-animation: vex-dropout .5s forwards;
+  animation: vex-dropout .5s forwards; }
 
 .vex.vex-theme-top .vex-content {
-  animation: vex-dropin 0.5s;
-  -webkit-animation: vex-dropin 0.5s;
-  -moz-animation: vex-dropin 0.5s;
-  -ms-animation: vex-dropin 0.5s;
-  -o-animation: vex-dropin 0.5s;
-  -webkit-backface-visibility: hidden; }
+  -webkit-animation: vex-dropin .5s;
+  animation: vex-dropin .5s; }
 
 .vex.vex-theme-top .vex-content {
   border-radius: 0 0 5px 5px;
@@ -198,21 +154,13 @@
   .vex.vex-theme-top .vex-dialog-button.vex-last {
     margin-left: 0; }
   .vex.vex-theme-top .vex-dialog-button:focus {
-    animation: vex-pulse 1.1s infinite;
     -webkit-animation: vex-pulse 1.1s infinite;
-    -moz-animation: vex-pulse 1.1s infinite;
-    -ms-animation: vex-pulse 1.1s infinite;
-    -o-animation: vex-pulse 1.1s infinite;
-    -webkit-backface-visibility: hidden;
+    animation: vex-pulse 1.1s infinite;
     outline: none; }
     @media (max-width: 568px) {
       .vex.vex-theme-top .vex-dialog-button:focus {
-        animation: none;
         -webkit-animation: none;
-        -moz-animation: none;
-        -ms-animation: none;
-        -o-animation: none;
-        -webkit-backface-visibility: hidden; } }
+        animation: none; } }
   .vex.vex-theme-top .vex-dialog-button.vex-dialog-button-primary {
     background: #3288e6;
     color: #fff; }

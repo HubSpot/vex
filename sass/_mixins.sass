@@ -1,35 +1,3 @@
-=vex-keyframes($name)
-    @keyframes #{$name}
-        @content
-    @-webkit-keyframes #{$name}
-        @content
-    @-moz-keyframes #{$name}
-        @content
-    @-ms-keyframes #{$name}
-        @content
-    @-o-keyframes #{$name}
-        @content
-
-=vex-animation($animation)
-    animation: $animation
-    -webkit-animation: $animation
-    -moz-animation: $animation
-    -ms-animation: $animation
-    -o-animation: $animation
-    -webkit-backface-visibility: hidden
-
-=vex-transform($transform)
-    transform: $transform
-    -webkit-transform: $transform
-    -moz-transform: $transform
-    -ms-transform: $transform
-    -o-transform: $transform
-
-=vex-preserve-3d
-    -webkit-transform-style: preserve-3d
-    -moz-transform-style: preserve-3d
-    transform-style: preserve-3d
-
 // copied from Compass (https://github.com/Compass/compass) on the 21st of January 2015:
 
 $prefix-context: null
@@ -37,42 +5,6 @@ $current-prefix: null
 $critical-usage-threshold: 0.01 !default
 $default-has-layout-approach: zoom !default
 $has-layout-support-threshold: $critical-usage-threshold !default
-
-// full mixin: https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/_support.scss
-=box-sizing($box-model)
-    -moz-box-sizing: $box-model
-    -webkit-box-sizing: $box-model
-    box-sizing: $box-model
-
-// full mixin: https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/css3/_box-shadow.scss
-=box-shadow($shadow...)
-    -moz-box-shadow: $shadow
-    -webkit-box-shadow: $shadow
-    box-shadow: $shadow
-
-// full mixin: https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/css3/_border-radius.scss
-=border-radius($radius)
-    -moz-border-radius: $radius
-    -webkit-border-radius: $radius
-    border-radius: $radius
-
-// full mixin: https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/css3/_transform.scss
-=perspective($p)
-    -moz-perspective: $p
-    -webkit-perspective: $p
-    perspective: $p
-
-// full mixin: https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/css3/_transform.scss
-=perspective-origin($origin: 50%)
-    -moz-perspective-origin: $origin
-    -webkit-perspective-origin: $origin
-    perspective-origin: $origin
-
-// full mixin: https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/_support.scss
-=appearance($appearance)
-    $appearance: unquote($appearance)
-    -moz-appearance: $appearance
-    -webkit-appearance: $appearance
 
 =has-layout($approach: $default-has-layout-approach)
     @if support-legacy-browser("ie", "7", $threshold: $has-layout-support-threshold)

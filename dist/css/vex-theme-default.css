@@ -1,68 +1,44 @@
-@keyframes vex-flyin {
-  0% {
-    opacity: 0;
-    transform: translateY(-40px);
-    -webkit-transform: translateY(-40px);
-    -moz-transform: translateY(-40px);
-    -ms-transform: translateY(-40px);
-    -o-transform: translateY(-40px); }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0); } }
-
 @-webkit-keyframes vex-flyin {
   0% {
     opacity: 0;
-    transform: translateY(-40px);
     -webkit-transform: translateY(-40px);
-    -moz-transform: translateY(-40px);
-    -ms-transform: translateY(-40px);
-    -o-transform: translateY(-40px); }
+    transform: translateY(-40px); }
   100% {
     opacity: 1;
-    transform: translateY(0);
     -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0); } }
+    transform: translateY(0); } }
 
-@keyframes vex-flyout {
+@keyframes vex-flyin {
   0% {
-    opacity: 1;
-    transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0); }
-  100% {
     opacity: 0;
-    transform: translateY(-40px);
     -webkit-transform: translateY(-40px);
-    -moz-transform: translateY(-40px);
-    -ms-transform: translateY(-40px);
-    -o-transform: translateY(-40px); } }
+    transform: translateY(-40px); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0); } }
 
 @-webkit-keyframes vex-flyout {
   0% {
     opacity: 1;
-    transform: translateY(0);
     -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0); }
+    transform: translateY(0); }
   100% {
     opacity: 0;
-    transform: translateY(-40px);
     -webkit-transform: translateY(-40px);
-    -moz-transform: translateY(-40px);
-    -ms-transform: translateY(-40px);
-    -o-transform: translateY(-40px); } }
+    transform: translateY(-40px); } }
 
-@keyframes vex-pulse {
+@keyframes vex-flyout {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0); }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-40px);
+    transform: translateY(-40px); } }
+
+@-webkit-keyframes vex-pulse {
   0% {
     box-shadow: inset 0 0 0 300px transparent; }
   70% {
@@ -70,7 +46,7 @@
   100% {
     box-shadow: inset 0 0 0 300px transparent; } }
 
-@-webkit-keyframes vex-pulse {
+@keyframes vex-pulse {
   0% {
     box-shadow: inset 0 0 0 300px transparent; }
   70% {
@@ -82,19 +58,11 @@
   padding-top: 160px;
   padding-bottom: 160px; }
   .vex.vex-theme-default.vex-closing .vex-content {
-    animation: vex-flyout 0.5s forwards;
-    -webkit-animation: vex-flyout 0.5s forwards;
-    -moz-animation: vex-flyout 0.5s forwards;
-    -ms-animation: vex-flyout 0.5s forwards;
-    -o-animation: vex-flyout 0.5s forwards;
-    -webkit-backface-visibility: hidden; }
+    -webkit-animation: vex-flyout .5s forwards;
+    animation: vex-flyout .5s forwards; }
   .vex.vex-theme-default .vex-content {
-    animation: vex-flyin 0.5s;
-    -webkit-animation: vex-flyin 0.5s;
-    -moz-animation: vex-flyin 0.5s;
-    -ms-animation: vex-flyin 0.5s;
-    -o-animation: vex-flyin 0.5s;
-    -webkit-backface-visibility: hidden; }
+    -webkit-animation: vex-flyin .5s;
+    animation: vex-flyin .5s; }
   .vex.vex-theme-default .vex-content {
     border-radius: 5px;
     font-family: "Helvetica Neue", sans-serif;
@@ -170,21 +138,13 @@
     .vex.vex-theme-default .vex-dialog-button.vex-last {
       margin-left: 0; }
     .vex.vex-theme-default .vex-dialog-button:focus {
-      animation: vex-pulse 1.1s infinite;
       -webkit-animation: vex-pulse 1.1s infinite;
-      -moz-animation: vex-pulse 1.1s infinite;
-      -ms-animation: vex-pulse 1.1s infinite;
-      -o-animation: vex-pulse 1.1s infinite;
-      -webkit-backface-visibility: hidden;
+      animation: vex-pulse 1.1s infinite;
       outline: none; }
       @media (max-width: 568px) {
         .vex.vex-theme-default .vex-dialog-button:focus {
-          animation: none;
           -webkit-animation: none;
-          -moz-animation: none;
-          -ms-animation: none;
-          -o-animation: none;
-          -webkit-backface-visibility: hidden; } }
+          animation: none; } }
     .vex.vex-theme-default .vex-dialog-button.vex-dialog-button-primary {
       background: #3288e6;
       color: #fff; }

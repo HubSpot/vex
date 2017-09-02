@@ -17,13 +17,13 @@ $blue: #3288e6
         display: none
 
     &.vex-closing .vex-content
-        +vex-animation(vex-slidedown .5s forwards)
+        animation: vex-slidedown .5s forwards
 
     .vex-content
-        +vex-animation(vex-slideup .5s)
+        animation: vex-slideup .5s
 
     .vex-content
-        +border-radius(5px 0 0 0)
+        border-radius: 5px 0 0 0
         font-family: "Helvetica Neue", sans-serif
         background: #f0f0f0
         color: #444
@@ -41,14 +41,14 @@ $blue: #3288e6
             color: inherit
 
     .vex-close
-        +border-radius(5px)
+        border-radius: 5px
         position: absolute
         top: 0
         right: 0
         cursor: pointer
 
         &:before
-            +border-radius(3px)
+            border-radius: 3px
             position: absolute
             content: "\00D7"
             font-size: 26px
@@ -75,7 +75,7 @@ $blue: #3288e6
             margin-bottom: 1em
 
             select, textarea, input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="time"], input[type="url"], input[type="week"]
-                +border-radius(3px)
+                border-radius: 3px
                 background: #fff
                 width: 100%
                 padding: .25em .67em
@@ -87,14 +87,14 @@ $blue: #3288e6
                 margin: 0 0 .25em
 
                 &:focus
-                    +box-shadow(inset 0 0 0 2px lighten($blue, 20%))
+                    box-shadow: inset 0 0 0 2px lighten($blue, 20%)
                     outline: none
 
         .vex-dialog-buttons
             +pie-clearfix()
 
     .vex-dialog-button
-        +border-radius(3px)
+        border-radius: 3px
         border: 0
         float: right
         margin: 0 0 0 .5em
@@ -109,13 +109,13 @@ $blue: #3288e6
             margin-left: 0
 
         &:focus
-            +vex-animation(vex-pulse 1.1s infinite)
+            animation: vex-pulse 1.1s infinite
             outline: none
 
             // vex-pulse uses -webkit-filter which
             // doesn't play so nice in mobile webkit
             @media (max-width: 568px)
-                +vex-animation(none)
+                animation: none
 
         &.vex-dialog-button-primary
             background: $blue
@@ -126,8 +126,8 @@ $blue: #3288e6
             color: #777
 
 .vex-loading-spinner.vex-theme-bottom-right-corner
-    +box-shadow(0 0 0 .5em #f0f0f0, 0 0 1px .5em rgba(0, 0, 0, 0.3))
-    +border-radius(100%)
+    box-shadow: 0 0 0 .5em #f0f0f0, 0 0 1px .5em rgba(0, 0, 0, 0.3)
+    border-radius: 100%
     background: #f0f0f0
     border: .2em solid transparent
     border-top-color: #bbb
