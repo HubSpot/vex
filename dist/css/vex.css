@@ -10,24 +10,6 @@
   100% {
     opacity: 1; } }
 
-@-moz-keyframes vex-fadein {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-
-@-ms-keyframes vex-fadein {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-
-@-o-keyframes vex-fadein {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-
 @keyframes vex-fadeout {
   0% {
     opacity: 1; }
@@ -35,24 +17,6 @@
     opacity: 0; } }
 
 @-webkit-keyframes vex-fadeout {
-  0% {
-    opacity: 1; }
-  100% {
-    opacity: 0; } }
-
-@-moz-keyframes vex-fadeout {
-  0% {
-    opacity: 1; }
-  100% {
-    opacity: 0; } }
-
-@-ms-keyframes vex-fadeout {
-  0% {
-    opacity: 1; }
-  100% {
-    opacity: 0; } }
-
-@-o-keyframes vex-fadeout {
   0% {
     opacity: 1; }
   100% {
@@ -86,51 +50,8 @@
     -ms-transform: rotate(359deg);
     -o-transform: rotate(359deg); } }
 
-@-moz-keyframes vex-rotation {
-  0% {
-    transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg); }
-  100% {
-    transform: rotate(359deg);
-    -webkit-transform: rotate(359deg);
-    -moz-transform: rotate(359deg);
-    -ms-transform: rotate(359deg);
-    -o-transform: rotate(359deg); } }
-
-@-ms-keyframes vex-rotation {
-  0% {
-    transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg); }
-  100% {
-    transform: rotate(359deg);
-    -webkit-transform: rotate(359deg);
-    -moz-transform: rotate(359deg);
-    -ms-transform: rotate(359deg);
-    -o-transform: rotate(359deg); } }
-
-@-o-keyframes vex-rotation {
-  0% {
-    transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg); }
-  100% {
-    transform: rotate(359deg);
-    -webkit-transform: rotate(359deg);
-    -moz-transform: rotate(359deg);
-    -ms-transform: rotate(359deg);
-    -o-transform: rotate(359deg); } }
-
 .vex, .vex *, .vex *:before, .vex *:after {
   -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 .vex {
@@ -216,8 +137,6 @@
   -ms-animation: vex-rotation 0.7s linear infinite;
   -o-animation: vex-rotation 0.7s linear infinite;
   -webkit-backface-visibility: hidden;
-  -moz-box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
   position: fixed;
   z-index: 1112;

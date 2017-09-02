@@ -20,10 +20,12 @@
     "vex-dialog": "1.0.7"
   },
   "devDependencies": {
+    "autoprefixer": "^7.1.3",
     "grunt": "1.0.1",
     "grunt-browserify": "5.0.0",
     "grunt-contrib-compass": "1.1.1",
     "grunt-contrib-uglify": "1.0.1",
+    "grunt-postcss": "^0.8.0",
     "grunt-sass": "1.2.0",
     "standard": "7.1.2"
   },
