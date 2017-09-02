@@ -72,11 +72,6 @@
   overflow: scroll; }
 
 .vex-overlay {
-  background: #000;
-  filter: alpha(opacity=40);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)"; }
-
-.vex-overlay {
   animation: vex-fadein 0.5s;
   -webkit-animation: vex-fadein 0.5s;
   -moz-animation: vex-fadein 0.5s;
