@@ -1,71 +1,17 @@
-@keyframes vex-pulse {
-  0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; }
-  70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-  100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; } }
-
 @-webkit-keyframes vex-pulse {
   0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; }
   70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
   100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; } }
 
-@-moz-keyframes vex-pulse {
+@keyframes vex-pulse {
   0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; }
   70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
     box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
   100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; } }
-
-@-ms-keyframes vex-pulse {
-  0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; }
-  70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-  100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; } }
-
-@-o-keyframes vex-pulse {
-  0% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
-    box-shadow: inset 0 0 0 300px transparent; }
-  70% {
-    -moz-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 0 300px rgba(255, 255, 255, 0.25); }
-  100% {
-    -moz-box-shadow: inset 0 0 0 300px transparent;
-    -webkit-box-shadow: inset 0 0 0 300px transparent;
     box-shadow: inset 0 0 0 300px transparent; } }
 
 .vex.vex-theme-wireframe {
@@ -130,8 +76,6 @@
       display: table;
       clear: both; }
   .vex.vex-theme-wireframe .vex-dialog-button {
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
     border-radius: 0;
     border: 0;
     float: right;
@@ -145,21 +89,13 @@
     .vex.vex-theme-wireframe .vex-dialog-button.vex-last {
       margin-left: 0; }
     .vex.vex-theme-wireframe .vex-dialog-button:focus {
-      animation: vex-pulse 1.1s infinite;
       -webkit-animation: vex-pulse 1.1s infinite;
-      -moz-animation: vex-pulse 1.1s infinite;
-      -ms-animation: vex-pulse 1.1s infinite;
-      -o-animation: vex-pulse 1.1s infinite;
-      -webkit-backface-visibility: hidden;
+      animation: vex-pulse 1.1s infinite;
       outline: none; }
       @media (max-width: 568px) {
         .vex.vex-theme-wireframe .vex-dialog-button:focus {
-          animation: none;
           -webkit-animation: none;
-          -moz-animation: none;
-          -ms-animation: none;
-          -o-animation: none;
-          -webkit-backface-visibility: hidden; } }
+          animation: none; } }
     .vex.vex-theme-wireframe .vex-dialog-button.vex-dialog-button-primary {
       background: #000;
       color: #fff;

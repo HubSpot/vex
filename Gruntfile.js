@@ -61,6 +61,17 @@ module.exports = function (grunt) {
         src: '*.sass',
         ext: '.css'
       }
+    },
+
+    postcss: {
+      options: {
+        processors: [
+          require('autoprefixer')({ cascade: false })
+        ]
+      },
+      dist: {
+        src: 'dist/css/*.css'
+      }
     }
   })
 
@@ -68,6 +79,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify')
   grunt.loadNpmTasks('grunt-contrib-compass')
   grunt.loadNpmTasks('grunt-sass')
+  grunt.loadNpmTasks('grunt-postcss')
 
-  grunt.registerTask('default', ['browserify', 'uglify', 'sass'])
+  grunt.registerTask('default', ['browserify', 'uglify', 'sass', 'postcss'])
 }

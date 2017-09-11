@@ -7,7 +7,7 @@
 +keyframes-vex-rotation
 
 .vex, .vex *, .vex *:before, .vex *:after
-    +box-sizing(border-box)
+    box-sizing: border-box
 
 .vex
     position: fixed
@@ -26,14 +26,8 @@
     height: 50px
     overflow: scroll
 
-// IE
 .vex-overlay
-    background: #000
-    filter: alpha(opacity=40) /* IE 5–7 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)" /* IE 8 */
-
-.vex-overlay
-    +vex-animation(vex-fadein .5s)
+    animation: vex-fadein .5s
     position: fixed
     z-index: 1111
     background: rgba(0, 0, 0, .4)
@@ -43,14 +37,14 @@
     left: 0
 
 .vex-overlay.vex-closing
-    +vex-animation(vex-fadeout .5s forwards)
+    animation: vex-fadeout .5s forwards
 
 .vex-content
-    +vex-animation(vex-fadein .5s)
+    animation: vex-fadein .5s
     background: #fff
 
 .vex.vex-closing .vex-content
-    +vex-animation(vex-fadeout .5s forwards)
+    animation: vex-fadeout .5s forwards
 
 .vex-close:before
     font-family: Arial, sans-serif
@@ -61,13 +55,13 @@
 
 .vex-dialog-button
     text-rendering: optimizeLegibility
-    +appearance(none)
+    appearance: none
     cursor: pointer
     -webkit-tap-highlight-color: transparent
 
 .vex-loading-spinner
-    +vex-animation(vex-rotation .7s linear infinite)
-    +box-shadow(0 0 1em rgba(0, 0, 0, 0.1))
+    animation: vex-rotation .7s linear infinite
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.1)
     position: fixed
     z-index: 1112
     margin: auto
