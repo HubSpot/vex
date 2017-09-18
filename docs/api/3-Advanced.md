@@ -102,7 +102,7 @@ A boolean indicating whether the instance is open/visible.
 
 When calling `vex.open()` you can pass a number of options to handle styling and certain behaviors. You can also set the properties of `vex.defaultOptions` to affect all future calls.
 
-`vex.defaultOptions` is initially set to this object:
+`vex.defaultOptions` is initially this object:
 
 ```javascript
 defaultOptions: {
