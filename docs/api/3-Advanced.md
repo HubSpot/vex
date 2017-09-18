@@ -116,7 +116,7 @@ defaultOptions: {
     overlayClassName: '',
     contentClassName: '',
     closeClassName: '',
-    closeAllOnPopState:true
+    closeAllOnPopState: true
 }
 ```
 
@@ -133,8 +133,9 @@ In addition to these string options, there are also three callback functions you
 
 Each callback is called with the context of the vex instance. That is, the keyword `this` inside of these callback functions references the vex instance.
 
-Lastly, when using single-page applications, the default behavior is for vex to close all open dialogs on state transitions. 
-Setting `closeAllOnPopState` to `false` will allow these dialogs to persist across state changes. 
+Lastly, when using single-page applications, the default behavior is for vex to close all open dialogs when a history state change causes a `popstate` event. 
+Setting `vex.defaultOptions.closeAllOnPopState` to `false` will allow these dialogs to persist across state changes.
+This option has no effect when passed to `vex.open()`.
 
 ### Note about Includes
 
