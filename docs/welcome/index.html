@@ -103,6 +103,8 @@
                 bottom: 0;
                 right: 0;
                 position: absolute;
+                z-index: 9999;
+                pointer-events: none;
             }
 
             @-moz-document url-prefix() {
@@ -179,6 +181,7 @@
             }
 
             .stack > .vex {
+                pointer-events: all;
                 -webkit-transition: -webkit-transform 0.7s;
             }
 
