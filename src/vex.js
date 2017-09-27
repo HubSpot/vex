@@ -50,6 +50,8 @@ var animationEndEvent = (function detectAnimationEndEvent () {
   return false
 })()
 
+var defaultAnimationEndEvent = 'animationend'
+
 // vex base CSS classes
 var baseClassNames = {
   vex: 'vex',
@@ -146,8 +148,14 @@ var vex = {
           return
         }
         // Run once
-        this.rootEl.removeEventListener(animationEndEvent, close)
-        this.overlayEl.removeEventListener(animationEndEvent, close)
+        this.rootEl.removeEventListener(defaultAnimationEndEvent, close)
+        this.overlayEl.removeEventListener(defaultAnimationEndEvent, close)
+
+        if (animationEndEvent !== defaultAnimationEndEvent) {
+          this.rootEl.removeEventListener(animationEndEvent, close)
+          this.overlayEl.removeEventListener(animationEndEvent, close)
+        }
+
         // Remove from lookup table (prevent memory leaks)
         delete vexes[this.id]
         // Remove the dialog from the DOM
@@ -167,8 +175,13 @@ var vex = {
       // Close the vex
       if (animationEndEvent && hasAnimation) {
         // Setup the end event listener, to remove the el from the DOM
-        this.rootEl.addEventListener(animationEndEvent, close)
-        this.overlayEl.addEventListener(animationEndEvent, close)
+        this.rootEl.addEventListener(defaultAnimationEndEvent, close)
+        this.overlayEl.addEventListener(defaultAnimationEndEvent, close)
+
+        if (animationEndEvent !== defaultAnimationEndEvent) {
+          this.rootEl.addEventListener(animationEndEvent, close)
+          this.overlayEl.addEventListener(animationEndEvent, close)
+        }
         // Add the closing class to the dialog, showing the close animation
         this.rootEl.classList.add(baseClassNames.closing)
         this.overlayEl.classList.add(baseClassNames.closing)
