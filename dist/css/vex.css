@@ -1,38 +1,14 @@
-@keyframes vex-fadein {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-
 @-webkit-keyframes vex-fadein {
   0% {
     opacity: 0; }
   100% {
     opacity: 1; } }
 
-@-moz-keyframes vex-fadein {
+@keyframes vex-fadein {
   0% {
     opacity: 0; }
   100% {
     opacity: 1; } }
-
-@-ms-keyframes vex-fadein {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-
-@-o-keyframes vex-fadein {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-
-@keyframes vex-fadeout {
-  0% {
-    opacity: 1; }
-  100% {
-    opacity: 0; } }
 
 @-webkit-keyframes vex-fadeout {
   0% {
@@ -40,97 +16,30 @@
   100% {
     opacity: 0; } }
 
-@-moz-keyframes vex-fadeout {
+@keyframes vex-fadeout {
   0% {
     opacity: 1; }
   100% {
     opacity: 0; } }
-
-@-ms-keyframes vex-fadeout {
-  0% {
-    opacity: 1; }
-  100% {
-    opacity: 0; } }
-
-@-o-keyframes vex-fadeout {
-  0% {
-    opacity: 1; }
-  100% {
-    opacity: 0; } }
-
-@keyframes vex-rotation {
-  0% {
-    transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg); }
-  100% {
-    transform: rotate(359deg);
-    -webkit-transform: rotate(359deg);
-    -moz-transform: rotate(359deg);
-    -ms-transform: rotate(359deg);
-    -o-transform: rotate(359deg); } }
 
 @-webkit-keyframes vex-rotation {
   0% {
-    transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg); }
+    transform: rotate(0deg); }
   100% {
-    transform: rotate(359deg);
     -webkit-transform: rotate(359deg);
-    -moz-transform: rotate(359deg);
-    -ms-transform: rotate(359deg);
-    -o-transform: rotate(359deg); } }
+    transform: rotate(359deg); } }
 
-@-moz-keyframes vex-rotation {
+@keyframes vex-rotation {
   0% {
-    transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg); }
+    transform: rotate(0deg); }
   100% {
-    transform: rotate(359deg);
     -webkit-transform: rotate(359deg);
-    -moz-transform: rotate(359deg);
-    -ms-transform: rotate(359deg);
-    -o-transform: rotate(359deg); } }
-
-@-ms-keyframes vex-rotation {
-  0% {
-    transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg); }
-  100% {
-    transform: rotate(359deg);
-    -webkit-transform: rotate(359deg);
-    -moz-transform: rotate(359deg);
-    -ms-transform: rotate(359deg);
-    -o-transform: rotate(359deg); } }
-
-@-o-keyframes vex-rotation {
-  0% {
-    transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg); }
-  100% {
-    transform: rotate(359deg);
-    -webkit-transform: rotate(359deg);
-    -moz-transform: rotate(359deg);
-    -ms-transform: rotate(359deg);
-    -o-transform: rotate(359deg); } }
+    transform: rotate(359deg); } }
 
 .vex, .vex *, .vex *:before, .vex *:after {
   -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 .vex {
@@ -151,17 +60,8 @@
   overflow: scroll; }
 
 .vex-overlay {
-  background: #000;
-  filter: alpha(opacity=40);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)"; }
-
-.vex-overlay {
-  animation: vex-fadein 0.5s;
-  -webkit-animation: vex-fadein 0.5s;
-  -moz-animation: vex-fadein 0.5s;
-  -ms-animation: vex-fadein 0.5s;
-  -o-animation: vex-fadein 0.5s;
-  -webkit-backface-visibility: hidden;
+  -webkit-animation: vex-fadein .5s;
+  animation: vex-fadein .5s;
   position: fixed;
   z-index: 1111;
   background: rgba(0, 0, 0, 0.4);
@@ -171,29 +71,17 @@
   left: 0; }
 
 .vex-overlay.vex-closing {
-  animation: vex-fadeout 0.5s;
-  -webkit-animation: vex-fadeout 0.5s;
-  -moz-animation: vex-fadeout 0.5s;
-  -ms-animation: vex-fadeout 0.5s;
-  -o-animation: vex-fadeout 0.5s;
-  -webkit-backface-visibility: hidden; }
+  -webkit-animation: vex-fadeout .5s forwards;
+  animation: vex-fadeout .5s forwards; }
 
 .vex-content {
-  animation: vex-fadein 0.5s;
-  -webkit-animation: vex-fadein 0.5s;
-  -moz-animation: vex-fadein 0.5s;
-  -ms-animation: vex-fadein 0.5s;
-  -o-animation: vex-fadein 0.5s;
-  -webkit-backface-visibility: hidden;
+  -webkit-animation: vex-fadein .5s;
+  animation: vex-fadein .5s;
   background: #fff; }
 
 .vex.vex-closing .vex-content {
-  animation: vex-fadeout 0.5s;
-  -webkit-animation: vex-fadeout 0.5s;
-  -moz-animation: vex-fadeout 0.5s;
-  -ms-animation: vex-fadeout 0.5s;
-  -o-animation: vex-fadeout 0.5s;
-  -webkit-backface-visibility: hidden; }
+  -webkit-animation: vex-fadeout .5s forwards;
+  animation: vex-fadeout .5s forwards; }
 
 .vex-close:before {
   font-family: Arial, sans-serif;
@@ -204,20 +92,15 @@
 
 .vex-dialog-button {
   text-rendering: optimizeLegibility;
-  -moz-appearance: none;
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent; }
 
 .vex-loading-spinner {
-  animation: vex-rotation 0.7s linear infinite;
-  -webkit-animation: vex-rotation 0.7s linear infinite;
-  -moz-animation: vex-rotation 0.7s linear infinite;
-  -ms-animation: vex-rotation 0.7s linear infinite;
-  -o-animation: vex-rotation 0.7s linear infinite;
-  -webkit-backface-visibility: hidden;
-  -moz-box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+  -webkit-animation: vex-rotation .7s linear infinite;
+  animation: vex-rotation .7s linear infinite;
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
   position: fixed;
   z-index: 1112;

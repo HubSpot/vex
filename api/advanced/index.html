@@ -83,8 +83,8 @@ Closing an instance will remove it from vex&#39;s internal lookup table to save 
 <h4 id="-vexinstance-isopen-"><code>vexInstance.isOpen</code></h4>
 <p>A boolean indicating whether the instance is open/visible.</p>
 <h4 id="options">Options</h4>
-<p>When calling <code>vex.open()</code> you can pass a number of options to handle styling and certain behaviors.</p>
-<p>Here are the defaults:</p>
+<p>When calling <code>vex.open()</code> you can pass a number of options to handle styling and certain behaviors. You can also set the properties of <code>vex.defaultOptions</code> to affect all future calls.</p>
+<p><code>vex.defaultOptions</code> is initially this object:</p>
 <pre><code class="lang-javascript">defaultOptions: {
     content: <span class="hljs-string">''</span>,
     unsafeContent: <span class="hljs-string">''</span>,
@@ -96,7 +96,7 @@ Closing an instance will remove it from vex&#39;s internal lookup table to save 
     overlayClassName: <span class="hljs-string">''</span>,
     contentClassName: <span class="hljs-string">''</span>,
     closeClassName: <span class="hljs-string">''</span>,
-    closeAllOnPopState:<span class="hljs-literal">true</span>
+    closeAllOnPopState: <span class="hljs-literal">true</span>
 }
 </code></pre>
 <p>vex provides <em>safe by default</em> behavior by treating the <code>content</code> you provide as a regular string, not raw HTML.</p>
@@ -109,8 +109,9 @@ The <code>unsafeContent</code> option is safe to use as long as you provide eith
 <li><code>beforeClose</code> is called before removing the instance from the DOM, and should return a boolean. If <code>beforeClose</code> returns false, the close will not go through and the vex instance will remain open. Useful for validation or any other checks you need to perform.</li>
 </ul>
 <p>Each callback is called with the context of the vex instance. That is, the keyword <code>this</code> inside of these callback functions references the vex instance.</p>
-<p>Lastly, when using single-page applications, the default behavior is for vex to close all open dialogs on state transitions. 
-Setting <code>closeAllOnPopState</code> to <code>false</code> will allow these dialogs to persist across state changes. </p>
+<p>Lastly, when using single-page applications, the default behavior is for vex to close all open dialogs when a history state change causes a <code>popstate</code> event. 
+Setting <code>vex.defaultOptions.closeAllOnPopState</code> to <code>false</code> will allow these dialogs to persist across state changes.
+This option has no effect when passed to <code>vex.open()</code>.</p>
 <h3 id="note-about-includes">Note about Includes</h3>
 <p>To use vex, minimally, you must include:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"vex.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>

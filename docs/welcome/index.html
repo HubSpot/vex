@@ -103,6 +103,8 @@
                 bottom: 0;
                 right: 0;
                 position: absolute;
+                z-index: 9999;
+                pointer-events: none;
             }
 
             @-moz-document url-prefix() {
@@ -179,6 +181,7 @@
             }
 
             .stack > .vex {
+                pointer-events: all;
                 -webkit-transition: -webkit-transform 0.7s;
             }
 
@@ -217,6 +220,10 @@
                     -ms-animation: none;
                     -o-animation: none;
                 }
+            }
+
+            .vex.example {
+                z-index: 9999;
             }
 
             .examples a {
@@ -296,17 +303,17 @@
                     $('.vex:not(".vex-closing")').removeClass('vex-theme-wireframe').addClass('vex-theme-os');
                     var examples = {
                         alert: function() {
-                            vex.dialog.alert({ className: 'vex-theme-os', message: 'This is an alert.' });
+                            vex.dialog.alert({ className: 'vex-theme-os example', message: 'This is an alert.' });
                         },
                         confirm: function() {
-                            vex.dialog.confirm({ className: 'vex-theme-os', message: 'Confirm this for me.', callback: function(){} });
+                            vex.dialog.confirm({ className: 'vex-theme-os example', message: 'Confirm this for me.', callback: function(){} });
                         },
                         prompt: function() {
-                            vex.dialog.prompt({ className: 'vex-theme-os', message: 'Prompt:', callback: function(){} });
+                            vex.dialog.prompt({ className: 'vex-theme-os example', message: 'Prompt:', callback: function(){} });
                         },
                         login: function() {
                             vex.dialog.open({
-                                className: 'vex-theme-os',
+                                className: 'vex-theme-os example',
                                 message: 'Enter your username and password:',
                                 input: '' +
                                     '<input name="username" type="text" placeholder="Username" required />' +
