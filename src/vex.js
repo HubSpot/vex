@@ -36,11 +36,11 @@ var addClasses = function addClasses (el, classStr) {
 var animationEndEvent = (function detectAnimationEndEvent () {
   var el = document.createElement('div')
   var eventNames = {
-    'animation': 'animationend',
     'WebkitAnimation': 'webkitAnimationEnd',
     'MozAnimation': 'animationend',
     'OAnimation': 'oanimationend',
-    'msAnimation': 'MSAnimationEnd'
+    'msAnimation': 'MSAnimationEnd',
+    'animation': 'animationend'
   }
   for (var i in eventNames) {
     if (el.style[i] !== undefined) {
@@ -162,6 +162,12 @@ var vex = {
         if (Object.keys(vexes).length === 0) {
           document.body.classList.remove(baseClassNames.open)
         }
+        //Give focus back to initial element
+        if (options.giveBackFocus) {
+          focusedElementBefore.focus();
+        }
+        document.querySelector(options.ariaContentMain).setAttribute('aria-hidden', false)
+        
       }.bind(this)
 
       // Close the vex
@@ -208,6 +214,7 @@ var vex = {
     // Overlay
     var overlayEl = vexInstance.overlayEl = document.createElement('div')
     overlayEl.classList.add(baseClassNames.overlay)
+    overlayEl.tabIndex = -1
     addClasses(overlayEl, options.overlayClassName)
     if (options.overlayClosesOnClick) {
       rootEl.addEventListener('click', function overlayClickListener (e) {
@@ -221,13 +228,58 @@ var vex = {
     // Content
     var contentEl = vexInstance.contentEl = document.createElement('div')
     contentEl.classList.add(baseClassNames.content)
+    contentEl.setAttribute('role', 'dialog')
+    contentEl.setAttribute('aria-hidden', false)
+    contentEl.setAttribute('aria-labelledBy', options.message)
     addClasses(contentEl, options.contentClassName)
     contentEl.appendChild(options.content instanceof window.Node ? options.content : domify(options.content))
     rootEl.appendChild(contentEl)
+ 
+    //Accessibility features
+    //Get initial element
+    var focusedElementBefore = document.activeElement;
+    
+    document.querySelector(options.ariaContentMain).setAttribute('aria-hidden', true)
+    
+    if (options.trapTabKey) {
+      contentEl.onkeydown = function(event) {        
+        var focusableElementsString = "a[href], area[href], input:not([disabled]), select:not([disabled]), textarea, button, iframe, object, embed, *[tabindex], *[contenteditable]"
+        var focusableElements = contentEl.querySelectorAll(focusableElementsString)
+        
+        //Tab key pressed
+        if (event.which == 9) {
+          console.log(focusableElements.length)
+          var visibleFocusableElements = focusableElements
+                
+          var focusedElement = document.activeElement
+          var numberOfFocusableELements = visibleFocusableElements.length
+                
+          var focusedElementIndex = Array.prototype.indexOf.call(visibleFocusableElements, focusedElement)
+                
+          if (event.shiftKey) {
+            //back tab
+            // if focused on first item and user preses back-tab, go to the last focusable item
+            if (focusedElementIndex == 0) {
+              visibleFocusableElements.item(numberOfFocusableELements - 1).focus()
+              event.preventDefault()
+            }
+          } else {
+            console.log("tab overrided")
+            //forward tab
+            // if focused on the last item and user preses tab, go to the first focusable item
+            if (focusedElementIndex == numberOfFocusableELements - 1) {
+              visibleFocusableElements.item(0).focus();
+              event.preventDefault();
+            }
+          }
+        }
+      }
+    }
 
     // Close button
     if (options.showCloseButton) {
-      var closeEl = vexInstance.closeEl = document.createElement('div')
+      var closeEl = vexInstance.closeEl = document.createElement('button')
+      closeEl.setAttribute('aria-label', 'close')
       closeEl.classList.add(baseClassNames.close)
       addClasses(closeEl, options.closeClassName)
       closeEl.addEventListener('click', vexInstance.close.bind(vexInstance))
@@ -319,7 +371,10 @@ vex.defaultOptions = {
   overlayClassName: '',
   contentClassName: '',
   closeClassName: '',
-  closeAllOnPopState: true
+  closeAllOnPopState: true,
+  giveBackFocus: true,
+  trapTabKey: true,
+  ariaContentMain: 'body:not([vex])'
 }
 
 // TODO Loading symbols?
