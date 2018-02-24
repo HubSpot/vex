@@ -36,11 +36,11 @@ var addClasses = function addClasses (el, classStr) {
 var animationEndEvent = (function detectAnimationEndEvent () {
   var el = document.createElement('div')
   var eventNames = {
+    'animation': 'animationend',
     'WebkitAnimation': 'webkitAnimationEnd',
     'MozAnimation': 'animationend',
     'OAnimation': 'oanimationend',
-    'msAnimation': 'MSAnimationEnd',
-    'animation': 'animationend'
+    'msAnimation': 'MSAnimationEnd'
   }
   for (var i in eventNames) {
     if (el.style[i] !== undefined) {
