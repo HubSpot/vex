@@ -9,7 +9,7 @@ vex-dialog exposes 4 main apis:
 - `vex.dialog.prompt(options)`
 - `vex.dialog.open(options)`
 
-These all call the `vex.open` method with different combinations of options. [All of the options](/docs/api/3-Advanced.md#options) that `vex.open` supports are also supported here.
+These all call the `vex.open` method with different combinations of options. [All of the options](http://github.com/HubSpot/vex/blob/master/docs/api/3-Advanced.md#options) that `vex.open` supports are also supported here.
 
 vex-dialog provides *safe by default* behavior by treating the `message` you provide as a regular string, not raw HTML.
 
