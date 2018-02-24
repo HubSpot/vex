@@ -101,7 +101,7 @@ vex.dialog.confirm({
 #### Login Demo
 
 Here's a more complex demo in which we use `vex.dialog.open` (a more generic method that `alert`, `confirm`, and `prompt` all call internally) to build a login dialog.
-
+```javascript
 <a class="demo-login hs-brand-button">Log in</a>
 <div class="demo-result-login hs-doc-callout hs-doc-callout-info" style="display: none"></div>
 <script>
@@ -128,7 +128,7 @@ Here's a more complex demo in which we use `vex.dialog.open` (a more generic met
         });
     });
 </script>
-
+```
 Play with this example:
 
 ```javascript
