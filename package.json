@@ -21,16 +21,17 @@
   },
   "devDependencies": {
     "autoprefixer": "7.1.3",
+    "browserify": "16.1.0",
     "grunt": "1.0.2",
     "grunt-browserify": "5.2.0",
     "grunt-contrib-compass": "1.1.1",
     "grunt-contrib-uglify": "3.3.0",
     "grunt-postcss": "0.9.0",
     "grunt-sass": "2.0.0",
+    "load-grunt-tasks": "3.5.2",
     "standard": "10.0.3"
   },
   "scripts": {
-    "prepublish": "grunt",
     "test": "standard",
     "build": "grunt"
   },
