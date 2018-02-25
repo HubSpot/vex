@@ -558,7 +558,7 @@ var vex = {
         // Remove the dialog from the DOM
         this.rootEl.parentNode.removeChild(this.rootEl)
         // Remove the overlay from the DOM
-        this.bodyEl.removeChild(this.overlayEl);
+        this.bodyEl.removeChild(this.overlayEl)
         // Call after close callback
         if (options.afterClose) {
           options.afterClose.call(this)
@@ -603,7 +603,7 @@ var vex = {
     var options = vexInstance.options = Object.assign({}, vex.defaultOptions, opts)
 
     // Get Body Element
-    var bodyEl = vexInstance.bodyEl = document.getElementsByTagName('body')[0];
+    var bodyEl = vexInstance.bodyEl = document.getElementsByTagName('body')[0]
 
     // vex root
     var rootEl = vexInstance.rootEl = document.createElement('div')

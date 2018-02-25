@@ -1,6 +1,6 @@
 {
   "name": "vex-js",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "Beautiful, functional dialogs in vanilla JavaScript",
   "contributors": [
     "Adam Schwartz <aschwartz@hubspot.com>",
