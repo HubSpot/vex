@@ -248,7 +248,6 @@ var vex = {
         
         //Tab key pressed
         if (event.which == 9) {
-          console.log(focusableElements.length)
           var visibleFocusableElements = focusableElements
                 
           var focusedElement = document.activeElement
@@ -264,7 +263,6 @@ var vex = {
               event.preventDefault()
             }
           } else {
-            console.log("tab overrided")
             //forward tab
             // if focused on the last item and user preses tab, go to the first focusable item
             if (focusedElementIndex == numberOfFocusableELements - 1) {
@@ -278,7 +276,7 @@ var vex = {
 
     // Close button
     if (options.showCloseButton) {
-      var closeEl = vexInstance.closeEl = document.createElement('button')
+      var closeEl = vexInstance.closeEl = document.createElement('div')
       closeEl.setAttribute('aria-label', 'close')
       closeEl.classList.add(baseClassNames.close)
       addClasses(closeEl, options.closeClassName)
@@ -374,7 +372,7 @@ vex.defaultOptions = {
   closeAllOnPopState: true,
   giveBackFocus: true,
   trapTabKey: true,
-  ariaContentMain: 'body:not([vex])'
+  ariaContentMain: 'body > :not(.vex)'
 }
 
 // TODO Loading symbols?
