@@ -117,6 +117,13 @@ You can specify your own form inputs, and the `name` attribute will be the prope
 You can specify your own buttons if you want more options than just OK or Cancel. If you simply want to change the labels, you can override the default options for the following:
 
 ```javascript
+vex.dialog.buttons.YES.text = 'Okiedokie'
+vex.dialog.buttons.NO.text = 'Aahw hell no'
+```
+
+You can also change the yesText and noText options of the dialog to change the labels:
+
+```javascript
 vex.dialog.prompt({
     yesText: 'Okiedokie'
     noText: 'Aahw hell no'
@@ -132,6 +139,8 @@ button {
     className: string // the CSS class(es)
 }
 ```
+
+
 
 ##### Demo
 
