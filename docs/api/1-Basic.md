@@ -140,8 +140,6 @@ button {
 }
 ```
 
-
-
 ##### Demo
 
 Putting this all together, let's create a dialog with the following customizations:
