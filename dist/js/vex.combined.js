@@ -1,247 +1,267 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.vex = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.vex = f()}})(function(){var define,module,exports;return (function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
 /*
  * classList.js: Cross-browser full element.classList implementation.
- * 2014-07-23
+ * 1.1.20170427
  *
  * By Eli Grey, http://eligrey.com
- * Public Domain.
- * NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+ * License: Dedicated to the public domain.
+ *   See https://github.com/eligrey/classList.js/blob/master/LICENSE.md
  */
 
 /*global self, document, DOMException */
 
-/*! @source http://purl.eligrey.com/github/classList.js/blob/master/classList.js*/
-
-/* Copied from MDN:
- * https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
- */
+/*! @source http://purl.eligrey.com/github/classList.js/blob/master/classList.js */
 
 if ("document" in window.self) {
 
-  // Full polyfill for browsers with no classList support
-  // Including IE < Edge missing SVGElement.classList
-  if (!("classList" in document.createElement("_"))
-    || document.createElementNS && !("classList" in document.createElementNS("http://www.w3.org/2000/svg","g"))) {
+// Full polyfill for browsers with no classList support
+// Including IE < Edge missing SVGElement.classList
+if (!("classList" in document.createElement("_")) 
+	|| document.createElementNS && !("classList" in document.createElementNS("http://www.w3.org/2000/svg","g"))) {
 
-  (function (view) {
+(function (view) {
 
-    "use strict";
+"use strict";
 
-    if (!('Element' in view)) return;
+if (!('Element' in view)) return;
 
-    var
-        classListProp = "classList"
-      , protoProp = "prototype"
-      , elemCtrProto = view.Element[protoProp]
-      , objCtr = Object
-      , strTrim = String[protoProp].trim || function () {
-        return this.replace(/^\s+|\s+$/g, "");
-      }
-      , arrIndexOf = Array[protoProp].indexOf || function (item) {
-        var
-            i = 0
-          , len = this.length
-        ;
-        for (; i < len; i++) {
-          if (i in this && this[i] === item) {
-            return i;
-          }
-        }
-        return -1;
-      }
-      // Vendors: please allow content code to instantiate DOMExceptions
-      , DOMEx = function (type, message) {
-        this.name = type;
-        this.code = DOMException[type];
-        this.message = message;
-      }
-      , checkTokenAndGetIndex = function (classList, token) {
-        if (token === "") {
-          throw new DOMEx(
-              "SYNTAX_ERR"
-            , "An invalid or illegal string was specified"
-          );
-        }
-        if (/\s/.test(token)) {
-          throw new DOMEx(
-              "INVALID_CHARACTER_ERR"
-            , "String contains an invalid character"
-          );
-        }
-        return arrIndexOf.call(classList, token);
-      }
-      , ClassList = function (elem) {
-        var
-            trimmedClasses = strTrim.call(elem.getAttribute("class") || "")
-          , classes = trimmedClasses ? trimmedClasses.split(/\s+/) : []
-          , i = 0
-          , len = classes.length
-        ;
-        for (; i < len; i++) {
-          this.push(classes[i]);
-        }
-        this._updateClassName = function () {
-          elem.setAttribute("class", this.toString());
-        };
-      }
-      , classListProto = ClassList[protoProp] = []
-      , classListGetter = function () {
-        return new ClassList(this);
-      }
-    ;
-    // Most DOMException implementations don't allow calling DOMException's toString()
-    // on non-DOMExceptions. Error's toString() is sufficient here.
-    DOMEx[protoProp] = Error[protoProp];
-    classListProto.item = function (i) {
-      return this[i] || null;
-    };
-    classListProto.contains = function (token) {
-      token += "";
-      return checkTokenAndGetIndex(this, token) !== -1;
-    };
-    classListProto.add = function () {
-      var
-          tokens = arguments
-        , i = 0
-        , l = tokens.length
-        , token
-        , updated = false
-      ;
-      do {
-        token = tokens[i] + "";
-        if (checkTokenAndGetIndex(this, token) === -1) {
-          this.push(token);
-          updated = true;
-        }
-      }
-      while (++i < l);
+var
+	  classListProp = "classList"
+	, protoProp = "prototype"
+	, elemCtrProto = view.Element[protoProp]
+	, objCtr = Object
+	, strTrim = String[protoProp].trim || function () {
+		return this.replace(/^\s+|\s+$/g, "");
+	}
+	, arrIndexOf = Array[protoProp].indexOf || function (item) {
+		var
+			  i = 0
+			, len = this.length
+		;
+		for (; i < len; i++) {
+			if (i in this && this[i] === item) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	// Vendors: please allow content code to instantiate DOMExceptions
+	, DOMEx = function (type, message) {
+		this.name = type;
+		this.code = DOMException[type];
+		this.message = message;
+	}
+	, checkTokenAndGetIndex = function (classList, token) {
+		if (token === "") {
+			throw new DOMEx(
+				  "SYNTAX_ERR"
+				, "An invalid or illegal string was specified"
+			);
+		}
+		if (/\s/.test(token)) {
+			throw new DOMEx(
+				  "INVALID_CHARACTER_ERR"
+				, "String contains an invalid character"
+			);
+		}
+		return arrIndexOf.call(classList, token);
+	}
+	, ClassList = function (elem) {
+		var
+			  trimmedClasses = strTrim.call(elem.getAttribute("class") || "")
+			, classes = trimmedClasses ? trimmedClasses.split(/\s+/) : []
+			, i = 0
+			, len = classes.length
+		;
+		for (; i < len; i++) {
+			this.push(classes[i]);
+		}
+		this._updateClassName = function () {
+			elem.setAttribute("class", this.toString());
+		};
+	}
+	, classListProto = ClassList[protoProp] = []
+	, classListGetter = function () {
+		return new ClassList(this);
+	}
+;
+// Most DOMException implementations don't allow calling DOMException's toString()
+// on non-DOMExceptions. Error's toString() is sufficient here.
+DOMEx[protoProp] = Error[protoProp];
+classListProto.item = function (i) {
+	return this[i] || null;
+};
+classListProto.contains = function (token) {
+	token += "";
+	return checkTokenAndGetIndex(this, token) !== -1;
+};
+classListProto.add = function () {
+	var
+		  tokens = arguments
+		, i = 0
+		, l = tokens.length
+		, token
+		, updated = false
+	;
+	do {
+		token = tokens[i] + "";
+		if (checkTokenAndGetIndex(this, token) === -1) {
+			this.push(token);
+			updated = true;
+		}
+	}
+	while (++i < l);
 
-      if (updated) {
-        this._updateClassName();
-      }
-    };
-    classListProto.remove = function () {
-      var
-          tokens = arguments
-        , i = 0
-        , l = tokens.length
-        , token
-        , updated = false
-        , index
-      ;
-      do {
-        token = tokens[i] + "";
-        index = checkTokenAndGetIndex(this, token);
-        while (index !== -1) {
-          this.splice(index, 1);
-          updated = true;
-          index = checkTokenAndGetIndex(this, token);
-        }
-      }
-      while (++i < l);
+	if (updated) {
+		this._updateClassName();
+	}
+};
+classListProto.remove = function () {
+	var
+		  tokens = arguments
+		, i = 0
+		, l = tokens.length
+		, token
+		, updated = false
+		, index
+	;
+	do {
+		token = tokens[i] + "";
+		index = checkTokenAndGetIndex(this, token);
+		while (index !== -1) {
+			this.splice(index, 1);
+			updated = true;
+			index = checkTokenAndGetIndex(this, token);
+		}
+	}
+	while (++i < l);
 
-      if (updated) {
-        this._updateClassName();
-      }
-    };
-    classListProto.toggle = function (token, force) {
-      token += "";
+	if (updated) {
+		this._updateClassName();
+	}
+};
+classListProto.toggle = function (token, force) {
+	token += "";
 
-      var
-          result = this.contains(token)
-        , method = result ?
-          force !== true && "remove"
-        :
-          force !== false && "add"
-      ;
+	var
+		  result = this.contains(token)
+		, method = result ?
+			force !== true && "remove"
+		:
+			force !== false && "add"
+	;
 
-      if (method) {
-        this[method](token);
-      }
+	if (method) {
+		this[method](token);
+	}
 
-      if (force === true || force === false) {
-        return force;
-      } else {
-        return !result;
-      }
-    };
-    classListProto.toString = function () {
-      return this.join(" ");
-    };
+	if (force === true || force === false) {
+		return force;
+	} else {
+		return !result;
+	}
+};
+classListProto.toString = function () {
+	return this.join(" ");
+};
 
-    if (objCtr.defineProperty) {
-      var classListPropDesc = {
-          get: classListGetter
-        , enumerable: true
-        , configurable: true
-      };
-      try {
-        objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc);
-      } catch (ex) { // IE 8 doesn't support enumerable:true
-        if (ex.number === -0x7FF5EC54) {
-          classListPropDesc.enumerable = false;
-          objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc);
-        }
-      }
-    } else if (objCtr[protoProp].__defineGetter__) {
-      elemCtrProto.__defineGetter__(classListProp, classListGetter);
-    }
+if (objCtr.defineProperty) {
+	var classListPropDesc = {
+		  get: classListGetter
+		, enumerable: true
+		, configurable: true
+	};
+	try {
+		objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc);
+	} catch (ex) { // IE 8 doesn't support enumerable:true
+		// adding undefined to fight this issue https://github.com/eligrey/classList.js/issues/36
+		// modernie IE8-MSW7 machine has IE8 8.0.6001.18702 and is affected
+		if (ex.number === undefined || ex.number === -0x7FF5EC54) {
+			classListPropDesc.enumerable = false;
+			objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc);
+		}
+	}
+} else if (objCtr[protoProp].__defineGetter__) {
+	elemCtrProto.__defineGetter__(classListProp, classListGetter);
+}
 
-    }(window.self));
+}(window.self));
 
-    } else {
-    // There is full or partial native classList support, so just check if we need
-    // to normalize the add/remove and toggle APIs.
+}
 
-    (function () {
-      "use strict";
+// There is full or partial native classList support, so just check if we need
+// to normalize the add/remove and toggle APIs.
 
-      var testElement = document.createElement("_");
+(function () {
+	"use strict";
 
-      testElement.classList.add("c1", "c2");
+	var testElement = document.createElement("_");
 
-      // Polyfill for IE 10/11 and Firefox <26, where classList.add and
-      // classList.remove exist but support only one argument at a time.
-      if (!testElement.classList.contains("c2")) {
-        var createMethod = function(method) {
-          var original = DOMTokenList.prototype[method];
+	testElement.classList.add("c1", "c2");
 
-          DOMTokenList.prototype[method] = function(token) {
-            var i, len = arguments.length;
+	// Polyfill for IE 10/11 and Firefox <26, where classList.add and
+	// classList.remove exist but support only one argument at a time.
+	if (!testElement.classList.contains("c2")) {
+		var createMethod = function(method) {
+			var original = DOMTokenList.prototype[method];
 
-            for (i = 0; i < len; i++) {
-              token = arguments[i];
-              original.call(this, token);
-            }
-          };
-        };
-        createMethod('add');
-        createMethod('remove');
-      }
+			DOMTokenList.prototype[method] = function(token) {
+				var i, len = arguments.length;
 
-      testElement.classList.toggle("c3", false);
+				for (i = 0; i < len; i++) {
+					token = arguments[i];
+					original.call(this, token);
+				}
+			};
+		};
+		createMethod('add');
+		createMethod('remove');
+	}
 
-      // Polyfill for IE 10 and Firefox <24, where classList.toggle does not
-      // support the second argument.
-      if (testElement.classList.contains("c3")) {
-        var _toggle = DOMTokenList.prototype.toggle;
+	testElement.classList.toggle("c3", false);
 
-        DOMTokenList.prototype.toggle = function(token, force) {
-          if (1 in arguments && !this.contains(token) === !force) {
-            return force;
-          } else {
-            return _toggle.call(this, token);
-          }
-        };
+	// Polyfill for IE 10 and Firefox <24, where classList.toggle does not
+	// support the second argument.
+	if (testElement.classList.contains("c3")) {
+		var _toggle = DOMTokenList.prototype.toggle;
 
-      }
+		DOMTokenList.prototype.toggle = function(token, force) {
+			if (1 in arguments && !this.contains(token) === !force) {
+				return force;
+			} else {
+				return _toggle.call(this, token);
+			}
+		};
 
-      testElement = null;
-    }());
-  }
+	}
+
+	testElement = null;
+}());
+
 }
 
 },{}],2:[function(require,module,exports){
+'use strict';
+
+function deepcopy(value) {
+  if (!(!!value && typeof value == 'object')) {
+    return value;
+  }
+  if (Object.prototype.toString.call(value) == '[object Date]') {
+    return new Date(value.getTime());
+  }
+  if (Array.isArray(value)) {
+    return value.map(deepcopy);
+  }
+  var result = {};
+  Object.keys(value).forEach(
+    function(key) { result[key] = deepcopy(value[key]); });
+  return result;
+}
+
+module.exports = deepcopy;
+
+},{}],3:[function(require,module,exports){
 
 /**
  * Expose `parse`.
@@ -355,7 +375,7 @@ function parse(html, doc) {
   return fragment;
 }
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 /**
  * Code refactored from Mozilla Developer Network:
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
@@ -403,7 +423,7 @@ module.exports = {
   polyfill: polyfill
 };
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 // get successful control from form and assemble into object
 // http://www.w3.org/TR/html401/interact/forms.html#h-17.13.2
 
@@ -665,9 +685,30 @@ function str_serialize(result, key, value) {
 
 module.exports = serialize;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 (function (global){
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.vexDialog = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.vexDialog = f()}})(function(){var define,module,exports;return (function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
+'use strict';
+
+function deepcopy(value) {
+  if (!(!!value && typeof value == 'object')) {
+    return value;
+  }
+  if (Object.prototype.toString.call(value) == '[object Date]') {
+    return new Date(value.getTime());
+  }
+  if (Array.isArray(value)) {
+    return value.map(deepcopy);
+  }
+  var result = {};
+  Object.keys(value).forEach(
+    function(key) { result[key] = deepcopy(value[key]); });
+  return result;
+}
+
+module.exports = deepcopy;
+
+},{}],2:[function(require,module,exports){
 
 /**
  * Expose `parse`.
@@ -781,7 +822,7 @@ function parse(html, doc) {
   return fragment;
 }
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 // get successful control from form and assemble into object
 // http://www.w3.org/TR/html401/interact/forms.html#h-17.13.2
 
@@ -1043,9 +1084,10 @@ function str_serialize(result, key, value) {
 
 module.exports = serialize;
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 var domify = require('domify')
 var serialize = require('form-serialize')
+var cloneDeep = require('deep-clone-simple')
 
 // Build DOM elements for the structure of the dialog
 var buildDialogForm = function buildDialogForm (options) {
@@ -1106,7 +1148,7 @@ var plugin = function plugin (vex) {
 
     // Open
     open: function open (opts) {
-      var options = Object.assign({}, this.defaultOptions, opts)
+      var options = Object.assign({}, cloneDeep(this.defaultOptions), opts)
 
       // `message` is unsafe internally, so translate
       // safe default: HTML-escape the message before passing it through
@@ -1121,6 +1163,14 @@ var plugin = function plugin (vex) {
 
       // Open the dialog
       var dialogInstance = vex.open(options)
+
+      if (options.yesText !== '') {
+        options.buttons[0].text = options.yesText
+      }
+
+      if (options.noText !== '') {
+        options.buttons[1].text = options.noText
+      }
 
       // Quick comment - these options and appending buttons and everything
       // would preferably be done _before_ opening the dialog. However, since
@@ -1171,7 +1221,7 @@ var plugin = function plugin (vex) {
           message: options
         }
       }
-      options = Object.assign({}, this.defaultOptions, this.defaultAlertOptions, options)
+      options = Object.assign({}, cloneDeep(this.defaultOptions), cloneDeep(this.defaultAlertOptions), options)
       return this.open(options)
     },
 
@@ -1180,7 +1230,7 @@ var plugin = function plugin (vex) {
       if (typeof options !== 'object' || typeof options.callback !== 'function') {
         throw new Error('dialog.confirm(options) requires options.callback.')
       }
-      options = Object.assign({}, this.defaultOptions, this.defaultConfirmOptions, options)
+      options = Object.assign({}, cloneDeep(this.defaultOptions), cloneDeep(this.defaultConfirmOptions), options)
       return this.open(options)
     },
 
@@ -1189,7 +1239,7 @@ var plugin = function plugin (vex) {
       if (typeof options !== 'object' || typeof options.callback !== 'function') {
         throw new Error('dialog.prompt(options) requires options.callback.')
       }
-      var defaults = Object.assign({}, this.defaultOptions, this.defaultPromptOptions)
+      var defaults = Object.assign({}, cloneDeep(this.defaultOptions), cloneDeep(this.defaultPromptOptions))
       var dynamicDefaults = {
         unsafeMessage: '<label for="vex">' + vex._escapeHtml(options.label || defaults.label) + '</label>',
         input: '<input name="vex" type="text" class="vex-dialog-prompt-input" placeholder="' + vex._escapeHtml(options.placeholder || defaults.placeholder) + '" value="' + vex._escapeHtml(options.value || defaults.value) + '" />'
@@ -1236,6 +1286,8 @@ var plugin = function plugin (vex) {
     afterOpen: function () {},
     message: '',
     input: '',
+    yesText: '',
+    noText: '',
     buttons: [
       dialog.buttons.YES,
       dialog.buttons.NO
@@ -1270,15 +1322,15 @@ var plugin = function plugin (vex) {
 
 module.exports = plugin
 
-},{"domify":1,"form-serialize":2}]},{},[3])(3)
+},{"deep-clone-simple":1,"domify":2,"form-serialize":3}]},{},[4])(4)
 });
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"domify":2,"form-serialize":4}],6:[function(require,module,exports){
+},{"deep-clone-simple":2,"domify":3,"form-serialize":5}],7:[function(require,module,exports){
 var vex = require('./vex')
 vex.registerPlugin(require('vex-dialog'))
 module.exports = vex
 
-},{"./vex":7,"vex-dialog":5}],7:[function(require,module,exports){
+},{"./vex":8,"vex-dialog":6}],8:[function(require,module,exports){
 // classList polyfill for old browsers
 require('classlist-polyfill')
 // Object.assign polyfill
@@ -1317,11 +1369,11 @@ var addClasses = function addClasses (el, classStr) {
 var animationEndEvent = (function detectAnimationEndEvent () {
   var el = document.createElement('div')
   var eventNames = {
+    'animation': 'animationend',
     'WebkitAnimation': 'webkitAnimationEnd',
     'MozAnimation': 'animationend',
     'OAnimation': 'oanimationend',
-    'msAnimation': 'MSAnimationEnd',
-    'animation': 'animationend'
+    'msAnimation': 'MSAnimationEnd'
   }
   for (var i in eventNames) {
     if (el.style[i] !== undefined) {
@@ -1625,5 +1677,5 @@ vex.registerPlugin = function registerPlugin (pluginFn, name) {
 
 module.exports = vex
 
-},{"classlist-polyfill":1,"domify":2,"es6-object-assign":3}]},{},[6])(6)
+},{"classlist-polyfill":1,"domify":3,"es6-object-assign":4}]},{},[7])(7)
 });

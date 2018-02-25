@@ -121,6 +121,15 @@ vex.dialog.buttons.YES.text = 'Okiedokie'
 vex.dialog.buttons.NO.text = 'Aahw hell no'
 ```
 
+You can also change the `yesText` and `noText` options of `vex.dialog` to change the labels for a single dialog. These options cannot be used in conjunction with a custom buttons array.
+
+```javascript
+vex.dialog.prompt({
+    yesText: 'Okiedokie'
+    noText: 'Aahw hell no'
+})
+```
+
 Custom buttons should use the following structure:
 
 ```javascript
