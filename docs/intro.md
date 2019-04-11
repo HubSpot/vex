@@ -69,7 +69,7 @@ The `vex.combined.min.js` file includes:
 #### Confirm Demo
 
 One of the simplest ways to use vex is to call `vex.dialog.alert`, `vex.dialog.confirm`, or `vex.dialog.prompt`. In this demo, we're using `vex.dialog.confirm` to ask the user to confirm the answer to a simple question.
-
+```html
 <a class="demo-confirm hs-brand-button">Destroy the planet</a>
 <div class="demo-result-confirm hs-doc-callout hs-doc-callout-info" style="display: none"></div>
 <script>
@@ -82,7 +82,7 @@ $('.demo-confirm').click(function(){
     });
 });
 </script>
-
+```
 Play with this demo:
 
 ```javascript
@@ -101,7 +101,7 @@ vex.dialog.confirm({
 #### Login Demo
 
 Here's a more complex demo in which we use `vex.dialog.open` (a more generic method that `alert`, `confirm`, and `prompt` all call internally) to build a login dialog.
-
+```html
 <a class="demo-login hs-brand-button">Log in</a>
 <div class="demo-result-login hs-doc-callout hs-doc-callout-info" style="display: none"></div>
 <script>
@@ -128,7 +128,7 @@ Here's a more complex demo in which we use `vex.dialog.open` (a more generic met
         });
     });
 </script>
-
+```
 Play with this example:
 
 ```javascript
@@ -166,6 +166,7 @@ vex was built by [Adam Schwartz](http://twitter.com/adamfschwartz)
 
 
 <!-- Resources for the demos -->
+```html
 <p style="-webkit-transform: translateZ(0)"></p>
 <script src="/vex/dist/js/vex.combined.js"></script>
 <link rel="stylesheet" href="/vex/dist/css/vex.css" />
@@ -175,3 +176,4 @@ vex was built by [Adam Schwartz](http://twitter.com/adamfschwartz)
         vex.defaultOptions.className = 'vex-theme-os';
     })();
 </script>
+```
